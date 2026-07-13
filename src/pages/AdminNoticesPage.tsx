@@ -184,13 +184,17 @@ export default function AdminNoticesPage() {
             <button
               type="button"
               onClick={() => {
-                const n = syncSeedNotices()
+                const n = syncSeedNotices(true)
                 refresh()
-                setMessage(n > 0 ? `시드 공지 ${n}건을 추가했습니다.` : '추가할 시드 공지가 없습니다.')
+                setMessage(
+                  n > 0
+                    ? `이전 게시판 시드 ${n}건을 이미지 포함해 다시 불러왔습니다. (직접 작성한 글은 유지)`
+                    : '동기화할 시드가 없습니다.',
+                )
               }}
               className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700"
             >
-              시드 동기화
+              시드·이미지 동기화
             </button>
             <Link to="/notice" className="text-sm font-medium text-lala-600">
               게시판 보기

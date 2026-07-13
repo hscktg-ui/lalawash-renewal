@@ -1,7 +1,7 @@
 import { SEED_NOTICES, type Notice, type NoticeType } from './content'
 
-const STORAGE_KEY = 'lalawash_notices_v4'
-const LEGACY_KEYS = ['lalawash_notices_v3', 'lalawash_notices_v2']
+const STORAGE_KEY = 'lalawash_notices_v5'
+const LEGACY_KEYS = ['lalawash_notices_v4', 'lalawash_notices_v3', 'lalawash_notices_v2']
 const AUTH_KEY = 'lalawash_admin_session'
 
 /** 관리자 계정 (운영 전달용 — docs/ADMIN_ACCESS.md 참고) */
@@ -28,9 +28,17 @@ function readLegacy(): Notice[] | null {
   return null
 }
 
-/** 시드에만 있는 글을 로컬에 추가 (관리자 수정분·추가분은 유지) */
-export function syncSeedNotices(): number {
+/** 시드/레거시 글을 최신 시드로 교체하고, 관리자가 새로 쓴 글(n-*)만 유지 */
+export function syncSeedNotices(replaceLegacy = true): number {
   const current = readAllRaw()
+  const adminOnly = current.filter((n) => n.id.startsWith('n-'))
+
+  if (replaceLegacy) {
+    const next = [...SEED_NOTICES, ...adminOnly]
+    writeAll(next)
+    return SEED_NOTICES.length
+  }
+
   const ids = new Set(current.map((n) => n.id))
   const missing = SEED_NOTICES.filter((n) => !ids.has(n.id))
   if (missing.length === 0) return 0
@@ -48,9 +56,9 @@ function readAllRaw(): Notice[] {
 
     const legacy = readLegacy()
     if (legacy) {
-      const ids = new Set(legacy.map((n) => n.id))
-      const missing = SEED_NOTICES.filter((n) => !ids.has(n.id))
-      const merged = [...legacy, ...missing]
+      // v5 최초: 시드(이미지 포함)로 레거시 글을 교체, 관리자 작성분(n-*)만 유지
+      const adminOnly = legacy.filter((n) => n.id.startsWith('n-'))
+      const merged = [...SEED_NOTICES, ...adminOnly]
       writeAll(merged)
       return merged
     }
@@ -67,11 +75,7 @@ function writeAll(list: Notice[]) {
 }
 
 export function listNotices(): Notice[] {
-  const list = readAllRaw()
-  // 시드가 늘어난 경우 자동 병합
-  const added = syncSeedNotices()
-  const finalList = added > 0 ? readAllRaw() : list
-  return finalList.sort((a, b) => {
+  return readAllRaw().sort((a, b) => {
     if (a.pinned && !b.pinned) return -1
     if (!a.pinned && b.pinned) return 1
     return b.createdAt.localeCompare(a.createdAt)
