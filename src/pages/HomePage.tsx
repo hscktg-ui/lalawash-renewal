@@ -23,6 +23,7 @@ import {
   SOLUTIONS,
   WASH_STEPS,
 } from '../data'
+import { BlogSection } from '../components/BlogSection'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -385,6 +386,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <BlogSection />
 
       <section className="bg-lala-800 px-5 py-20 text-white">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">

@@ -8,6 +8,10 @@ import ServiceDetailPage from './pages/ServiceDetailPage'
 import InfraPage from './pages/InfraPage'
 import ImpactPage from './pages/ImpactPage'
 import ContactPage from './pages/ContactPage'
+import NoticePage from './pages/NoticePage'
+import NoticeDetailPage from './pages/NoticeDetailPage'
+import AdminLoginPage from './pages/AdminLoginPage'
+import AdminNoticesPage from './pages/AdminNoticesPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -22,6 +26,8 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        <Route path="admin" element={<AdminLoginPage />} />
+        <Route path="admin/notices" element={<AdminNoticesPage />} />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
@@ -29,6 +35,8 @@ export default function App() {
           <Route path="services/:slug" element={<ServiceDetailPage />} />
           <Route path="infra" element={<InfraPage />} />
           <Route path="impact" element={<ImpactPage />} />
+          <Route path="notice" element={<NoticePage />} />
+          <Route path="notice/:id" element={<NoticeDetailPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

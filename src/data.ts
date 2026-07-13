@@ -50,6 +50,7 @@ export const NAV = [
   { to: '/services', label: '서비스' },
   { to: '/infra', label: '지점·인프라' },
   { to: '/impact', label: '성과' },
+  { to: '/notice', label: '공지' },
   { to: '/contact', label: '문의' },
 ]
 

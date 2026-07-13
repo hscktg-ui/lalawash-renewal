@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Menu, Phone, X } from 'lucide-react'
 import { BRAND, CONTACT, LOGO, NAV } from '../data'
+import { EXTERNAL } from '../lib/content'
 
 export function Layout() {
   const [open, setOpen] = useState(false)
@@ -87,8 +88,23 @@ export function Layout() {
             <p>{CONTACT.email}</p>
           </div>
           <div className="text-sm text-muted">
-            <p className="font-semibold text-ink">사업자 정보</p>
-            <p className="mt-2">대표 {CONTACT.ceo}</p>
+            <p className="font-semibold text-ink">바로가기</p>
+            <p className="mt-2">
+              <Link to="/notice" className="hover:text-lala-600">
+                공지·공문
+              </Link>
+            </p>
+            <p className="mt-1">
+              <a href={EXTERNAL.blog} target="_blank" rel="noreferrer" className="hover:text-lala-600">
+                공식 블로그 (소식)
+              </a>
+            </p>
+            <p className="mt-1">
+              <a href={EXTERNAL.instagram} target="_blank" rel="noreferrer" className="hover:text-lala-600">
+                인스타그램
+              </a>
+            </p>
+            <p className="mt-3">대표 {CONTACT.ceo}</p>
             <p>사업자등록번호 {CONTACT.biz}</p>
             <p className="mt-3">© {new Date().getFullYear()} {BRAND.nameEn}</p>
           </div>
