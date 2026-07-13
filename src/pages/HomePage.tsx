@@ -14,11 +14,11 @@ import {
 } from 'lucide-react'
 import {
   BRANCHES,
+  BRAND,
   CONTACT,
   FAQ,
   IMAGES,
   IMPACT,
-  LOGO,
   PUBLIC_OPS,
   SOLUTIONS,
   WASH_STEPS,
@@ -101,16 +101,17 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.94)_0%,rgba(30,122,173,0.55)_55%,rgba(15,45,69,0.35)_100%)]" />
         <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:pb-24">
-          <img src={LOGO} alt="라라워시" className="mb-6 h-11 w-auto brightness-0 invert md:h-12" />
-          <h1 className="max-w-4xl font-extrabold tracking-tight">
+          <p className="text-sm font-semibold tracking-[0.12em] text-lala-200">{BRAND.slogan}</p>
+          <h1 className="mt-4 max-w-4xl font-extrabold tracking-tight">
             <span className="block text-4xl leading-tight md:text-6xl lg:text-7xl">
-              지속가능한 깨끗함,
-              <br />
-              가까운 곳에서.
+              {BRAND.name}
+            </span>
+            <span className="mt-4 block max-w-2xl text-xl font-medium leading-snug text-lala-50 md:text-2xl">
+              가까운 곳에서, 깨끗하게 순환합니다.
             </span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-lala-50 md:text-lg">
-            다회용기를 빌려드리고, 쓰신 뒤 수거해 깨끗이 씻어 다시 가져다 드립니다.
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-lala-50/90 md:text-lg">
+            다회용기를 빌려드리고, 쓰신 뒤 수거해 씻어 다시 가져다 드립니다.
             공공기관·급식·축제·장례식장까지, 경기도 곳곳에서 도와드립니다.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">

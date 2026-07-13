@@ -1,6 +1,24 @@
-/** 기존 사이트 공식 로고 (스키마·워드마크 동일 에셋으로 통일) */
-export const LOGO = '/logo.png'
-export const LOGO_MARK = '/logo-header.png' // 보조(구 헤더용) — 기본 노출은 LOGO만 사용
+/** 브랜드 카피·에셋 (기존 사이트 기준) */
+export const BRAND = {
+  name: '라라워시',
+  nameEn: 'Lalawash',
+  /** OG·기존 사이트 슬로건 */
+  slogan: '지속가능한 깨끗함',
+  tagline: '다회용기 대여부터 수거·세척까지, 가까운 곳에서',
+  description:
+    '지속가능한 깨끗함을 추구하며, 다회용기 렌탈·세척 서비스를 제공하는 경기도의 지역 브랜드입니다.',
+}
+
+/**
+ * 로고 배치 정책 (패널 합의)
+ * - 헤더: 밝은 배경용 logo-light 1회만
+ * - 푸터: 텍스트 워드마크(로고 이미지 중복 지양)
+ * - 히어로: 로고 이미지 없음 → 슬로건 타이포
+ * - 파비콘·OG: 기존 에셋 유지
+ */
+export const LOGO_LIGHT = '/logo-light.png' // 흰 배경용 (파란 워드마크)
+export const LOGO_DARK = '/logo.png' // 어두운 배경용 (흰 워드마크) — 필요 시만
+export const LOGO = LOGO_LIGHT
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
@@ -201,89 +219,24 @@ export const IMPACT_FORMULA = [
   '최대 약 75%까지 탄소를 줄일 수 있습니다',
 ]
 
-/**
- * 포트폴리오 노출 정책 (패널 최종 합의)
- * - 회사소개서에 적힌 수치·기관명은 노출 (검증됨)
- * - CDN 일반 사진을 특정 축제/기관 실사처럼 귀속하지 않음 (오류 위험)
- * - 특정 행사 원본 사진 확보 전까지 포토 갤러리 비노출
- */
 export const PORTFOLIO_POLICY = {
   showVerifiedMetrics: true,
   showAttributedPhotos: false,
   note: '행사·기관별 수치는 회사소개서 v12 기준입니다. 특정 현장 사진은 원본 확보 후 게시합니다.',
 }
 
-/** 검증된 실적만 (사진 귀속 없음) */
 export const VERIFIED_ACHIEVEMENTS = [
-  {
-    category: '축제',
-    title: '서울재즈페스티벌',
-    metric: '약 8만 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '축제',
-    title: '성북 누리마실',
-    metric: '약 3.5만 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '축제',
-    title: '시흥갯골축제',
-    metric: '약 3만 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '축제',
-    title: '펜타포트 락페스티벌',
-    metric: '약 3만 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '축제',
-    title: '잠수교 행사',
-    metric: '약 8천 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '축제',
-    title: '축제 누적 사용',
-    metric: '약 23.4만 개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '공공',
-    title: '경기도청 다회용컵',
-    metric: '2024.3~2027.2',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '공공',
-    title: '지자체 거점 운영',
-    metric: '하루 약 100~2,000개',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '장례',
-    title: '경기도의료원(수원·이천·포천)',
-    metric: '연속 운영',
-    source: '회사소개서 v12',
-  },
-  {
-    category: '장례',
-    title: '수원연화장',
-    metric: '연속 운영',
-    source: '회사소개서 v12',
-  },
+  { category: '축제', title: '서울재즈페스티벌', metric: '약 8만 개', source: '회사소개서 v12' },
+  { category: '축제', title: '성북 누리마실', metric: '약 3.5만 개', source: '회사소개서 v12' },
+  { category: '축제', title: '시흥갯골축제', metric: '약 3만 개', source: '회사소개서 v12' },
+  { category: '축제', title: '펜타포트 락페스티벌', metric: '약 3만 개', source: '회사소개서 v12' },
+  { category: '축제', title: '잠수교 행사', metric: '약 8천 개', source: '회사소개서 v12' },
+  { category: '축제', title: '축제 누적 사용', metric: '약 23.4만 개', source: '회사소개서 v12' },
+  { category: '공공', title: '경기도청 다회용컵', metric: '2024.3~2027.2', source: '회사소개서 v12' },
+  { category: '공공', title: '지자체 거점 운영', metric: '하루 약 100~2,000개', source: '회사소개서 v12' },
+  { category: '장례', title: '경기도의료원(수원·이천·포천)', metric: '연속 운영', source: '회사소개서 v12' },
+  { category: '장례', title: '수원연화장', metric: '연속 운영', source: '회사소개서 v12' },
 ]
-
-/** @deprecated 사진 귀속 리스크 — PORTFOLIO_POLICY.showAttributedPhotos=false 로 비노출 */
-export const PORTFOLIO = VERIFIED_ACHIEVEMENTS.map((a) => ({
-  title: a.title,
-  category: a.category,
-  metric: a.metric,
-  image: IMAGES.service,
-}))
 
 export const PARTNERS: { name: string; logo?: string; href?: string }[] = [
   { name: '경기도', logo: IMAGES.gg, href: 'https://www.gg.go.kr/' },
