@@ -6,6 +6,7 @@ import {
   VERIFIED_ACHIEVEMENTS,
   YEARLY_IMPACT,
 } from '../data'
+import { CompanyProfileDownload } from './CompanyProfileDownload'
 
 export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
   const maxEvents = Math.max(...YEARLY_IMPACT.map((y) => y.events))
@@ -85,6 +86,9 @@ export function PortfolioGallery() {
         <p className="text-sm font-semibold text-lala-600">검증된 운영 실적</p>
         <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">소개서 기준으로 확인된 현장</h2>
         <p className="mt-4 max-w-2xl text-muted">{PORTFOLIO_POLICY.note}</p>
+        <div className="mt-5">
+          <CompanyProfileDownload variant="secondary" label="회사소개서 PDF 다운로드" />
+        </div>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {VERIFIED_ACHIEVEMENTS.map((p) => (

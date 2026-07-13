@@ -1,5 +1,6 @@
 import { Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
+import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { CONTACT, FAQ, IMAGES } from '../data'
 import { EXTERNAL } from '../lib/content'
 
@@ -34,6 +35,9 @@ export default function ContactPage() {
             >
               기존 사용 예약 폼
             </a>
+            <div className="mt-4">
+              <CompanyProfileDownload variant="secondary" label="회사소개서 PDF" />
+            </div>
           </div>
           <form
             className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"

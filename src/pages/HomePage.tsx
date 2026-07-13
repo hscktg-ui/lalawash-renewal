@@ -25,6 +25,7 @@ import {
 } from '../data'
 import { EXTERNAL } from '../lib/content'
 import { BlogSection } from '../components/BlogSection'
+import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { InsightsSection } from '../components/InsightsSection'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 
@@ -366,13 +367,16 @@ export default function HomePage() {
               <p className="text-sm font-semibold text-lala-300">왜 다회용기인가요?</p>
               <h3 className="mt-2 text-2xl font-extrabold md:text-3xl">3번만 써도 환경이 달라집니다</h3>
               <p className="mt-3 max-w-xl text-sm text-slate-300">
-                하루 한 잔의 선택이 쌓이면, 탄소를 크게 줄일 수 있습니다. 자세한 숫자는 성과 페이지에서
+                하루 한 잔의 선택이 쌓이면, 탄소를 크게 줄일 수 있습니다. 자세한 숫자는 성과 페이지·회사소개서에서
                 확인하세요.
               </p>
             </div>
-            <Link to="/impact" className="rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-900">
-              성과 자세히 보기
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/impact" className="rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-900">
+                성과 자세히 보기
+              </Link>
+              <CompanyProfileDownload variant="dark" label="회사소개서 PDF" />
+            </div>
           </div>
         </div>
       </section>
@@ -421,6 +425,9 @@ export default function HomePage() {
             >
               기존 사용 예약 폼 열기
             </a>
+            <div className="mt-4">
+              <CompanyProfileDownload variant="dark" label="회사소개서 다운로드" />
+            </div>
           </div>
           <form
             className="rounded-3xl bg-white p-7 text-ink shadow-xl"

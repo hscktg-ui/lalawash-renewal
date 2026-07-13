@@ -1,5 +1,6 @@
 import { CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
+import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 import { IMAGES, IMPACT } from '../data'
 
@@ -40,6 +41,13 @@ export default function ImpactPage() {
         image={IMAGES.video}
       />
       <Section title="한눈에 보는 성과">
+        <div className="mb-8 flex flex-col gap-4 rounded-2xl bg-lala-50 p-6 ring-1 ring-lala-100 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-bold text-lala-800">본사 회사소개서 v12</p>
+            <p className="mt-1 text-sm text-muted">상세 수치·연혁·현장 실적은 PDF에서도 확인하실 수 있습니다.</p>
+          </div>
+          <CompanyProfileDownload />
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {IMPACT.map((i) => (
             <div key={i.label} className="rounded-2xl bg-lala-700 p-6 text-white">

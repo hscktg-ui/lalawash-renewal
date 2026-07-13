@@ -95,6 +95,15 @@ export function Layout() {
               </Link>
             </p>
             <p className="mt-1">
+              <a
+                href={EXTERNAL.companyProfile}
+                download={EXTERNAL.companyProfileName}
+                className="hover:text-lala-600"
+              >
+                회사소개서 PDF
+              </a>
+            </p>
+            <p className="mt-1">
               <a href={EXTERNAL.blog} target="_blank" rel="noreferrer" className="hover:text-lala-600">
                 공식 블로그 (소식)
               </a>

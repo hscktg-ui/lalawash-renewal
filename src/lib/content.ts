@@ -7,6 +7,9 @@ export const EXTERNAL = {
   reserveForm: 'https://forms.gle/kN7ZruxCwcJLdvJ16',
   officialNotice: 'https://lalawash.co.kr/notice',
   officialSite: 'https://lalawash.co.kr/',
+  /** 본사 회사소개서 v12 (public/docs) */
+  companyProfile: '/docs/lalawash-company-profile-v12.pdf',
+  companyProfileName: '라라워시_본사_회사소개서_v12.pdf',
 }
 
 export type NoticeType = 'notice' | 'official' | 'news'

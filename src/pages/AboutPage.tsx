@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
+import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { IMAGES } from '../data'
 
 export default function AboutPage() {
@@ -36,6 +37,10 @@ export default function AboutPage() {
                 </li>
               ))}
             </ol>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <CompanyProfileDownload />
+              <p className="w-full text-xs text-slate-400">PDF · 본사 회사소개서 v12</p>
+            </div>
           </div>
         </div>
       </Section>
@@ -52,9 +57,12 @@ export default function AboutPage() {
             </article>
           ))}
         </div>
-        <Link to="/services" className="mt-8 inline-block text-sm font-bold text-lala-600">
-          서비스 안내 보기 →
-        </Link>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <Link to="/services" className="text-sm font-bold text-lala-600">
+            서비스 안내 보기 →
+          </Link>
+          <CompanyProfileDownload variant="secondary" label="소개서 PDF 받기" />
+        </div>
       </Section>
     </>
   )
