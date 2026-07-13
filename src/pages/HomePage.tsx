@@ -25,6 +25,7 @@ import {
 } from '../data'
 import { EXTERNAL } from '../lib/content'
 import { BlogSection } from '../components/BlogSection'
+import { BranchMapFrame } from '../components/BranchMapFrame'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { InsightsSection } from '../components/InsightsSection'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
@@ -230,18 +231,16 @@ export default function HomePage() {
                 전체 지점·운영 현황 보기 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 lg:col-span-2">
-              <img
+            <div className="lg:col-span-2">
+              <BranchMapFrame
                 src={IMAGES.centerMapAlt}
                 alt="라라워시 지점 위치도"
-                className="h-full w-full object-contain p-3"
+                caption={`공식 ${NETWORK.sites}곳 · 연락처 공개 ${BRANCHES.length}곳`}
+                className="h-full"
+                imgClassName="max-h-[280px] md:max-h-[320px]"
               />
-              <div className="border-t border-slate-100 px-5 py-4">
-                <p className="font-bold text-lala-800">경기도 지점 네트워크</p>
-                <p className="mt-1 text-sm text-muted">
-                  공식 {NETWORK.sites}곳 · 연락처 공개 {BRANCHES.length}곳 · 부천나눔 2호점(2026.6) 개소
-                </p>
-                <Link to="/infra" className="mt-3 inline-flex text-sm font-bold text-lala-600">
+              <div className="mt-3 px-1">
+                <Link to="/infra" className="inline-flex text-sm font-bold text-lala-600">
                   지점 상세 보기 →
                 </Link>
               </div>

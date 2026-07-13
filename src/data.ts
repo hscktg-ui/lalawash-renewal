@@ -32,8 +32,9 @@ export const IMAGES = {
   video: 'https://cdn.imweb.me/thumbnail/20221209/cdc246b24e895.jpg',
   /** 기존 /center 페이지 지점 안내 이미지 */
   center: 'https://cdn.imweb.me/thumbnail/20231123/4aa2068891dbb.jpg',
-  centerMap: 'https://cdn.imweb.me/thumbnail/20260204/1f0c480877b91.png',
-  centerMapAlt: 'https://cdn.imweb.me/thumbnail/20260204/c794e42f95f98.png',
+  /** 지점 위치도 — 배경 재채색본 (한글 라벨 원본 유지) */
+  centerMap: '/maps/center-map.png',
+  centerMapAlt: '/maps/center-map-alt.png',
   mapCta: 'https://cdn.imweb.me/thumbnail/20250922/cbece11f67bff.png',
   reusable: 'https://cdn.imweb.me/thumbnail/20250922/81ee8b45ec653.png',
   character: 'https://cdn.imweb.me/thumbnail/20231127/c4d9d8c00bd1b.jpg',

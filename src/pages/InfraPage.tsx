@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ExternalLink, MapPin, Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { BRANCHES, IMAGES, PUBLIC_OPS } from '../data'
+import { BranchMapFrame } from '../components/BranchMapFrame'
+import { BRANCHES, IMAGES, NETWORK, PUBLIC_OPS } from '../data'
 
 export default function InfraPage() {
   const [active, setActive] = useState(BRANCHES[0].name)
@@ -12,20 +13,22 @@ export default function InfraPage() {
       <PageHero
         eyebrow="지점·인프라"
         title="라라워시 지점 안내"
-        desc="경기도 곳곳의 세척 센터에서 가까운 서비스를 제공합니다. 기존 홈페이지와 같은 지점 위치도를 사용합니다."
+        desc={`경기도 ${NETWORK.regions}개 지역 · 세척 사업장 ${NETWORK.sites}곳. 가까운 센터에서 수거·세척·재공급을 이어 드립니다.`}
         image={IMAGES.center}
       />
 
-      <Section title="지점 위치" desc="시흥작은자리·부천은 규모 세척장으로 자동화 라인을 갖추고 있으며, 부천나눔 2호점(2026.6)이 추가로 문을 열었습니다.">
-        <div className="overflow-hidden rounded-3xl bg-slate-50 ring-1 ring-slate-200">
-          <img
-            src={IMAGES.centerMap}
-            alt="라라워시 경기도 지점 위치도"
-            className="mx-auto h-auto w-full max-w-4xl object-contain"
-          />
-        </div>
+      <Section
+        title="지점 위치"
+        desc="시흥작은자리·부천은 규모 세척장으로 자동화 라인을 갖추고 있으며, 부천나눔 2호점(2026.6)이 추가로 문을 열었습니다."
+      >
+        <BranchMapFrame
+          src={IMAGES.centerMap}
+          alt="라라워시 경기도 지점 위치도"
+          caption="부천·시흥작은자리 자동화 세척 · 부천나눔 2호점(2026.6) · 한글 지명 원본 유지"
+          imgClassName="max-w-4xl"
+        />
         <p className="mt-3 text-center text-xs text-muted">
-          출처: 기존 홈페이지 지점 안내 이미지 (lalawash.co.kr/center)
+          지점 위치도는 공식 안내 그래픽을 바탕으로 배경만 재채색했습니다. 시·군명·마커 텍스트는 원본을 유지합니다.
         </p>
       </Section>
 
@@ -98,13 +101,13 @@ export default function InfraPage() {
               )}
             </article>
 
-            <div className="mt-6 overflow-hidden rounded-2xl ring-1 ring-slate-200">
-              <img
-                src={IMAGES.centerMapAlt}
-                alt="라라워시 지점 위치 보조 지도"
-                className="w-full object-contain bg-slate-50"
-              />
-            </div>
+            <BranchMapFrame
+              src={IMAGES.centerMapAlt}
+              alt="라라워시 지점 위치 보조 지도"
+              caption="경기도 전역 지점 네트워크"
+              className="mt-6 rounded-2xl"
+              imgClassName="max-h-[360px]"
+            />
           </div>
         </div>
       </Section>
