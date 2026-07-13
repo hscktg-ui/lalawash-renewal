@@ -226,16 +226,21 @@ export default function HomePage() {
                 전체 지점·운영 현황 보기 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="flex flex-col justify-between rounded-2xl bg-lala-800 p-7 text-white lg:col-span-2">
-              <div>
-                <MapPin className="h-6 w-6 text-lala-300" />
-                <p className="mt-4 text-2xl font-extrabold">가까운 곳이 강점입니다</p>
-                <p className="mt-3 text-sm leading-relaxed text-lala-100">
-                  {BRANCHES.length}개 권역에서 수거·세척·재공급을 이어갑니다.
-                  “얼마나, 언제, 어디로”만 알려주시면 맞춰 드립니다.
+            <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 lg:col-span-2">
+              <img
+                src={IMAGES.centerMapAlt}
+                alt="라라워시 지점 위치도"
+                className="h-full w-full object-contain p-3"
+              />
+              <div className="border-t border-slate-100 px-5 py-4">
+                <p className="font-bold text-lala-800">경기도 지점 네트워크</p>
+                <p className="mt-1 text-sm text-muted">
+                  {BRANCHES.length}개 지점 · 기존 홈페이지 지점 안내 이미지 사용
                 </p>
+                <Link to="/infra" className="mt-3 inline-flex text-sm font-bold text-lala-600">
+                  지점 상세 보기 →
+                </Link>
               </div>
-              <p className="mt-8 text-xs text-lala-300">경기도청 다회용컵 사업 선정 (2024.3~2027.2)</p>
             </div>
           </div>
         </div>
