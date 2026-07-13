@@ -13,14 +13,11 @@
 | `docs/PANEL_FINAL.md` | **최종 Go · 로고·포트폴리오 정책** |
 | `src/` | 리뉴얼 사이트 |
 
-## 포트폴리오 정책
+## 패널 최종 총정리
 
-- 회사소개서 **검증 수치·기관명만 노출**
-- 특정 행사 사진 귀속은 **원본 확보 전까지 비노출** (`PORTFOLIO_POLICY`)
+→ **[`docs/PANEL_FINAL_SUMMARY.md`](docs/PANEL_FINAL_SUMMARY.md)**  
+종합 **8.3 / Final Go (조건부)** · 배포 https://lalawash-renewal.vercel.app
 
-## 브랜드 에셋
-
-기존 [lalawash.co.kr](https://lalawash.co.kr)와 동일: `public/logo.png`, `favicon.ico`, `og-image.png`
 
 ## 실행
 
