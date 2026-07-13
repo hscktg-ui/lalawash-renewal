@@ -153,7 +153,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-300">함께 만든 변화</p>
           <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-5xl">
-            숫자로 먼저 보여드립니다
+            지금까지 이렇게 함께했습니다
           </h2>
           <p className="mt-4 max-w-2xl text-sm text-slate-300 md:text-base">
             일회용품을 줄이며 쌓아 온 결과입니다. 탄소 계산은 서울시 다회용기 자료를 참고했습니다.
@@ -189,8 +189,8 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { v: String(NETWORK.sites), u: '곳', l: '세척 사업장', s: '2026 공식 소식 기준' },
-              { v: String(NETWORK.regions), u: '개', l: '서비스 지역', s: '경기도를 중심으로' },
+              { v: String(NETWORK.sites), u: '곳', l: '세척 사업장', s: '경기도를 중심으로' },
+              { v: String(NETWORK.regions), u: '개', l: '서비스 지역', s: '가까운 곳에서 순환' },
               { v: '2,000', u: '개/일', l: '지점별 최대 처리', s: '최소 약 100개부터' },
             ].map((x) => (
               <div key={x.l} className="border-l-4 border-lala-500 bg-white/80 px-6 py-8 shadow-sm">
@@ -366,15 +366,15 @@ export default function HomePage() {
               <p className="text-sm font-semibold text-lala-300">왜 다회용기인가요?</p>
               <h3 className="mt-2 text-2xl font-extrabold md:text-3xl">3번만 써도 환경이 달라집니다</h3>
               <p className="mt-3 max-w-xl text-sm text-slate-300">
-                하루 한 잔의 선택이 쌓이면, 탄소를 크게 줄일 수 있습니다. 자세한 숫자는 성과 페이지·회사소개서에서
-                확인하세요.
+                하루 한 잔의 선택이 쌓이면, 탄소를 크게 줄일 수 있습니다. 자세한 숫자는 성과 페이지에서
+                확인해 보세요.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link to="/impact" className="rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-900">
                 성과 자세히 보기
               </Link>
-              <CompanyProfileDownload variant="dark" label="회사소개서 PDF" />
+              <CompanyProfileDownload variant="dark" label="소개 자료 받기" />
             </div>
           </div>
         </div>
@@ -422,17 +422,17 @@ export default function HomePage() {
               rel="noreferrer"
               className="mt-6 inline-flex rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white"
             >
-              기존 사용 예약 폼 열기
+              사용 예약하기
             </a>
             <div className="mt-4">
-              <CompanyProfileDownload variant="dark" label="회사소개서 다운로드" />
+              <CompanyProfileDownload variant="dark" label="소개 자료 받기" />
             </div>
           </div>
           <form
             className="rounded-3xl bg-white p-7 text-ink shadow-xl"
             onSubmit={(e) => {
               e.preventDefault()
-              alert('프로토타입입니다. 실제 연동 시 담당자에게 전달됩니다.')
+              alert('남겨 주신 내용은 확인 후 연락드리겠습니다. 급한 문의는 031-8019-9524로 전화해 주세요.')
             }}
           >
             <p className="text-sm font-bold text-lala-700">빠른 견적·상담 요청</p>

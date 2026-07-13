@@ -36,17 +36,17 @@ export default function ImpactPage() {
     <>
       <PageHero
         eyebrow="성과"
-        title="숫자와 현장으로 보여드립니다"
-        desc="해마다 얼마나 자랐는지, 어디서 쓰였는지, 탄소는 어떻게 계산하는지 쉽게 정리했습니다."
+        title="함께 만든 변화를 숫자로"
+        desc="얼마나 자랐는지, 어디서 쓰였는지, 탄소는 어떻게 줄어드는지 쉽게 정리했습니다."
         image={IMAGES.video}
       />
       <Section title="한눈에 보는 성과">
         <div className="mb-8 flex flex-col gap-4 rounded-2xl bg-lala-50 p-6 ring-1 ring-lala-100 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-bold text-lala-800">본사 회사소개서 v12</p>
-            <p className="mt-1 text-sm text-muted">상세 수치·연혁·현장 실적은 PDF에서도 확인하실 수 있습니다.</p>
+            <p className="text-sm font-bold text-lala-800">기관·기업 담당자용 소개 자료</p>
+            <p className="mt-1 text-sm text-muted">연혁·실적·서비스 구성이 정리된 PDF를 받아 보실 수 있습니다.</p>
           </div>
-          <CompanyProfileDownload />
+          <CompanyProfileDownload label="소개 자료 받기" />
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {IMPACT.map((i) => (

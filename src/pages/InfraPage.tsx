@@ -24,12 +24,9 @@ export default function InfraPage() {
         <BranchMapFrame
           src={IMAGES.centerMap}
           alt="라라워시 경기도 지점 위치도"
-          caption="부천·시흥작은자리 자동화 세척 · 부천나눔 2호점(2026.6) · 한글 지명 원본 유지"
+          caption="부천·시흥작은자리 자동화 세척 · 부천나눔 2호점(2026.6)"
           imgClassName="max-w-4xl"
         />
-        <p className="mt-3 text-center text-xs text-muted">
-          지점 위치도는 공식 안내 그래픽을 바탕으로 배경만 재채색했습니다. 시·군명·마커 텍스트는 원본을 유지합니다.
-        </p>
       </Section>
 
       <Section title="지점 찾아보기" desc="목록에서 지점을 선택하면 주소·전화·취급 품목을 확인할 수 있습니다." className="bg-slate-50">

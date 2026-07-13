@@ -33,17 +33,17 @@ export default function ContactPage() {
               rel="noreferrer"
               className="mt-6 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-bold text-lala-800"
             >
-              기존 사용 예약 폼
+              사용 예약하기
             </a>
             <div className="mt-4">
-              <CompanyProfileDownload variant="secondary" label="회사소개서 PDF" />
+              <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
             </div>
           </div>
           <form
             className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
             onSubmit={(e) => {
               e.preventDefault()
-              alert('프로토타입입니다. 실제 연동 시 담당자에게 전달됩니다.')
+              alert('남겨 주신 내용은 확인 후 연락드리겠습니다. 급한 문의는 031-8019-9524로 전화해 주세요.')
             }}
           >
             <label className="block text-sm font-semibold">

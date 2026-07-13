@@ -8,10 +8,10 @@ export function InsightsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-sm font-semibold text-lala-600">최신 소식 · 인사이트</p>
+            <p className="text-sm font-semibold text-lala-600">최근 소식</p>
             <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">지금 라라워시는 이렇게 움직입니다</h2>
             <p className="mt-4 max-w-2xl text-muted">
-              공식 사이트·네이버 블로그에서 확인된 2025–2026 소식입니다. 미검증 수치는 넣지 않았습니다.
+              새 지점, 축제 현장, 운영 이야기를 모아 두었습니다. 더 자세한 현장 소식은 블로그에서도 보실 수 있습니다.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -21,7 +21,7 @@ export function InsightsSection() {
               rel="noreferrer"
               className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-lala-800"
             >
-              공식 소식 <ArrowUpRight className="h-4 w-4" />
+              더 많은 소식 <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
               href={EXTERNAL.blog}
@@ -50,7 +50,7 @@ export function InsightsSection() {
               <h3 className="mt-3 text-lg font-bold text-ink group-hover:text-lala-800">{item.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{item.summary}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600">
-                원문 보기 <ArrowUpRight className="h-4 w-4" />
+                이야기 보기 <ArrowUpRight className="h-4 w-4" />
               </span>
             </a>
           ))}

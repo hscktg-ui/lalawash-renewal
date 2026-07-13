@@ -38,8 +38,8 @@ export default function AboutPage() {
               ))}
             </ol>
             <div className="flex flex-wrap gap-3 pt-2">
-              <CompanyProfileDownload />
-              <p className="w-full text-xs text-slate-400">PDF · 본사 회사소개서 v12</p>
+              <CompanyProfileDownload label="소개 자료 받기" />
+              <p className="w-full text-xs text-slate-400">PDF · 기관·기업 담당자용</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function AboutPage() {
           <Link to="/services" className="text-sm font-bold text-lala-600">
             서비스 안내 보기 →
           </Link>
-          <CompanyProfileDownload variant="secondary" label="소개서 PDF 받기" />
+          <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
         </div>
       </Section>
     </>

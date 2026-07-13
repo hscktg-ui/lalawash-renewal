@@ -6,11 +6,11 @@ export function BlogSection() {
     <section className="px-5 py-20 md:py-24">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl bg-[#0b1f2e] text-white md:grid md:grid-cols-2">
         <div className="p-8 md:p-12">
-          <p className="text-sm font-semibold text-lala-300">공식 블로그 · 소식</p>
-          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">일상 소식은 블로그에서</h2>
+          <p className="text-sm font-semibold text-lala-300">블로그 · 현장 이야기</p>
+          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">더 많은 현장 이야기는 블로그에서</h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-300 md:text-base">
-            부천나눔 2호점 개소, 축제·장례·급식 현장 이야기, 위생 인사이트는 라라워시 공식 네이버
-            블로그와 인스타그램에서 확인하세요. 사이트 공지·공문과는 따로 운영합니다.
+            새 지점 소식, 축제·장례·급식 현장, 위생 이야기까지 네이버 블로그와 인스타그램에서 이어집니다.
+            공지·공문은 사이트 공지 게시판을 이용해 주세요.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a

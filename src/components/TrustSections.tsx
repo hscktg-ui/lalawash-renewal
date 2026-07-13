@@ -16,7 +16,7 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
         <p className={`text-sm font-semibold ${dark ? 'text-lala-300' : 'text-lala-600'}`}>연도별 성장</p>
         <h2 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">해마다 이렇게 커졌습니다</h2>
         <p className={`mt-4 max-w-2xl text-sm md:text-base ${dark ? 'text-slate-300' : 'text-muted'}`}>
-          축제·행사 건수, 사용량, 사업장, 일자리를 한눈에 보시면 됩니다. (회사소개서 기준)
+          축제·행사 건수, 사용량, 사업장, 일자리를 한눈에 보실 수 있습니다.
         </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -76,18 +76,17 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
   )
 }
 
-/** 검증된 실적만 카드로 노출 (사진 귀속 없음) */
 export function PortfolioGallery() {
   if (!PORTFOLIO_POLICY.showVerifiedMetrics) return null
 
   return (
     <section className="bg-slate-50 px-5 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold text-lala-600">검증된 운영 실적</p>
-        <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">소개서 기준으로 확인된 현장</h2>
+        <p className="text-sm font-semibold text-lala-600">현장 실적</p>
+        <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">이미 함께하고 있는 곳들</h2>
         <p className="mt-4 max-w-2xl text-muted">{PORTFOLIO_POLICY.note}</p>
         <div className="mt-5">
-          <CompanyProfileDownload variant="secondary" label="회사소개서 PDF 다운로드" />
+          <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
         </div>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -99,16 +98,9 @@ export function PortfolioGallery() {
               <p className="text-[11px] font-bold tracking-wide text-lala-600">{p.category}</p>
               <h3 className="mt-2 text-base font-bold text-ink">{p.title}</h3>
               <p className="mt-3 text-lg font-extrabold text-lala-700">{p.metric}</p>
-              <p className="mt-2 text-[11px] text-slate-400">출처: {p.source}</p>
             </article>
           ))}
         </div>
-
-        {!PORTFOLIO_POLICY.showAttributedPhotos && (
-          <p className="mt-6 rounded-xl bg-white px-4 py-3 text-xs text-muted ring-1 ring-slate-200">
-            특정 축제·기관 실사 사진은 원본 확인 후 게시합니다. 지금은 수치·기관명만 노출합니다.
-          </p>
-        )}
       </div>
     </section>
   )
@@ -121,7 +113,7 @@ export function PartnerLogoWall() {
         <p className="text-sm font-semibold text-lala-600">함께하는 곳</p>
         <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">믿고 맡겨 주신 기관·현장</h2>
         <p className="mt-4 max-w-2xl text-muted">
-          공식 로고가 있는 파트너는 이미지를, 그 외는 기관명으로 표기합니다. (로고 사용 승인 범위 내)
+          지자체·공공기관부터 축제·의료 현장까지, 가까운 세척망으로 함께하고 있습니다.
         </p>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
