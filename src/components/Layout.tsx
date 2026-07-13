@@ -113,6 +113,16 @@ export function Layout() {
                 인스타그램
               </a>
             </p>
+            <p className="mt-1">
+              <a
+                href={EXTERNAL.memberMall}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-lala-600"
+              >
+                회원사 전용몰
+              </a>
+            </p>
             <p className="mt-3">대표 {CONTACT.ceo}</p>
             <p>사업자등록번호 {CONTACT.biz}</p>
             <p className="mt-3">© {new Date().getFullYear()} {BRAND.nameEn}</p>

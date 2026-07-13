@@ -91,6 +91,21 @@ export default function NoticePage() {
             </li>
           ))}
         </ul>
+
+        <aside className="mt-10 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-muted">
+          <p className="font-medium text-slate-700">회원사 안내</p>
+          <p className="mt-1 leading-relaxed">
+            라라워시 조합원·가맹 회원사만 이용하는 전용몰이 별도로 있습니다. 일반 고객용 쇼핑몰이 아닙니다.
+          </p>
+          <a
+            href={EXTERNAL.memberMall}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-block text-sm font-semibold text-lala-700 hover:text-lala-800"
+          >
+            회원사 전용몰 바로가기 →
+          </a>
+        </aside>
       </Section>
     </>
   )
