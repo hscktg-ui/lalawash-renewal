@@ -41,6 +41,8 @@ export const IMAGES = {
   washBg: 'https://cdn.imweb.me/thumbnail/20231128/b4092ea57e46f.jpg',
   process: 'https://cdn.imweb.me/thumbnail/20231128/c3dada48bdea3.jpg',
   containers: 'https://cdn.imweb.me/thumbnail/20250922/3aaf157e8547e.jpg',
+  /** 장례식장 다회용기 — 실사 기반 AI 섹션 이미지 */
+  funeral: '/funeral-dishes.jpg',
   notice: 'https://cdn.imweb.me/thumbnail/20250922/cb365cd4333dc.png',
   gg: 'https://cdn.imweb.me/thumbnail/20240503/5f051377a0809.png',
   gpsc: 'https://cdn.imweb.me/thumbnail/20240503/9d2534da00f8f.png',
@@ -109,7 +111,7 @@ export const SOLUTIONS = [
     title: '장례식장 순환',
     short: '조용하고 끊김 없이, 필요한 용기를 제때 맞춰 드립니다.',
     desc: '경기도의료원(수원·이천·포천), 수원연화장 등에서 다회용기 시스템을 운영합니다. 장례 현장의 예절을 지키며, 공급·수거·세척이 끊기지 않도록 관리합니다.',
-    image: IMAGES.order,
+    image: IMAGES.funeral,
     tags: ['장례', '안정 공급', '통합 운영'],
     points: [
       '경기도의료원·수원연화장 등에서 운영',

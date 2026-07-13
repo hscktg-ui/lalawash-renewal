@@ -337,7 +337,7 @@ export default function HomePage() {
               },
               {
                 title: '장례·의료',
-                img: IMAGES.order,
+                img: IMAGES.funeral,
                 points: ['경기도의료원 운영', '수원연화장 시스템', '끊김 없는 공급'],
               },
             ].map((b) => (
