@@ -11,11 +11,15 @@ export const BRAND = {
 
 /**
  * 브랜드 마크 정책
- * - 헤더·푸터·관리자: 고해상도 이미지 로고 (`/logo.png`)
- * - 하단 파트너(함께하는 곳): 기관명 텍스트로 통일 (외부 로고 이미지 미사용)
+ * - 헤더·푸터·관리자(밝은 배경): 컬러 로고 `/logo-light.png`
+ * - 어두운 배경용: 화이트 로고 `/logo.png`
+ * - 하단 파트너(함께하는 곳): 기관명 텍스트로 통일
  * - 파비콘·OG: 브라우저/공유용 에셋 유지
  */
-export const LOGO = '/logo.png'
+/** 밝은 배경용(헤더·푸터) — 브랜드 블루 */
+export const LOGO = '/logo-light.png'
+/** 어두운 배경용 — 화이트 */
+export const LOGO_ON_DARK = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
