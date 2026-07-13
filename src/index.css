@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans KR", system-ui, sans-serif;
+  --color-lala-50: #f0f7fc;
+  --color-lala-100: #dceef8;
+  --color-lala-200: #b8dcf0;
+  --color-lala-300: #7abfe0;
+  --color-lala-400: #3a9cc9;
+  --color-lala-500: #1e7aad;
+  --color-lala-600: #186291;
+  --color-lala-700: #154f75;
+  --color-lala-800: #144262;
+  --color-lala-900: #0f2d45;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100svh;
+}
