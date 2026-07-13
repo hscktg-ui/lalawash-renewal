@@ -1,28 +1,30 @@
 import { Link } from 'react-router-dom'
-import { BRAND } from '../data'
+import { BRAND, LOGO } from '../data'
 
 type Props = {
   to?: string
   onClick?: () => void
-  /** header: 내비용 · footer: 푸터용 · plain: 링크 없음 */
   size?: 'sm' | 'md' | 'lg'
   className?: string
 }
 
 const sizeClass = {
-  sm: 'text-base',
-  md: 'text-lg md:text-xl',
-  lg: 'text-xl md:text-2xl',
+  sm: 'h-7',
+  md: 'h-9 md:h-10',
+  lg: 'h-11 md:h-12',
 } as const
 
-/** 라라워시 워드마크 — 전 구간 텍스트로 통일 */
+/** 라라워시 공식 이미지 로고 (헤더·푸터·관리자) */
 export function BrandMark({ to = '/', onClick, size = 'md', className = '' }: Props) {
   const mark = (
-    <span
-      className={`font-extrabold tracking-tight text-lala-800 ${sizeClass[size]} ${className}`}
-    >
-      {BRAND.name}
-    </span>
+    <img
+      src={LOGO}
+      alt={BRAND.name}
+      width={320}
+      height={140}
+      decoding="async"
+      className={`${sizeClass[size]} w-auto object-contain object-left ${className}`}
+    />
   )
 
   if (!to) return mark

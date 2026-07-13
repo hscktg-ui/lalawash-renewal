@@ -11,10 +11,11 @@ export const BRAND = {
 
 /**
  * 브랜드 마크 정책
- * - 헤더·푸터·관리자: 텍스트 워드마크만 (로고 이미지 미사용)
- * - 히어로: 브랜드명 타이포
+ * - 헤더·푸터·관리자: 고해상도 이미지 로고 (`/logo.png`)
+ * - 하단 파트너(함께하는 곳): 기관명 텍스트로 통일 (외부 로고 이미지 미사용)
  * - 파비콘·OG: 브라우저/공유용 에셋 유지
  */
+export const LOGO = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
@@ -394,9 +395,9 @@ export const VERIFIED_ACHIEVEMENTS = [
   { category: '장례', title: '수원연화장', metric: '연속 운영' },
 ]
 
-export const PARTNERS: { name: string; logo?: string; href?: string }[] = [
-  { name: '경기도', logo: IMAGES.gg, href: 'https://www.gg.go.kr/' },
-  { name: '경기광역자활센터', logo: IMAGES.gpsc, href: 'https://gpsc.or.kr' },
+export const PARTNERS: { name: string; href?: string }[] = [
+  { name: '경기도', href: 'https://www.gg.go.kr/' },
+  { name: '경기광역자활센터', href: 'https://gpsc.or.kr' },
   { name: '경기도청' },
   { name: '과천시청' },
   { name: '부천시청' },

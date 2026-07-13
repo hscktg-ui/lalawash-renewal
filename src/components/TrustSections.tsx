@@ -117,26 +117,28 @@ export function PartnerLogoWall() {
         </p>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {PARTNERS.map((p) =>
-            p.logo ? (
-              <a
-                key={p.name}
-                href={p.href ?? '#'}
-                target={p.href ? '_blank' : undefined}
-                rel="noreferrer"
-                className="flex h-24 items-center justify-center rounded-xl bg-white px-4 ring-1 ring-slate-200 transition hover:ring-lala-300"
-              >
-                <img src={p.logo} alt={p.name} className="max-h-12 w-auto max-w-full object-contain" />
-              </a>
-            ) : (
-              <div
-                key={p.name}
-                className="flex h-24 items-center justify-center rounded-xl bg-slate-50 px-3 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200"
-              >
+          {PARTNERS.map((p) => {
+            const cellClass =
+              'flex h-24 items-center justify-center rounded-xl bg-slate-50 px-3 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200'
+            if (p.href) {
+              return (
+                <a
+                  key={p.name}
+                  href={p.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${cellClass} transition hover:bg-white hover:text-lala-800 hover:ring-lala-300`}
+                >
+                  {p.name}
+                </a>
+              )
+            }
+            return (
+              <div key={p.name} className={cellClass}>
                 {p.name}
               </div>
-            ),
-          )}
+            )
+          })}
         </div>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
