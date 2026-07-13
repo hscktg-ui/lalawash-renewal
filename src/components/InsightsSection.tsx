@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { LATEST_INSIGHTS } from '../data'
 import { EXTERNAL } from '../lib/content'
 
@@ -11,18 +12,16 @@ export function InsightsSection() {
             <p className="text-sm font-semibold text-lala-600">최근 소식</p>
             <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">지금 라라워시는 이렇게 움직입니다</h2>
             <p className="mt-4 max-w-2xl text-muted">
-              새 지점, 축제 현장, 운영 이야기를 모아 두었습니다. 더 자세한 현장 소식은 블로그에서도 보실 수 있습니다.
+              새 지점, 축제 현장, 운영 이야기를 모아 두었습니다. 더 자세한 내용은 공지 게시판과 블로그에서 보실 수 있습니다.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={EXTERNAL.officialNotice}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/notice"
               className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-lala-800"
             >
-              더 많은 소식 <ArrowUpRight className="h-4 w-4" />
-            </a>
+              공지 게시판 <ArrowUpRight className="h-4 w-4" />
+            </Link>
             <a
               href={EXTERNAL.blog}
               target="_blank"

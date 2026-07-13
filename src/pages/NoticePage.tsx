@@ -29,7 +29,7 @@ export default function NoticePage() {
       <PageHero
         eyebrow="공지"
         title="공지 · 공문"
-        desc="공식 안내와 공문은 이곳에서 확인하세요. 일상 소식은 공식 블로그에서 볼 수 있습니다."
+        desc="공식 안내와 이전 홈페이지에서 옮겨 온 소식을 이곳에서 확인하세요. 현장 이야기는 블로그에서도 볼 수 있습니다."
         image={IMAGES.notice}
       />
       <Section title="게시판">
@@ -61,7 +61,7 @@ export default function NoticePage() {
             rel="noreferrer"
             className="text-sm font-bold text-lala-600"
           >
-            소식 보러 블로그 가기 →
+            블로그 소식 보기 →
           </a>
         </div>
 

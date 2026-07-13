@@ -87,7 +87,7 @@ export const LATEST_INSIGHTS = [
     tag: '지점',
     title: '부천나눔 2호점 개소',
     summary: '6월 24일 부천나눔 2호점이 문을 열어, 늘어난 세척 수요에 더 가까이 대응합니다.',
-    href: 'https://lalawash.co.kr/notice',
+    href: 'https://blog.naver.com/lalawash',
   },
   {
     date: '2026.06.02',
@@ -101,7 +101,7 @@ export const LATEST_INSIGHTS = [
     tag: '네트워크',
     title: '18개 지역 · 20곳 사업장 워크숍',
     summary: '경기도 곳곳의 세척 사업장이 모여, 더 안정적인 서비스를 위한 실무를 나눴습니다.',
-    href: 'https://lalawash.co.kr/notice',
+    href: 'https://blog.naver.com/lalawash',
   },
   {
     date: '2026.04.21',
