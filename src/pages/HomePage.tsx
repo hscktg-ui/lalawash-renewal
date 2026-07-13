@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   Droplets,
   FlaskConical,
-  MapPin,
   PartyPopper,
   ShieldCheck,
   Thermometer,
