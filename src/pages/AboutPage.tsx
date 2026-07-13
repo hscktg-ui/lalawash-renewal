@@ -28,6 +28,7 @@ export default function AboutPage() {
                 ['2020', '식판케어로 확대 · 세척장 4곳'],
                 ['2021', '라라워시 브랜드 출범 · 다회용기 사업으로'],
                 ['2022~', '사업장 확대 · 협동조합 · 경기도청 프로젝트'],
+                ['2026', '18개 지역·20곳 세척망 · 부천나눔 2호점 개소'],
               ].map(([y, t]) => (
                 <li key={y} className="flex gap-4">
                   <span className="w-16 shrink-0 font-bold text-lala-600">{y}</span>

@@ -16,7 +16,7 @@ export default function InfraPage() {
         image={IMAGES.center}
       />
 
-      <Section title="지점 위치" desc="부천 2호점·시흥작은자리점은 규모 세척장으로, 자동화 세척 시스템을 갖추고 있습니다.">
+      <Section title="지점 위치" desc="시흥작은자리·부천은 규모 세척장으로 자동화 라인을 갖추고 있으며, 부천나눔 2호점(2026.6)이 추가로 문을 열었습니다.">
         <div className="overflow-hidden rounded-3xl bg-slate-50 ring-1 ring-slate-200">
           <img
             src={IMAGES.centerMap}

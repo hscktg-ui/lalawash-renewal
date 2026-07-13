@@ -1,6 +1,6 @@
 import { SEED_NOTICES, type Notice, type NoticeType } from './content'
 
-const STORAGE_KEY = 'lalawash_notices_v1'
+const STORAGE_KEY = 'lalawash_notices_v2'
 const AUTH_KEY = 'lalawash_admin_session'
 
 /** 관리자 계정 (운영 전달용 — docs/ADMIN_ACCESS.md 참고) */

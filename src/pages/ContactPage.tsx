@@ -1,6 +1,7 @@
 import { Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CONTACT, FAQ, IMAGES } from '../data'
+import { EXTERNAL } from '../lib/content'
 
 export default function ContactPage() {
   return (
@@ -25,6 +26,14 @@ export default function ContactPage() {
               <br />
               (사업장) {CONTACT.site}
             </p>
+            <a
+              href={EXTERNAL.reserveForm}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-bold text-lala-800"
+            >
+              기존 사용 예약 폼
+            </a>
           </div>
           <form
             className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"

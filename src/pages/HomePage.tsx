@@ -18,11 +18,14 @@ import {
   FAQ,
   IMAGES,
   IMPACT,
+  NETWORK,
   PUBLIC_OPS,
   SOLUTIONS,
   WASH_STEPS,
 } from '../data'
+import { EXTERNAL } from '../lib/content'
 import { BlogSection } from '../components/BlogSection'
+import { InsightsSection } from '../components/InsightsSection'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -112,7 +115,8 @@ export default function HomePage() {
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-lala-50/90 md:text-lg">
             다회용기를 빌려드리고, 쓰신 뒤 수거해 씻어 다시 가져다 드립니다.
-            공공기관·급식·축제·장례식장까지, 경기도 곳곳에서 도와드립니다.
+            공공기관·급식·축제·장례식장까지, 경기도 {NETWORK.regions}개 지역·{NETWORK.sites}곳
+            세척망으로 돕습니다.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
@@ -130,9 +134,9 @@ export default function HomePage() {
           </div>
           <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-white/20 pt-8">
             {[
-              ['20곳', '세척 사업장'],
-              ['18+', '운영 지역'],
-              ['6단계', '안전 세척'],
+              [`${NETWORK.sites}곳`, '세척 사업장'],
+              [`${NETWORK.regions}개`, '운영 지역'],
+              [`${NETWORK.washSteps}단계`, '안전 세척'],
             ].map(([v, l]) => (
               <div key={l}>
                 <dt className="text-2xl font-extrabold md:text-3xl">{v}</dt>
@@ -183,8 +187,8 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { v: '20', u: '곳', l: '세척 사업장', s: '유형별로 운영 중' },
-              { v: '18+', u: '곳', l: '서비스 지역', s: '경기도를 중심으로' },
+              { v: String(NETWORK.sites), u: '곳', l: '세척 사업장', s: '2026 공식 소식 기준' },
+              { v: String(NETWORK.regions), u: '개', l: '서비스 지역', s: '경기도를 중심으로' },
               { v: '2,000', u: '개/일', l: '지점별 최대 처리', s: '최소 약 100개부터' },
             ].map((x) => (
               <div key={x.l} className="border-l-4 border-lala-500 bg-white/80 px-6 py-8 shadow-sm">
@@ -234,7 +238,7 @@ export default function HomePage() {
               <div className="border-t border-slate-100 px-5 py-4">
                 <p className="font-bold text-lala-800">경기도 지점 네트워크</p>
                 <p className="mt-1 text-sm text-muted">
-                  {BRANCHES.length}개 지점 · 기존 홈페이지 지점 안내 이미지 사용
+                  공식 {NETWORK.sites}곳 · 연락처 공개 {BRANCHES.length}곳 · 부천나눔 2호점(2026.6) 개소
                 </p>
                 <Link to="/infra" className="mt-3 inline-flex text-sm font-bold text-lala-600">
                   지점 상세 보기 →
@@ -375,12 +379,13 @@ export default function HomePage() {
 
       <YearlyImpactSection dark />
       <PortfolioGallery />
+      <InsightsSection />
       <PartnerLogoWall />
 
       <section className="bg-slate-50 px-5 py-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-2xl font-extrabold">자주 묻는 질문</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {FAQ.map((f) => (
               <div key={f.q} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
                 <p className="font-bold text-lala-800">{f.q}</p>
@@ -408,6 +413,14 @@ export default function HomePage() {
               <li>· 급식 식판 / 장례식장</li>
               <li>· 가맹·지점 상담</li>
             </ul>
+            <a
+              href={EXTERNAL.reserveForm}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white"
+            >
+              기존 사용 예약 폼 열기
+            </a>
           </div>
           <form
             className="rounded-3xl bg-white p-7 text-ink shadow-xl"

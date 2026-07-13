@@ -18,7 +18,7 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
           축제·행사 건수, 사용량, 사업장, 일자리를 한눈에 보시면 됩니다. (회사소개서 기준)
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {YEARLY_IMPACT.map((y) => (
             <article
               key={y.year}
@@ -86,7 +86,7 @@ export function PortfolioGallery() {
         <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">소개서 기준으로 확인된 현장</h2>
         <p className="mt-4 max-w-2xl text-muted">{PORTFOLIO_POLICY.note}</p>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {VERIFIED_ACHIEVEMENTS.map((p) => (
             <article
               key={`${p.category}-${p.title}`}

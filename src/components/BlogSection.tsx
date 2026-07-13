@@ -9,8 +9,8 @@ export function BlogSection() {
           <p className="text-sm font-semibold text-lala-300">공식 블로그 · 소식</p>
           <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">일상 소식은 블로그에서</h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-300 md:text-base">
-            지점 이야기, 현장 활동, 환경 실천 소식은 라라워시 공식 네이버 블로그와 인스타그램에서
-            확인하실 수 있습니다. 사이트 공지·공문과는 따로 운영합니다.
+            부천나눔 2호점 개소, 축제·장례·급식 현장 이야기, 위생 인사이트는 라라워시 공식 네이버
+            블로그와 인스타그램에서 확인하세요. 사이트 공지·공문과는 따로 운영합니다.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a

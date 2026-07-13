@@ -12,6 +12,7 @@
 | `docs/PANEL_REVIEW_R2.md` / `R3.md` | 검수 라운드 |
 | `docs/PANEL_FINAL.md` | 로고·포트폴리오 정책 |
 | `docs/PANEL_FINAL_SUMMARY.md` | **패널 30인 최종 총정리 (8.3 / Final Go)** |
+| `docs/PANEL_LAUNCH_WRAP.md` | **인사이트 반영·버그점검 런칭 마무리 (8.5)** |
 | `src/` | 리뉴얼 사이트 |
 
 **배포:** https://lalawash-renewal.vercel.app

@@ -66,17 +66,73 @@ export const IMPACT = [
   { label: '함께하는 지역 일자리', value: 270, suffix: '명' },
 ]
 
+/** 네트워크 규모 (2026.5 실무자 워크숍·공식 소식 기준) */
+export const NETWORK = {
+  sites: 20,
+  regions: 18,
+  washSteps: 6,
+}
+
+/**
+ * 2025–2026 공개 소식·인사이트 (공식 사이트·네이버 블로그·보도 교차 확인)
+ * 미검증 수치 추정 금지 — 운영 사실·채널 링크만.
+ */
+export const LATEST_INSIGHTS = [
+  {
+    date: '2026.07.08',
+    tag: '장례',
+    title: '장례식장 다회용기, 위생과 편의성을 함께',
+    summary: '장례 현장에서도 끊김 없는 공급·수거·세척이 핵심이라는 최근 공식 블로그 메시지입니다.',
+    href: 'https://blog.naver.com/lalawash',
+  },
+  {
+    date: '2026.06.29',
+    tag: '확장',
+    title: '부천나눔 2호점 개소',
+    summary: '6월 24일 부천나눔 2호점이 문을 열며 세척 수요 증가에 대응하고 있습니다.',
+    href: 'https://lalawash.co.kr/notice',
+  },
+  {
+    date: '2026.06.02',
+    tag: '운영',
+    title: '지점장 선진지 견학 완료',
+    summary: '조합원사 지점장들이 선진지를 견학하며 세척·운영 품질을 함께 올리는 중입니다.',
+    href: 'https://blog.naver.com/lalawash',
+  },
+  {
+    date: '2026.05.26',
+    tag: '인프라',
+    title: '18개 지역 · 20개 사업장 실무 워크숍',
+    summary: '경기도 밀착 세척망 규모가 공식 소식에서 재확인되었습니다.',
+    href: 'https://lalawash.co.kr/notice',
+  },
+  {
+    date: '2026.04.21',
+    tag: '축제',
+    title: '가평 글로벌 아웃도어 페스타 운영',
+    summary: '자라섬 현장에서 부천나눔점과 수거·세척·재공급 전 과정을 지원했습니다.',
+    href: 'https://blog.naver.com/lalawash',
+  },
+  {
+    date: '2026.04.07',
+    tag: '축제',
+    title: '이천 산수유 축제 다회용기 운영',
+    summary: '이천점이 먹거리 장터 등 현장 순환을 맡아 축제 폐기물을 줄였습니다.',
+    href: 'https://blog.naver.com/lalawash',
+  },
+]
+
 export const SOLUTIONS = [
   {
     slug: 'sikpan',
     title: '급식 식판 세척',
     short: '어린이집·유치원·학교 식판을 대신 씻어 깨끗하게 돌려드립니다.',
-    desc: '급식실에서 쓰인 식판을 수거해, 전문 세척·살균·건조 후 다시 가져다 드립니다. 아이들 식기는 위생이 가장 중요하니, 현장 부담은 줄이고 안전은 높이는 방식으로 운영합니다.',
+    desc: '급식실에서 쓰인 식판을 수거해, 전문 세척·살균·건조 후 다시 가져다 드립니다. 학교·아동 급식은 하루에도 여러 번 사용·세척이 반복되므로, 전문 관리로 현장 부담은 줄이고 위생은 높입니다.',
     image: IMAGES.system,
-    tags: ['식판', '위생', '아동 안전'],
+    tags: ['식판', '위생', '아동·학교'],
     points: [
       '수거 → 세척 → 살균 → 건조 → 다시 공급까지 한 번에',
-      '전문 장비로 급식실 세척 부담을 덜어드립니다',
+      '학교·어린이집 식판도 정기 순환으로 관리합니다',
       '경기도 가까운 지점에서 빠르게 대응합니다',
     ],
   },
@@ -102,8 +158,8 @@ export const SOLUTIONS = [
     tags: ['페스티벌', '부스 운영', 'BPA FREE'],
     points: [
       '행사 수: 2022년 10건 → 2023년 25건 → 2024년 50건',
-      '대형 행사 누적 사용량 약 23.4만 개',
-      '대여·반납 부스·수거·세척을 한 팀으로 진행',
+      '대형 행사 누적 사용량 약 23.4만 개 (소개서 기준)',
+      '2026 가평 아웃도어 페스타·이천 산수유 축제 등 현장 운영',
     ],
   },
   {
@@ -173,7 +229,7 @@ export const BRANCHES = [
     services: '다회용기, 다회용컵, 식판, 도시락용기',
     map: 'https://naver.me/xcJ5KTPx',
     highlight: true,
-    note: '1호점·2호점 (규모 세척장)',
+    note: '규모 세척장 (자동화 라인)',
   },
   {
     name: '부천나눔',
@@ -181,7 +237,8 @@ export const BRANCHES = [
     tel: '070-4304-3184',
     services: '다회용컵, 축제용기, 식판',
     map: 'https://naver.me/xyjIXCNV',
-    highlight: false,
+    highlight: true,
+    note: '2026.6.24 2호점 개소 · 수요 대응 확장',
   },
   {
     name: '성남',
@@ -343,6 +400,14 @@ export const YEARLY_IMPACT = [
     branches: 20,
     jobs: 270,
     note: '누적 1,200만 개 · 일자리 270명',
+  },
+  {
+    year: '2026',
+    events: 50,
+    containers: 12000000,
+    branches: 20,
+    jobs: 270,
+    note: '부천나눔 2호점 · 가평·이천 축제 운영 (공개 수치 갱신 전)',
     highlight: true,
   },
 ]
@@ -357,7 +422,7 @@ export const IMPACT_FORMULA = [
 export const PORTFOLIO_POLICY = {
   showVerifiedMetrics: true,
   showAttributedPhotos: false,
-  note: '행사·기관별 수치는 회사소개서 v12 기준입니다. 특정 현장 사진은 원본 확보 후 게시합니다.',
+  note: '소개서 v12 수치와 2025–2026 공식 소식·블로그에서 확인된 운영만 노출합니다. 미검증 현장 사진은 올리지 않습니다.',
 }
 
 export const VERIFIED_ACHIEVEMENTS = [
@@ -365,10 +430,14 @@ export const VERIFIED_ACHIEVEMENTS = [
   { category: '축제', title: '성북 누리마실', metric: '약 3.5만 개', source: '회사소개서 v12' },
   { category: '축제', title: '시흥갯골축제', metric: '약 3만 개', source: '회사소개서 v12' },
   { category: '축제', title: '펜타포트 락페스티벌', metric: '약 3만 개', source: '회사소개서 v12' },
-  { category: '축제', title: '잠수교 행사', metric: '약 8천 개', source: '회사소개서 v12' },
   { category: '축제', title: '축제 누적 사용', metric: '약 23.4만 개', source: '회사소개서 v12' },
+  { category: '축제', title: '가평 글로벌 아웃도어 페스타', metric: '2026 현장 운영', source: '공식 소식·블로그' },
+  { category: '축제', title: '이천 산수유 축제', metric: '2026 현장 운영', source: '공식 소식·블로그' },
+  { category: '축제', title: '포천 드론제전', metric: '2025 현장 운영', source: '공식 블로그' },
   { category: '공공', title: '경기도청 다회용컵', metric: '2024.3~2027.2', source: '회사소개서 v12' },
   { category: '공공', title: '지자체 거점 운영', metric: '하루 약 100~2,000개', source: '회사소개서 v12' },
+  { category: '확장', title: '부천나눔 2호점', metric: '2026.6.24 개소', source: '공식 소식' },
+  { category: '인프라', title: '경기도 세척망', metric: '18개 지역 · 20곳', source: '2026.5 워크숍 소식' },
   { category: '장례', title: '경기도의료원(수원·이천·포천)', metric: '연속 운영', source: '회사소개서 v12' },
   { category: '장례', title: '수원연화장', metric: '연속 운영', source: '회사소개서 v12' },
 ]
@@ -391,6 +460,8 @@ export const PARTNERS: { name: string; logo?: string; href?: string }[] = [
   { name: '서울재즈페스티벌' },
   { name: '시흥갯골축제' },
   { name: '펜타포트 락페스티벌' },
+  { name: '가평 글로벌 아웃도어 페스타' },
+  { name: '이천 산수유 축제' },
   { name: '사회적경제' },
 ]
 
@@ -406,14 +477,18 @@ export const TRUST_BADGES = [
 export const FAQ = [
   {
     q: '견적은 어떻게 받나요?',
-    a: '사용 장소, 예상 수량, 기간을 알려주시면 맞춤 안내드립니다. 홈 하단·문의 페이지에서 바로 요청할 수 있습니다.',
+    a: '사용 장소, 예상 수량, 기간을 알려주시면 맞춤 안내드립니다. 홈 하단·문의 페이지에서 바로 요청할 수 있고, 기존 예약 폼으로도 접수 가능합니다.',
   },
   {
     q: '공공기관·지자체도 이용할 수 있나요?',
-    a: '네. 경기도청을 비롯해 여러 시청·도서관·특구에서 이미 운영 중입니다. 담당자 상담도 도와드립니다.',
+    a: '네. 경기도청 다회용컵 사업(2024.3~2027.2)을 비롯해 여러 시청·도서관·특구에서 이미 운영 중입니다.',
   },
   {
     q: '세척은 얼마나 위생적인가요?',
-    a: '6단계 세척과 초순수(UPW), ATP 검사를 거쳐 출고합니다. 급식·공공 현장 기준에 맞춰 관리합니다.',
+    a: '6단계 세척과 초순수(UPW), ATP 검사를 거쳐 출고합니다. 학교 식판·여름철 식중독 예방에도 맞춰 관리합니다.',
+  },
+  {
+    q: '지점은 몇 곳인가요?',
+    a: '2026년 공식 소식 기준 경기도 18개 지역·세척 사업장 20곳 규모로 운영합니다. 부천나눔 2호점(2026.6) 등 확장도 이어지고 있습니다.',
   },
 ]
