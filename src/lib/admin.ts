@@ -88,8 +88,12 @@ export function createNotice(input: {
   body: string
   author?: string
   pinned?: boolean
+  coverImage?: string
+  images?: string[]
 }): Notice {
   const now = new Date().toISOString()
+  const images = (input.images || []).filter(Boolean)
+  const coverImage = input.coverImage?.trim() || images[0] || undefined
   const notice: Notice = {
     id: `n-${Date.now()}`,
     type: input.type,
@@ -97,31 +101,49 @@ export function createNotice(input: {
     body: input.body.trim(),
     author: input.author?.trim() || '라라워시',
     pinned: Boolean(input.pinned),
+    coverImage,
+    images: images.length ? images : undefined,
     createdAt: now,
     updatedAt: now,
   }
   const list = readAllRaw()
   list.unshift(notice)
-  writeAll(list)
+  try {
+    writeAll(list)
+  } catch {
+    throw new Error('저장 공간이 부족합니다. 이미지 수를 줄이거나 용량이 작은 사진으로 다시 시도해 주세요.')
+  }
   return notice
 }
 
 export function updateNotice(
   id: string,
-  patch: Partial<Pick<Notice, 'type' | 'title' | 'body' | 'author' | 'pinned'>>,
+  patch: Partial<Pick<Notice, 'type' | 'title' | 'body' | 'author' | 'pinned' | 'coverImage' | 'images'>>,
 ): Notice | undefined {
   const list = readAllRaw()
   const idx = list.findIndex((n) => n.id === id)
   if (idx < 0) return undefined
+  const nextImages =
+    patch.images !== undefined ? patch.images.filter(Boolean) : list[idx].images
+  const nextCover =
+    patch.coverImage !== undefined
+      ? patch.coverImage.trim() || nextImages?.[0] || undefined
+      : list[idx].coverImage || nextImages?.[0]
   const updated: Notice = {
     ...list[idx],
     ...patch,
     title: patch.title?.trim() ?? list[idx].title,
     body: patch.body?.trim() ?? list[idx].body,
+    coverImage: nextCover,
+    images: nextImages?.length ? nextImages : undefined,
     updatedAt: new Date().toISOString(),
   }
   list[idx] = updated
-  writeAll(list)
+  try {
+    writeAll(list)
+  } catch {
+    throw new Error('저장 공간이 부족합니다. 이미지 수를 줄이거나 용량이 작은 사진으로 다시 시도해 주세요.')
+  }
   return updated
 }
 

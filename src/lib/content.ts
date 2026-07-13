@@ -21,6 +21,10 @@ export type Notice = {
   body: string
   author: string
   pinned?: boolean
+  /** 대표 이미지 (data URL 또는 https) */
+  coverImage?: string
+  /** 본문 갤러리 이미지 */
+  images?: string[]
   createdAt: string
   updatedAt: string
 }

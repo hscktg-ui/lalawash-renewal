@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
 import { EXTERNAL, NOTICE_TYPE_LABEL, type NoticeType } from '../lib/content'
 import { listNotices } from '../lib/admin'
+import { noticeCover } from '../lib/noticeImages'
 import { IMAGES } from '../data'
 
 function formatDate(iso: string) {
@@ -15,6 +16,12 @@ function formatDate(iso: string) {
   } catch {
     return iso
   }
+}
+
+function excerpt(body: string, max = 88) {
+  const text = body.replace(/\s+/g, ' ').trim()
+  if (text.length <= max) return text
+  return `${text.slice(0, max)}…`
 }
 
 export default function NoticePage() {
@@ -65,31 +72,63 @@ export default function NoticePage() {
           </a>
         </div>
 
-        <ul className="divide-y divide-slate-200 overflow-hidden rounded-2xl ring-1 ring-slate-200">
+        <ul className="grid gap-3">
           {notices.length === 0 && (
-            <li className="bg-white px-5 py-10 text-center text-sm text-muted">등록된 글이 없습니다.</li>
-          )}
-          {notices.map((n) => (
-            <li key={n.id} className="bg-white">
-              <Link to={`/notice/${n.id}`} className="flex flex-col gap-1 px-5 py-4 hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-start gap-3">
-                  <span
-                    className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold ${
-                      n.type === 'official'
-                        ? 'bg-amber-100 text-amber-800'
-                        : n.pinned
-                          ? 'bg-lala-100 text-lala-800'
-                          : 'bg-slate-100 text-slate-600'
-                    }`}
-                  >
-                    {n.pinned ? '고정' : NOTICE_TYPE_LABEL[n.type]}
-                  </span>
-                  <span className="font-semibold text-ink">{n.title}</span>
-                </div>
-                <span className="text-xs text-muted sm:text-sm">{formatDate(n.createdAt)}</span>
-              </Link>
+            <li className="rounded-2xl bg-white px-5 py-10 text-center text-sm text-muted ring-1 ring-slate-200">
+              등록된 글이 없습니다.
             </li>
-          ))}
+          )}
+          {notices.map((n) => {
+            const cover = noticeCover(n)
+            return (
+              <li key={n.id}>
+                <Link
+                  to={`/notice/${n.id}`}
+                  className="group flex gap-4 overflow-hidden rounded-2xl bg-white p-3 ring-1 ring-slate-200 transition hover:ring-lala-300 sm:p-4"
+                >
+                  {cover ? (
+                    <img
+                      src={cover}
+                      alt=""
+                      className="h-24 w-28 shrink-0 rounded-xl object-cover sm:h-28 sm:w-36"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="flex h-24 w-28 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-xs font-semibold text-slate-400 sm:h-28 sm:w-36">
+                      {NOTICE_TYPE_LABEL[n.type]}
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1 py-0.5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                          n.type === 'official'
+                            ? 'bg-amber-100 text-amber-800'
+                            : n.pinned
+                              ? 'bg-lala-100 text-lala-800'
+                              : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
+                        {n.pinned ? '고정' : NOTICE_TYPE_LABEL[n.type]}
+                      </span>
+                      {(n.images?.length || 0) > 0 && (
+                        <span className="text-[11px] font-medium text-slate-400">
+                          사진 {n.images!.length}
+                        </span>
+                      )}
+                      <span className="text-xs text-muted">{formatDate(n.createdAt)}</span>
+                    </div>
+                    <h3 className="mt-1.5 text-base font-bold text-ink group-hover:text-lala-800 sm:text-lg">
+                      {n.title}
+                    </h3>
+                    <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
+                      {excerpt(n.body)}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            )
+          })}
         </ul>
 
         <aside className="mt-10 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-muted">
