@@ -1,6 +1,7 @@
 import { Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
+import { ContactInquiryForm } from '../components/ContactInquiryForm'
 import { CONTACT, FAQ, IMAGES } from '../data'
 import { EXTERNAL } from '../lib/content'
 
@@ -39,55 +40,7 @@ export default function ContactPage() {
               <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
             </div>
           </div>
-          <form
-            className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
-            onSubmit={(e) => {
-              e.preventDefault()
-              alert('남겨 주신 내용은 확인 후 연락드리겠습니다. 급한 문의는 031-8019-9524로 전화해 주세요.')
-            }}
-          >
-            <label className="block text-sm font-semibold">
-              어디에 쓰시나요?
-              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal">
-                <option>공공·기관</option>
-                <option>축제·행사</option>
-                <option>급식·식판</option>
-                <option>장례식장</option>
-                <option>가맹·지점</option>
-                <option>기타</option>
-              </select>
-            </label>
-            <label className="mt-4 block text-sm font-semibold">
-              성함 · 기관명
-              <input
-                required
-                placeholder="예: ○○시청 / 홍길동"
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
-              />
-            </label>
-            <label className="mt-4 block text-sm font-semibold">
-              연락처
-              <input
-                required
-                placeholder="전화 또는 이메일"
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
-              />
-            </label>
-            <label className="mt-4 block text-sm font-semibold">
-              문의 내용
-              <textarea
-                rows={4}
-                placeholder="예상 수량, 일정, 장소 등을 적어 주시면 더 정확히 안내드립니다."
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
-              />
-            </label>
-            <button
-              type="submit"
-              className="mt-6 w-full rounded-full bg-lala-600 px-6 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
-            >
-              문의 보내기
-            </button>
-          </form>
+          <ContactInquiryForm variant="full" />
         </div>
       </Section>
       <Section title="자주 묻는 질문" className="bg-slate-50">

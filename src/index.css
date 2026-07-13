@@ -31,3 +31,25 @@ body {
 #root {
   min-height: 100svh;
 }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  border-radius: 999px;
+  background: var(--color-lala-700);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lala-500);
+  outline-offset: 2px;
+}

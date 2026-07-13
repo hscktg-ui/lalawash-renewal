@@ -116,10 +116,12 @@
 
 ---
 
-## 6. 잔여 (운영)
+## 6. 잔여 (운영 · 계정/에셋 대기)
 
-1. 문의 폼 실연동 · GA4  
-2. 공지 DB (현재 localStorage)  
+1. 공지 DB·서버 인증  
+2. GA4 · CRM(메일 게이트웨이) — **문의 mailto 1차 연동 완료**  
 3. 행사 원본 사진 (확보 시만)
+
+상세 마감: `docs/CLOSEOUT.md`
 
 **배포:** https://lalawash-renewal.vercel.app

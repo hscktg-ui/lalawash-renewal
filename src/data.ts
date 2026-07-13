@@ -74,51 +74,6 @@ export const NETWORK = {
  * 2025–2026 공개 소식·인사이트 (공식 사이트·네이버 블로그·보도 교차 확인)
  * 미검증 수치 추정 금지 — 운영 사실·채널 링크만.
  */
-export const LATEST_INSIGHTS = [
-  {
-    date: '2026.07.08',
-    tag: '장례',
-    title: '장례식장 다회용기, 위생과 편의성을 함께',
-    summary: '조용한 현장에서도 공급·수거·세척이 끊기지 않도록 운영하는 이야기를 전합니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-  {
-    date: '2026.06.29',
-    tag: '지점',
-    title: '부천나눔 2호점 개소',
-    summary: '6월 24일 부천나눔 2호점이 문을 열어, 늘어난 세척 수요에 더 가까이 대응합니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-  {
-    date: '2026.06.02',
-    tag: '운영',
-    title: '지점장 선진지 견학',
-    summary: '각 지점 운영자가 선진지를 둘러보며 세척·현장 운영 품질을 함께 높이고 있습니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-  {
-    date: '2026.05.26',
-    tag: '네트워크',
-    title: '18개 지역 · 20곳 사업장 워크숍',
-    summary: '경기도 곳곳의 세척 사업장이 모여, 더 안정적인 서비스를 위한 실무를 나눴습니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-  {
-    date: '2026.04.21',
-    tag: '축제',
-    title: '가평 글로벌 아웃도어 페스타 운영',
-    summary: '자라섬 현장에서 수거부터 세척·재공급까지 전 과정을 지원했습니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-  {
-    date: '2026.04.07',
-    tag: '축제',
-    title: '이천 산수유 축제 다회용기 운영',
-    summary: '이천점이 먹거리 장터 등에서 다회용기를 순환해, 축제 폐기물을 줄였습니다.',
-    href: 'https://blog.naver.com/lalawash',
-  },
-]
-
 export const SOLUTIONS = [
   {
     slug: 'sikpan',

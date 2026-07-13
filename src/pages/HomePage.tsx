@@ -27,6 +27,7 @@ import { EXTERNAL } from '../lib/content'
 import { BlogSection } from '../components/BlogSection'
 import { BranchMapFrame } from '../components/BranchMapFrame'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
+import { ContactInquiryForm } from '../components/ContactInquiryForm'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -424,53 +425,7 @@ export default function HomePage() {
               <CompanyProfileDownload variant="dark" label="소개 자료 받기" />
             </div>
           </div>
-          <form
-            className="rounded-3xl bg-white p-7 text-ink shadow-xl"
-            onSubmit={(e) => {
-              e.preventDefault()
-              alert('남겨 주신 내용은 확인 후 연락드리겠습니다. 급한 문의는 031-8019-9524로 전화해 주세요.')
-            }}
-          >
-            <p className="text-sm font-bold text-lala-700">빠른 견적·상담 요청</p>
-            <p className="mt-1 text-xs text-muted">대략적인 정보만 적어도 충분합니다.</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <label className="block text-xs font-semibold text-slate-600">
-                어디에 쓰시나요?
-                <select className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal">
-                  <option>공공·기관</option>
-                  <option>축제·행사</option>
-                  <option>급식·식판</option>
-                  <option>장례식장</option>
-                  <option>가맹·지점</option>
-                  <option>기타</option>
-                </select>
-              </label>
-              <label className="block text-xs font-semibold text-slate-600">
-                하루(또는 행사) 예상 수량
-                <input
-                  placeholder="예: 하루 1,000컵 / 행사 3만 개"
-                  className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
-                />
-              </label>
-              <label className="block text-xs font-semibold text-slate-600 sm:col-span-2">
-                기관명 · 담당자 · 연락처
-                <input
-                  required
-                  placeholder="예: ○○시청 환경과 / 홍길동 / 010-0000-0000"
-                  className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
-                />
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="mt-5 w-full rounded-full bg-lala-600 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
-            >
-              상담 요청 보내기
-            </button>
-            <Link to="/contact" className="mt-3 block text-center text-xs font-medium text-muted">
-              더 자세히 적어서 문의하기 →
-            </Link>
-          </form>
+          <ContactInquiryForm variant="home" />
         </div>
       </section>
 

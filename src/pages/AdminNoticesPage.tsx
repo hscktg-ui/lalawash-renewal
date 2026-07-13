@@ -6,6 +6,7 @@ import {
   isAdminLoggedIn,
   listNotices,
   logoutAdmin,
+  syncSeedNotices,
   updateNotice,
 } from '../lib/admin'
 import { NOTICE_TYPE_LABEL, type Notice, type NoticeType } from '../lib/content'
@@ -82,7 +83,18 @@ export default function AdminNoticesPage() {
             <p className="mt-1 text-sm font-semibold text-lala-600">관리자</p>
             <h1 className="text-xl font-extrabold">공지·공문 관리</h1>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                const n = syncSeedNotices()
+                refresh()
+                setMessage(n > 0 ? `시드 공지 ${n}건을 추가했습니다.` : '추가할 시드 공지가 없습니다.')
+              }}
+              className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700"
+            >
+              시드 동기화
+            </button>
             <Link to="/notice" className="text-sm font-medium text-lala-600">
               게시판 보기
             </Link>

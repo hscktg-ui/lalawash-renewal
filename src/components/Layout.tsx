@@ -17,10 +17,13 @@ export function Layout() {
 
   return (
     <div className="min-h-svh bg-white text-ink">
+      <a href="#main-content" className="skip-link">
+        본문으로 건너뛰기
+      </a>
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <BrandMark onClick={() => setOpen(false)} size="md" />
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-7 md:flex" aria-label="주요 메뉴">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
@@ -71,7 +74,9 @@ export function Layout() {
         )}
       </header>
 
-      <Outlet />
+      <main id="main-content">
+        <Outlet />
+      </main>
 
       <footer className="border-t border-slate-200 bg-slate-50 px-5 py-12">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
