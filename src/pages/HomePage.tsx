@@ -27,7 +27,6 @@ import { EXTERNAL } from '../lib/content'
 import { BlogSection } from '../components/BlogSection'
 import { BranchMapFrame } from '../components/BranchMapFrame'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
-import { InsightsSection } from '../components/InsightsSection'
 import { PartnerLogoWall, PortfolioGallery, YearlyImpactSection } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -382,7 +381,6 @@ export default function HomePage() {
 
       <YearlyImpactSection dark />
       <PortfolioGallery />
-      <InsightsSection />
       <PartnerLogoWall />
 
       <section className="bg-slate-50 px-5 py-16">
@@ -399,8 +397,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <BlogSection />
-
       <section className="bg-lala-800 px-5 py-20 text-white">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
           <div>
@@ -416,15 +412,15 @@ export default function HomePage() {
               <li>· 급식 식판 / 장례식장</li>
               <li>· 가맹·지점 상담</li>
             </ul>
-            <a
-              href={EXTERNAL.reserveForm}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white"
-            >
-              사용 예약하기
-            </a>
-            <div className="mt-4">
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={EXTERNAL.reserveForm}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white"
+              >
+                사용 예약하기
+              </a>
               <CompanyProfileDownload variant="dark" label="소개 자료 받기" />
             </div>
           </div>
@@ -477,6 +473,8 @@ export default function HomePage() {
           </form>
         </div>
       </section>
+
+      <BlogSection />
     </>
   )
 }
