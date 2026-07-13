@@ -10,14 +10,11 @@
 | `docs/COMP_ANALYSIS.md` | 경쟁사·광고주 재분석 |
 | `docs/PANEL-30.md` | 패널 30인 역할 |
 | `docs/PANEL_REVIEW_R2.md` / `R3.md` | 검수 라운드 |
-| `docs/PANEL_FINAL.md` | **최종 Go · 로고·포트폴리오 정책** |
+| `docs/PANEL_FINAL.md` | 로고·포트폴리오 정책 |
+| `docs/PANEL_FINAL_SUMMARY.md` | **패널 30인 최종 총정리 (8.3 / Final Go)** |
 | `src/` | 리뉴얼 사이트 |
 
-## 패널 최종 총정리
-
-→ **[`docs/PANEL_FINAL_SUMMARY.md`](docs/PANEL_FINAL_SUMMARY.md)**  
-종합 **8.3 / Final Go (조건부)** · 배포 https://lalawash-renewal.vercel.app
-
+**배포:** https://lalawash-renewal.vercel.app
 
 ## 실행
 
@@ -38,10 +35,12 @@ npm run dev -- --host 127.0.0.1 --port 5180
 | `/services/:slug` | 급식·공공·축제·장례 상세 |
 | `/infra` | 지점 맵·지자체 운영 |
 | `/impact` | 성과·임팩트 |
+| `/notice` | 공지·공문 |
 | `/contact` | 문의 |
+| `/admin` | 관리자 (메뉴 비노출) |
 
 ## 설계 요약
 
 - **벤치마크:** 더그릿(광고주 강조)의 임팩트 숫자·솔루션 모듈·인프라 설득력
 - **차별화:** 경기도 밀착 20사업장, 식판·공공·축제·장례 현장, 자활 일자리
-- **IA:** 소개 / 서비스 / 인프라 / 성과 / 문의 (5메뉴)
+- **IA:** 소개 / 서비스 / 인프라 / 성과 / 공지 / 문의 · 소식은 네이버 블로그
