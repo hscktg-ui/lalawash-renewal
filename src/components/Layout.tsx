@@ -1,8 +1,9 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Menu, Phone, X } from 'lucide-react'
-import { BRAND, CONTACT, LOGO, NAV } from '../data'
+import { BRAND, CONTACT, NAV } from '../data'
 import { EXTERNAL } from '../lib/content'
+import { BrandMark } from './BrandMark'
 
 export function Layout() {
   const [open, setOpen] = useState(false)
@@ -18,9 +19,7 @@ export function Layout() {
     <div className="min-h-svh bg-white text-ink">
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-          <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label={BRAND.name}>
-            <img src={LOGO} alt={BRAND.name} className="h-7 w-auto md:h-8" width={140} height={36} />
-          </Link>
+          <BrandMark onClick={() => setOpen(false)} size="md" />
           <nav className="hidden items-center gap-7 md:flex">
             {NAV.map((n) => (
               <NavLink
@@ -77,7 +76,7 @@ export function Layout() {
       <footer className="border-t border-slate-200 bg-slate-50 px-5 py-12">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
-            <p className="text-lg font-extrabold tracking-tight text-lala-800">{BRAND.name}</p>
+            <BrandMark to="/" size="md" />
             <p className="mt-1 text-sm font-medium text-lala-600">{BRAND.slogan}</p>
             <p className="mt-3 text-sm text-muted">{BRAND.tagline}</p>
           </div>

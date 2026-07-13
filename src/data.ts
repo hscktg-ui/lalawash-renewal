@@ -10,15 +10,11 @@ export const BRAND = {
 }
 
 /**
- * 로고 배치 정책 (패널 합의)
- * - 헤더: 밝은 배경용 logo-light 1회만
- * - 푸터: 텍스트 워드마크(로고 이미지 중복 지양)
- * - 히어로: 로고 이미지 없음 → 슬로건 타이포
- * - 파비콘·OG: 기존 에셋 유지
+ * 브랜드 마크 정책
+ * - 헤더·푸터·관리자: 텍스트 워드마크만 (로고 이미지 미사용)
+ * - 히어로: 브랜드명 타이포
+ * - 파비콘·OG: 브라우저/공유용 에셋 유지
  */
-export const LOGO_LIGHT = '/logo-light.png' // 흰 배경용 (파란 워드마크)
-export const LOGO_DARK = '/logo.png' // 어두운 배경용 (흰 워드마크) — 필요 시만
-export const LOGO = LOGO_LIGHT
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {

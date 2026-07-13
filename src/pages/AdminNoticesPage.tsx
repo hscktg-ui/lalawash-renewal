@@ -9,7 +9,7 @@ import {
   updateNotice,
 } from '../lib/admin'
 import { NOTICE_TYPE_LABEL, type Notice, type NoticeType } from '../lib/content'
-import { BRAND } from '../data'
+import { BrandMark } from '../components/BrandMark'
 
 const emptyForm = {
   type: 'notice' as NoticeType,
@@ -78,7 +78,8 @@ export default function AdminNoticesPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <div>
-            <p className="text-sm font-semibold text-lala-600">{BRAND.name} 관리자</p>
+            <BrandMark to="/" size="sm" />
+            <p className="mt-1 text-sm font-semibold text-lala-600">관리자</p>
             <h1 className="text-xl font-extrabold">공지·공문 관리</h1>
           </div>
           <div className="flex items-center gap-3">

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { isAdminLoggedIn, loginAdmin } from '../lib/admin'
-import { BRAND } from '../data'
+import { BrandMark } from '../components/BrandMark'
 
 export default function AdminLoginPage() {
   const navigate = useNavigate()
@@ -23,9 +23,10 @@ export default function AdminLoginPage() {
   return (
     <div className="flex min-h-svh items-center justify-center bg-slate-100 px-5">
       <form onSubmit={onSubmit} className="w-full max-w-md rounded-3xl bg-white p-8 shadow-lg ring-1 ring-slate-200">
-        <p className="text-sm font-semibold text-lala-600">{BRAND.name} 관리자</p>
+        <BrandMark to="/" size="sm" />
+        <p className="mt-3 text-sm font-semibold text-lala-600">관리자</p>
         <h1 className="mt-2 text-2xl font-extrabold">로그인</h1>
-        <p className="mt-2 text-sm text-muted">공지·공문 게시판을 관리합니다. 일반 메뉴에는 노출되지 않습니다.</p>
+        <p className="mt-2 text-sm text-muted">공지·공문 게시판을 관리합니다. 일반 메뉴에는 보이지 않습니다.</p>
 
         <label className="mt-6 block text-sm font-semibold">
           아이디
