@@ -127,6 +127,11 @@ export function Layout() {
                 회원사 전용몰
               </a>
             </p>
+            <p className="mt-1">
+              <Link to="/quote" className="hover:text-lala-600">
+                회원사 견적서
+              </Link>
+            </p>
             <p className="mt-3">대표 {CONTACT.ceo}</p>
             <p>사업자등록번호 {CONTACT.biz}</p>
             <p className="mt-3">© {new Date().getFullYear()} {BRAND.nameEn}</p>

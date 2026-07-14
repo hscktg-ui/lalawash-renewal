@@ -9,7 +9,7 @@ export const EXTERNAL = {
   companyProfile: '/docs/lalawash-company-profile-v12.pdf',
   companyProfileName: '라라워시_본사_회사소개서_v12.pdf',
   /** 회원사(조합원·가맹) 전용 폐쇄몰 */
-  memberMall: 'https://lalawash-mall.co.kr',
+  memberMall: 'https://www.lalawash-mall.co.kr',
 }
 
 export type NoticeType = 'notice' | 'official' | 'news'

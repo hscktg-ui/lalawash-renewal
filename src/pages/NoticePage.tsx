@@ -144,6 +144,11 @@ export default function NoticePage() {
           >
             회원사 전용몰 바로가기 →
           </a>
+          <p className="mt-2">
+            <Link to="/quote" className="text-sm font-semibold text-lala-700 hover:text-lala-800">
+              견적서 작성·인쇄 →
+            </Link>
+          </p>
         </aside>
       </Section>
     </>

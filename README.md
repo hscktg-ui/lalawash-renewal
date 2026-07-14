@@ -41,6 +41,7 @@ npm run dev -- --host 127.0.0.1 --port 5180
 | `/impact` | 성과·임팩트 |
 | `/notice` | 공지·공문 |
 | `/contact` | 문의 |
+| `/quote` | 회원사 전용몰 견적서 (공개) |
 | `/admin` | 관리자 (메뉴 비노출) |
 
 ## 설계 요약

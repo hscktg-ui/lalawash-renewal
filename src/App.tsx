@@ -12,6 +12,7 @@ import NoticePage from './pages/NoticePage'
 import NoticeDetailPage from './pages/NoticeDetailPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import AdminNoticesPage from './pages/AdminNoticesPage'
+import MallQuotePage from './pages/MallQuotePage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -28,6 +29,7 @@ export default function App() {
       <Routes>
         <Route path="admin" element={<AdminLoginPage />} />
         <Route path="admin/notices" element={<AdminNoticesPage />} />
+        <Route path="quote" element={<MallQuotePage />} />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
