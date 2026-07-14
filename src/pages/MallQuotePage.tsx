@@ -140,11 +140,28 @@ export default function MallQuotePage() {
   async function handleSavePdf() {
     setPdfBusy(true)
     try {
-      await downloadQuotePdf('quote-sheet', `Lalawash_Quote_${quoteNo}`)
+      await downloadQuotePdf(
+        {
+          quoteNo,
+          dateLabel: todayLabel(),
+          client,
+          contact,
+          payMethod,
+          note,
+          lines: lines.map((r) => ({
+            name: r.name,
+            qty: r.qty,
+            unitPrice: r.unitPrice,
+          })),
+          subtotal,
+          paid,
+        },
+        `Lalawash_Quote_${quoteNo}`,
+      )
     } catch (err) {
       console.error('[quote pdf]', err)
       const msg = err instanceof Error ? err.message : '알 수 없는 오류'
-      alert(`PDF 저장에 실패했습니다.\n(${msg})\n\n인쇄 버튼으로도 PDF 저장이 가능합니다.`)
+      alert(`PDF 저장에 실패했습니다.\n(${msg})\n\n인쇄 → "PDF로 저장"을 이용할 수도 있습니다.`)
     } finally {
       setPdfBusy(false)
     }
