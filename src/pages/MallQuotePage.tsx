@@ -50,6 +50,9 @@ export default function MallQuotePage() {
   const [paidAmount, setPaidAmount] = useState<string>('')
   const [lines, setLines] = useState<LineItem[]>([])
   const [pdfBusy, setPdfBusy] = useState(false)
+  const [customName, setCustomName] = useState('')
+  const [customQty, setCustomQty] = useState('1')
+  const [customPrice, setCustomPrice] = useState('')
 
   const subtotal = useMemo(
     () => lines.reduce((sum, row) => sum + row.qty * row.unitPrice, 0),
@@ -101,15 +104,25 @@ export default function MallQuotePage() {
   }
 
   function addCustom() {
+    const name = customName.trim()
+    if (!name) {
+      alert('기타 품목명을 입력해 주세요.')
+      return
+    }
+    const qty = Math.max(1, Number(customQty) || 1)
+    const unitPrice = Math.max(0, Number(String(customPrice).replace(/,/g, '')) || 0)
     setLines((prev) => [
       ...prev,
       {
         id: `c-${Date.now()}`,
-        name: '',
-        qty: 1,
-        unitPrice: 0,
+        name,
+        qty,
+        unitPrice,
       },
     ])
+    setCustomName('')
+    setCustomQty('1')
+    setCustomPrice('')
   }
 
   function updateLine(id: string, patch: Partial<LineItem>) {
@@ -269,13 +282,61 @@ export default function MallQuotePage() {
                 </button>
               ))}
             </div>
-            <button
-              type="button"
-              onClick={addCustom}
-              className="mt-3 inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-2 text-xs font-bold text-slate-700"
-            >
-              <Plus className="h-3.5 w-3.5" /> 기타 품목 (금액 직접 입력)
-            </button>
+            <div className="mt-4 rounded-xl border border-dashed border-lala-200 bg-lala-50/50 p-4">
+              <p className="text-sm font-bold text-lala-800">기타 품목 직접 입력</p>
+              <p className="mt-1 text-xs text-muted">목록에 없는 품목은 이름·수량·금액을 적어 추가하세요.</p>
+              <label className="mt-3 block text-xs font-semibold text-slate-600">
+                품목명
+                <input
+                  value={customName}
+                  onChange={(e) => setCustomName(e.target.value)}
+                  placeholder="예: 장갑, 추가 세제, 배송비 등"
+                  className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm font-normal"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      addCustom()
+                    }
+                  }}
+                />
+              </label>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                <label className="text-xs font-semibold text-slate-600">
+                  수량
+                  <input
+                    type="number"
+                    min={1}
+                    value={customQty}
+                    onChange={(e) => setCustomQty(e.target.value)}
+                    className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm font-normal"
+                  />
+                </label>
+                <label className="text-xs font-semibold text-slate-600">
+                  단가(원)
+                  <input
+                    type="number"
+                    min={0}
+                    value={customPrice}
+                    onChange={(e) => setCustomPrice(e.target.value)}
+                    placeholder="직접 입력"
+                    className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm font-normal"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        addCustom()
+                      }
+                    }}
+                  />
+                </label>
+              </div>
+              <button
+                type="button"
+                onClick={addCustom}
+                className="mt-3 inline-flex w-full items-center justify-center gap-1 rounded-full bg-lala-600 px-3 py-2.5 text-sm font-bold text-white"
+              >
+                <Plus className="h-4 w-4" /> 기타 품목 추가
+              </button>
+            </div>
           </div>
 
           {lines.length > 0 && (
