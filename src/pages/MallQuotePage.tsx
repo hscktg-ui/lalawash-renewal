@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Download, Plus, Printer, Trash2 } from 'lucide-react'
 import { BrandMark } from '../components/BrandMark'
 import {
-  MALL_APPAREL_PRESETS,
+  MALL_APPAREL,
   MALL_QUOTE_ISSUER,
   MALL_SUPPLIES,
 } from '../data/mallProducts'
@@ -78,17 +78,25 @@ export default function MallQuotePage() {
     })
   }
 
-  function addApparel(preset?: string) {
-    setLines((prev) => [
-      ...prev,
-      {
-        id: `a-${Date.now()}`,
-        name: preset || '라라워시 단체복',
-        qty: 1,
-        unitPrice: 0,
-        priceLocked: false,
-      },
-    ])
+  function addApparel(productId: string) {
+    const p = MALL_APPAREL.find((x) => x.id === productId)
+    if (!p) return
+    setLines((prev) => {
+      const found = prev.find((r) => r.id === `a-${p.id}`)
+      if (found) {
+        return prev.map((r) => (r.id === found.id ? { ...r, qty: r.qty + 1 } : r))
+      }
+      return [
+        ...prev,
+        {
+          id: `a-${p.id}`,
+          name: p.name,
+          qty: 1,
+          unitPrice: p.price,
+          priceLocked: false,
+        },
+      ]
+    })
   }
 
   function addCustom() {
@@ -273,29 +281,30 @@ export default function MallQuotePage() {
           </div>
 
           <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-lg font-bold">단체복 · 직접 금액</h2>
+            <h2 className="text-lg font-bold">단체복</h2>
             <p className="mt-1 text-xs text-muted">
-              단체티·단체복은 수량·단가를 직접 적어 주세요. 품목도 추가할 수 있습니다.
+              티셔츠·조끼는 참고가를 넣었습니다. 단가는 수정할 수 있고, 기타 품목도 추가할 수 있습니다.
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {MALL_APPAREL_PRESETS.map((name) => (
+            <div className="mt-3 grid gap-2">
+              {MALL_APPAREL.map((p) => (
                 <button
-                  key={name}
+                  key={p.id}
                   type="button"
-                  onClick={() => addApparel(name)}
-                  className="rounded-full bg-lala-600 px-3 py-2 text-xs font-bold text-white"
+                  onClick={() => addApparel(p.id)}
+                  className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-left text-sm hover:border-lala-300 hover:bg-lala-50"
                 >
-                  + {name}
+                  <span className="font-medium text-ink">{p.name}</span>
+                  <span className="shrink-0 text-xs font-bold text-lala-700">{won(p.price)}원</span>
                 </button>
               ))}
-              <button
-                type="button"
-                onClick={addCustom}
-                className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-2 text-xs font-bold text-slate-700"
-              >
-                <Plus className="h-3.5 w-3.5" /> 기타 품목
-              </button>
             </div>
+            <button
+              type="button"
+              onClick={addCustom}
+              className="mt-3 inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-2 text-xs font-bold text-slate-700"
+            >
+              <Plus className="h-3.5 w-3.5" /> 기타 품목 (금액 직접 입력)
+            </button>
           </div>
 
           {lines.length > 0 && (

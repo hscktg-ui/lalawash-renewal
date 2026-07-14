@@ -75,11 +75,22 @@ export const MALL_SUPPLIES: MallProduct[] = [
   },
 ]
 
-/** 단체복은 단가를 직접 입력 (추가 품목 가능) */
-export const MALL_APPAREL_PRESETS = [
-  '라라워시 단체 티셔츠 (네이비)',
-  '라라워시 단체복 (기타)',
-] as const
+/** 단체복 — 참고가 제공, 단가·수량은 수정 가능 */
+export const MALL_APPAREL: MallProduct[] = [
+  {
+    id: 'tee',
+    name: '라라워시 단체복 티셔츠',
+    price: 9800,
+    listPrice: 12000,
+    category: 'apparel',
+  },
+  {
+    id: 'vest',
+    name: '라라워시 단체복 조끼',
+    price: 8900,
+    category: 'apparel',
+  },
+]
 
 export const MALL_QUOTE_ISSUER = {
   company: '(주)라라워시 협동조합',
