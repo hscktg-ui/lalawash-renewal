@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Plus, Printer, Trash2 } from 'lucide-react'
+import { Download, Plus, Printer, Trash2 } from 'lucide-react'
 import { BrandMark } from '../components/BrandMark'
 import {
   MALL_APPAREL_PRESETS,
@@ -48,6 +48,7 @@ export default function MallQuotePage() {
   const [quoteNo] = useState(makeQuoteNo)
   const [paidAmount, setPaidAmount] = useState<string>('')
   const [lines, setLines] = useState<LineItem[]>([])
+  const [pdfBusy, setPdfBusy] = useState(false)
 
   const subtotal = useMemo(
     () => lines.reduce((sum, row) => sum + row.qty * row.unitPrice, 0),
@@ -114,6 +115,49 @@ export default function MallQuotePage() {
     window.print()
   }
 
+  async function handleSavePdf() {
+    const el = document.getElementById('quote-sheet')
+    if (!el) return
+    setPdfBusy(true)
+    try {
+      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ])
+      const canvas = await html2canvas(el, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+      })
+      const img = canvas.toDataURL('image/jpeg', 0.95)
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pageW = pdf.internal.pageSize.getWidth()
+      const pageH = pdf.internal.pageSize.getHeight()
+      const margin = 10
+      const usableW = pageW - margin * 2
+      const imgH = (canvas.height * usableW) / canvas.width
+      let heightLeft = imgH
+      let position = margin
+
+      pdf.addImage(img, 'JPEG', margin, position, usableW, imgH)
+      heightLeft -= pageH - margin * 2
+
+      while (heightLeft > 0) {
+        position = margin - (imgH - heightLeft)
+        pdf.addPage()
+        pdf.addImage(img, 'JPEG', margin, position, usableW, imgH)
+        heightLeft -= pageH - margin * 2
+      }
+
+      pdf.save(`라라워시_견적서_${quoteNo}.pdf`)
+    } catch {
+      alert('PDF 저장에 실패했습니다. 잠시 후 다시 시도하거나 인쇄를 이용해 주세요.')
+    } finally {
+      setPdfBusy(false)
+    }
+  }
+
   return (
     <div className="min-h-svh bg-slate-100">
       {/* 화면용 툴바 — 인쇄 시 숨김 */}
@@ -122,7 +166,7 @@ export default function MallQuotePage() {
           <div>
             <BrandMark to="/" size="sm" />
             <p className="mt-1 text-sm font-semibold text-lala-600">회원사 전용몰 견적서</p>
-            <p className="text-xs text-muted">로그인 없이 누구나 작성·인쇄할 수 있습니다.</p>
+            <p className="text-xs text-muted">로그인 없이 누구나 작성·인쇄·PDF 저장할 수 있습니다.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <a
@@ -136,9 +180,17 @@ export default function MallQuotePage() {
             <button
               type="button"
               onClick={handlePrint}
-              className="inline-flex items-center gap-2 rounded-full bg-lala-600 px-4 py-2 text-sm font-bold text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-lala-600 bg-white px-4 py-2 text-sm font-bold text-lala-700"
             >
-              <Printer className="h-4 w-4" /> 인쇄 · PDF 저장
+              <Printer className="h-4 w-4" /> 인쇄
+            </button>
+            <button
+              type="button"
+              onClick={() => void handleSavePdf()}
+              disabled={pdfBusy}
+              className="inline-flex items-center gap-2 rounded-full bg-lala-600 px-4 py-2 text-sm font-bold text-white disabled:opacity-60"
+            >
+              <Download className="h-4 w-4" /> {pdfBusy ? 'PDF 만드는 중…' : 'PDF 저장'}
             </button>
           </div>
         </div>
@@ -419,13 +471,21 @@ export default function MallQuotePage() {
             </footer>
           </article>
 
-          <div className="print:hidden mt-4 flex justify-center">
+          <div className="print:hidden mt-4 flex flex-wrap justify-center gap-3">
             <button
               type="button"
               onClick={handlePrint}
-              className="inline-flex items-center gap-2 rounded-full bg-lala-600 px-6 py-3 text-sm font-bold text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-lala-600 bg-white px-6 py-3 text-sm font-bold text-lala-700"
             >
-              <Printer className="h-4 w-4" /> 인쇄 · PDF로 저장
+              <Printer className="h-4 w-4" /> 인쇄
+            </button>
+            <button
+              type="button"
+              onClick={() => void handleSavePdf()}
+              disabled={pdfBusy}
+              className="inline-flex items-center gap-2 rounded-full bg-lala-600 px-6 py-3 text-sm font-bold text-white disabled:opacity-60"
+            >
+              <Download className="h-4 w-4" /> {pdfBusy ? 'PDF 만드는 중…' : 'PDF 파일 저장'}
             </button>
           </div>
         </section>
