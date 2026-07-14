@@ -7,6 +7,7 @@ import {
   MALL_QUOTE_ISSUER,
   MALL_SUPPLIES,
 } from '../data/mallProducts'
+import { downloadQuotePdf } from '../lib/quotePdf'
 
 type PayMethod = '현금' | '카드' | '계좌이체' | '미정'
 
@@ -124,43 +125,13 @@ export default function MallQuotePage() {
   }
 
   async function handleSavePdf() {
-    const el = document.getElementById('quote-sheet')
-    if (!el) return
     setPdfBusy(true)
     try {
-      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
-        import('html2canvas'),
-        import('jspdf'),
-      ])
-      const canvas = await html2canvas(el, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-      })
-      const img = canvas.toDataURL('image/jpeg', 0.95)
-      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
-      const pageW = pdf.internal.pageSize.getWidth()
-      const pageH = pdf.internal.pageSize.getHeight()
-      const margin = 10
-      const usableW = pageW - margin * 2
-      const imgH = (canvas.height * usableW) / canvas.width
-      let heightLeft = imgH
-      let position = margin
-
-      pdf.addImage(img, 'JPEG', margin, position, usableW, imgH)
-      heightLeft -= pageH - margin * 2
-
-      while (heightLeft > 0) {
-        position = margin - (imgH - heightLeft)
-        pdf.addPage()
-        pdf.addImage(img, 'JPEG', margin, position, usableW, imgH)
-        heightLeft -= pageH - margin * 2
-      }
-
-      pdf.save(`라라워시_견적서_${quoteNo}.pdf`)
-    } catch {
-      alert('PDF 저장에 실패했습니다. 잠시 후 다시 시도하거나 인쇄를 이용해 주세요.')
+      await downloadQuotePdf('quote-sheet', `Lalawash_Quote_${quoteNo}`)
+    } catch (err) {
+      console.error('[quote pdf]', err)
+      const msg = err instanceof Error ? err.message : '알 수 없는 오류'
+      alert(`PDF 저장에 실패했습니다.\n(${msg})\n\n인쇄 버튼으로도 PDF 저장이 가능합니다.`)
     } finally {
       setPdfBusy(false)
     }
