@@ -82,6 +82,28 @@ const HYGIENE_TESTS = [
   { title: '전수 출고 검사', desc: '빠짐없이 확인한 뒤 보냅니다', icon: ShieldCheck },
 ]
 
+/** 데이락형 혜택 카피 — 히어로 롤링 */
+const HERO_BENEFITS = [
+  '한 번의 요청으로, 빌려 쓰고 씻어 다시.',
+  '가까운 세척망이라, 수거와 재공급이 끊기지 않습니다.',
+  '식판·공공·축제·장례, 현장에 맞춰 준비합니다.',
+]
+
+const VALUE_PILLARS = [
+  {
+    title: '가까이에서',
+    desc: '경기도 곳곳의 세척 사업장이 수거·세척·재공급을 맡습니다. 멀리 보낼수록 늦어지는 일을 줄입니다.',
+  },
+  {
+    title: '깨끗하게',
+    desc: '애벌부터 고온 살균·ATP 검사까지. 눈으로만 보지 않고, 수치로 확인한 뒤 다시 드립니다.',
+  },
+  {
+    title: '맞춤으로',
+    desc: '급식실과 축제 현장은 다릅니다. 쓰시는 장소에 맞춰 용기와 일정을 맞춰 드립니다.',
+  },
+]
+
 export default function HomePage() {
   const [impactOn, setImpactOn] = useState(false)
   const impactRef = useRef<HTMLDivElement>(null)
@@ -104,23 +126,29 @@ export default function HomePage() {
           alt="라라워시 다회용기 현장"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.94)_0%,rgba(30,122,173,0.55)_55%,rgba(15,45,69,0.35)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.92)_0%,rgba(30,122,173,0.45)_50%,rgba(15,45,69,0.28)_100%)]" />
         <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:pb-24">
-          <p className="text-sm font-semibold tracking-[0.12em] text-lala-200">{BRAND.slogan}</p>
-          <h1 className="mt-4 max-w-4xl font-extrabold tracking-tight">
-            <span className="block text-4xl leading-tight md:text-6xl lg:text-7xl">
-              {BRAND.name}
-            </span>
-            <span className="mt-4 block max-w-2xl text-xl font-medium leading-snug text-lala-50 md:text-2xl">
-              가까운 곳에서, 깨끗하게 순환합니다.
-            </span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-lala-50/90 md:text-lg">
-            다회용기를 빌려드리고, 쓰신 뒤 수거해 씻어 다시 가져다 드립니다.
-            공공기관·급식·축제·장례식장까지, 경기도 {NETWORK.regions}개 지역·{NETWORK.sites}곳
-            세척망으로 돕습니다.
+          <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
+            {BRAND.slogan}
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <h1 className="lala-fade-up mt-4 max-w-4xl font-extrabold tracking-tight">
+            <span className="block text-5xl leading-[1.05] md:text-7xl lg:text-8xl">{BRAND.name}</span>
+          </h1>
+          <div className="lala-fade-up-delay relative mt-5 h-[3.5rem] max-w-2xl md:h-[4.25rem]">
+            {HERO_BENEFITS.map((line) => (
+              <p
+                key={line}
+                className="lala-benefit-line text-lg font-medium leading-snug text-lala-50 md:text-2xl"
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+          <p className="lala-fade-up-delay mt-6 max-w-xl text-base leading-relaxed text-lala-50/90 md:text-lg">
+            다회용기를 빌려드리고, 쓰신 뒤 수거해 씻어 다시 가져다 드립니다. 공공기관·급식·축제·장례까지
+            경기도 {NETWORK.regions}개 지역 · {NETWORK.sites}곳 세척망이 함께합니다.
+          </p>
+          <div className="lala-fade-up-delay mt-9 flex flex-wrap gap-3">
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-lala-900"
@@ -134,18 +162,58 @@ export default function HomePage() {
               서비스 안내 보기
             </Link>
           </div>
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-white/20 pt-8">
-            {[
-              [`${NETWORK.sites}곳`, '세척 사업장'],
-              [`${NETWORK.regions}개`, '운영 지역'],
-              [`${NETWORK.washSteps}단계`, '안전 세척'],
-            ].map(([v, l]) => (
-              <div key={l}>
-                <dt className="text-2xl font-extrabold md:text-3xl">{v}</dt>
-                <dd className="mt-1 text-xs text-lala-200 md:text-sm">{l}</dd>
-              </div>
+        </div>
+      </section>
+
+      {/* 데이락형 브랜드 스토리 */}
+      <section className="relative overflow-hidden">
+        <img
+          src={IMAGES.about}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0b1f2e]/78" />
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-24 text-white md:grid-cols-2 md:items-end md:py-32">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.14em] text-lala-200">OUR STORY</p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight md:text-5xl">
+              매일 쓰는 것일수록,
+              <br />
+              더 편해야 하니까
+            </h2>
+          </div>
+          <div>
+            <p className="text-base leading-relaxed text-lala-50/95 md:text-lg">
+              라라워시는 빌려 드리고, 수거하고, 씻어 다시 가져다 드립니다. 멀리 보내지 않아도 되도록
+              가까운 세척망을 두고, 급식실·청사·축제·장례 현장의 리듬에 맞춰 움직입니다. 일회용을 줄이는
+              선택이, 일상에 짐이 되지 않도록.
+            </p>
+            <Link
+              to="/about"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+            >
+              브랜드 이야기 보기 <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 데이락형 3가치 */}
+      <section className="bg-white px-5 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold text-lala-600">왜 라라워시인가요</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight md:text-4xl">
+            맡기면, 이렇게 편해집니다
+          </h2>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {VALUE_PILLARS.map((v, i) => (
+              <article key={v.title} className="border-t-2 border-lala-600 pt-6">
+                <p className="text-xs font-bold tracking-wider text-lala-500">0{i + 1}</p>
+                <h3 className="mt-3 text-2xl font-extrabold text-ink">{v.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{v.desc}</p>
+              </article>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 

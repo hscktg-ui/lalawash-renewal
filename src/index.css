@@ -49,7 +49,64 @@ body {
   top: 1rem;
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-lala-500);
-  outline-offset: 2px;
+@keyframes lala-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lala-benefit-in {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  8%,
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  38% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.lala-fade-up {
+  animation: lala-fade-up 0.7s ease-out both;
+}
+
+.lala-fade-up-delay {
+  animation: lala-fade-up 0.7s ease-out 0.15s both;
+}
+
+.lala-benefit-line {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: lala-benefit-in 9s ease-in-out infinite;
+}
+
+.lala-benefit-line:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.lala-benefit-line:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lala-fade-up,
+  .lala-fade-up-delay,
+  .lala-benefit-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    position: static;
+  }
 }
