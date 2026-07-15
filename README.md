@@ -16,6 +16,7 @@
 | `docs/PANEL_UX_FINAL.md` | **UX·중복·경쟁사 최종 점검 (8.6)** |
 | `docs/PANEL_SHIP_FINAL.md` | **패널 30인 런칭 마무리 (8.7 / Final Go)** |
 | `docs/PANEL_DAYLOCK.md` | **데이락 참고 패널 회의 · 흡수 (8.5)** |
+| `docs/PANEL_CLOSE_FINAL.md` | **패널 30인 최종 점검·마감 (8.8 / Final Go)** |
 | `docs/CLOSEOUT.md` | **미진행 요청 마감·잔여 명시** |
 | `src/` | 리뉴얼 사이트 |
 

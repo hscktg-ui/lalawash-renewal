@@ -1,42 +1,39 @@
 # 미진행 요청 마감 (Close-out)
 
-> 일자: 2026-07-13  
-> 배포: https://lalawash-renewal.vercel.app
+> 일자: 2026-07-16  
+> 배포: https://lalawash-renewal.vercel.app  
+> 패널 마감: `docs/PANEL_CLOSE_FINAL.md` (**8.8 / Final Go · Close**)
 
 ---
 
-## 1. 이번에 마무리한 요청·잔여
+## 1. 사이트측 요청 — 완료
 
-| 항목 | 조치 |
+| 항목 | 상태 |
 |------|------|
-| 원본 공지 텍스트만 이관 | **이미지 포함 22건 재이관** (`/notices/legacy-*`) |
-| 문의 폼이 alert만 뜨던 문제 | **mailto 실연동** (`ContactInquiryForm`) + 예약 폼 보조 링크 |
-| 공지 시드 증가 시 구 브라우저에 안 보이던 문제 | **v4 저장 + v2/v3 마이그레이션 + 시드 자동 병합** |
-| 관리자 시드 보충 | `/admin/notices` **시드 동기화** 버튼 |
-| 홈 소식 중복·미사용 코드 | `InsightsSection`·`LATEST_INSIGHTS` 제거 (공지/블로그로 역할 분리) |
-| 접근성 Should | skip-link · `:focus-visible` · `main` 랜드마크 |
-| UX·경쟁사 점검 문서 | `docs/PANEL_UX_FINAL.md` (이미 반영) |
-| GitHub 푸시·배포 | 본 커밋에서 재확인 |
+| 리뉴얼 IA·설득 구조 | ○ |
+| 데이락형 스토리·혜택 | ○ |
+| 공지 이관·이미지·관리자 | ○ |
+| 회사소개서 PDF | ○ |
+| 회원사 견적서 `/quote` | ○ |
+| 헤더 로고 대비·파트너 텍스트 | ○ |
+| 패널 문서 시리즈 | ○ 마감본 `PANEL_CLOSE_FINAL.md` |
 
 ---
 
-## 2. 요청 범위 밖 / 계정·에셋 대기 (명시)
-
-아래는 **코드만으로 완료 불가**하며, 계정·원본 자료가 필요합니다.
+## 2. 계정·인프라 대기 (코드 마감 외)
 
 | 항목 | 이유 |
 |------|------|
-| 공지 DB·서버 인증 | 백엔드/Supabase 등 인프라 필요 (현재 localStorage + 프론트 세션) |
-| GA4 | Measurement ID 필요 |
-| CRM/메일 서버 수신 | 메일 게이트웨이 또는 Formspree 등 키 필요 (당장은 mailto) |
-| 축제·공공 원본 실사 갤러리 | 정책상 `showAttributedPhotos: false` 유지 |
-| 장비 실사 갤러리 | 사진 확보 후 |
+| 공지 DB·서버 인증 | 백엔드 필요 |
+| GA4 | Measurement ID |
+| CRM/메일 게이트웨이 | 키·연동 (문의는 mailto 1차) |
+| 원본 행사 사진 갤러리 | 에셋·정책 |
 
 ---
 
-## 3. 운영 확인
+## 3. 운영 바로가기
 
-- 공개: https://lalawash-renewal.vercel.app  
-- 관리자: `/admin` · `docs/ADMIN_ACCESS.md`  
-- 회사소개서 PDF: `/docs/lalawash-company-profile-v12.pdf`  
-- 회원사몰(비강조): 푸터·공지 하단 → https://lalawash-mall.co.kr  
+- 사이트: https://lalawash-renewal.vercel.app  
+- 견적: `/quote`  
+- 공지: `/notice`  
+- 관리: `/admin` · `docs/ADMIN_ACCESS.md`  
