@@ -1,7 +1,7 @@
 export const EXTERNAL = {
   blog: 'https://blog.naver.com/lalawash',
   instagram: 'https://www.instagram.com/lala__wash',
-  youtube: 'https://www.youtube.com/@lalawash',
+  youtube: 'https://www.youtube.com/watch?v=3GnYbbxVb1k',
   /** 메인 히어로 이용사례 영상 */
   caseVideoId: '3GnYbbxVb1k',
   caseVideo: 'https://www.youtube.com/watch?v=3GnYbbxVb1k',

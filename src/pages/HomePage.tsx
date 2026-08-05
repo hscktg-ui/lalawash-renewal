@@ -28,6 +28,18 @@ function useCountUp(target: number, active: boolean, duration = 1800) {
   return n
 }
 
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return reduced
+}
+
 const HERO_ROLLING = [
   '장례식장 · 빈소 다회용기 순환 현장',
   '축제·행사 · 반납부스 운영 사례',
@@ -38,9 +50,9 @@ const HERO_ROLLING = [
 
 export default function HomePage() {
   const [impactOn, setImpactOn] = useState(false)
-  const [playVideo, setPlayVideo] = useState(false)
   const impactRef = useRef<HTMLDivElement>(null)
   const washCount = useCountUp(IMPACT[0].value, impactOn)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     const el = impactRef.current
@@ -52,92 +64,82 @@ export default function HomePage() {
     return () => io.disconnect()
   }, [])
 
-  const thumb = `https://i.ytimg.com/vi/${EXTERNAL.caseVideoId}/hqdefault.jpg`
-  const embedSrc = `https://www.youtube-nocookie.com/embed/${EXTERNAL.caseVideoId}?autoplay=1&rel=0&modestbranding=1`
+  const heroVideoSrc =
+    `https://www.youtube-nocookie.com/embed/${EXTERNAL.caseVideoId}` +
+    `?autoplay=1&mute=1&controls=0&loop=1&playlist=${EXTERNAL.caseVideoId}` +
+    `&playsinline=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`
 
   return (
     <>
-      {/* 메인 상단 */}
+      {/* 메인 상단 — PDF: 히어로에서 이용사례 영상 재생 */}
       <section className="relative min-h-[88svh] overflow-hidden text-white">
-        <img
-          src={IMAGES.hero}
-          alt="라라워시 다회용기 현장"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.92)_0%,rgba(30,122,173,0.5)_55%,rgba(15,45,69,0.35)_100%)]" />
-        <div className="relative mx-auto grid min-h-[88svh] max-w-6xl items-end gap-10 px-5 pb-14 pt-24 lg:grid-cols-2 lg:items-center lg:pb-20">
-          <div>
-            <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
-              {BRAND.slogan}
-            </p>
-            <h1 className="lala-fade-up mt-4 max-w-4xl whitespace-pre-line text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-[2.75rem] xl:text-5xl">
-              {BRAND.heroTitle}
-            </h1>
-            <p className="lala-fade-up-delay mt-5 max-w-2xl text-lg font-medium text-lala-50 md:text-xl">
-              {BRAND.heroLead}
-            </p>
-            <p className="lala-fade-up-delay mt-3 max-w-2xl text-base leading-relaxed text-lala-50/90 md:text-lg">
-              {BRAND.heroDesc}
-            </p>
-            <div className="lala-fade-up-delay relative mt-6 h-8 overflow-hidden md:h-9">
-              {HERO_ROLLING.map((line) => (
-                <p key={line} className="lala-benefit-line text-sm font-medium text-lala-100 md:text-base">
-                  {line}
-                </p>
-              ))}
+        {reducedMotion ? (
+          <img
+            src={IMAGES.hero}
+            alt="라라워시 다회용기 현장"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <>
+            <img
+              src={IMAGES.hero}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden
+            />
+            <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+              <iframe
+                title="라라워시 다회용기 이용사례"
+                src={heroVideoSrc}
+                className="absolute left-1/2 top-1/2 aspect-video h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
-            <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-lala-900"
-              >
-                다회용기 서비스 소개 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
-              >
-                서비스 신청하기
-              </Link>
-            </div>
+          </>
+        )}
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.88)_0%,rgba(30,122,173,0.45)_55%,rgba(15,45,69,0.55)_100%)]" />
+        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:justify-center md:pb-24">
+          <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
+            {BRAND.slogan}
+          </p>
+          <h1 className="lala-fade-up mt-4 max-w-4xl whitespace-pre-line text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+            {BRAND.heroTitle}
+          </h1>
+          <p className="lala-fade-up-delay mt-5 max-w-2xl text-lg font-medium text-lala-50 md:text-xl">
+            {BRAND.heroLead}
+          </p>
+          <p className="lala-fade-up-delay mt-3 max-w-2xl text-base leading-relaxed text-lala-50/90 md:text-lg">
+            {BRAND.heroDesc}
+          </p>
+          <div className="lala-fade-up-delay relative mt-6 h-8 overflow-hidden md:h-9">
+            {HERO_ROLLING.map((line) => (
+              <p key={line} className="lala-benefit-line text-sm font-medium text-lala-100 md:text-base">
+                {line}
+              </p>
+            ))}
           </div>
-
-          <div className="lala-fade-up-delay w-full">
-            <p className="mb-3 text-xs font-semibold tracking-[0.12em] text-lala-200 uppercase">
-              다회용기 이용사례
-            </p>
-            <div className="overflow-hidden rounded-2xl bg-black/40 shadow-2xl ring-1 ring-white/20">
-              <div className="relative aspect-video w-full">
-                {playVideo ? (
-                  <iframe
-                    title="라라워시 다회용기 이용사례"
-                    src={embedSrc}
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setPlayVideo(true)}
-                    className="group absolute inset-0 h-full w-full"
-                    aria-label="이용사례 영상 재생"
-                  >
-                    <img
-                      src={thumb}
-                      alt="라라워시 이용사례 영상 썸네일"
-                      className="h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
-                    />
-                    <span className="absolute inset-0 bg-lala-950/25" />
-                    <span className="absolute inset-0 flex items-center justify-center">
-                      <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-lala-800 shadow-lg transition group-hover:scale-105">
-                        <span className="ml-1 border-y-[10px] border-l-[16px] border-y-transparent border-l-lala-800" />
-                      </span>
-                    </span>
-                  </button>
-                )}
-              </div>
-            </div>
+          <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-lala-900"
+            >
+              다회용기 서비스 소개 <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={EXTERNAL.caseVideo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
+            >
+              이용사례 영상 보기
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
+            >
+              서비스 신청하기
+            </Link>
           </div>
         </div>
       </section>
