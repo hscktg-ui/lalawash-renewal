@@ -44,7 +44,9 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
     return (
       <form className="rounded-3xl bg-white p-7 text-ink shadow-xl" onSubmit={onSubmit}>
         <p className="text-sm font-bold text-lala-700">빠른 견적·상담 요청</p>
-        <p className="mt-1 text-xs text-muted">대략적인 정보만 적어도 충분합니다. 보내면 메일 작성이 열립니다.</p>
+        <p className="mt-1 text-xs text-muted">
+          대략적인 정보만 적어도 충분합니다. 보내면 메일 작성이 열리며, 전화({CONTACT.phone}) 상담도 가능합니다.
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <label className="block text-xs font-semibold text-slate-600">
             어디에 쓰시나요?
@@ -57,6 +59,8 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
               <option value="축제·행사">축제·행사</option>
               <option value="급식·식판">급식·식판</option>
               <option value="장례식장">장례식장</option>
+              <option value="유아식판">유아식판</option>
+              <option value="케이터링(맞춤 상담)">케이터링(맞춤 상담)</option>
               <option value="가맹·지점">가맹·지점</option>
               <option value="기타">기타</option>
             </select>
@@ -114,6 +118,8 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
           <option value="축제·행사">축제·행사</option>
           <option value="급식·식판">급식·식판</option>
           <option value="장례식장">장례식장</option>
+          <option value="유아식판">유아식판</option>
+          <option value="케이터링(맞춤 상담)">케이터링(맞춤 상담)</option>
           <option value="가맹·지점">가맹·지점</option>
           <option value="기타">기타</option>
         </select>
@@ -152,7 +158,7 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
         문의 보내기
       </button>
       <p className="mt-3 text-center text-xs text-muted">
-        보내기 시 메일 앱이 열립니다. 또는{' '}
+        보내기 시 메일 앱이 열립니다. 전화({CONTACT.phone}) 또는{' '}
         <a href={EXTERNAL.reserveForm} target="_blank" rel="noreferrer" className="font-semibold text-lala-700">
           사용 예약 폼
         </a>

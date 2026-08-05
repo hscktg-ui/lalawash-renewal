@@ -33,7 +33,7 @@ export default function CertHygienePage() {
           ))}
         </div>
         <p className="mt-6 text-sm text-muted">
-          인증·실적 요지는 회사소개서에서 확인할 수 있으며, 원본 확인이 필요한 경우{' '}
+          인증서 스캔본은 회사소개서에서 확인할 수 있으며, 원본 확인이 필요한 경우{' '}
           <Link to="/contact" className="font-semibold text-lala-600">
             견적·상담 문의
           </Link>

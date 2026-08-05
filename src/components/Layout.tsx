@@ -9,6 +9,7 @@ import { BrandMark } from './BrandMark'
 export function Layout() {
   const [open, setOpen] = useState(false)
   const [mobileGroup, setMobileGroup] = useState<string | null>(null)
+  const [desktopGroup, setDesktopGroup] = useState<string | null>(null)
   const location = useLocation()
   usePageSeo()
 
@@ -22,6 +23,7 @@ export function Layout() {
   useEffect(() => {
     setOpen(false)
     setMobileGroup(null)
+    setDesktopGroup(null)
   }, [location.pathname])
 
   useEffect(() => {
@@ -32,6 +34,15 @@ export function Layout() {
     }
   }, [location.pathname, location.hash])
 
+  useEffect(() => {
+    if (!desktopGroup) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setDesktopGroup(null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [desktopGroup])
+
   return (
     <div className="min-h-svh bg-white text-ink">
       <a href="#main-content" className="skip-link">
@@ -41,35 +52,50 @@ export function Layout() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
           <BrandMark onClick={() => setOpen(false)} size="md" />
           <nav className="hidden items-center gap-1 lg:flex" aria-label="주요 메뉴">
-            {NAV_GROUPS.map((group) => (
-              <div key={group.label} className="group relative">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-lala-50 hover:text-lala-700"
+            {NAV_GROUPS.map((group) => {
+              const expanded = desktopGroup === group.label
+              return (
+                <div
+                  key={group.label}
+                  className="relative"
+                  onMouseEnter={() => setDesktopGroup(group.label)}
+                  onMouseLeave={() => setDesktopGroup(null)}
                 >
-                  {group.label}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 transition group-hover:rotate-180" />
-                </button>
-                <div className="invisible absolute left-0 top-full z-50 min-w-[220px] pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  <div className="rounded-2xl border border-slate-100 bg-white py-2 shadow-lg ring-1 ring-slate-100">
-                    {group.children.map((item) => (
-                      <NavLink
-                        key={item.to}
-                        to={item.to}
-                        end={item.to === '/about' || item.to === '/contact' || item.to === '/services'}
-                        className={({ isActive }) =>
-                          `block px-4 py-2.5 text-sm transition ${
-                            isActive ? 'bg-lala-50 font-semibold text-lala-700' : 'text-slate-600 hover:bg-slate-50 hover:text-lala-700'
-                          }`
-                        }
-                      >
-                        {item.label}
-                      </NavLink>
-                    ))}
-                  </div>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-lala-50 hover:text-lala-700"
+                    aria-expanded={expanded}
+                    aria-haspopup="true"
+                    onClick={() => setDesktopGroup(expanded ? null : group.label)}
+                  >
+                    {group.label}
+                    <ChevronDown className={`h-3.5 w-3.5 opacity-60 transition ${expanded ? 'rotate-180' : ''}`} />
+                  </button>
+                  {expanded && (
+                    <div className="absolute left-0 top-full z-50 min-w-[220px] pt-2">
+                      <div className="rounded-2xl border border-slate-100 bg-white py-2 shadow-lg ring-1 ring-slate-100">
+                        {group.children.map((item) => (
+                          <NavLink
+                            key={item.to}
+                            to={item.to}
+                            end={item.to === '/about' || item.to === '/contact' || item.to === '/services'}
+                            className={({ isActive }) =>
+                              `block px-4 py-2.5 text-sm transition ${
+                                isActive
+                                  ? 'bg-lala-50 font-semibold text-lala-700'
+                                  : 'text-slate-600 hover:bg-slate-50 hover:text-lala-700'
+                              }`
+                            }
+                          >
+                            {item.label}
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              )
+            })}
             <Link
               to="/contact"
               className="ml-3 rounded-full bg-lala-600 px-4 py-2 text-sm font-semibold text-white hover:bg-lala-700"

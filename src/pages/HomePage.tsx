@@ -55,6 +55,7 @@ export default function HomePage() {
   const [impactOn, setImpactOn] = useState(false)
   const [caseIdx, setCaseIdx] = useState(0)
   const [casePaused, setCasePaused] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
   const impactRef = useRef<HTMLDivElement>(null)
   const washCount = useCountUp(IMPACT[0].value, impactOn)
   const reducedMotion = usePrefersReducedMotion()
@@ -80,42 +81,33 @@ export default function HomePage() {
   const activeCase = HERO_CASES[caseIdx]
   const heroVideoSrc =
     `https://www.youtube-nocookie.com/embed/${EXTERNAL.caseVideoId}` +
-    `?autoplay=1&mute=1&controls=0&loop=1&playlist=${EXTERNAL.caseVideoId}` +
-    `&playsinline=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`
+    `?autoplay=1&mute=1&controls=1&loop=1&playlist=${EXTERNAL.caseVideoId}` +
+    `&playsinline=1&rel=0&modestbranding=1`
 
   return (
     <>
-      {/* 메인 상단 — 영상 배경 + 유형별 이용사례 롤링 */}
-      <section className="relative min-h-[92svh] overflow-hidden text-white">
-        {reducedMotion ? (
-          <img
-            src={IMAGES.hero}
-            alt="라라워시 다회용기 현장"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        ) : (
-          <>
-            <img
-              src={IMAGES.hero}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              aria-hidden
+      {/* 메인 상단 — 슬로건·CTA만 (패널: 첫 뷰포트 단순화) */}
+      <section className="relative min-h-[78svh] overflow-hidden text-white md:min-h-[84svh]">
+        <img
+          src={IMAGES.hero}
+          alt="라라워시 다회용기 현장"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {!reducedMotion && videoPlaying && (
+          <div className="absolute inset-0 overflow-hidden">
+            <iframe
+              title="라라워시 다회용기 이용사례"
+              src={heroVideoSrc}
+              className="absolute left-1/2 top-1/2 aspect-video h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             />
-            <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-              <iframe
-                title="라라워시 다회용기 이용사례"
-                src={heroVideoSrc}
-                className="absolute left-1/2 top-1/2 aspect-video h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </>
+          </div>
         )}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.5)_0%,rgba(11,31,46,0.22)_38%,rgba(11,31,46,0.78)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.55)_0%,rgba(11,31,46,0.28)_38%,rgba(11,31,46,0.82)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(15,45,69,0.4)_0%,transparent_58%)]" />
 
-        <div className="relative mx-auto flex min-h-[92svh] max-w-6xl flex-col justify-end gap-10 px-5 pb-12 pt-28 md:justify-center md:pb-16">
+        <div className="relative mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:min-h-[84svh] md:justify-center md:pb-20">
           <div className="max-w-3xl">
             <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
               {BRAND.slogan}
@@ -145,80 +137,96 @@ export default function HomePage() {
               >
                 견적·상담 문의
               </Link>
+              {!reducedMotion && !videoPlaying && (
+                <button
+                  type="button"
+                  onClick={() => setVideoPlaying(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  <Play className="h-4 w-4" /> 이용사례 영상 보기
+                </button>
+              )}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* 유형별 이용사례 롤링 배너 */}
-          <div className="lala-fade-up-delay">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-xs font-semibold tracking-[0.14em] text-lala-200 uppercase">
+      {/* 유형별 이용사례 — 히어로 아래 별도 섹션 */}
+      <section className="bg-[#0b1f2e] px-5 py-14 text-white md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.14em] text-lala-300 uppercase">
                 유형별 다회용기 이용사례
               </p>
-              <div className="flex items-center gap-3">
-                {!reducedMotion && (
-                  <button
-                    type="button"
-                    onClick={() => setCasePaused((paused) => !paused)}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-lala-100 hover:text-white"
-                    aria-pressed={casePaused}
-                  >
-                    {casePaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
-                    {casePaused ? '자동재생' : '일시정지'}
-                  </button>
-                )}
-                <a
-                  href={EXTERNAL.caseVideo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs font-semibold text-lala-100 underline underline-offset-2 hover:text-white"
-                >
-                  영상 크게 보기
-                </a>
-              </div>
+              <p className="mt-2 text-lg font-bold" aria-live="polite">
+                {activeCase.title}
+              </p>
             </div>
-            <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-              <Link
-                to={`/services/${activeCase.slug}`}
-                className="group relative overflow-hidden rounded-2xl ring-1 ring-white/25"
+            <div className="flex items-center gap-3">
+              {!reducedMotion && (
+                <button
+                  type="button"
+                  onClick={() => setCasePaused((paused) => !paused)}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-lala-100 hover:text-white"
+                  aria-pressed={casePaused}
+                >
+                  {casePaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+                  {casePaused ? '자동재생' : '일시정지'}
+                </button>
+              )}
+              <a
+                href={EXTERNAL.caseVideo}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-semibold text-lala-100 underline underline-offset-2 hover:text-white"
               >
-                <img
-                  src={activeCase.image}
-                  alt=""
-                  className="h-48 w-full object-cover transition duration-700 group-hover:scale-[1.03] md:h-56"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-lala-900/90 via-lala-900/25 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="text-xs font-bold text-lala-200">
-                    0{caseIdx + 1} / 0{HERO_CASES.length}
-                  </p>
-                  <p className="mt-1 text-lg font-extrabold md:text-xl">{activeCase.title}</p>
-                  <p className="mt-1 text-sm text-lala-50/90">{activeCase.short}</p>
-                </div>
-              </Link>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2">
-                {HERO_CASES.map((c, i) => (
-                  <button
-                    key={c.slug}
-                    type="button"
-                    onClick={() => setCaseIdx(i)}
-                    aria-pressed={i === caseIdx}
-                    className={`rounded-xl px-3 py-3 text-left text-xs font-semibold transition ring-1 ${
-                      i === caseIdx
-                        ? 'bg-white text-lala-900 ring-white'
-                        : 'bg-white/10 text-lala-50 ring-white/15 hover:bg-white/15'
-                    }`}
-                  >
-                    {c.title.replace(' 대여 및 세척', '').replace(' 대여', '')}
-                  </button>
-                ))}
+                영상 크게 보기
+              </a>
+            </div>
+          </div>
+          <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+            <Link
+              to={`/services/${activeCase.slug}`}
+              className="group relative overflow-hidden rounded-2xl ring-1 ring-white/25"
+            >
+              <img
+                src={activeCase.image}
+                alt={activeCase.title}
+                className="h-48 w-full object-cover transition duration-700 group-hover:scale-[1.03] md:h-56"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-lala-900/90 via-lala-900/25 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-xs font-bold text-lala-200">
+                  0{caseIdx + 1} / 0{HERO_CASES.length}
+                </p>
+                <p className="mt-1 text-lg font-extrabold md:text-xl">{activeCase.title}</p>
+                <p className="mt-1 text-sm text-lala-50/90">{activeCase.short}</p>
               </div>
+            </Link>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2">
+              {HERO_CASES.map((c, i) => (
+                <button
+                  key={c.slug}
+                  type="button"
+                  onClick={() => setCaseIdx(i)}
+                  aria-pressed={i === caseIdx}
+                  className={`rounded-xl px-3 py-3 text-left text-xs font-semibold transition ring-1 ${
+                    i === caseIdx
+                      ? 'bg-white text-lala-900 ring-white'
+                      : 'bg-white/10 text-lala-50 ring-white/15 hover:bg-white/15'
+                  }`}
+                >
+                  {c.title.replace(' 대여 및 세척', '').replace(' 대여', '')}
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* 메인 중상단 — 세척량 + 파트너 */}
-      <section className="bg-[#0b1f2e] px-5 py-16 text-white md:py-20">
+      <section className="border-t border-white/10 bg-[#0b1f2e] px-5 py-16 text-white md:py-20">
         <div className="mx-auto max-w-6xl">
           <div ref={impactRef} className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
             <div>
@@ -314,7 +322,7 @@ export default function HomePage() {
               >
                 <img
                   src={s.image}
-                  alt=""
+                  alt={s.title}
                   loading="lazy"
                   decoding="async"
                   className="h-40 w-full object-cover"
@@ -323,6 +331,12 @@ export default function HomePage() {
                   <p className="text-xs font-bold text-lala-500">0{i + 1}</p>
                   <h3 className="mt-1 text-lg font-bold text-ink">{s.title}</h3>
                   <p className="mt-2 text-sm text-muted">{s.short}</p>
+                  {s.pending && (
+                    <p className="mt-2 text-xs font-semibold text-amber-700">맞춤 상담 · 상세 안내 준비 중</p>
+                  )}
+                  {s.cases?.[0] && !s.pending && (
+                    <p className="mt-2 text-xs font-semibold text-lala-700">{s.cases[0]}</p>
+                  )}
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600">
                     안내 보기 <ArrowRight className="h-4 w-4" />
                   </span>
