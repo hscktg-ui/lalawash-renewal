@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CupCirculation } from '../components/NativeVisuals'
+import { PhotoGallery } from '../components/PhotoGallery'
 import { PUBLIC_OPS, SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
 
 export default function ServiceDetailPage() {
@@ -95,53 +96,54 @@ export default function ServiceDetailPage() {
             decoding="async"
             className="mb-8 w-full rounded-[2rem] object-cover"
           />
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { src: IMAGES.festivalReturn, label: '식기 반납 부스' },
-              { src: IMAGES.festivalTent, label: '현장 대여 텐트' },
-              { src: IMAGES.festivalCounter, label: '브랜드 부스 운영' },
-            ].map((x) => (
-              <figure key={x.label} className="text-center">
-                <img
-                  src={x.src}
-                  alt={x.label}
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto aspect-square w-full rounded-full object-cover"
-                />
-                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <PhotoGallery
+            items={[
+              {
+                title: '식기 반납 부스',
+                image: IMAGES.festivalReturn,
+                caption: '관람객이 사용한 용기를 바로 반납합니다.',
+              },
+              {
+                title: '현장 대여 텐트',
+                image: IMAGES.festivalTent,
+                caption: '행사장 안에서 용기를 대여·교체합니다.',
+              },
+              {
+                title: '축제 현장 규모',
+                image: IMAGES.festivalCrowd,
+                caption: '대형 축제 물량도 지점 협업으로 대응합니다.',
+              },
+            ]}
+          />
         </Section>
       )}
 
       {s.slug === 'funeral' && (
         <Section title="장례식장 다회용기 · 현장" className="bg-slate-50">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { src: IMAGES.funeralSite, label: '수원연화장 운영 현장' },
-              { src: IMAGES.dishesSet, label: '친환경 다회용 장례용기' },
-              { src: IMAGES.deliveryTruck, label: '공급·회수 운영' },
-            ].map((x) => (
-              <figure key={x.label} className="text-center">
-                <img
-                  src={x.src}
-                  alt={x.label}
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto aspect-square w-full rounded-full object-cover"
-                />
-                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
-              </figure>
-            ))}
-          </div>
-          <img
-            src={IMAGES.funeralHospital}
-            alt="경기도의료원 수원병원"
-            loading="lazy"
-            decoding="async"
-            className="mt-8 h-56 w-full rounded-2xl object-cover"
+          <PhotoGallery
+            items={[
+              {
+                title: '수원연화장 운영 현장',
+                image: IMAGES.funeralSite,
+                caption: '빈소 내 다회용기 사용을 안내합니다.',
+              },
+              {
+                title: '친환경 다회용 장례용기',
+                image: IMAGES.dishesSet,
+                caption: '접시·공기·컵·수저를 한 세트로 제공합니다.',
+              },
+              {
+                title: '공급·회수 운영',
+                image: IMAGES.deliveryTruck,
+                caption: '가까운 지점에서 배송과 회수를 맡습니다.',
+              },
+              {
+                title: '경기도의료원 수원병원',
+                image: IMAGES.funeralHospital,
+                caption: '공공 의료원 장례식장에서 운영 중입니다.',
+              },
+            ]}
+            columns={2}
           />
         </Section>
       )}
@@ -155,24 +157,25 @@ export default function ServiceDetailPage() {
             decoding="async"
             className="mb-8 w-full rounded-[2rem] rounded-br-none object-cover md:rounded-tr-[6rem]"
           />
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { src: IMAGES.sikpanWorker, label: '세척·검수 인력' },
-              { src: IMAGES.sikpanRacks, label: '건조·보관 랙' },
-              { src: IMAGES.sikpanNozzles, label: '고압 세척 노즐' },
-            ].map((x) => (
-              <figure key={x.label} className="text-center">
-                <img
-                  src={x.src}
-                  alt={x.label}
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto aspect-square w-full rounded-full object-cover"
-                />
-                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <PhotoGallery
+            items={[
+              {
+                title: '세척·검수 인력',
+                image: IMAGES.sikpanWorker,
+                caption: '전담 인력이 세척 후 상태를 확인합니다.',
+              },
+              {
+                title: '건조·보관 랙',
+                image: IMAGES.sikpanRacks,
+                caption: '열풍 건조 후 지정 랙에 보관합니다.',
+              },
+              {
+                title: '고압 세척 노즐',
+                image: IMAGES.sikpanNozzles,
+                caption: '식판 홈까지 고압수로 씻어냅니다.',
+              },
+            ]}
+          />
         </Section>
       )}
 
@@ -184,12 +187,20 @@ export default function ServiceDetailPage() {
 
       {s.slug === 'kids-tray' && (
         <Section title="유아·학교 식판 세척" className="bg-slate-50">
-          <img
-            src={IMAGES.sikpanTrays}
-            alt="세척된 스텐 식판"
-            loading="lazy"
-            decoding="async"
-            className="w-full rounded-3xl object-cover"
+          <PhotoGallery
+            items={[
+              {
+                title: '유아식판 건조 랙',
+                image: IMAGES.sikpanRacks,
+                caption: '원별 수량에 맞춰 건조·분류합니다.',
+              },
+              {
+                title: '세척 라인',
+                image: IMAGES.sikpanMachine,
+                caption: '초순수 고온수로 6단계 세척합니다.',
+              },
+            ]}
+            columns={2}
           />
         </Section>
       )}

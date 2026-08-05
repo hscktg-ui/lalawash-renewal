@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
+import { PhotoGallery } from '../components/PhotoGallery'
 import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_GALLERY, WASH_STEPS } from '../data'
 
 export default function ServicesPage() {
@@ -61,20 +62,7 @@ export default function ServicesPage() {
         desc="전 지점 6단계 안심 세척 프로세스를 통해 “깨끗함”을 제공해드립니다."
         className="bg-slate-50 scroll-mt-24"
       >
-        <div className="mb-10 grid gap-6 sm:grid-cols-3">
-          {WASH_GALLERY.map((g) => (
-            <figure key={g.title} className="text-center">
-              <img
-                src={g.image}
-                alt={g.title}
-                loading="lazy"
-                decoding="async"
-                className="mx-auto aspect-square w-full max-w-[220px] rounded-full object-cover ring-4 ring-white"
-              />
-              <figcaption className="mt-3 text-sm font-bold text-ink">{g.title}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <PhotoGallery items={WASH_GALLERY} className="mb-10" />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
             <div key={s.title} className="rounded-xl bg-white p-5 ring-1 ring-slate-200">

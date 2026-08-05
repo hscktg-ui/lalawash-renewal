@@ -17,6 +17,19 @@ export default function HistoryPage() {
 
       <Section title="연혁">
         <NativeTimeline />
+        <figure className="mt-10 overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200">
+          <img
+            src={IMAGES.fairBooth}
+            alt="전국 자활 다회용기 순환사업 홍보 부스"
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/9] w-full object-cover"
+          />
+          <figcaption className="px-6 py-4 text-sm leading-relaxed text-muted">
+            전국 자활 다회용기 순환사업 — 지역 자활센터와 함께 축제용 다회용기와 지자체 컵을 순환하는
+            모델을 소개했습니다.
+          </figcaption>
+        </figure>
       </Section>
 
       <Section title="한눈에 보는 성과" className="bg-slate-50">

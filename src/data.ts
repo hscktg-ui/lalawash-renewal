@@ -32,8 +32,6 @@ export const IMAGES = {
   catering: 'https://cdn.imweb.me/thumbnail/20231123/baf02f04c13bc.jpg',
   video: 'https://cdn.imweb.me/thumbnail/20221209/cdc246b24e895.jpg',
   center: 'https://cdn.imweb.me/thumbnail/20231123/4aa2068891dbb.jpg',
-  centerMap: '/maps/center-map.png',
-  centerMapAlt: '/maps/center-map-alt.png',
   mapCta: 'https://cdn.imweb.me/thumbnail/20250922/cbece11f67bff.png',
   reusable: 'https://cdn.imweb.me/thumbnail/20250922/81ee8b45ec653.png',
   character: 'https://cdn.imweb.me/thumbnail/20231127/c4d9d8c00bd1b.jpg',
@@ -47,11 +45,10 @@ export const IMAGES = {
   gpsc: 'https://cdn.imweb.me/thumbnail/20240503/9d2534da00f8f.png',
   blog: 'https://cdn.imweb.me/thumbnail/20240503/c70294a143493.png',
   instagram: 'https://cdn.imweb.me/thumbnail/20240503/de47929d260ca.png',
-  /** PDF 구성안·브랜드 자료에서 추출 */
-  sikpanTrays: '/pdf-assets/sikpan-trays-rack.jpg',
+  /** 회사소개서 PDF 원본 사진 (미러링 보정 후 웹용으로 재인코딩) */
   sikpanMachine: '/pdf-assets/sikpan-machine.jpg',
   sikpanWorker: '/pdf-assets/sikpan-worker.jpg',
-  sikpanRacks: '/pdf-assets/sikpan-yellow-racks.jpg',
+  sikpanRacks: '/pdf-assets/sikpan-racks.jpg',
   sikpanNozzles: '/pdf-assets/sikpan-nozzles.jpg',
   platesRack: '/pdf-assets/plates-rack.jpg',
   funeralSite: '/pdf-assets/funeral-site.jpg',
@@ -59,12 +56,14 @@ export const IMAGES = {
   dishesSet: '/pdf-assets/dishes-set.jpg',
   deliveryTruck: '/pdf-assets/delivery-truck.jpg',
   activitySbs: '/pdf-assets/activity-sbs.jpg',
-  activityCafe: '/pdf-assets/activity-gg-cafe.jpg',
+  activityCup: '/pdf-assets/activity-cup.jpg',
   activityFair: '/pdf-assets/activity-fair.jpg',
   festivalProducts: '/pdf-assets/festival-products.jpg',
   festivalReturn: '/pdf-assets/festival-return.jpg',
   festivalTent: '/pdf-assets/festival-tent.jpg',
-  festivalCounter: '/pdf-assets/festival-counter.jpg',
+  festivalCrowd: '/pdf-assets/festival-crowd.jpg',
+  fairBooth: '/pdf-assets/fair-booth.jpg',
+  brandBuilding: '/pdf-assets/brand-building.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
   ultrasonicMachine: '/pdf-assets/ultrasonic-machine.jpg',
 }
@@ -239,7 +238,7 @@ export const SOLUTIONS: Solution[] = [
     title: '오피스·카페 다회용컵 대여 및 세척',
     short: '지자체청사, 공공기관, 사무실, 카페에서 편리하게 사용해보세요.',
     desc: '경기도 일회용품 저감 정책에 따라 공공기관을 중심으로 다회용품 사용을 추진합니다. 사용한 다회용기는 라라워시 반납함에 넣어주시면, 직접 수거 후 6단계 세척 프로세스를 거쳐 다시 공급해 드립니다.',
-    image: IMAGES.activityCafe,
+    image: IMAGES.activityCup,
     tags: ['다회용컵', '공공기관', '카페'],
     points: [
       '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
@@ -273,7 +272,7 @@ export const SOLUTIONS: Solution[] = [
     title: '유아식판 대여 및 세척',
     short: '어린이집, 유치원, 학교 식판을 안전하고 깨끗하게 세척해드립니다.',
     desc: '매일 먹는 아이 밥상, 엄마의 마음으로 깐깐하게 검증한 안심 식판케어입니다. 식판 세척 부담은 줄이고, 식약처 위생 지침을 준수하는 체계적인 위생데이터로 깨끗함과 안전함을 함께 제공합니다.',
-    image: IMAGES.sikpanTrays,
+    image: IMAGES.sikpanRacks,
     tags: ['유아식판', '어린이집', '유치원'],
     points: [
       '친환경 인증세제 사용',
@@ -516,6 +515,22 @@ export const BRANCHES: Branch[] = [
   },
 ]
 
+/** 지점 분포를 코드로 그리기 위한 권역 구분 (지도 이미지 대체) */
+export const BRANCH_REGIONS: { region: string; area: string; names: string[] }[] = [
+  { region: '북부권', area: '고양 · 의정부 · 포천', names: ['고양', '의정부', '포천'] },
+  {
+    region: '서부권',
+    area: '부천 · 시흥 · 안산 · 군포',
+    names: ['부천 1호', '부천나눔', '부천 3호', '부천 4호', '시흥', '시흥작은자리', '안산', '군포'],
+  },
+  {
+    region: '중부권',
+    area: '수원 · 성남 · 광주 · 용인',
+    names: ['수원 1호', '수원 2호', '성남', '성남만남', '광주', '용인'],
+  },
+  { region: '남부권', area: '오산 · 안성 · 이천 · 평택', names: ['오산', '안성', '이천', '평택'] },
+]
+
 export const PUBLIC_OPS = [
   { region: '과천시', org: '과천시청', branch: '군포점', detail: '하루 약 1,000컵' },
   { region: '부천시', org: '부천시청', branch: '부천나눔점', detail: '하루 약 2,000컵' },
@@ -547,15 +562,42 @@ export const HISTORY = [
 ]
 
 export const FIELD_ACTIVITIES = [
-  { title: 'SBS 공생의 법칙', image: IMAGES.activitySbs },
-  { title: '경기도청 카페 다회용기', image: IMAGES.activityCafe },
-  { title: '사회적경제박람회', image: IMAGES.activityFair },
+  {
+    title: 'SBS 공생의 법칙',
+    caption: '방송 현장에 다회용기 대여·반납 부스를 운영했습니다.',
+    image: IMAGES.activitySbs,
+  },
+  {
+    title: '경기도청 내 카페',
+    caption: '청사 카페에서 라라워시 다회용컵을 순환 사용합니다.',
+    image: IMAGES.activityCup,
+  },
+  {
+    title: '사회적경제박람회',
+    caption: '지역 자활센터와 함께 다회용기 순환 모델을 소개했습니다.',
+    image: IMAGES.activityFair,
+  },
 ]
 
 export const WASH_GALLERY = [
-  { title: '고온·고압 세척', image: IMAGES.platesRack },
-  { title: '초순수(UPW) 제조', image: IMAGES.upwMachine },
-  { title: '초음파·와류 세척', image: IMAGES.ultrasonicMachine },
+  {
+    title: '고온·고압 세척',
+    caption: '초순수로 잔여물까지 씻어냅니다.',
+    image: IMAGES.platesRack,
+    fit: 'cover' as const,
+  },
+  {
+    title: '초순수(UPW) 제조장치',
+    caption: '수돗물이 아닌 초순수를 만들어 사용합니다.',
+    image: IMAGES.upwMachine,
+    fit: 'contain' as const,
+  },
+  {
+    title: '초음파·와류 세척장치',
+    caption: '눈에 보이지 않는 오염까지 떨어뜨립니다.',
+    image: IMAGES.ultrasonicMachine,
+    fit: 'contain' as const,
+  },
 ]
 
 /** PDF: 경기도민 약 1,400만명 시나리오 환경효과 */

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ExternalLink, MapPin, Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { BranchMapFrame } from '../components/BranchMapFrame'
+import { BranchNetwork } from '../components/BranchNetwork'
 import { BRANCHES, CONTACT, IMAGES, NETWORK, PUBLIC_OPS } from '../data'
 
 export default function InfraPage() {
@@ -14,7 +14,7 @@ export default function InfraPage() {
         eyebrow="라라워시 · 지점"
         title="경기도 최대 규모, 15개 지역에 21개의 전문세척장 인프라"
         desc="가장 가까운 곳에서 가장 신속하게, 라라워시의 친환경 네트워크가 움직입니다."
-        image={IMAGES.center}
+        image={IMAGES.brandBuilding}
       />
 
       <Section
@@ -48,13 +48,8 @@ export default function InfraPage() {
         </p>
       </Section>
 
-      <Section title="지점 위치" className="bg-slate-50">
-        <BranchMapFrame
-          src={IMAGES.centerMap}
-          alt="라라워시 경기도 지점 위치도"
-          caption={`공식 ${NETWORK.sites}곳 · 연락처 공개 ${BRANCHES.filter((b) => !b.pendingAddress).length}곳`}
-          imgClassName="max-w-4xl"
-        />
+      <Section title="지점 분포" desc="경기도 4개 권역에 세척장을 나눠 배치했습니다." className="bg-slate-50">
+        <BranchNetwork active={active} onSelect={setActive} />
       </Section>
 
       <Section title="지점 찾아보기" desc="목록에서 지점을 선택하면 주소·전화·취급 품목을 확인할 수 있습니다.">
@@ -132,14 +127,6 @@ export default function InfraPage() {
                 </a>
               )}
             </article>
-
-            <BranchMapFrame
-              src={IMAGES.centerMapAlt}
-              alt="라라워시 지점 위치 보조 지도"
-              caption="경기도 전역 지점 네트워크"
-              className="mt-6 rounded-2xl"
-              imgClassName="max-h-[360px]"
-            />
           </div>
         </div>
       </Section>

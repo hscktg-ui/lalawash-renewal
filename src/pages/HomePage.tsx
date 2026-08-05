@@ -11,6 +11,7 @@ import {
 } from '../data'
 import { EXTERNAL } from '../lib/content'
 import { ImpactSummary } from '../components/NativeVisuals'
+import { PhotoGallery } from '../components/PhotoGallery'
 import { PartnerMarquee } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -252,20 +253,7 @@ export default function HomePage() {
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
             경기도 내 친환경 활동을 선도하는 라라워시
           </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {FIELD_ACTIVITIES.map((a) => (
-              <figure key={a.title} className="text-center">
-                <img
-                  src={a.image}
-                  alt={a.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto aspect-square w-full max-w-[240px] rounded-full object-cover ring-4 ring-lala-50"
-                />
-                <figcaption className="mt-4 text-sm font-bold text-ink">{a.title}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <PhotoGallery items={FIELD_ACTIVITIES} className="mt-10" />
           <div className="mt-12">
             <p className="mb-4 text-sm font-semibold text-lala-700">수치로 확인하는 자원순환 성과</p>
             <ImpactSummary compact />

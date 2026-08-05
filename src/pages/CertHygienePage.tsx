@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
+import { PhotoGallery } from '../components/PhotoGallery'
 import { CERTIFICATIONS, HYGIENE_CHECKS, IMAGES, WASH_GALLERY, WASH_STEPS } from '../data'
 
 export default function CertHygienePage() {
@@ -75,18 +76,7 @@ export default function CertHygienePage() {
         title="초순수물(UPW) 6단계 세척시스템"
         desc="전 지점 동일 매뉴얼로 깨끗함을 전달합니다."
       >
-        <div className="mb-10 grid gap-6 sm:grid-cols-3">
-          {WASH_GALLERY.map((g) => (
-            <figure key={g.title} className="text-center">
-              <img
-                src={g.image}
-                alt={g.title}
-                className="mx-auto aspect-square w-full max-w-[220px] rounded-full object-cover ring-4 ring-lala-50"
-              />
-              <figcaption className="mt-3 text-sm font-bold text-ink">{g.title}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <PhotoGallery items={WASH_GALLERY} className="mb-10" />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
             <div key={s.title} className="rounded-xl bg-slate-50 p-5 ring-1 ring-slate-200">
