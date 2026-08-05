@@ -47,6 +47,37 @@ export const IMAGES = {
   gpsc: 'https://cdn.imweb.me/thumbnail/20240503/9d2534da00f8f.png',
   blog: 'https://cdn.imweb.me/thumbnail/20240503/c70294a143493.png',
   instagram: 'https://cdn.imweb.me/thumbnail/20240503/de47929d260ca.png',
+  /** PDF 구성안·브랜드 자료에서 추출 */
+  sikpanTrays: '/pdf-assets/sikpan-trays-rack.jpg',
+  sikpanMachine: '/pdf-assets/sikpan-machine.jpg',
+  sikpanWorker: '/pdf-assets/sikpan-worker.jpg',
+  sikpanRacks: '/pdf-assets/sikpan-yellow-racks.jpg',
+  sikpanNozzles: '/pdf-assets/sikpan-nozzles.jpg',
+  platesRack: '/pdf-assets/plates-rack.jpg',
+  funeralSite: '/pdf-assets/funeral-site.jpg',
+  funeralHospital: '/pdf-assets/funeral-hospital.jpg',
+  dishesSet: '/pdf-assets/dishes-set.jpg',
+  deliveryTruck: '/pdf-assets/delivery-truck.jpg',
+  activitySbs: '/pdf-assets/activity-sbs.jpg',
+  activityCafe: '/pdf-assets/activity-gg-cafe.jpg',
+  activityFair: '/pdf-assets/activity-fair.jpg',
+  festivalProducts: '/pdf-assets/festival-products.jpg',
+  festivalReturn: '/pdf-assets/festival-return.jpg',
+  festivalTent: '/pdf-assets/festival-tent.jpg',
+  festivalCounter: '/pdf-assets/festival-counter.jpg',
+  festivalCrowd: '/pdf-assets/festival-crowd.jpg',
+  publicReturn: '/pdf-assets/public-return.jpg',
+  washBubble: '/pdf-assets/plates-rack.jpg',
+  washSterilize: '/pdf-assets/upw-machine.jpg',
+  washPack: '/pdf-assets/ultrasonic-machine.jpg',
+  upwMachine: '/pdf-assets/upw-machine.jpg',
+  ultrasonicMachine: '/pdf-assets/ultrasonic-machine.jpg',
+  impactInfographic: '/pdf-assets/impact-infographic.png',
+  historyTimeline: '/pdf-assets/history-timeline.png',
+  envChart: '/pdf-assets/env-chart.png',
+  cupCirculation: '/pdf-assets/cup-circulation.png',
+  howto6steps: '/pdf-assets/howto-6steps.png',
+  brandCover: '/pdf-assets/brand-cover-trays.png',
 }
 
 /** PDF 구성안 상단 3대 카테고리 */
@@ -122,7 +153,7 @@ export const SOLUTIONS: Solution[] = [
     title: '장례식장 다회용기 대여 및 세척',
     short: '일회용품 없는 친환경 장례문화를 만들어 나갑니다.',
     desc: '라라워시의 장례식장 다회용기서비스는 빈소에서 사용하는 식기를 위생적으로 공급하고, 사용 후 수거하여 전문 세척·살균공정을 거쳐 다시 재공급하는 순환형 운영시스템입니다. 단순한 일회용품 절감을 넘어 엄격한 위생관리와 안정적인 공급시스템으로 장례의 품격을 높입니다.',
-    image: IMAGES.funeral,
+    image: IMAGES.funeralSite,
     tags: ['장례', '순환 공급', '위생'],
     points: [
       '환경호르몬 Zero, 고온고압세척이 가능한 프리미엄 식기',
@@ -153,7 +184,7 @@ export const SOLUTIONS: Solution[] = [
     title: '축제 및 행사용기 대여',
     short: '깨끗한 행사 진행을 위해 인원에 맞춰 다회용기를 대여합니다.',
     desc: '지역 축제 및 행사에 다회용기 대여서비스를 제공하여 일회용 쓰레기 없는 지속 가능한 행사 문화를 만들어 갑니다. 경기도 내 15개 지역 21개 지점을 통해 신속한 대여·수거·세척·재공급을 제공합니다.',
-    image: IMAGES.catering,
+    image: IMAGES.festivalProducts,
     tags: ['축제', '행사', '반납부스'],
     points: [
       '파스타볼, 접시, 나눔접시 등 다양한 다회용기 보유',
@@ -186,7 +217,7 @@ export const SOLUTIONS: Solution[] = [
     title: '학교·기업·대형 식당 식판 대여 및 세척',
     short: '학교, 대기업 구내식당, 병원식당, 급식소 식판을 세척해드립니다.',
     desc: '식판을 수거하여 전문 세척공정을 통해 위생적으로 세척·살균·건조합니다. 단순 세척을 넘어 위생 기준과 운영 안정성까지 함께 고려한 전문 식판 세척서비스를 제공합니다.',
-    image: IMAGES.system,
+    image: IMAGES.sikpanMachine,
     tags: ['식판', '학교', '급식'],
     points: [
       '스텐·멜라민 식판 대응',
@@ -219,7 +250,7 @@ export const SOLUTIONS: Solution[] = [
     title: '오피스·카페 다회용컵 대여 및 세척',
     short: '지자체청사, 공공기관, 사무실, 카페에서 편리하게 사용해보세요.',
     desc: '경기도 일회용품 저감 정책에 따라 공공기관을 중심으로 다회용품 사용을 추진합니다. 사용한 다회용기는 라라워시 반납함에 넣어주시면, 직접 수거 후 6단계 세척 프로세스를 거쳐 다시 공급해 드립니다.',
-    image: IMAGES.service,
+    image: IMAGES.activityCafe,
     tags: ['다회용컵', '공공기관', '카페'],
     points: [
       '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
@@ -253,7 +284,7 @@ export const SOLUTIONS: Solution[] = [
     title: '유아식판 대여 및 세척',
     short: '어린이집, 유치원, 학교 식판을 안전하고 깨끗하게 세척해드립니다.',
     desc: '매일 먹는 아이 밥상, 엄마의 마음으로 깐깐하게 검증한 안심 식판케어입니다. 식판 세척 부담은 줄이고, 식약처 위생 지침을 준수하는 체계적인 위생데이터로 깨끗함과 안전함을 함께 제공합니다.',
-    image: IMAGES.system,
+    image: IMAGES.sikpanTrays,
     tags: ['유아식판', '어린이집', '유치원'],
     points: [
       '친환경 인증세제 사용',
@@ -284,7 +315,7 @@ export const SOLUTIONS: Solution[] = [
     title: '라라워시 케이터링',
     short: '일회용기가 아닌 다회용기로, 이젠 케이터링도 라라워시입니다.',
     desc: '다회용기 기반 케이터링 서비스입니다. 상세 메뉴·구성은 확인 후 업데이트하며, 일정·인원·용기 구성을 알려주시면 맞춤 상담드립니다.',
-    image: IMAGES.catering,
+    image: IMAGES.platesRack,
     tags: ['케이터링', '다회용기'],
     points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '상세 안내 준비 중'],
     process: [
@@ -318,12 +349,14 @@ export const WASH_STEPS = [
   { title: '출고 전 전수 검사', desc: '빠짐없이 확인한 뒤 다시 보냅니다' },
 ]
 
-/** 이용방법 (문의 → 신청 → 사용 → 회수) */
+/** 이용방법 — PDF 구성안 이미지(6단계) 기준 */
 export const HOW_TO = [
-  { step: '01', title: '문의', desc: '사용 장소·수량·기간을 알려주시면 상담합니다.' },
-  { step: '02', title: '신청', desc: '견적 확인 후 서비스 신청을 진행합니다.' },
-  { step: '03', title: '사용', desc: '깨끗하게 준비된 다회용기를 현장에 맞춰 사용합니다.' },
-  { step: '04', title: '회수', desc: '사용 후 수거·세척·재공급으로 순환합니다.' },
+  { step: '01', title: '문의', desc: '사용목적에 맞는 다회용기 대여를 문의합니다.' },
+  { step: '02', title: '선택', desc: '다회용기 종류·수량 및 대여 관련 제반 사항을 결정합니다.' },
+  { step: '03', title: '배송', desc: '사용 장소·시간에 맞춰 다회용기를 배송합니다.' },
+  { step: '04', title: '사용', desc: '현장에서 다회용기를 사용합니다.' },
+  { step: '05', title: '회수', desc: '사용한 다회용기를 회수합니다.' },
+  { step: '06', title: '세척', desc: '회수한 다회용기를 전문 세척해 다시 순환합니다.' },
 ]
 
 /** 레거시 CIRCLE — HOW_TO 권장 */
@@ -516,14 +549,24 @@ export const CONTACT = {
 }
 
 export const HISTORY = [
-  ['2019', '이유식 식판 세척으로 시작 · 성남 자활 세척장'],
-  ['2020', '식판케어로 확대 · 세척장 4곳'],
-  ['2021', '라라워시 브랜드 출범 · 다회용기 사업으로'],
-  ['2022', '축제 대여 본격화 · 사업장·협동조합 확대'],
-  ['2023', '가맹·협동조합과 함께 규모 확대'],
-  ['2024', '경기도청 다회용컵 사업 · 대형 축제 대응'],
-  ['2025', '누적 세척 1,200만 개 · 지역 일자리 270명'],
-  ['2026', '경기도 15개 지역 · 21개 지점 · 부천나눔 개소'],
+  ['2019', '유아식판 세척서비스 개시 · 전국 최초 자활세척사업단(성남지역자활센터)'],
+  ['2020', '유아식판세척 공동브랜드 ‘식판케어’ 런칭'],
+  ['2021', '라라워시 브랜드 런칭 · SKT 사옥 카페 컵 세척 시작'],
+  ['2022', '경기도 기금 지원으로 세척 인프라 구축 · 신규 지점 확대'],
+  ['2023', '프랜차이즈 협동조합 설립 · 세척장 확대'],
+  ['2024~2026', '경기도청·지자체 오피스컵, 학교식판, 축제·장례식장 다회용기 순환 운영'],
+]
+
+export const FIELD_ACTIVITIES = [
+  { title: 'SBS 공생의자유', image: IMAGES.activitySbs },
+  { title: '경기도청 카페 다회용기', image: IMAGES.activityCafe },
+  { title: '사회적경제박람회', image: IMAGES.activityFair },
+]
+
+export const WASH_GALLERY = [
+  { title: '고온·고압 세척', image: IMAGES.platesRack },
+  { title: '초순수(UPW) 제조', image: IMAGES.upwMachine },
+  { title: '초음파·와류 세척', image: IMAGES.ultrasonicMachine },
 ]
 
 /** PDF: 경기도민 약 1,400만명 시나리오 환경효과 */

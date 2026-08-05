@@ -7,12 +7,18 @@ export default function HowToPage() {
     <>
       <PageHero
         eyebrow="이용문의 · 이용방법"
-        title="문의부터 회수까지, 이렇게 이용하세요"
-        desc="복잡한 절차 없이 상담 → 신청 → 사용 → 회수로 이어집니다."
+        title="문의부터 세척까지, 이렇게 이용하세요"
+        desc="라라워시의 다회용기 서비스는 간편하고 체계적인 과정을 통해 제공됩니다."
         image={IMAGES.order}
       />
-      <Section title="이용 순서">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+      <Section title="라라워시 서비스 이용방법">
+        <img
+          src={IMAGES.howto6steps}
+          alt="라라워시 서비스 이용방법 6단계"
+          className="mb-10 w-full rounded-2xl object-cover ring-1 ring-slate-200"
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {HOW_TO.map((s) => (
             <article key={s.step} className="rounded-2xl border-t-2 border-lala-600 bg-slate-50 p-6">
               <p className="text-xs font-bold text-lala-500">{s.step}</p>
@@ -33,9 +39,10 @@ export default function HowToPage() {
             <Link
               key={s.slug}
               to={`/services/${s.slug}`}
-              className="rounded-xl bg-white px-5 py-4 text-sm font-semibold text-ink ring-1 ring-slate-200 hover:text-lala-700"
+              className="overflow-hidden rounded-xl bg-white ring-1 ring-slate-200 hover:shadow-sm"
             >
-              {s.title}
+              <img src={s.image} alt="" className="h-28 w-full object-cover" />
+              <p className="px-4 py-3 text-sm font-semibold text-ink">{s.title}</p>
             </Link>
           ))}
         </div>

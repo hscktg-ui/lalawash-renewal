@@ -1,7 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { PUBLIC_OPS, SOLUTIONS, SOLUTION_ALIASES } from '../data'
+import { PUBLIC_OPS, SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
 
 export default function ServiceDetailPage() {
   const { slug } = useParams()
@@ -76,6 +76,92 @@ export default function ServiceDetailPage() {
               </article>
             ))}
           </div>
+        </Section>
+      )}
+
+      {s.slug === 'festival' && (
+        <Section title="축제·행사 대여 및 반납 부스" className="bg-slate-50">
+          <img
+            src={IMAGES.festivalProducts}
+            alt="축제용 다회용기 제품"
+            className="mb-8 w-full rounded-[2rem] object-cover"
+          />
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { src: IMAGES.festivalReturn, label: '식기 반납 부스' },
+              { src: IMAGES.festivalTent, label: '현장 대여 텐트' },
+              { src: IMAGES.festivalCounter, label: '브랜드 부스 운영' },
+            ].map((x) => (
+              <figure key={x.label} className="text-center">
+                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {s.slug === 'funeral' && (
+        <Section title="장례식장 다회용기 · 현장" className="bg-slate-50">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { src: IMAGES.funeralSite, label: '수원연화장 운영 현장' },
+              { src: IMAGES.dishesSet, label: '친환경 다회용 장례용기' },
+              { src: IMAGES.deliveryTruck, label: '공급·회수 운영' },
+            ].map((x) => (
+              <figure key={x.label} className="text-center">
+                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <img
+            src={IMAGES.funeralHospital}
+            alt="경기도의료원 수원병원"
+            className="mt-8 h-56 w-full rounded-2xl object-cover"
+          />
+        </Section>
+      )}
+
+      {s.slug === 'sikpan' && (
+        <Section title="급식 식판 전문 세척 시스템" className="bg-slate-50">
+          <img
+            src={IMAGES.sikpanMachine}
+            alt="식판 세척 라인"
+            className="mb-8 w-full rounded-[2rem] rounded-br-none object-cover md:rounded-tr-[6rem]"
+          />
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { src: IMAGES.sikpanWorker, label: '세척·검수 인력' },
+              { src: IMAGES.sikpanRacks, label: '건조·보관 랙' },
+              { src: IMAGES.sikpanNozzles, label: '고압 세척 노즐' },
+            ].map((x) => (
+              <figure key={x.label} className="text-center">
+                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {s.slug === 'cup' && (
+        <Section title="다회용컵 순환 흐름" className="bg-slate-50">
+          <img
+            src={IMAGES.cupCirculation}
+            alt="다회용컵 대여·반납·수거·세척·재공급 흐름도"
+            className="w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
+          />
+        </Section>
+      )}
+
+      {s.slug === 'kids-tray' && (
+        <Section title="유아·학교 식판 세척" className="bg-slate-50">
+          <img
+            src={IMAGES.sikpanTrays}
+            alt="세척된 스텐 식판"
+            className="w-full rounded-3xl object-cover"
+          />
         </Section>
       )}
 

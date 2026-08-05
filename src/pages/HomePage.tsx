@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import {
   BRAND,
+  FIELD_ACTIVITIES,
   HOME_TRUST_LINKS,
   IMAGES,
   IMPACT,
@@ -229,6 +230,33 @@ export default function HomePage() {
       </section>
 
       <PartnerLogoWall />
+
+      {/* PDF 현장 활동 이미지 */}
+      <section className="px-5 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold text-lala-600">현장 이용사례</p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
+            경기도 내 친환경 활동을 선도하는 라라워시
+          </h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {FIELD_ACTIVITIES.map((a) => (
+              <figure key={a.title} className="text-center">
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  className="mx-auto aspect-square w-full max-w-[240px] rounded-full object-cover ring-4 ring-lala-50"
+                />
+                <figcaption className="mt-4 text-sm font-bold text-ink">{a.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <img
+            src={IMAGES.impactInfographic}
+            alt="라라워시 다회용기 세척량·탄소 저감 인포그래픽"
+            className="mt-12 w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
+          />
+        </div>
+      </section>
 
       {/* 메인 중단 — 위생·인증 (PDF 문구) */}
       <section className="px-5 py-16 md:py-20">

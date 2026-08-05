@@ -15,10 +15,15 @@ export default function HistoryPage() {
       />
 
       <Section title="연혁">
+        <img
+          src={IMAGES.historyTimeline}
+          alt="라라워시 연혁 타임라인"
+          className="mb-10 w-full rounded-2xl object-cover ring-1 ring-slate-200"
+        />
         <ol className="space-y-5">
           {HISTORY.map(([y, t]) => (
             <li key={y} className="flex gap-5 border-b border-slate-100 pb-5 last:border-0">
-              <span className="w-16 shrink-0 text-lg font-extrabold text-lala-600">{y}</span>
+              <span className="w-28 shrink-0 text-lg font-extrabold text-lala-600">{y}</span>
               <span className="text-sm text-muted md:text-base">{t}</span>
             </li>
           ))}
@@ -33,6 +38,11 @@ export default function HistoryPage() {
           </div>
           <CompanyProfileDownload label="소개 자료 받기" />
         </div>
+        <img
+          src={IMAGES.impactInfographic}
+          alt="세척량·탄소저감·소나무 환산 인포그래픽"
+          className="mb-8 w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {IMPACT.map((i) => (
             <div key={i.label} className="rounded-2xl bg-lala-700 p-6 text-white">
@@ -52,6 +62,11 @@ export default function HistoryPage() {
         title="라라워시 다회용컵 사용에 따른 환경적 효과"
         desc={ENV_SCENARIO.title}
       >
+        <img
+          src={IMAGES.envChart}
+          alt="일회용·다회용 온실가스 비교 그래프"
+          className="mb-8 w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
+        />
         <div className="grid gap-3 md:grid-cols-2">
           {ENV_SCENARIO.items.map((item) => (
             <div key={item.label} className="rounded-xl bg-slate-50 p-5 ring-1 ring-slate-200">
@@ -61,8 +76,7 @@ export default function HistoryPage() {
           ))}
         </div>
         <p className="mt-6 text-xs text-slate-400">
-          ※ 서울–부산 왕복거리 800km, 배출부하 0.1kgCO₂e./km 기준. 온실가스 배출권 가격·나무 환산은 PDF
-          구성안 수치를 따릅니다.
+          ※ 출처: 라라워시 환경평가 및 사회적가치 성과측정 연구(아주대학교, 2023) 등 PDF 구성안 수치.
         </p>
       </Section>
 

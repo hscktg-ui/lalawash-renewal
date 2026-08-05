@@ -36,7 +36,7 @@ export default function AboutPage() {
         desc={`${BRAND.name}는 다회용기 대여부터 수거·세척·재공급까지 토탈 솔루션을 제공하는 경기도의 지역 브랜드입니다.`}
       >
         <div className="grid gap-8 lg:grid-cols-2">
-          <img src={IMAGES.intro} alt="라라워시 소개" className="h-80 w-full rounded-3xl object-cover" />
+          <img src={IMAGES.sikpanMachine} alt="라라워시 식판 세척" className="h-80 w-full rounded-3xl object-cover" />
           <div className="space-y-5 text-sm leading-relaxed text-muted md:text-base">
             <p>
               지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고, 지역 내 다회용기 순환체계 정착으로

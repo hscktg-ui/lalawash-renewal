@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
+import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_GALLERY, WASH_STEPS } from '../data'
 
 export default function ServicesPage() {
   const location = useLocation()
@@ -22,7 +22,7 @@ export default function ServicesPage() {
         eyebrow="다회용기서비스"
         title="축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero"
         desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션. 환경 오염 고민 없는 깨끗한 행사를 위해, 라라워시의 맞춤형 서비스를 지금 선택하세요."
-        image={IMAGES.service}
+        image={IMAGES.sikpanMachine}
       />
 
       <Section
@@ -55,6 +55,18 @@ export default function ServicesPage() {
         desc="전 지점 6단계 안심 세척 프로세스를 통해 “깨끗함”을 제공해드립니다."
         className="bg-slate-50 scroll-mt-24"
       >
+        <div className="mb-10 grid gap-6 sm:grid-cols-3">
+          {WASH_GALLERY.map((g) => (
+            <figure key={g.title} className="text-center">
+              <img
+                src={g.image}
+                alt={g.title}
+                className="mx-auto aspect-square w-full max-w-[220px] rounded-full object-cover ring-4 ring-white"
+              />
+              <figcaption className="mt-3 text-sm font-bold text-ink">{g.title}</figcaption>
+            </figure>
+          ))}
+        </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
             <div key={s.title} className="rounded-xl bg-white p-5 ring-1 ring-slate-200">
