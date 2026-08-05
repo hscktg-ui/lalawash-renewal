@@ -65,19 +65,8 @@ export const IMAGES = {
   festivalReturn: '/pdf-assets/festival-return.jpg',
   festivalTent: '/pdf-assets/festival-tent.jpg',
   festivalCounter: '/pdf-assets/festival-counter.jpg',
-  festivalCrowd: '/pdf-assets/festival-crowd.jpg',
-  publicReturn: '/pdf-assets/public-return.jpg',
-  washBubble: '/pdf-assets/plates-rack.jpg',
-  washSterilize: '/pdf-assets/upw-machine.jpg',
-  washPack: '/pdf-assets/ultrasonic-machine.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
   ultrasonicMachine: '/pdf-assets/ultrasonic-machine.jpg',
-  impactInfographic: '/pdf-assets/impact-infographic.png',
-  historyTimeline: '/pdf-assets/history-timeline.png',
-  envChart: '/pdf-assets/env-chart.png',
-  cupCirculation: '/pdf-assets/cup-circulation.png',
-  howto6steps: '/pdf-assets/howto-6steps.png',
-  brandCover: '/pdf-assets/brand-cover-trays.png',
 }
 
 /** PDF 구성안 상단 3대 카테고리 */
@@ -314,10 +303,10 @@ export const SOLUTIONS: Solution[] = [
     slug: 'catering',
     title: '라라워시 케이터링',
     short: '일회용기가 아닌 다회용기로, 이젠 케이터링도 라라워시입니다.',
-    desc: '다회용기 기반 케이터링 서비스입니다. 상세 메뉴·구성은 확인 후 업데이트하며, 일정·인원·용기 구성을 알려주시면 맞춤 상담드립니다.',
+    desc: '일회용 쓰레기를 줄이는 다회용기 기반 케이터링 서비스입니다. 일정·인원·현장 동선과 필요한 용기 구성을 알려주시면 맞춤형으로 안내드립니다.',
     image: IMAGES.platesRack,
     tags: ['케이터링', '다회용기'],
-    points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '상세 안내 준비 중'],
+    points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '현장 규모와 동선을 고려한 용기 구성'],
     process: [
       { step: '01', title: '상담', desc: '일정·인원·용기 구성을 상담합니다.' },
       { step: '02', title: '견적', desc: '맞춤 견적을 안내합니다.' },
@@ -558,7 +547,7 @@ export const HISTORY = [
 ]
 
 export const FIELD_ACTIVITIES = [
-  { title: 'SBS 공생의자유', image: IMAGES.activitySbs },
+  { title: 'SBS 공생의 법칙', image: IMAGES.activitySbs },
   { title: '경기도청 카페 다회용기', image: IMAGES.activityCafe },
   { title: '사회적경제박람회', image: IMAGES.activityFair },
 ]
@@ -636,8 +625,8 @@ export const CORE_CAPABILITIES = [
     desc: '가장 가까운 거점에서 신속하게 수거·세척·재공급합니다.',
   },
   {
-    title: '국내외 공식 인증서 획득',
-    desc: 'NSF 위생기준 준수, ISO 9001·ISO 14001 등 국제 표준 인증으로 품질을 증명합니다.',
+    title: '국제 위생기준·경영시스템',
+    desc: 'NSF 위생기준을 준수하고 ISO 9001·ISO 14001 인증 체계로 품질과 환경을 관리합니다.',
   },
   {
     title: '초순수물(UPW) 세척',
@@ -741,7 +730,7 @@ export const PARTNERS: { name: string; href?: string }[] = [
 ]
 
 export const TRUST_BADGES = [
-  { title: '국내외 인증', desc: 'NSF · ISO 9001 · ISO 14001' },
+  { title: '국제 기준·인증', desc: 'NSF 기준 준수 · ISO 9001 · ISO 14001' },
   { title: '초순수(UPW) 6단계', desc: '세척의 안정성을 높입니다' },
   { title: '식약처 기준 검사', desc: '소재 안전성·살균소독 검사' },
   { title: '경기도보건환경연구원', desc: '연 2회 정기검사 실시' },
@@ -751,10 +740,10 @@ export const TRUST_BADGES = [
 
 export const HOME_TRUST_LINKS = [
   {
-    title: '국내외 인증',
-    desc: 'NSF, ISO 9001, ISO 14001',
+    title: '국제 기준·인증',
+    desc: 'NSF 위생기준 준수, ISO 9001·ISO 14001',
     to: '/about/cert',
-    cta: '인증서 보기',
+    cta: '기준·인증 보기',
   },
   {
     title: '초순수물(UPW)을 사용한 6단계 세척시스템',

@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { ImagePlus, Trash2 } from 'lucide-react'
 import {
@@ -39,14 +39,14 @@ const emptyForm: FormState = {
 }
 
 export default function AdminNoticesPage() {
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
   const [editing, setEditing] = useState<Notice | null>(null)
   const [form, setForm] = useState<FormState>(emptyForm)
   const [urlDraft, setUrlDraft] = useState('')
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
   const loggedIn = isAdminLoggedIn()
-  const notices = useMemo(() => (loggedIn ? listNotices() : []), [tick, loggedIn])
+  const notices = loggedIn ? listNotices() : []
 
   if (!loggedIn) return <Navigate to="/admin" replace />
 

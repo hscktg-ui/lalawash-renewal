@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
+import { CupCirculation } from '../components/NativeVisuals'
 import { PUBLIC_OPS, SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
 
 export default function ServiceDetailPage() {
@@ -18,13 +19,19 @@ export default function ServiceDetailPage() {
 
       {s.pending && (
         <div className="border-b border-amber-100 bg-amber-50/90 px-5 py-4 text-center text-sm text-amber-950">
-          세부 메뉴·구성은 확인 후 업데이트합니다. 일정·인원·용기 구성을 알려주시면 맞춤 상담드립니다.
+          케이터링은 일정·인원·현장 동선과 용기 구성에 따라 맞춤 안내드립니다.
         </div>
       )}
 
       <Section title="서비스 소개">
         <div className="grid gap-8 lg:grid-cols-2">
-          <img src={s.image} alt={s.title} className="h-80 w-full rounded-3xl object-cover" />
+          <img
+            src={s.image}
+            alt={s.title}
+            loading="lazy"
+            decoding="async"
+            className="h-80 w-full rounded-3xl object-cover"
+          />
           <div>
             <p className="text-base leading-relaxed text-muted">{s.desc}</p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -84,6 +91,8 @@ export default function ServiceDetailPage() {
           <img
             src={IMAGES.festivalProducts}
             alt="축제용 다회용기 제품"
+            loading="lazy"
+            decoding="async"
             className="mb-8 w-full rounded-[2rem] object-cover"
           />
           <div className="grid gap-4 sm:grid-cols-3">
@@ -93,7 +102,13 @@ export default function ServiceDetailPage() {
               { src: IMAGES.festivalCounter, label: '브랜드 부스 운영' },
             ].map((x) => (
               <figure key={x.label} className="text-center">
-                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <img
+                  src={x.src}
+                  alt={x.label}
+                  loading="lazy"
+                  decoding="async"
+                  className="mx-auto aspect-square w-full rounded-full object-cover"
+                />
                 <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
               </figure>
             ))}
@@ -110,7 +125,13 @@ export default function ServiceDetailPage() {
               { src: IMAGES.deliveryTruck, label: '공급·회수 운영' },
             ].map((x) => (
               <figure key={x.label} className="text-center">
-                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <img
+                  src={x.src}
+                  alt={x.label}
+                  loading="lazy"
+                  decoding="async"
+                  className="mx-auto aspect-square w-full rounded-full object-cover"
+                />
                 <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
               </figure>
             ))}
@@ -118,6 +139,8 @@ export default function ServiceDetailPage() {
           <img
             src={IMAGES.funeralHospital}
             alt="경기도의료원 수원병원"
+            loading="lazy"
+            decoding="async"
             className="mt-8 h-56 w-full rounded-2xl object-cover"
           />
         </Section>
@@ -128,6 +151,8 @@ export default function ServiceDetailPage() {
           <img
             src={IMAGES.sikpanMachine}
             alt="식판 세척 라인"
+            loading="lazy"
+            decoding="async"
             className="mb-8 w-full rounded-[2rem] rounded-br-none object-cover md:rounded-tr-[6rem]"
           />
           <div className="grid gap-4 sm:grid-cols-3">
@@ -137,7 +162,13 @@ export default function ServiceDetailPage() {
               { src: IMAGES.sikpanNozzles, label: '고압 세척 노즐' },
             ].map((x) => (
               <figure key={x.label} className="text-center">
-                <img src={x.src} alt={x.label} className="mx-auto aspect-square w-full rounded-full object-cover" />
+                <img
+                  src={x.src}
+                  alt={x.label}
+                  loading="lazy"
+                  decoding="async"
+                  className="mx-auto aspect-square w-full rounded-full object-cover"
+                />
                 <figcaption className="mt-3 text-sm font-semibold text-ink">{x.label}</figcaption>
               </figure>
             ))}
@@ -147,11 +178,7 @@ export default function ServiceDetailPage() {
 
       {s.slug === 'cup' && (
         <Section title="다회용컵 순환 흐름" className="bg-slate-50">
-          <img
-            src={IMAGES.cupCirculation}
-            alt="다회용컵 대여·반납·수거·세척·재공급 흐름도"
-            className="w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
-          />
+          <CupCirculation />
         </Section>
       )}
 
@@ -160,6 +187,8 @@ export default function ServiceDetailPage() {
           <img
             src={IMAGES.sikpanTrays}
             alt="세척된 스텐 식판"
+            loading="lazy"
+            decoding="async"
             className="w-full rounded-3xl object-cover"
           />
         </Section>

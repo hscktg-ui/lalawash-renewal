@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
-import { HOW_TO, IMAGES, SOLUTIONS } from '../data'
+import { HowToFlow } from '../components/NativeVisuals'
+import { IMAGES, SOLUTIONS } from '../data'
 
 export default function HowToPage() {
   return (
@@ -13,20 +14,7 @@ export default function HowToPage() {
       />
 
       <Section title="라라워시 서비스 이용방법">
-        <img
-          src={IMAGES.howto6steps}
-          alt="라라워시 서비스 이용방법 6단계"
-          className="mb-10 w-full rounded-2xl object-cover ring-1 ring-slate-200"
-        />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {HOW_TO.map((s) => (
-            <article key={s.step} className="rounded-2xl border-t-2 border-lala-600 bg-slate-50 p-6">
-              <p className="text-xs font-bold text-lala-500">{s.step}</p>
-              <h3 className="mt-2 text-xl font-extrabold text-ink">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{s.desc}</p>
-            </article>
-          ))}
-        </div>
+        <HowToFlow />
       </Section>
 
       <Section

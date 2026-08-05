@@ -36,7 +36,13 @@ export default function ServicesPage() {
               to={`/services/${s.slug}`}
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:shadow-md"
             >
-              <img src={s.image} alt={s.title} className="h-44 w-full object-cover" />
+              <img
+                src={s.image}
+                alt={s.title}
+                loading="lazy"
+                decoding="async"
+                className="h-44 w-full object-cover"
+              />
               <div className="p-6">
                 <h3 className="text-lg font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted">{s.short}</p>
@@ -61,6 +67,8 @@ export default function ServicesPage() {
               <img
                 src={g.image}
                 alt={g.title}
+                loading="lazy"
+                decoding="async"
                 className="mx-auto aspect-square w-full max-w-[220px] rounded-full object-cover ring-4 ring-white"
               />
               <figcaption className="mt-3 text-sm font-bold text-ink">{g.title}</figcaption>
@@ -98,8 +106,8 @@ export default function ServicesPage() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-sm text-muted">
-          정기적인 공인기관 검사와 매일 수치화된 데이터 관리로 일회용품보다 안전하고 위생적인
-          다회용기를 보장합니다.
+          정기적인 공인기관 검사와 매일 수치화된 데이터 관리로 세척 품질을 확인하고,
+          기준을 통과한 다회용기만 공급합니다.
         </p>
         <Link to="/about/cert" className="mt-4 inline-flex text-sm font-bold text-lala-600">
           인증획득 및 위생관리 자세히 보기 →

@@ -8,14 +8,14 @@ export default function CertHygienePage() {
     <>
       <PageHero
         eyebrow="라라워시 · 인증획득 및 위생관리"
-        title="국제 표준 인증과 엄격한 위생 검사로 증명된 청결"
-        desc="라라워시는 일회용품보다 안전하고 완벽한 위생을 약속합니다."
+        title="국제 기준과 엄격한 위생 검사로 관리하는 청결"
+        desc="라라워시는 표준화된 세척 공정과 정기적인 검사로 위생 수준을 꾸준히 관리합니다."
         image={IMAGES.platesRack}
       />
 
       <Section
         title="관공서, 학교, 대기업이 라라워시를 믿고 선택하는 이유"
-        desc="눈에 보이지 않는 세균까지 차단하기 위해 까다로운 국제 인증을 획득하고 공인기관의 위생검사를 정기적으로 실시합니다."
+        desc="NSF 위생기준을 준수하고 ISO 경영시스템 인증과 공인기관 정기검사를 바탕으로 세척 품질을 관리합니다."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {CERTIFICATIONS.map((c) => (
@@ -32,11 +32,11 @@ export default function CertHygienePage() {
           ))}
         </div>
         <p className="mt-6 text-sm text-muted">
-          인증서 스캔본(이미지)은 자료 확보 후 게시합니다. 우선 회사소개서에서 인증·실적 요지를 확인하시거나,{' '}
+          인증·실적 요지는 회사소개서에서 확인할 수 있으며, 원본 확인이 필요한 경우{' '}
           <Link to="/contact" className="font-semibold text-lala-600">
             견적·상담 문의
           </Link>
-          로 원본 자료를 요청해 주세요.
+          로 자료를 요청해 주세요.
         </p>
         <div className="mt-4">
           <CompanyProfileDownload label="회사소개서에서 인증·실적 확인" />

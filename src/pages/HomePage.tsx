@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Pause, Play } from 'lucide-react'
 import {
   BRAND,
   FIELD_ACTIVITIES,
@@ -10,7 +10,8 @@ import {
   SOLUTIONS,
 } from '../data'
 import { EXTERNAL } from '../lib/content'
-import { PartnerLogoWall, PartnerMarquee } from '../components/TrustSections'
+import { ImpactSummary } from '../components/NativeVisuals'
+import { PartnerMarquee } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
   const [n, setN] = useState(0)
@@ -52,6 +53,7 @@ const HERO_CASES = SOLUTIONS.map((s) => ({
 export default function HomePage() {
   const [impactOn, setImpactOn] = useState(false)
   const [caseIdx, setCaseIdx] = useState(0)
+  const [casePaused, setCasePaused] = useState(false)
   const impactRef = useRef<HTMLDivElement>(null)
   const washCount = useCountUp(IMPACT[0].value, impactOn)
   const reducedMotion = usePrefersReducedMotion()
@@ -67,12 +69,12 @@ export default function HomePage() {
   }, [])
 
   useEffect(() => {
-    if (reducedMotion) return
+    if (reducedMotion || casePaused) return
     const id = window.setInterval(() => {
       setCaseIdx((i) => (i + 1) % HERO_CASES.length)
     }, 4000)
     return () => window.clearInterval(id)
-  }, [reducedMotion])
+  }, [casePaused, reducedMotion])
 
   const activeCase = HERO_CASES[caseIdx]
   const heroVideoSrc =
@@ -148,14 +150,27 @@ export default function HomePage() {
               <p className="text-xs font-semibold tracking-[0.14em] text-lala-200 uppercase">
                 유형별 다회용기 이용사례
               </p>
-              <a
-                href={EXTERNAL.caseVideo}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs font-semibold text-lala-100 underline underline-offset-2 hover:text-white"
-              >
-                영상 크게 보기
-              </a>
+              <div className="flex items-center gap-3">
+                {!reducedMotion && (
+                  <button
+                    type="button"
+                    onClick={() => setCasePaused((paused) => !paused)}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-lala-100 hover:text-white"
+                    aria-pressed={casePaused}
+                  >
+                    {casePaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+                    {casePaused ? '자동재생' : '일시정지'}
+                  </button>
+                )}
+                <a
+                  href={EXTERNAL.caseVideo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs font-semibold text-lala-100 underline underline-offset-2 hover:text-white"
+                >
+                  영상 크게 보기
+                </a>
+              </div>
             </div>
             <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
               <Link
@@ -182,6 +197,7 @@ export default function HomePage() {
                     key={c.slug}
                     type="button"
                     onClick={() => setCaseIdx(i)}
+                    aria-pressed={i === caseIdx}
                     className={`rounded-xl px-3 py-3 text-left text-xs font-semibold transition ring-1 ${
                       i === caseIdx
                         ? 'bg-white text-lala-900 ring-white'
@@ -229,8 +245,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <PartnerLogoWall />
-
       {/* PDF 현장 활동 이미지 */}
       <section className="px-5 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
@@ -244,17 +258,19 @@ export default function HomePage() {
                 <img
                   src={a.image}
                   alt={a.title}
+                  loading="lazy"
+                  decoding="async"
                   className="mx-auto aspect-square w-full max-w-[240px] rounded-full object-cover ring-4 ring-lala-50"
                 />
                 <figcaption className="mt-4 text-sm font-bold text-ink">{a.title}</figcaption>
               </figure>
             ))}
           </div>
-          <img
-            src={IMAGES.impactInfographic}
-            alt="라라워시 다회용기 세척량·탄소 저감 인포그래픽"
-            className="mt-12 w-full rounded-2xl bg-white object-contain p-4 ring-1 ring-slate-100"
-          />
+          <div className="mt-12">
+            <p className="mb-4 text-sm font-semibold text-lala-700">수치로 확인하는 자원순환 성과</p>
+            <ImpactSummary compact />
+            <p className="mt-3 text-xs text-slate-400">※ 라라워시 회사소개서 및 홈페이지 리뉴얼 구성안 기준</p>
+          </div>
         </div>
       </section>
 
@@ -307,7 +323,13 @@ export default function HomePage() {
                 to={`/services/${s.slug}`}
                 className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 transition hover:shadow-md"
               >
-                <img src={s.image} alt="" className="h-40 w-full object-cover" />
+                <img
+                  src={s.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-40 w-full object-cover"
+                />
                 <div className="p-5">
                   <p className="text-xs font-bold text-lala-500">0{i + 1}</p>
                   <h3 className="mt-1 text-lg font-bold text-ink">{s.title}</h3>
@@ -324,7 +346,13 @@ export default function HomePage() {
 
       {/* 메인 하단 CTA */}
       <section className="relative overflow-hidden px-5 py-20 text-white">
-        <img src={IMAGES.about} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={IMAGES.about}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-lala-900/80" />
         <div className="relative mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
