@@ -46,8 +46,8 @@ export default function NoticePage() {
               [
                 ['all', '전체'],
                 ['notice', '공지'],
-                ['official', '공문'],
-                ['news', '안내'],
+                ['official', '언론'],
+                ['news', '포스팅'],
               ] as const
             ).map(([k, label]) => (
               <button

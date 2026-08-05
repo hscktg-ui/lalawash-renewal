@@ -66,14 +66,23 @@ body {
     opacity: 0;
     transform: translateY(8px);
   }
-  8%,
-  30% {
+  4%,
+  16% {
     opacity: 1;
     transform: translateY(0);
   }
-  38% {
+  20% {
     opacity: 0;
     transform: translateY(-6px);
+  }
+}
+
+@keyframes lala-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
@@ -89,7 +98,7 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: lala-benefit-in 9s ease-in-out infinite;
+  animation: lala-benefit-in 15s ease-in-out infinite;
 }
 
 .lala-benefit-line:nth-child(2) {
@@ -100,6 +109,24 @@ body {
   animation-delay: 6s;
 }
 
+.lala-benefit-line:nth-child(4) {
+  animation-delay: 9s;
+}
+
+.lala-benefit-line:nth-child(5) {
+  animation-delay: 12s;
+}
+
+.lala-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lala-marquee 40s linear infinite;
+}
+
+.lala-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lala-fade-up,
   .lala-fade-up-delay,
@@ -108,5 +135,12 @@ body {
     opacity: 1;
     transform: none;
     position: static;
+  }
+
+  .lala-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
   }
 }

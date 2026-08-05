@@ -6,10 +6,9 @@ import {
   HOME_TRUST_LINKS,
   IMAGES,
   IMPACT,
-  PARTNERS,
   SOLUTIONS,
 } from '../data'
-import { PartnerLogoWall } from '../components/TrustSections'
+import { PartnerLogoWall, PartnerMarquee } from '../components/TrustSections'
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
   const [n, setN] = useState(0)
@@ -122,16 +121,7 @@ export default function HomePage() {
             </div>
             <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
               <p className="text-xs font-semibold tracking-wider text-lala-300 uppercase">함께하는 기관</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {PARTNERS.slice(0, 12).map((p) => (
-                  <span
-                    key={p.name}
-                    className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-lala-50"
-                  >
-                    {p.name}
-                  </span>
-                ))}
-              </div>
+              <PartnerMarquee dark className="mt-4" />
             </div>
           </div>
         </div>

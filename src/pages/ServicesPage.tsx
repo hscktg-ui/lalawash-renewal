@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
 
 export default function ServicesPage() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    const el = document.getElementById(id)
+    if (el) {
+      window.setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+    }
+  }, [location.hash])
+
   return (
     <>
       <PageHero
@@ -38,9 +50,10 @@ export default function ServicesPage() {
       </Section>
 
       <Section
+        id="wash"
         title="라라워시 다회용기 세척프로세스"
         desc="전 지점 6단계 안심 세척 프로세스를 통해 “깨끗함”을 제공해드립니다."
-        className="bg-slate-50"
+        className="bg-slate-50 scroll-mt-24"
       >
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
@@ -54,8 +67,10 @@ export default function ServicesPage() {
       </Section>
 
       <Section
+        id="hygiene"
         title="라라워시 위생관리"
         desc="식약처 위생지침에 근거한 3대검사(ATP·잔류세제·온도라벨)를 매일 실시하여 ‘한 번 더 철저한 위생’을 검증합니다."
+        className="scroll-mt-24"
       >
         <div className="grid gap-4 md:grid-cols-3">
           {HYGIENE_CHECKS.map((h) => (

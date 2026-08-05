@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
-import { BRAND, CONTACT, NAV_GROUPS } from '../data'
+import { BRAND, CONTACT, IMAGES, NAV_GROUPS } from '../data'
 import { EXTERNAL } from '../lib/content'
 import { BrandMark } from './BrandMark'
 
@@ -170,21 +170,35 @@ export function Layout() {
           </div>
           <div className="text-sm text-muted">
             <p className="font-semibold text-ink">SNS</p>
-            <p className="mt-2">
-              <a href={EXTERNAL.blog} target="_blank" rel="noreferrer" className="hover:text-lala-600">
-                블로그
+            <div className="mt-3 flex items-center gap-3">
+              <a
+                href={EXTERNAL.blog}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-slate-200 transition hover:ring-lala-400"
+                aria-label="블로그"
+              >
+                <img src={IMAGES.blog} alt="" className="h-6 w-6 object-contain" />
               </a>
-            </p>
-            <p className="mt-1">
-              <a href={EXTERNAL.instagram} target="_blank" rel="noreferrer" className="hover:text-lala-600">
-                인스타그램
+              <a
+                href={EXTERNAL.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-slate-200 transition hover:ring-lala-400"
+                aria-label="인스타그램"
+              >
+                <img src={IMAGES.instagram} alt="" className="h-6 w-6 object-contain" />
               </a>
-            </p>
-            <p className="mt-1">
-              <a href={EXTERNAL.youtube} target="_blank" rel="noreferrer" className="hover:text-lala-600">
-                유튜브
+              <a
+                href={EXTERNAL.youtube}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-red-600 text-[11px] font-extrabold tracking-tight text-white transition hover:bg-red-700"
+                aria-label="유튜브"
+              >
+                YT
               </a>
-            </p>
+            </div>
             <p className="mt-4 text-xs">대표 {CONTACT.ceo}</p>
             <p className="text-xs">사업자등록번호 {CONTACT.biz}</p>
             <p className="mt-2 text-xs">© {new Date().getFullYear()} {BRAND.nameEn}</p>

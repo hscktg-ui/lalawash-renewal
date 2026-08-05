@@ -30,10 +30,11 @@ export type Notice = {
   updatedAt: string
 }
 
+/** PDF 구성안: 공지사항 / 언론보도자료 / 포스팅 */
 export const NOTICE_TYPE_LABEL: Record<NoticeType, string> = {
   notice: '공지',
-  official: '공문',
-  news: '안내',
+  official: '언론',
+  news: '포스팅',
 }
 
 export { SEED_NOTICES } from '../data/seedNotices'

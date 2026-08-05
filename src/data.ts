@@ -649,19 +649,19 @@ export const HOME_TRUST_LINKS = [
   {
     title: '초순수물(UPW) 6단계 세척',
     desc: '세척의 안정성을 높입니다',
-    to: '/services',
+    to: '/services#wash',
     cta: '세척시스템 보기',
   },
   {
     title: '다회용기 소재 안전성·위생성',
     desc: '식약처 기준 살균소독검사',
-    to: '/about/cert',
+    to: '/services#hygiene',
     cta: '검사결과 보기',
   },
   {
     title: '매일 실시하는 검사',
     desc: 'ATP · 온도라벨 · 잔류세제',
-    to: '/about/cert',
+    to: '/services#hygiene',
     cta: '검사항목 보기',
   },
 ]

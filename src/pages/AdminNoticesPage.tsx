@@ -225,8 +225,8 @@ export default function AdminNoticesPage() {
               className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
             >
               <option value="notice">공지</option>
-              <option value="official">공문</option>
-              <option value="news">안내</option>
+              <option value="official">언론</option>
+              <option value="news">포스팅</option>
             </select>
           </label>
 

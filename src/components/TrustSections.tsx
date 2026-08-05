@@ -106,9 +106,50 @@ export function PortfolioGallery() {
   )
 }
 
+/** PDF: 라라워시와 함께하는 기관 롤링 배너 */
+export function PartnerMarquee({
+  dark = false,
+  className = '',
+}: {
+  dark?: boolean
+  className?: string
+}) {
+  const row = [...PARTNERS, ...PARTNERS]
+  return (
+    <div className={`overflow-hidden ${className}`} aria-label="함께하는 기관">
+      <div className="lala-marquee-track gap-3 py-1">
+        {row.map((p, i) => {
+          const cellClass = dark
+            ? 'inline-flex shrink-0 items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-lala-50 ring-1 ring-white/15'
+            : 'inline-flex shrink-0 items-center rounded-full bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200'
+          const key = `${p.name}-${i}`
+          if (p.href) {
+            return (
+              <a
+                key={key}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`${cellClass} transition hover:ring-lala-400`}
+              >
+                {p.name}
+              </a>
+            )
+          }
+          return (
+            <span key={key} className={cellClass}>
+              {p.name}
+            </span>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export function PartnerLogoWall() {
   return (
-    <section className="px-5 py-20 md:py-24">
+    <section className="px-5 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-semibold text-lala-600">함께하는 곳</p>
         <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">믿고 맡겨 주신 기관·현장</h2>
@@ -116,30 +157,7 @@ export function PartnerLogoWall() {
           지자체·공공기관부터 축제·의료 현장까지, 가까운 세척망으로 함께하고 있습니다.
         </p>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {PARTNERS.map((p) => {
-            const cellClass =
-              'flex h-24 items-center justify-center rounded-xl bg-slate-50 px-3 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200'
-            if (p.href) {
-              return (
-                <a
-                  key={p.name}
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${cellClass} transition hover:bg-white hover:text-lala-800 hover:ring-lala-300`}
-                >
-                  {p.name}
-                </a>
-              )
-            }
-            return (
-              <div key={p.name} className={cellClass}>
-                {p.name}
-              </div>
-            )
-          })}
-        </div>
+        <PartnerMarquee className="mt-8" />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {TRUST_BADGES.map((b) => (
