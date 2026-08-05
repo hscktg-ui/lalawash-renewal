@@ -127,6 +127,9 @@ export default function HomePage() {
               {BRAND.heroLead}
             </p>
             <p className="lala-fade-up-delay mt-3 max-w-2xl text-pretty break-keep text-base leading-relaxed text-lala-50/90 md:text-lg">
+              {BRAND.heroBridge}
+            </p>
+            <p className="lala-fade-up-delay mt-2 max-w-2xl text-pretty break-keep text-base leading-relaxed text-lala-50/90 md:text-lg">
               {BRAND.heroDesc}
             </p>
             <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
@@ -219,7 +222,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div ref={impactRef} className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
             <div>
-              <p className="text-sm font-semibold text-lala-300">작은 선택이 쌓여, 큰 변화를 만듭니다</p>
+              <p className="text-sm font-semibold text-lala-300">하루 1번의 선택이, 100년의 변화를 만듭니다</p>
               <p className="mt-4 text-5xl font-extrabold tracking-tight md:text-6xl">
                 {washCount.toLocaleString('ko-KR')}
                 <span className="ml-2 text-2xl font-bold text-lala-300">개</span>
@@ -271,7 +274,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-4 max-w-2xl text-pretty break-keep leading-relaxed text-muted">
             라라워시만의 깐깐한 위생 기준과 세척시스템으로 우리 아이 식판부터 축제에서 사용하는
-            다회용기까지 안심하고 다시 쓸 수 있게 관리합니다.
+            다회용기까지 언제나 새것처럼 안심하고 사용할 수 있습니다.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_TRUST_LINKS.map((card) => (
@@ -296,10 +299,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-600">다회용기 솔루션</p>
           <h2 className="mt-3 max-w-3xl text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
-            축제, 장례식장, 오피스에서 일회용 쓰레기 없는 현장으로
+            축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero
           </h2>
           <p className="mt-4 max-w-2xl text-pretty break-keep leading-relaxed text-muted">
-            수거부터 전문 세척까지 함께 해결하는 지속가능한 다회용기 솔루션.
+            수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션.
             환경 오염 고민 없는 깨끗한 행사를 위해, 라라워시의 맞춤형 서비스를 지금 선택하세요.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

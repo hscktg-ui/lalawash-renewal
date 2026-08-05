@@ -9,6 +9,7 @@ export const BRAND = {
     '지속가능한 깨끗함을 추구하며, 다회용기 대여·세척 서비스를 제공하는 경기도의 지역 브랜드입니다.',
   heroTitle: '지구를 살리는 가장 깨끗한 습관',
   heroLead: '당신의 일상에 ‘초록색 안전함’을 더하는 라라워시',
+  heroBridge: '한 번 쓰고 버려지는 일상에서 지구를 지키는 일상으로',
   heroDesc:
     '라라워시가 다회용기 토탈 솔루션으로 지속가능한 내일의 일상을 만들어갑니다.',
 }
@@ -66,6 +67,10 @@ export const IMAGES = {
   brandBuilding: '/pdf-assets/brand-building.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
   ultrasonicMachine: '/pdf-assets/ultrasonic-machine.jpg',
+  /** 실사진이 없거나 해상도가 부족한 자리에 쓰는 브랜드 일러스트 */
+  cupIllustration: '/illustrations/cup.jpg',
+  kidsTrayIllustration: '/illustrations/kids-tray.jpg',
+  cateringIllustration: '/illustrations/catering.jpg',
 }
 
 /** PDF 구성안 상단 3대 카테고리 */
@@ -144,7 +149,7 @@ export const SOLUTIONS: Solution[] = [
     image: IMAGES.funeralSite,
     tags: ['장례', '순환 공급', '위생'],
     points: [
-      'BPA FREE 소재로 고온고압세척이 가능한 프리미엄 식기',
+      '환경호르몬 걱정 없는 BPA FREE 소재, 고온고압세척 가능한 프리미엄 식기',
       '세척공정·오염유형·식기재질에 맞는 전용 제품 운영',
       '사용부터 수거·세척·정산까지 체계적인 순환',
     ],
@@ -159,7 +164,7 @@ export const SOLUTIONS: Solution[] = [
     featureBlocks: [
       {
         title: '라라워시 친환경 다회용 장례용기',
-        desc: 'BPA FREE 소재로 고온고압세척이 가능한 프리미엄 식기입니다. 세척공정·오염유형·식기재질 및 위생 기준에 따라 적합한 전용 제품을 선정하여 운영합니다.',
+        desc: '환경호르몬 걱정 없는 BPA FREE 소재로, 고온고압세척이 가능한 프리미엄 식기입니다. 세척공정·오염유형·식기재질 및 위생 기준에 따라 적합한 전용 제품을 선정하여 운영합니다.',
       },
       {
         title: '품격을 지키는 순환 운영',
@@ -238,7 +243,7 @@ export const SOLUTIONS: Solution[] = [
     title: '오피스·카페 다회용컵 대여 및 세척',
     short: '지자체청사, 공공기관, 사무실, 카페에서 편리하게 사용해보세요.',
     desc: '경기도 일회용품 저감 정책에 따라 공공기관을 중심으로 다회용품 사용을 추진합니다. 사용한 다회용기는 라라워시 반납함에 넣어주시면, 직접 수거 후 6단계 세척 프로세스를 거쳐 다시 공급해 드립니다.',
-    image: IMAGES.activityCup,
+    image: IMAGES.cupIllustration,
     tags: ['다회용컵', '공공기관', '카페'],
     points: [
       '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
@@ -272,7 +277,7 @@ export const SOLUTIONS: Solution[] = [
     title: '유아식판 대여 및 세척',
     short: '어린이집, 유치원, 학교 식판을 안전하고 깨끗하게 세척해드립니다.',
     desc: '매일 먹는 아이 밥상, 엄마의 마음으로 깐깐하게 검증한 안심 식판케어입니다. 식판 세척 부담은 줄이고, 식약처 위생 지침을 준수하는 체계적인 위생데이터로 깨끗함과 안전함을 함께 제공합니다.',
-    image: IMAGES.sikpanRacks,
+    image: IMAGES.kidsTrayIllustration,
     tags: ['유아식판', '어린이집', '유치원'],
     points: [
       '친환경 인증세제 사용',
@@ -303,7 +308,7 @@ export const SOLUTIONS: Solution[] = [
     title: '라라워시 케이터링',
     short: '일회용기가 아닌 다회용기로, 이젠 케이터링도 라라워시입니다.',
     desc: '일회용 쓰레기를 줄이는 다회용기 기반 케이터링 서비스입니다. 일정·인원·현장 동선과 필요한 용기 구성을 알려주시면 맞춤형으로 안내드립니다.',
-    image: IMAGES.platesRack,
+    image: IMAGES.cateringIllustration,
     tags: ['케이터링', '다회용기'],
     points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '현장 규모와 동선을 고려한 용기 구성'],
     process: [
@@ -667,7 +672,7 @@ export const CORE_CAPABILITIES = [
     desc: '가장 가까운 거점에서 신속하게 수거·세척·재공급합니다.',
   },
   {
-    title: '국제 위생기준·경영시스템',
+    title: '국내외 공식 인증서 획득',
     desc: 'NSF 위생기준을 준수하고 ISO 9001·ISO 14001 인증 체계로 품질과 환경을 관리합니다.',
   },
   {

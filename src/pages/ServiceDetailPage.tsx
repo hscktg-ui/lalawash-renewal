@@ -183,6 +183,25 @@ export default function ServiceDetailPage() {
       {s.slug === 'cup' && (
         <Section title="다회용컵 순환 흐름" className="bg-slate-50">
           <CupCirculation />
+          <figure className="mt-10 overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200 md:flex">
+            <img
+              src={IMAGES.activityCup}
+              alt="경기도청 청사 카페에서 사용 중인 라라워시 다회용컵"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/3] w-full object-cover md:aspect-auto md:w-1/2"
+            />
+            <figcaption className="flex flex-col justify-center gap-2 p-6 md:w-1/2 md:p-8">
+              <p className="text-sm font-bold text-lala-600">운영 현장</p>
+              <p className="text-pretty break-keep text-lg font-extrabold text-ink">
+                경기도청 청사 카페 다회용컵
+              </p>
+              <p className="text-pretty break-keep text-sm leading-relaxed text-muted">
+                청사 카페에서 사용한 컵은 라라워시 반납함에 모아 직접 수거하고, 6단계 세척을 거쳐 다시
+                공급합니다.
+              </p>
+            </figcaption>
+          </figure>
         </Section>
       )}
 

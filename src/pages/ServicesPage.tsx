@@ -8,8 +8,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="다회용기 서비스"
-        title="축제, 장례식장, 오피스에서 일회용 쓰레기 없는 현장으로"
-        desc="수거부터 전문 세척까지 함께 해결하는 지속가능한 다회용기 솔루션입니다. 장소와 상황에 맞는 서비스를 선택해 보세요."
+        title="축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero"
+        desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션입니다. 장소와 상황에 맞는 서비스를 선택해 보세요."
         image={IMAGES.sikpanMachine}
       />
 

@@ -27,7 +27,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="라라워시 · 회사소개"
         title="편리함 때문에 포기했던 환경을 다시 생각합니다"
-        desc="라라워시가 전문 세척 솔루션으로 일회용품 없는 지속가능한 일상을 만듭니다."
+        desc="라라워시가 완벽한 세척 솔루션으로 일회용품 없는 지속가능한 일상을 만듭니다."
         image={IMAGES.about}
       />
 
