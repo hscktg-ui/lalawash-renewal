@@ -14,12 +14,14 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
     <section className={`px-5 py-20 md:py-28 ${dark ? 'bg-[#0b1f2e] text-white' : 'bg-white'}`}>
       <div className="mx-auto max-w-6xl">
         <p className={`text-sm font-semibold ${dark ? 'text-lala-300' : 'text-lala-600'}`}>연도별 성장</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">해마다 이렇게 커졌습니다</h2>
-        <p className={`mt-4 max-w-2xl text-sm md:text-base ${dark ? 'text-slate-300' : 'text-muted'}`}>
+        <h2 className="mt-3 text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
+          해마다 이렇게 커졌습니다
+        </h2>
+        <p className={`mt-4 max-w-2xl text-pretty break-keep text-sm md:text-base ${dark ? 'text-slate-300' : 'text-muted'}`}>
           축제·행사 건수, 사용량, 사업장, 일자리를 한눈에 보실 수 있습니다.
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {YEARLY_IMPACT.map((y) => (
             <article
               key={y.year}
@@ -45,9 +47,9 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
                 />
               </div>
               <dl className="mt-5 space-y-2 text-sm">
-                <div className="flex justify-between gap-2">
+                <div className="flex flex-col gap-0.5">
                   <dt className="opacity-70">사용·순환량</dt>
-                  <dd className="font-semibold">{y.containers.toLocaleString('ko-KR')}개</dd>
+                  <dd className="break-all font-semibold tabular-nums">{y.containers.toLocaleString('ko-KR')}개</dd>
                 </div>
                 <div className="flex justify-between gap-2">
                   <dt className="opacity-70">사업장</dt>

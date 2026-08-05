@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { ExternalLink, MapPin, Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { BranchNetwork } from '../components/BranchNetwork'
-import { BRANCHES, CONTACT, IMAGES, NETWORK, PUBLIC_OPS } from '../data'
+import { PublicOpsList } from '../components/PublicOpsList'
+import { BRANCHES, CONTACT, IMAGES, NETWORK } from '../data'
 
 export default function InfraPage() {
   const [active, setActive] = useState(BRANCHES[0].name)
@@ -12,7 +13,7 @@ export default function InfraPage() {
     <>
       <PageHero
         eyebrow="라라워시 · 지점"
-        title="경기도 최대 규모, 15개 지역에 21개의 전문세척장 인프라"
+        title="경기도 15개 지역 · 21개 전문세척장"
         desc="가장 가까운 곳에서 가장 신속하게, 라라워시의 친환경 네트워크가 움직입니다."
         image={IMAGES.brandBuilding}
       />
@@ -29,16 +30,16 @@ export default function InfraPage() {
             },
             {
               title: '대형 축제와 기업 대량 수주도 안정적으로',
-              desc: '단일 세척장으로 감당하기 힘든 대형 지역 축제나 대기업 사내 카페의 물량도 21개 세척장의 유기적 협업으로 딜레이 없이 소화합니다.',
+              desc: '단일 세척장으로 감당하기 힘든 대형 지역 축제나 대기업 사내 카페의 물량도 21개 세척장의 협업으로 일정에 맞춰 운영합니다.',
             },
             {
               title: '어디서나 동일한 안심 청결',
-              desc: '전 지점 라라워시 6단계 안심 세척 매뉴얼과 ATP 오염도 측정을 동일하게 적용합니다. 경기도 어느 지역에서든 최고 수준의 청결함을 경험하실 수 있습니다.',
+              desc: '전 지점에 라라워시 6단계 안심 세척 매뉴얼과 ATP 오염도 측정을 동일하게 적용해 같은 위생 기준으로 관리합니다.',
             },
           ].map((x) => (
             <article key={x.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
               <h3 className="text-lg font-bold text-lala-800">{x.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{x.desc}</p>
+              <p className="mt-3 text-pretty break-keep text-sm leading-relaxed text-muted">{x.desc}</p>
             </article>
           ))}
         </div>
@@ -69,8 +70,8 @@ export default function InfraPage() {
                 >
                   <span>{b.name}점</span>
                   {b.pendingAddress && (
-                    <span className={`text-[10px] ${active === b.name ? 'text-lala-100' : 'text-slate-400'}`}>
-                      주소 예정
+                    <span className={`rounded-full px-2 py-0.5 text-xs ${active === b.name ? 'bg-white/10 text-lala-100' : 'bg-slate-100 text-slate-500'}`}>
+                      주소 확인 중
                     </span>
                   )}
                 </button>
@@ -83,7 +84,7 @@ export default function InfraPage() {
               <p className="flex items-center gap-2 text-sm font-semibold text-lala-600">
                 <MapPin className="h-4 w-4" /> 선택하신 지점
               </p>
-              <h3 className="mt-2 text-3xl font-extrabold text-ink">라라워시 {selected.name}점</h3>
+              <h3 className="mt-2 text-balance break-keep text-2xl font-extrabold text-ink">라라워시 {selected.name}점</h3>
               {selected.note && (
                 <p className="mt-2 text-sm font-medium text-lala-700">{selected.note}</p>
               )}
@@ -132,28 +133,7 @@ export default function InfraPage() {
       </Section>
 
       <Section title="지자체에서 이렇게 쓰십니다" className="bg-slate-50">
-        <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-lala-700 text-white">
-              <tr>
-                <th className="px-4 py-3 font-semibold">지역</th>
-                <th className="px-4 py-3 font-semibold">기관</th>
-                <th className="px-4 py-3 font-semibold">지점</th>
-                <th className="px-4 py-3 font-semibold">운영</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PUBLIC_OPS.map((r) => (
-                <tr key={r.region} className="border-t border-slate-100 bg-white">
-                  <td className="px-4 py-3 font-medium">{r.region}</td>
-                  <td className="px-4 py-3 text-muted">{r.org}</td>
-                  <td className="px-4 py-3 text-muted">{r.branch}</td>
-                  <td className="px-4 py-3 font-semibold text-lala-700">{r.detail}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <PublicOpsList />
       </Section>
     </>
   )

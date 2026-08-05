@@ -10,8 +10,8 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="이용문의 · 견적문의"
-        title="다회용기서비스 상담·견적"
+        eyebrow="이용문의 · 견적·상담"
+        title="다회용기 서비스 견적·상담"
         desc="공공기관·기업·행사·급식·가맹 모두 환영합니다. 어디에, 얼마나 필요하신지만 알려주시면 맞춰 안내드립니다."
         image={IMAGES.order}
       />
@@ -24,11 +24,10 @@ export default function ContactPage() {
             </a>
             <p className="mt-4 text-sm text-lala-100">{CONTACT.hours}</p>
             <p className="mt-2 text-sm text-lala-100">{CONTACT.email}</p>
-            <p className="mt-6 text-sm leading-relaxed text-white/90">
-              {CONTACT.hq}
-              <br />
-              (사업장) {CONTACT.site}
-            </p>
+            <address className="mt-6 space-y-1 text-sm not-italic leading-relaxed text-white/90">
+              <span className="block">{CONTACT.hq}</span>
+              <span className="block">사업장 · {CONTACT.site}</span>
+            </address>
             <a
               href={EXTERNAL.reserveForm}
               target="_blank"

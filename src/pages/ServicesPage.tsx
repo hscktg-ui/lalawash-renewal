@@ -1,28 +1,15 @@
-import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { PhotoGallery } from '../components/PhotoGallery'
-import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_GALLERY, WASH_STEPS } from '../data'
+import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
 
 export default function ServicesPage() {
-  const location = useLocation()
-
-  useEffect(() => {
-    if (!location.hash) return
-    const id = location.hash.slice(1)
-    const el = document.getElementById(id)
-    if (el) {
-      window.setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
-    }
-  }, [location.hash])
-
   return (
     <>
       <PageHero
-        eyebrow="다회용기서비스"
-        title="축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero"
-        desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션. 환경 오염 고민 없는 깨끗한 행사를 위해, 라라워시의 맞춤형 서비스를 지금 선택하세요."
+        eyebrow="다회용기 서비스"
+        title="축제, 장례식장, 오피스에서 일회용 쓰레기 없는 현장으로"
+        desc="수거부터 전문 세척까지 함께 해결하는 지속가능한 다회용기 솔루션입니다. 장소와 상황에 맞는 서비스를 선택해 보세요."
         image={IMAGES.sikpanMachine}
       />
 
@@ -58,38 +45,34 @@ export default function ServicesPage() {
 
       <Section
         id="wash"
-        title="라라워시 다회용기 세척프로세스"
-        desc="전 지점 6단계 안심 세척 프로세스를 통해 “깨끗함”을 제공해드립니다."
+        title="라라워시 다회용기 세척 프로세스"
+        desc="전 지점에서 동일한 초순수(UPW) 6단계 세척 기준을 적용합니다."
         className="bg-slate-50 scroll-mt-24"
       >
-        <PhotoGallery items={WASH_GALLERY} className="mb-10" />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
-            <div key={s.title} className="rounded-xl bg-white p-5 ring-1 ring-slate-200">
+            <li key={s.title} className="flex items-center gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200">
               <p className="text-xs font-bold text-lala-500">STEP {i + 1}</p>
-              <p className="mt-1 font-bold">{s.title}</p>
-              <p className="mt-1 text-sm text-muted">{s.desc}</p>
-            </div>
+              <p className="break-keep font-bold">{s.title}</p>
+            </li>
           ))}
-        </div>
+        </ol>
+        <Link to="/about/cert#wash" className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-lala-600">
+          세척 설비와 단계별 설명 보기 <ArrowRight className="h-4 w-4" />
+        </Link>
       </Section>
 
       <Section
         id="hygiene"
         title="라라워시 위생관리"
-        desc="식약처 위생지침에 근거한 3대검사(ATP·잔류세제·온도라벨)를 매일 실시하여 ‘한 번 더 철저한 위생’을 검증합니다."
+        desc="식약처 위생지침에 근거한 ATP·잔류세제·온도라벨 검사를 매일 실시합니다."
         className="scroll-mt-24"
       >
         <div className="grid gap-4 md:grid-cols-3">
           {HYGIENE_CHECKS.map((h) => (
             <article key={h.title} className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
               <h3 className="font-bold text-ink">{h.title}</h3>
-              <p className="mt-2 text-sm text-muted">{h.desc}</p>
-              <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600">
-                <span className="font-semibold text-lala-700">상세내용</span>
-                <br />
-                {h.detail}
-              </p>
+              <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{h.desc}</p>
             </article>
           ))}
         </div>
@@ -97,8 +80,8 @@ export default function ServicesPage() {
           정기적인 공인기관 검사와 매일 수치화된 데이터 관리로 세척 품질을 확인하고,
           기준을 통과한 다회용기만 공급합니다.
         </p>
-        <Link to="/about/cert" className="mt-4 inline-flex text-sm font-bold text-lala-600">
-          인증획득 및 위생관리 자세히 보기 →
+        <Link to="/about/cert#hygiene" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600">
+          검사 방법과 인증 자세히 보기 <ArrowRight className="h-4 w-4" />
         </Link>
       </Section>
     </>

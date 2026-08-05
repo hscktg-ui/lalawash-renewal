@@ -120,13 +120,13 @@ export default function HomePage() {
             <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
               {BRAND.slogan}
             </p>
-            <h1 className="lala-fade-up mt-4 whitespace-pre-line text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+            <h1 className="lala-fade-up mt-4 max-w-[16em] text-balance break-keep text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
               {BRAND.heroTitle}
             </h1>
-            <p className="lala-fade-up-delay mt-5 text-lg font-medium text-lala-50 md:text-xl">
+            <p className="lala-fade-up-delay mt-5 max-w-2xl text-pretty break-keep text-lg font-medium text-lala-50 md:text-xl">
               {BRAND.heroLead}
             </p>
-            <p className="lala-fade-up-delay mt-3 text-base leading-relaxed text-lala-50/90 md:text-lg">
+            <p className="lala-fade-up-delay mt-3 max-w-2xl text-pretty break-keep text-base leading-relaxed text-lala-50/90 md:text-lg">
               {BRAND.heroDesc}
             </p>
             <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
@@ -140,7 +140,7 @@ export default function HomePage() {
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
               >
-                다회용기서비스 신청하기
+                견적·상담 문의
               </Link>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div ref={impactRef} className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
             <div>
-              <p className="text-sm font-semibold text-lala-300">하루 1번의 선택이, 100년의 변화를 만듭니다</p>
+              <p className="text-sm font-semibold text-lala-300">작은 선택이 쌓여, 큰 변화를 만듭니다</p>
               <p className="mt-4 text-5xl font-extrabold tracking-tight md:text-6xl">
                 {washCount.toLocaleString('ko-KR')}
                 <span className="ml-2 text-2xl font-bold text-lala-300">개</span>
@@ -250,14 +250,14 @@ export default function HomePage() {
       <section className="px-5 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-600">현장 이용사례</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
-            경기도 내 친환경 활동을 선도하는 라라워시
+          <h2 className="mt-3 max-w-3xl text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
+            경기도에서 친환경 활동을 실천하는 라라워시
           </h2>
           <PhotoGallery items={FIELD_ACTIVITIES} className="mt-10" />
           <div className="mt-12">
             <p className="mb-4 text-sm font-semibold text-lala-700">수치로 확인하는 자원순환 성과</p>
             <ImpactSummary compact />
-            <p className="mt-3 text-xs text-slate-400">※ 라라워시 회사소개서 및 홈페이지 리뉴얼 구성안 기준</p>
+            <p className="mt-3 text-xs text-slate-400">※ 라라워시 회사소개서 기준</p>
           </div>
         </div>
       </section>
@@ -266,14 +266,12 @@ export default function HomePage() {
       <section className="px-5 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-600">안심 위생</p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl">
-            라라워시는 초순수물을 사용한 6단계 위생세척프로세스로
-            <br className="hidden md:block" />
-            지속가능한 깨끗함을 전달해드립니다.
+          <h2 className="mt-3 max-w-3xl text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
+            초순수(UPW) 6단계 위생 세척으로 지속가능한 깨끗함을 전합니다
           </h2>
-          <p className="mt-4 max-w-2xl text-muted">
+          <p className="mt-4 max-w-2xl text-pretty break-keep leading-relaxed text-muted">
             라라워시만의 깐깐한 위생 기준과 세척시스템으로 우리 아이 식판부터 축제에서 사용하는
-            다회용기까지 언제나 새것처럼 안심하고 사용할 수 있습니다.
+            다회용기까지 안심하고 다시 쓸 수 있게 관리합니다.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_TRUST_LINKS.map((card) => (
@@ -297,11 +295,11 @@ export default function HomePage() {
       <section className="bg-slate-50 px-5 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-600">다회용기 솔루션</p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl">
-            축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero
+          <h2 className="mt-3 max-w-3xl text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
+            축제, 장례식장, 오피스에서 일회용 쓰레기 없는 현장으로
           </h2>
-          <p className="mt-4 max-w-2xl text-muted">
-            수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션.
+          <p className="mt-4 max-w-2xl text-pretty break-keep leading-relaxed text-muted">
+            수거부터 전문 세척까지 함께 해결하는 지속가능한 다회용기 솔루션.
             환경 오염 고민 없는 깨끗한 행사를 위해, 라라워시의 맞춤형 서비스를 지금 선택하세요.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -343,16 +341,14 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-lala-900/80" />
         <div className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
-            지금 라라워시와 함께
-            <br />
-            지속 가능한 변화를 시작하세요
+          <h2 className="text-balance break-keep text-3xl font-extrabold tracking-tight md:text-4xl">
+            지금 라라워시와 함께 지속 가능한 변화를 시작하세요
           </h2>
           <Link
             to="/contact"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-lala-900"
           >
-            다회용기서비스 신청하기 <ArrowRight className="h-4 w-4" />
+            견적·상담 문의 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

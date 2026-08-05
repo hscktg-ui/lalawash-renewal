@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   CheckCircle2,
   PackageCheck,
   PhoneCall,
@@ -71,7 +70,7 @@ export function EnvironmentalComparison() {
         </div>
         <div className="mt-7 space-y-5">
           <div>
-            <div className="mb-2 flex items-center justify-between text-sm">
+            <div className="mb-2 flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
               <span>일회용컵</span>
               <strong>10.2kgCO₂e · 100%</strong>
             </div>
@@ -80,17 +79,17 @@ export function EnvironmentalComparison() {
             </div>
           </div>
           <div>
-            <div className="mb-2 flex items-center justify-between text-sm">
+            <div className="mb-2 flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
               <span>라라워시 다회용컵</span>
               <strong className="text-lala-200">2.0kgCO₂e · 19.6%</strong>
             </div>
             <div className="h-4 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-[19.6%] min-w-10 rounded-full bg-lala-300" />
+              <div className="h-full w-[19.6%] rounded-full bg-lala-300" />
             </div>
           </div>
         </div>
         <p className="mt-6 text-sm leading-relaxed text-slate-300">
-          개당 100회 사용 후 폐기를 기준으로 한 PDF 구성안의 시나리오입니다.
+          개당 100회 사용 후 폐기를 기준으로 한 회사소개서의 시나리오입니다.
         </p>
       </div>
 
@@ -121,12 +120,6 @@ export function HowToFlow() {
             </div>
             <h3 className="mt-5 text-xl font-extrabold text-ink">{item.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{item.desc}</p>
-            {index < HOW_TO.length - 1 && (
-              <ArrowRight
-                className="absolute -right-3 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-white p-1 text-lala-500 shadow-sm lg:block"
-                aria-hidden
-              />
-            )}
           </li>
         )
       })}
@@ -144,7 +137,7 @@ const cupCycle = [
 
 export function CupCirculation() {
   return (
-    <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {cupCycle.map((item, index) => (
         <li key={item.title} className="relative rounded-2xl bg-white p-5 text-center ring-1 ring-slate-200">
           <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-lala-100 text-lala-700">
@@ -153,12 +146,6 @@ export function CupCirculation() {
           <p className="mt-4 text-xs font-bold text-lala-500">0{index + 1}</p>
           <h3 className="mt-1 font-extrabold text-ink">{item.title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted">{item.desc}</p>
-          {index < cupCycle.length - 1 && (
-            <ArrowRight
-              className="absolute -right-3 top-8 z-10 hidden h-6 w-6 rounded-full bg-white p-1 text-lala-500 shadow-sm lg:block"
-              aria-hidden
-            />
-          )}
         </li>
       ))}
     </ol>

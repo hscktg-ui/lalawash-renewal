@@ -3,7 +3,8 @@ import { CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CupCirculation } from '../components/NativeVisuals'
 import { PhotoGallery } from '../components/PhotoGallery'
-import { PUBLIC_OPS, SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
+import { PublicOpsList } from '../components/PublicOpsList'
+import { SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
 
 export default function ServiceDetailPage() {
   const { slug } = useParams()
@@ -16,7 +17,7 @@ export default function ServiceDetailPage() {
 
   return (
     <>
-      <PageHero eyebrow="다회용기서비스" title={s.title} desc={s.short} image={s.image} />
+      <PageHero eyebrow="다회용기 서비스" title={s.title} desc={s.short} image={s.image} />
 
       {s.pending && (
         <div className="border-b border-amber-100 bg-amber-50/90 px-5 py-4 text-center text-sm text-amber-950">
@@ -34,7 +35,7 @@ export default function ServiceDetailPage() {
             className="h-80 w-full rounded-3xl object-cover"
           />
           <div>
-            <p className="text-base leading-relaxed text-muted">{s.desc}</p>
+            <p className="text-pretty break-keep text-base leading-relaxed text-muted">{s.desc}</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {s.tags.map((t) => (
                 <span key={t} className="rounded-full bg-lala-50 px-3 py-1 text-xs font-semibold text-lala-700">
@@ -206,7 +207,7 @@ export default function ServiceDetailPage() {
       )}
 
       <Section title="서비스 운영방법" className="bg-slate-50">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {s.process.map((p) => (
             <div key={p.step} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
               <p className="text-xs font-bold text-lala-500">{p.step}</p>
@@ -234,28 +235,7 @@ export default function ServiceDetailPage() {
 
       {s.slug === 'cup' && (
         <Section title="지자체·공공 운영 현황" className="bg-slate-50" desc="공공기관 다회용컵 현장 운영 규모입니다.">
-          <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-lala-800 text-white">
-                <tr>
-                  <th className="px-4 py-3">지역</th>
-                  <th className="px-4 py-3">기관</th>
-                  <th className="px-4 py-3">지점</th>
-                  <th className="px-4 py-3">운영</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PUBLIC_OPS.map((r) => (
-                  <tr key={r.region} className="border-t border-slate-100 bg-white">
-                    <td className="px-4 py-3 font-medium">{r.region}</td>
-                    <td className="px-4 py-3 text-muted">{r.org}</td>
-                    <td className="px-4 py-3 text-muted">{r.branch}</td>
-                    <td className="px-4 py-3 font-semibold text-lala-700">{r.detail}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PublicOpsList />
         </Section>
       )}
 
@@ -269,7 +249,7 @@ export default function ServiceDetailPage() {
             to="/contact"
             className="mt-5 inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-800 md:mt-0"
           >
-            상담페이지로 이동
+            이 서비스 견적·상담 문의
           </Link>
         </div>
       </Section>

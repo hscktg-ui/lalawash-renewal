@@ -44,16 +44,16 @@ export default function CertHygienePage() {
         </div>
       </Section>
 
-      <Section title="공인기관 위생 검사 및 자체 검증" className="bg-slate-50">
+      <Section id="hygiene" title="공인기관 위생 검사 및 자체 검증" className="scroll-mt-24 bg-slate-50">
         <div className="mb-8 rounded-2xl bg-gradient-to-br from-lala-900 to-lala-700 p-7 text-white">
           <h3 className="text-lg font-bold">경기도보건환경연구원 정기 검사</h3>
           <p className="mt-3 text-sm leading-relaxed text-lala-100">
-            라라워시 다회용기는 연 2회 경기도보건환경연구원의 철저한 정기검사를 실시합니다. 이를 통해
-            용기 재질의 안전성과 전 세척과정의 위생성을 공인받았습니다.
+            라라워시 다회용기는 연 2회 경기도보건환경연구원의 정기검사를 실시합니다. 검사 결과를 바탕으로
+            용기 재질의 안전성과 세척 과정의 위생성을 확인합니다.
           </p>
         </div>
         <h3 className="text-xl font-extrabold text-ink">식약처 지침 3대 안심 위생검사 (매일 실시)</h3>
-        <p className="mt-3 max-w-3xl text-sm text-muted">
+          <p className="mt-3 max-w-3xl text-pretty break-keep text-sm leading-relaxed text-muted">
           식약처의 다회용 기구·용기 위생관리 지침에 근거하여 당일 세척 완료된 용기를 무작위로 추출해
           ATP 세균 오염도 검사, 잔류세제 검사, 고온 건조 온도라벨 테스트를 매일 실시합니다.
         </p>
@@ -61,11 +61,10 @@ export default function CertHygienePage() {
           {HYGIENE_CHECKS.map((h) => (
             <article key={h.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
               <h4 className="font-bold text-ink">{h.title}</h4>
-              <p className="mt-2 text-sm text-muted">{h.desc}</p>
+              <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{h.desc}</p>
               <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600">
-                <span className="font-semibold text-lala-700">상세내용</span>
-                <br />
-                {h.detail}
+                <span className="mb-1 block font-semibold text-lala-700">검사 방법</span>
+                <span className="text-pretty break-keep">{h.detail}</span>
               </p>
             </article>
           ))}
@@ -73,8 +72,10 @@ export default function CertHygienePage() {
       </Section>
 
       <Section
-        title="초순수물(UPW) 6단계 세척시스템"
+        id="wash"
+        title="초순수(UPW) 6단계 세척 시스템"
         desc="전 지점 동일 매뉴얼로 깨끗함을 전달합니다."
+        className="scroll-mt-24"
       >
         <PhotoGallery items={WASH_GALLERY} className="mb-10" />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -86,8 +87,8 @@ export default function CertHygienePage() {
             </div>
           ))}
         </div>
-        <Link to="/services#wash" className="mt-8 inline-flex text-sm font-bold text-lala-600">
-          다회용기 서비스에서 세척·위생 더 보기 →
+        <Link to="/services" className="mt-8 inline-flex text-sm font-bold text-lala-600">
+          서비스 유형 보기 →
         </Link>
       </Section>
     </>

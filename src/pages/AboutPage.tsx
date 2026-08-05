@@ -16,7 +16,7 @@ const MISSIONS = [
   },
   {
     code: 'G',
-    title: '지역사회와 상생하는 사회책임경영 (Governance & Economic)',
+    title: '지역사회와 상생하는 책임경영',
     desc: '표준 세척 시스템과 민관협업으로 투명하고 지속 가능한 상생 모델을 구축합니다.',
   },
 ]
@@ -26,8 +26,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="라라워시 · 회사소개"
-        title="편리함 때문에 포기했던 환경, 라라워시가 완벽한 세척 솔루션으로"
-        desc="일회용품 없는 지속가능한 일상을 만듭니다."
+        title="편리함 때문에 포기했던 환경을 다시 생각합니다"
+        desc="라라워시가 전문 세척 솔루션으로 일회용품 없는 지속가능한 일상을 만듭니다."
         image={IMAGES.about}
       />
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
       >
         <div className="grid gap-8 lg:grid-cols-2">
           <img src={IMAGES.sikpanMachine} alt="라라워시 식판 세척" className="h-80 w-full rounded-3xl object-cover" />
-          <div className="space-y-5 text-sm leading-relaxed text-muted md:text-base">
+          <div className="space-y-5 text-pretty break-keep text-sm leading-relaxed text-muted md:text-base">
             <p>
               지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고, 지역 내 다회용기 순환체계 정착으로
               취약계층의 일자리 창출 및 지역경제에 기여합니다.

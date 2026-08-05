@@ -24,6 +24,14 @@ export function Layout() {
     setMobileGroup(null)
   }, [location.pathname])
 
+  useEffect(() => {
+    if (!location.hash) return
+    const target = document.getElementById(location.hash.slice(1))
+    if (target) {
+      window.setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+    }
+  }, [location.pathname, location.hash])
+
   return (
     <div className="min-h-svh bg-white text-ink">
       <a href="#main-content" className="skip-link">
@@ -66,7 +74,7 @@ export function Layout() {
               to="/contact"
               className="ml-3 rounded-full bg-lala-600 px-4 py-2 text-sm font-semibold text-white hover:bg-lala-700"
             >
-              다회용기서비스 신청하기
+              견적·상담 문의
             </Link>
           </nav>
           <button
@@ -115,7 +123,7 @@ export function Layout() {
               className="mt-4 block rounded-full bg-lala-600 py-3 text-center text-sm font-semibold text-white"
               onClick={() => setOpen(false)}
             >
-              다회용기서비스 신청하기
+              견적·상담 문의
             </Link>
           </div>
         )}
@@ -217,7 +225,7 @@ export function Layout() {
         to="/contact"
         className="fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white shadow-lg lg:hidden"
       >
-        <Phone className="h-4 w-4" /> 신청
+        <Phone className="h-4 w-4" /> 견적 문의
       </Link>
     </div>
   )
@@ -242,8 +250,12 @@ export function PageHero({
       <div className="absolute inset-0 bg-gradient-to-t from-lala-900/85 via-lala-900/45 to-lala-800/25" />
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28">
         <p className="text-sm font-semibold text-lala-200">{eyebrow}</p>
-        <h1 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-5xl">{title}</h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">{desc}</p>
+        <h1 className="mt-3 max-w-[18em] text-balance break-keep text-3xl font-extrabold leading-tight tracking-tight md:text-5xl">
+          {title}
+        </h1>
+        <p className="mt-4 max-w-[36rem] text-pretty break-keep text-base leading-[1.75] text-white/85 md:text-lg">
+          {desc}
+        </p>
       </div>
     </section>
   )
@@ -268,8 +280,14 @@ export function Section({
     <section id={id} className={`px-5 py-16 md:py-24 ${className}`}>
       <div className="mx-auto max-w-6xl">
         {eyebrow && <p className="mb-3 text-sm font-semibold text-lala-500">{eyebrow}</p>}
-        <h2 className="max-w-3xl text-3xl font-extrabold tracking-tight text-ink md:text-4xl">{title}</h2>
-        {desc && <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted md:text-lg">{desc}</p>}
+        <h2 className="max-w-3xl text-balance break-keep text-3xl font-extrabold tracking-tight text-ink md:text-4xl">
+          {title}
+        </h2>
+        {desc && (
+          <p className="mt-4 max-w-2xl text-pretty break-keep text-base leading-[1.75] text-muted md:text-lg">
+            {desc}
+          </p>
+        )}
         <div className="mt-10">{children}</div>
       </div>
     </section>

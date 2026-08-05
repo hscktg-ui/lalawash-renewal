@@ -32,7 +32,7 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
   {
     match: /^\/services/,
     title: '다회용기 순환솔루션 | 라라워시',
-    description: '수거부터 세척까지. 라라워시 다회용기서비스와 위생관리를 확인하세요.',
+    description: '수거부터 세척까지. 라라워시 다회용기 서비스와 위생관리를 확인하세요.',
   },
   {
     match: /^\/notice/,
@@ -42,17 +42,17 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
   {
     match: /^\/contact\/how/,
     title: '이용방법 | 라라워시',
-    description: '문의부터 회수까지, 라라워시 이용 순서를 안내합니다.',
+    description: '문의부터 세척까지, 라라워시 이용 순서를 안내합니다.',
   },
   {
     match: /^\/contact\/faq/,
     title: 'Q&A | 라라워시',
-    description: '다회용기서비스 자주 묻는 질문을 모았습니다.',
+    description: '다회용기 서비스 자주 묻는 질문을 모았습니다.',
   },
   {
     match: /^\/contact/,
-    title: '견적문의 | 라라워시',
-    description: '다회용기서비스 상담·견적을 요청하세요.',
+    title: '견적·상담 문의 | 라라워시',
+    description: '다회용기 서비스 견적·상담을 요청하세요.',
   },
 ]
 
