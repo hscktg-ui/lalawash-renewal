@@ -3,11 +3,14 @@ import { useEffect } from 'react'
 import { Layout } from './components/Layout'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
+import HistoryPage from './pages/HistoryPage'
+import CertHygienePage from './pages/CertHygienePage'
+import InfraPage from './pages/InfraPage'
 import ServicesPage from './pages/ServicesPage'
 import ServiceDetailPage from './pages/ServiceDetailPage'
-import InfraPage from './pages/InfraPage'
-import ImpactPage from './pages/ImpactPage'
 import ContactPage from './pages/ContactPage'
+import HowToPage from './pages/HowToPage'
+import FaqPage from './pages/FaqPage'
 import NoticePage from './pages/NoticePage'
 import NoticeDetailPage from './pages/NoticeDetailPage'
 import AdminLoginPage from './pages/AdminLoginPage'
@@ -33,13 +36,19 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="about/history" element={<HistoryPage />} />
+          <Route path="about/cert" element={<CertHygienePage />} />
+          <Route path="about/branches" element={<InfraPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="services/:slug" element={<ServiceDetailPage />} />
-          <Route path="infra" element={<InfraPage />} />
-          <Route path="impact" element={<ImpactPage />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/:id" element={<NoticeDetailPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="contact/how" element={<HowToPage />} />
+          <Route path="contact/faq" element={<FaqPage />} />
+          {/* legacy redirects */}
+          <Route path="infra" element={<Navigate to="/about/branches" replace />} />
+          <Route path="impact" element={<Navigate to="/about/history" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

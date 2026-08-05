@@ -34,9 +34,9 @@ export default function NoticePage() {
   return (
     <>
       <PageHero
-        eyebrow="공지"
-        title="공지 · 공문"
-        desc="공식 안내와 이전 홈페이지에서 옮겨 온 소식을 이곳에서 확인하세요. 현장 이야기는 블로그에서도 볼 수 있습니다."
+        eyebrow="라라워시 · 소식"
+        title="라라워시 소식"
+        desc="공지사항, 언론보도, 포스팅 등 라라워시의 소식을 확인하세요. 현장 이야기는 블로그에서도 볼 수 있습니다."
         image={IMAGES.notice}
       />
       <Section title="게시판">

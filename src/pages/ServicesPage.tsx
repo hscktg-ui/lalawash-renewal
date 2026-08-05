@@ -1,28 +1,32 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
+import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="서비스"
-        title="다회용기, 빌려 쓰고 씻어 드립니다"
-        desc="공공기관, 사내 카페, 행사처럼 일회용품이 많은 곳에 맞춰 준비합니다. 필요하신 유형만 골라 보시면 됩니다."
+        eyebrow="다회용기서비스"
+        title="축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero"
+        desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션. 환경 오염 고민 없는 깨끗한 행사를 위해, 라라워시의 맞춤형 서비스를 지금 선택하세요."
         image={IMAGES.service}
       />
-      <Section title="어떤 서비스가 필요하신가요?">
-        <div className="grid gap-5 md:grid-cols-2">
+
+      <Section
+        title="라라워시 다회용기 서비스"
+        desc="장례식장, 행사장, 학교, 유치원, 공공기관 등 장소와 상황에 맞는 다회용기를 이용해보세요."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SOLUTIONS.map((s) => (
             <Link
               key={s.slug}
               to={`/services/${s.slug}`}
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:shadow-md"
             >
-              <img src={s.image} alt={s.title} className="h-48 w-full object-cover" />
+              <img src={s.image} alt={s.title} className="h-44 w-full object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-bold">{s.title}</h3>
+                <h3 className="text-lg font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted">{s.short}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600">
                   자세히 보기 <ArrowRight className="h-4 w-4" />
@@ -32,7 +36,12 @@ export default function ServicesPage() {
           ))}
         </div>
       </Section>
-      <Section title="세척은 이렇게 진행됩니다" desc="6단계로 씻고 확인한 뒤 다시 보내드립니다." className="bg-slate-50">
+
+      <Section
+        title="라라워시 다회용기 세척프로세스"
+        desc="전 지점 6단계 안심 세척 프로세스를 통해 “깨끗함”을 제공해드립니다."
+        className="bg-slate-50"
+      >
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
             <div key={s.title} className="rounded-xl bg-white p-5 ring-1 ring-slate-200">
@@ -42,6 +51,27 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Section
+        title="라라워시 위생관리"
+        desc="식약처 위생지침에 근거한 3대검사(ATP·잔류세제·온도라벨)를 매일 실시하여 ‘한 번 더 철저한 위생’을 검증합니다."
+      >
+        <div className="grid gap-4 md:grid-cols-3">
+          {HYGIENE_CHECKS.map((h) => (
+            <article key={h.title} className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
+              <h3 className="font-bold text-ink">{h.title}</h3>
+              <p className="mt-2 text-sm text-muted">{h.desc}</p>
+            </article>
+          ))}
+        </div>
+        <p className="mt-8 max-w-3xl text-sm text-muted">
+          정기적인 공인기관 검사와 매일 수치화된 데이터 관리로 일회용품보다 안전하고 위생적인
+          다회용기를 보장합니다.
+        </p>
+        <Link to="/about/cert" className="mt-4 inline-flex text-sm font-bold text-lala-600">
+          인증획득 및 위생관리 자세히 보기 →
+        </Link>
       </Section>
     </>
   )

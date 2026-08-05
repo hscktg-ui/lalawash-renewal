@@ -1,17 +1,18 @@
+import { Link } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { ContactInquiryForm } from '../components/ContactInquiryForm'
-import { CONTACT, FAQ, IMAGES } from '../data'
+import { CONTACT, IMAGES } from '../data'
 import { EXTERNAL } from '../lib/content'
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="문의"
-        title="편하게 물어보세요"
-        desc="공공기관·기업·행사·가맹 모두 환영합니다. 어디에, 얼마나 필요하신지만 알려주시면 맞춰 안내드립니다."
+        eyebrow="이용문의 · 견적문의"
+        title="다회용기서비스 상담·견적"
+        desc="공공기관·기업·행사·급식·가맹 모두 환영합니다. 어디에, 얼마나 필요하신지만 알려주시면 맞춰 안내드립니다."
         image={IMAGES.order}
       />
       <Section title="상담·견적 요청">
@@ -37,20 +38,18 @@ export default function ContactPage() {
               사용 예약하기
             </a>
             <div className="mt-4">
-              <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
+              <CompanyProfileDownload variant="secondary" label="회사소개서 다운받기" />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-4 text-sm text-lala-100">
+              <Link to="/contact/how" className="underline underline-offset-2 hover:text-white">
+                이용방법
+              </Link>
+              <Link to="/contact/faq" className="underline underline-offset-2 hover:text-white">
+                Q&A
+              </Link>
             </div>
           </div>
           <ContactInquiryForm variant="full" />
-        </div>
-      </Section>
-      <Section title="자주 묻는 질문" className="bg-slate-50">
-        <div className="grid gap-4 md:grid-cols-3">
-          {FAQ.map((f) => (
-            <div key={f.q} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
-              <p className="font-bold text-lala-800">{f.q}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{f.a}</p>
-            </div>
-          ))}
         </div>
       </Section>
     </>

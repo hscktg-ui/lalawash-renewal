@@ -4,21 +4,21 @@ export const BRAND = {
   nameEn: 'Lalawash',
   /** OG·기존 사이트 슬로건 */
   slogan: '지속가능한 깨끗함',
-  tagline: '다회용기 대여부터 수거·세척까지, 가까운 곳에서',
+  tagline: '다회용기 대여세척 서비스',
   description:
     '지속가능한 깨끗함을 추구하며, 다회용기 렌탈·세척 서비스를 제공하는 경기도의 지역 브랜드입니다.',
+  heroTitle: '지구를 살리는 가장 깨끗한 습관,\n당신의 일상에 ‘초록색 안전함’을 더하는 라라워시',
+  heroLead: '한 번 쓰고 버려지는 일상에서 지구를 지키는 일상으로',
+  heroDesc:
+    '라라워시가 다회용기 토탈 솔루션으로 지속가능한 내일의 일상을 만들어갑니다.',
 }
 
 /**
  * 브랜드 마크 정책
  * - 헤더·푸터·관리자(밝은 배경): 컬러 로고 `/logo-light.png`
  * - 어두운 배경용: 화이트 로고 `/logo.png`
- * - 하단 파트너(함께하는 곳): 기관명 텍스트로 통일
- * - 파비콘·OG: 브라우저/공유용 에셋 유지
  */
-/** 밝은 배경용(헤더·푸터) — 브랜드 블루 */
 export const LOGO = '/logo-light.png'
-/** 어두운 배경용 — 화이트 */
 export const LOGO_ON_DARK = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
@@ -31,9 +31,7 @@ export const IMAGES = {
   order: 'https://cdn.imweb.me/thumbnail/20231123/f5755bfcf0013.jpg',
   catering: 'https://cdn.imweb.me/thumbnail/20231123/baf02f04c13bc.jpg',
   video: 'https://cdn.imweb.me/thumbnail/20221209/cdc246b24e895.jpg',
-  /** 기존 /center 페이지 지점 안내 이미지 */
   center: 'https://cdn.imweb.me/thumbnail/20231123/4aa2068891dbb.jpg',
-  /** 지점 위치도 — 배경 재채색본 (한글 라벨 원본 유지) */
   centerMap: '/maps/center-map.png',
   centerMapAlt: '/maps/center-map-alt.png',
   mapCta: 'https://cdn.imweb.me/thumbnail/20250922/cbece11f67bff.png',
@@ -43,7 +41,6 @@ export const IMAGES = {
   washBg: 'https://cdn.imweb.me/thumbnail/20231128/b4092ea57e46f.jpg',
   process: 'https://cdn.imweb.me/thumbnail/20231128/c3dada48bdea3.jpg',
   containers: 'https://cdn.imweb.me/thumbnail/20250922/3aaf157e8547e.jpg',
-  /** 장례식장 다회용기 — 실사 기반 AI 섹션 이미지 */
   funeral: '/funeral-dishes.jpg',
   notice: 'https://cdn.imweb.me/thumbnail/20250922/cb365cd4333dc.png',
   gg: 'https://cdn.imweb.me/thumbnail/20240503/5f051377a0809.png',
@@ -52,90 +49,209 @@ export const IMAGES = {
   instagram: 'https://cdn.imweb.me/thumbnail/20240503/de47929d260ca.png',
 }
 
-export const NAV = [
-  { to: '/about', label: '소개' },
-  { to: '/services', label: '서비스' },
-  { to: '/infra', label: '지점·인프라' },
-  { to: '/impact', label: '성과' },
-  { to: '/notice', label: '공지' },
-  { to: '/contact', label: '문의' },
-]
+/** PDF 구성안 상단 3대 카테고리 */
+export const NAV_GROUPS = [
+  {
+    label: '라라워시',
+    children: [
+      { to: '/about', label: '회사소개' },
+      { to: '/about/history', label: '연혁 및 성과' },
+      { to: '/about/cert', label: '인증획득 및 위생관리' },
+      { to: '/about/branches', label: '라라워시 지점' },
+      { to: '/notice', label: '라라워시 소식' },
+    ],
+  },
+  {
+    label: '다회용기서비스',
+    children: [
+      { to: '/services', label: '다회용기 순환솔루션' },
+      { to: '/services/funeral', label: '장례식장용기' },
+      { to: '/services/festival', label: '축제 및 행사' },
+      { to: '/services/sikpan', label: '식판 세척' },
+      { to: '/services/cup', label: '다회용컵' },
+      { to: '/services/kids-tray', label: '유아 식판' },
+      { to: '/services/catering', label: '케이터링' },
+    ],
+  },
+  {
+    label: '이용문의',
+    children: [
+      { to: '/contact/how', label: '이용방법' },
+      { to: '/contact/faq', label: 'Q&A' },
+      { to: '/contact', label: '견적문의' },
+    ],
+  },
+] as const
+
+/** @deprecated 평탄 NAV — NAV_GROUPS 사용 */
+export const NAV = NAV_GROUPS.flatMap((g) => g.children.map((c) => ({ to: c.to, label: c.label })))
 
 export const IMPACT = [
-  { label: '지금까지 사용한 다회용기', value: 12000000, suffix: '개+' },
+  { label: '라라워시가 세척한 다회용기(연간)', value: 12000000, suffix: '개' },
   { label: '줄어든 탄소', value: 604500, suffix: ' kgCO₂eq' },
   { label: '소나무로 환산하면', value: 66428, suffix: '그루' },
   { label: '함께하는 지역 일자리', value: 270, suffix: '명' },
 ]
 
-/** 네트워크 규모 (2026.5 실무자 워크숍·공식 소식 기준) */
+/** PDF 기준: 경기도 15개 지역 · 21개 지점 */
 export const NETWORK = {
-  sites: 20,
-  regions: 18,
+  sites: 21,
+  regions: 15,
   washSteps: 6,
 }
 
-/**
- * 2025–2026 공개 소식·인사이트 (공식 사이트·네이버 블로그·보도 교차 확인)
- * 미검증 수치 추정 금지 — 운영 사실·채널 링크만.
- */
-export const SOLUTIONS = [
+export type Solution = {
+  slug: string
+  title: string
+  short: string
+  desc: string
+  image: string
+  tags: string[]
+  points: string[]
+  process: { step: string; title: string; desc: string }[]
+  cases?: string[]
+  pending?: boolean
+}
+
+export const SOLUTIONS: Solution[] = [
   {
-    slug: 'sikpan',
-    title: '급식 식판 세척',
-    short: '어린이집·유치원·학교 식판을 대신 씻어 깨끗하게 돌려드립니다.',
-    desc: '급식실에서 쓰인 식판을 수거해, 전문 세척·살균·건조 후 다시 가져다 드립니다. 학교·아동 급식은 하루에도 여러 번 사용·세척이 반복되므로, 전문 관리로 현장 부담은 줄이고 위생은 높입니다.',
-    image: IMAGES.system,
-    tags: ['식판', '위생', '아동·학교'],
+    slug: 'funeral',
+    title: '장례식장 다회용기 대여 및 세척',
+    short: '일회용품 없는 친환경 장례문화를 만들어 나갑니다.',
+    desc: '라라워시의 장례식장 다회용기서비스는 빈소에서 사용하는 식기를 위생적으로 공급하고, 사용 후 수거하여 전문 세척·살균공정을 거쳐 다시 재공급하는 순환형 운영시스템입니다. 단순한 일회용품 절감을 넘어 엄격한 위생관리와 안정적인 공급시스템으로 장례의 품격을 높입니다.',
+    image: IMAGES.funeral,
+    tags: ['장례', '순환 공급', '위생'],
     points: [
-      '수거 → 세척 → 살균 → 건조 → 다시 공급까지 한 번에',
-      '학교·어린이집 식판도 정기 순환으로 관리합니다',
-      '경기도 가까운 지점에서 빠르게 대응합니다',
+      '환경호르몬 Zero, 고온고압세척이 가능한 프리미엄 식기',
+      '세척공정·오염유형·식기재질에 맞는 전용 제품 운영',
+      '사용부터 수거·세척·정산까지 체계적인 순환',
     ],
-  },
-  {
-    slug: 'public',
-    title: '공공·기관 다회용컵',
-    short: '시청·청사·도서관 카페에 맞춰, 매일 필요한 만큼 순환합니다.',
-    desc: '공공기관·지자체 청사 카페, 일회용품 줄이기 특구 등에 다회용컵을 정기적으로 공급·수거·세척합니다. 경기도청 다회용컵 사업에도 선정되어, 공공 현장에서 안정적으로 운영하고 있습니다.',
-    image: IMAGES.service,
-    tags: ['지자체', '청사 카페', '정기 운영'],
-    points: [
-      '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
-      '과천·부천·시흥 등 하루 최대 2,000개까지 처리',
-      '용인시청은 주 3,500컵 규모로 운영 중',
+    process: [
+      { step: '01', title: '장례상담', desc: '빈소 운영에 맞는 용기 구성과 일정을 상담합니다.' },
+      { step: '02', title: '빈소 다회용기 비치', desc: '협의된 수량으로 다회용기를 비치합니다.' },
+      { step: '03', title: '다회용기 사용', desc: '조문객을 맞이하는 현장에서 사용합니다.' },
+      { step: '04', title: '세척 및 재공급', desc: '전문 세척·살균 후 다시 공급합니다.' },
+      { step: '05', title: '비용 정산', desc: '사용량에 맞춰 투명하게 정산합니다.' },
     ],
+    cases: ['수원 장례식장', '이천 장례식장', '포천 장례식장', '경기도의료원', '수원연화장'],
   },
   {
     slug: 'festival',
-    title: '축제·행사 대여',
-    short: '부스 설치부터 반납·세척까지, 행사 당일에도 헷갈리지 않게.',
-    desc: '지역 축제와 대형 행사에 BPA FREE 다회용기를 빌려드리고, 현장 반납 부스까지 운영합니다. 서울재즈페스티벌처럼 한꺼번에 많이 쓰이는 행사에도 맞춰 준비합니다.',
+    title: '축제 및 행사용기 대여',
+    short: '깨끗한 행사 진행을 위해 인원에 맞춰 다회용기를 대여합니다.',
+    desc: '지역 축제 및 행사에 다회용기 대여서비스를 제공하여 일회용 쓰레기 없는 지속 가능한 행사 문화를 만들어 갑니다. 경기도 내 15개 지역 21개 지점을 통해 신속한 대여·수거·세척·재공급을 제공합니다.',
     image: IMAGES.catering,
-    tags: ['페스티벌', '부스 운영', 'BPA FREE'],
+    tags: ['축제', '행사', '반납부스'],
     points: [
-      '행사 수: 2022년 10건 → 2023년 25건 → 2024년 50건',
-      '대형 행사 누적 사용량 약 23.4만 개',
-      '2026 가평 아웃도어 페스타·이천 산수유 축제 등 현장 운영',
+      '파스타볼, 접시, 나눔접시 등 다양한 다회용기 보유',
+      '행사 음식 종류에 맞는 용기 선택',
+      '반납부스 운영·인력 배치까지 현장 연계',
+    ],
+    process: [
+      { step: '01', title: '상담 및 견적', desc: '행사일정, 용기 종류·수량, 반납부스 운영 여부를 상담합니다.' },
+      { step: '02', title: '물품 준비', desc: '다회용기·반납함·현장운영물품을 협의·준비합니다.' },
+      { step: '03', title: '다회용기 공급', desc: '협의 내용에 맞춰 비치·공급합니다.' },
+      { step: '04', title: '반납부스 운영', desc: '필요 시 부스 운영과 인력을 배치합니다.' },
+      { step: '05', title: '결과 전달·정산', desc: '사용량·반납량을 전달하고 정산합니다.' },
+    ],
+    cases: ['서울재즈페스티벌', '시흥갯골축제', '가평 아웃도어 페스타', '이천 산수유 축제'],
+  },
+  {
+    slug: 'sikpan',
+    title: '학교·기업·대형 식당 식판 대여 및 세척',
+    short: '학교, 대기업 구내식당, 병원식당, 급식소 식판을 세척해드립니다.',
+    desc: '식판을 수거하여 전문 세척공정을 통해 위생적으로 세척·살균·건조합니다. 단순 세척을 넘어 위생 기준과 운영 안정성까지 함께 고려한 전문 식판 세척서비스를 제공합니다.',
+    image: IMAGES.system,
+    tags: ['식판', '학교', '급식'],
+    points: [
+      '스텐·멜라민 식판 대응',
+      '세척 인력·위생관리·보관·공급까지 일괄 관리',
+      '2026년 경기도 내 11개 학교 일 14,000장 세척 운영',
+    ],
+    process: [
+      { step: '01', title: '이용 상담', desc: '식판 수량 및 수거·공급 방법을 협의합니다.' },
+      { step: '02', title: '식판 공급', desc: '협의된 일정에 맞춰 식판을 공급합니다.' },
+      { step: '03', title: '식판 회수', desc: '사용한 식판을 회수합니다.' },
+      { step: '04', title: '세척 및 검수', desc: '전문 세척 후 검수합니다.' },
+      { step: '05', title: '식판 재공급', desc: '일정에 맞춰 깨끗하게 재공급합니다.' },
+    ],
+    cases: ['경기도 내 11개 학교', '일 14,000장 세척'],
+  },
+  {
+    slug: 'cup',
+    title: '오피스·카페 다회용컵 대여 및 세척',
+    short: '지자체청사, 공공기관, 사무실, 카페에서 편리하게 사용해보세요.',
+    desc: '경기도 일회용품 저감 정책에 따라 공공기관을 중심으로 다회용품 사용을 추진합니다. 사용한 다회용기는 라라워시 반납함에 넣어주시면, 직접 수거 후 6단계 세척 프로세스를 거쳐 다시 공급해 드립니다.',
+    image: IMAGES.service,
+    tags: ['다회용컵', '공공기관', '카페'],
+    points: [
+      '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
+      '남부·북부청사, 도의회, 15개 지자체 청사 등 운영',
+      '부천 내 4개 대학 캠퍼스컵·안산 문화거리 등',
+    ],
+    process: [
+      { step: '01', title: '다회용컵 비치', desc: '현장 규모에 맞춰 컵을 비치합니다.' },
+      { step: '02', title: '다회용컵 사용', desc: '일상에서 편리하게 사용합니다.' },
+      { step: '03', title: '다회용컵 회수', desc: '반납함에서 수거합니다.' },
+      { step: '04', title: '세척 및 검수', desc: '6단계 세척과 검수를 진행합니다.' },
+      { step: '05', title: '컵 재공급', desc: '깨끗하게 다시 공급합니다.' },
+    ],
+    cases: [
+      '경기도 남부·북부청사',
+      '경기도의회',
+      '안산·시흥·용인 등 15개 지자체 청사',
+      '경기융합복합타운 카페 6곳',
+      '부천 내 4개 대학 캠퍼스컵',
+      '안산 문화거리',
     ],
   },
   {
-    slug: 'funeral',
-    title: '장례식장 순환',
-    short: '조용하고 끊김 없이, 필요한 용기를 제때 맞춰 드립니다.',
-    desc: '경기도의료원(수원·이천·포천), 수원연화장 등에서 다회용기 시스템을 운영합니다. 장례 현장의 예절을 지키며, 공급·수거·세척이 끊기지 않도록 관리합니다.',
-    image: IMAGES.funeral,
-    tags: ['장례', '안정 공급', '통합 운영'],
+    slug: 'kids-tray',
+    title: '유아식판 대여 및 세척',
+    short: '어린이집, 유치원, 학교 식판을 안전하고 깨끗하게 세척해드립니다.',
+    desc: '매일 먹는 아이 밥상, 엄마의 마음으로 깐깐하게 검증한 안심 식판케어입니다. 식판 세척 부담은 줄이고, 식약처 위생 지침을 준수하는 체계적인 위생데이터로 깨끗함과 안전함을 함께 제공합니다.',
+    image: IMAGES.system,
+    tags: ['유아식판', '어린이집', '유치원'],
     points: [
-      '경기도의료원·수원연화장 등에서 운영',
-      '공급 → 수거 → 세척 → 다시 공급까지 책임',
-      '연간 수십만 개 규모로 안정적으로 대응',
+      '친환경 인증세제 사용',
+      '잔류세제검사·식기살균온도검사로 안심',
+      '원 직접결제·학부모 CMS·지자체 보조금 등 대금지급 협의 가능',
     ],
+    process: [
+      { step: '01', title: '도입 상담', desc: '어린이집·유치원 세척 도입과 대금지급 방법을 협의합니다.' },
+      { step: '02', title: '식판 공급', desc: '협의된 일정에 맞춰 식판을 공급합니다.' },
+      { step: '03', title: '식판 수거', desc: '사용한 식판을 수거합니다.' },
+      { step: '04', title: '세척 후 검수', desc: '세척·검수로 위생을 확인합니다.' },
+      { step: '05', title: '식판 재공급', desc: '깨끗하게 다시 공급합니다.' },
+    ],
+    cases: ['어린이집·유치원 정기 순환'],
+  },
+  {
+    slug: 'catering',
+    title: '라라워시 케이터링',
+    short: '일회용기가 아닌 다회용기로, 이젠 케이터링도 라라워시입니다.',
+    desc: '다회용기 기반 케이터링 서비스입니다. 상세 구성과 메뉴 안내는 준비 중이며, 필요하신 일정·인원·용기 구성을 알려주시면 맞춰 상담드립니다.',
+    image: IMAGES.catering,
+    tags: ['케이터링', '다회용기'],
+    points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '상세 안내 준비 중'],
+    process: [
+      { step: '01', title: '상담', desc: '일정·인원·용기 구성을 상담합니다.' },
+      { step: '02', title: '견적', desc: '맞춤 견적을 안내합니다.' },
+      { step: '03', title: '준비', desc: '다회용기와 운영을 준비합니다.' },
+      { step: '04', title: '현장 운영', desc: '행사 현장에서 서비스를 제공합니다.' },
+      { step: '05', title: '회수·정산', desc: '회수 후 세척·정산합니다.' },
+    ],
+    pending: true,
   },
 ]
 
+/** 구 URL slug 호환 */
+export const SOLUTION_ALIASES: Record<string, string> = {
+  public: 'cup',
+}
+
 export const WASH_STEPS = [
-  { title: '불림·애벌 세척', desc: '친환경 세제로 먼저 불려 씻습니다' },
+  { title: '불림·애벌 세척', desc: '라라워시 전용 친환경 세제로 먼저 불려 씻습니다' },
   { title: '초음파 세척', desc: '눈에 잘 안 보이는 오염까지 꼼꼼히' },
   { title: '고온·고압 세척', desc: '초순수(UPW)로 남은 이물질을 제거' },
   { title: '고온 살균', desc: '100℃ 이상에서 살균·소독' },
@@ -143,25 +259,35 @@ export const WASH_STEPS = [
   { title: '출고 전 전수 검사', desc: '빠짐없이 확인한 뒤 다시 보냅니다' },
 ]
 
-export const CIRCLE = [
-  { step: '01', title: '문의', desc: '어디에, 얼마나 필요한지 상담' },
-  { step: '02', title: '선택', desc: '컵·식기·케이터링 구성 선택' },
-  { step: '03', title: '맞춤 제작', desc: '기관 로고가 필요하면 제작' },
-  { step: '04', title: '사용 전 준비', desc: '사용법·현장 안내 제공' },
-  { step: '05', title: '대여', desc: '깨끗하게 씻은 용기 공급' },
-  { step: '06', title: '사용', desc: '현장에서 편하게 사용' },
-  { step: '07', title: '반납', desc: '수거 후 세척해 다시 공급' },
+/** 이용방법 (문의 → 신청 → 사용 → 회수) */
+export const HOW_TO = [
+  { step: '01', title: '문의', desc: '사용 장소·수량·기간을 알려주시면 상담합니다.' },
+  { step: '02', title: '신청', desc: '견적 확인 후 서비스 신청을 진행합니다.' },
+  { step: '03', title: '사용', desc: '깨끗하게 준비된 다회용기를 현장에 맞춰 사용합니다.' },
+  { step: '04', title: '회수', desc: '사용 후 수거·세척·재공급으로 순환합니다.' },
 ]
 
-/** 기존 lalawash.co.kr/center 지점 안내 기준 */
-export const BRANCHES = [
+/** 레거시 CIRCLE — HOW_TO 권장 */
+export const CIRCLE = HOW_TO
+
+export type Branch = {
+  name: string
+  address: string
+  tel: string
+  services: string
+  map: string
+  note?: string
+  pendingAddress?: boolean
+}
+
+/** PDF: 부천 4곳·수원 2곳 표시, 규모화세척장·파주 삭제 */
+export const BRANCHES: Branch[] = [
   {
     name: '고양',
     address: '고양시 일산동구 동국로 5',
     tel: '031-968-8378',
     services: '다회용컵, 식판',
     map: 'https://naver.me/xvL704Gr',
-    highlight: false,
   },
   {
     name: '광주',
@@ -169,7 +295,6 @@ export const BRANCHES = [
     tel: '010-8426-0768',
     services: '유아식판',
     map: 'https://naver.me/5T3yF8wJ',
-    highlight: false,
   },
   {
     name: '군포',
@@ -177,16 +302,13 @@ export const BRANCHES = [
     tel: '031-427-0555',
     services: '다회용컵, 축제용기, 식판, 유아식판',
     map: 'https://naver.me/GaTYMR1Y',
-    highlight: false,
   },
   {
-    name: '부천',
+    name: '부천 1호',
     address: '부천시 평천로 813 / 평천로 852, 3층',
     tel: '032-653-6121',
     services: '다회용기, 다회용컵, 식판, 도시락용기',
     map: 'https://naver.me/xcJ5KTPx',
-    highlight: true,
-    note: '규모 세척장 (자동화 라인)',
   },
   {
     name: '부천나눔',
@@ -194,8 +316,23 @@ export const BRANCHES = [
     tel: '070-4304-3184',
     services: '다회용컵, 축제용기, 식판',
     map: 'https://naver.me/xyjIXCNV',
-    highlight: true,
-    note: '2026.6.24 2호점 개소 · 수요 대응 확장',
+    note: '2026.6.24 개소',
+  },
+  {
+    name: '부천 3호',
+    address: '주소 업데이트 예정',
+    tel: '본사 문의',
+    services: '다회용기 세척',
+    map: '',
+    pendingAddress: true,
+  },
+  {
+    name: '부천 4호',
+    address: '주소 업데이트 예정',
+    tel: '본사 문의',
+    services: '다회용기 세척',
+    map: '',
+    pendingAddress: true,
   },
   {
     name: '성남',
@@ -203,7 +340,6 @@ export const BRANCHES = [
     tel: '031-741-0120',
     services: '다회용컵, 식판, 유아식판',
     map: 'https://naver.me/FWPoqhuc',
-    highlight: false,
   },
   {
     name: '성남만남',
@@ -211,15 +347,21 @@ export const BRANCHES = [
     tel: '031-768-3666',
     services: '축제용기, 식판, 도시락용기, 배달용기',
     map: 'https://naver.me/5wHCfPyx',
-    highlight: false,
   },
   {
-    name: '수원',
+    name: '수원 1호',
     address: '의왕시 월암길 93',
     tel: '031-232-0179',
     services: '다회용컵, 축제용기, 장례용기',
     map: 'https://naver.me/5duKogcy',
-    highlight: false,
+  },
+  {
+    name: '수원 2호',
+    address: '주소 업데이트 예정',
+    tel: '본사 문의',
+    services: '다회용기 세척',
+    map: '',
+    pendingAddress: true,
   },
   {
     name: '시흥',
@@ -227,7 +369,6 @@ export const BRANCHES = [
     tel: '031-315-7151',
     services: '식판, 유아식판',
     map: '',
-    highlight: false,
   },
   {
     name: '시흥작은자리',
@@ -235,8 +376,6 @@ export const BRANCHES = [
     tel: '031-313-2733, 010-4060-1023',
     services: '다회용컵, 축제용기, 다회용기 판매',
     map: '',
-    highlight: true,
-    note: '규모 세척장 · 자동화 세척 시스템',
   },
   {
     name: '안산',
@@ -244,7 +383,6 @@ export const BRANCHES = [
     tel: '031-493-9844',
     services: '다회용기, 다회용컵, 식판',
     map: 'https://naver.me/xsUyhojX',
-    highlight: false,
   },
   {
     name: '안성',
@@ -252,7 +390,6 @@ export const BRANCHES = [
     tel: '031-675-8899',
     services: '다회용기, 다회용컵, 유아식판, 도시락용기',
     map: 'https://naver.me/GnCzGHIm',
-    highlight: false,
   },
   {
     name: '오산',
@@ -260,7 +397,6 @@ export const BRANCHES = [
     tel: '031-375-3322',
     services: '유아식판',
     map: 'https://naver.me/GBlmzUMQ',
-    highlight: false,
   },
   {
     name: '용인',
@@ -268,7 +404,6 @@ export const BRANCHES = [
     tel: '070-4947-8031',
     services: '다회용컵, 식판, 유아식판',
     map: 'https://naver.me/FqHDS9oy',
-    highlight: false,
   },
   {
     name: '의정부',
@@ -276,7 +411,6 @@ export const BRANCHES = [
     tel: '031-847-4400, 010-3301-7274',
     services: '다회용컵, 유아식판',
     map: '',
-    highlight: false,
   },
   {
     name: '이천',
@@ -284,7 +418,6 @@ export const BRANCHES = [
     tel: '031-8011-2385',
     services: '다회용컵, 축제용기, 장례용기',
     map: '',
-    highlight: false,
   },
   {
     name: '포천',
@@ -292,7 +425,6 @@ export const BRANCHES = [
     tel: '070-4435-3776',
     services: '축제용기, 장례용기, 유아식판, 다회용컵, 식판',
     map: 'https://naver.me/xtgnx3rB',
-    highlight: false,
   },
   {
     name: '평택',
@@ -300,7 +432,6 @@ export const BRANCHES = [
     tel: '031-658-4788',
     services: '축제용기, 장례용기, 유아식판, 다회용컵, 식판',
     map: 'https://naver.me/xtgnx3rB',
-    highlight: false,
   },
 ]
 
@@ -324,6 +455,88 @@ export const CONTACT = {
   ceo: '김선미',
   biz: '336-87-02913',
 }
+
+export const HISTORY = [
+  ['2019', '이유식 식판 세척으로 시작 · 성남 자활 세척장'],
+  ['2020', '식판케어로 확대 · 세척장 4곳'],
+  ['2021', '라라워시 브랜드 출범 · 다회용기 사업으로'],
+  ['2022', '축제 대여 본격화 · 사업장·협동조합 확대'],
+  ['2023', '가맹·협동조합과 함께 규모 확대'],
+  ['2024', '경기도청 다회용컵 사업 · 대형 축제 대응'],
+  ['2025', '누적 세척 1,200만 개 · 지역 일자리 270명'],
+  ['2026', '경기도 15개 지역 · 21개 지점 · 부천나눔 개소'],
+]
+
+/** PDF: 경기도민 약 1,400만명 시나리오 환경효과 */
+export const ENV_SCENARIO = {
+  title: '경기도민 약 1,400만명이 연간 100회 다회용기를 사용한다면',
+  items: [
+    { label: '다회용컵 1회 사용 시 온실가스', value: '0.02kgCO₂e. (개당 100회 사용 후 폐기 기준)' },
+    { label: '다회용컵 사용횟수', value: '약 14억회/년 (1,400만개 × 100회)' },
+    { label: '온실가스 배출량', value: '2만 7,446톤CO₂e./년' },
+    { label: '1인당 배출량', value: '2.0kgCO₂e./인·년 (일회용 대비 19.6% 수준)' },
+    { label: '온실가스 감축량', value: '11만 2,601톤CO₂e./년 (1인당 8.2kg)' },
+    { label: '감축량의 경제적 가치', value: '약 27.7억원/년 (배출권 24,623원/톤 기준)' },
+    { label: '감축량의 나무 환산', value: '1,237만 그루 (중부 30년생 소나무 연간 흡수 9.1kg 기준)' },
+    {
+      label: '승용차 주행거리 환산',
+      value: '약 11.3억km (서울–부산 약 140만 7,517회 왕복)',
+    },
+  ],
+}
+
+export const CERTIFICATIONS = [
+  {
+    title: '미국위생협회 NSF 위생기준 준수',
+    desc: '모든 세척 프로세스는 NSF가 요구하는 엄격한 위생관리 가이드라인을 준수하며, 정기적인 위생점검을 실시합니다.',
+  },
+  {
+    title: 'ISO 9001 (품질경영시스템)',
+    desc: '다회용기 렌탈 및 세척 서비스 전 과정에서 국제표준 품질 보증 체계를 확립했습니다. 어느 지점에서든 동일한 세척 퀄리티를 제공합니다.',
+  },
+  {
+    title: 'ISO 14001 (환경경영시스템)',
+    desc: '세척 공정 내 용수관리, 폐기물 저감 등 친환경·지속가능한 공정 관리를 인정받은 ESG 파트너입니다.',
+  },
+]
+
+export const HYGIENE_CHECKS = [
+  {
+    title: 'ATP 오염도 검사',
+    desc: '당일 세척 완료 용기를 무작위로 추출해 세균 오염도를 수치로 확인합니다.',
+  },
+  {
+    title: '고온살균 온도라벨 검사',
+    desc: '고온 건조·살균이 기준 온도에 도달했는지 온도라벨로 검증합니다.',
+  },
+  {
+    title: '잔류세제 검사',
+    desc: '세척 후 세제 잔류 여부를 검사해 안심하고 사용할 수 있게 합니다.',
+  },
+]
+
+export const CORE_CAPABILITIES = [
+  {
+    title: '식약처 기준 안심위생 시스템',
+    desc: '식약처 다회용 기구·용기 위생관리 지침에 따른 검사와 6단계 세척으로 안심을 약속합니다.',
+  },
+  {
+    title: '경기도 15개 지역 21개 지점',
+    desc: '가장 가까운 거점에서 신속하게 수거·세척·재공급합니다.',
+  },
+  {
+    title: '국내외 공식 인증서 획득',
+    desc: 'NSF 위생기준 준수, ISO 9001·ISO 14001 등 국제 표준 인증으로 품질을 증명합니다.',
+  },
+  {
+    title: '초순수물(UPW) 세척',
+    desc: '보다 더 깨끗함을 위해 초순수물을 사용한 세척 공정을 운영합니다.',
+  },
+  {
+    title: '라라워시 전용 친환경세제',
+    desc: '깨끗함과 안전함을 동시에 잡는 전용 친환경세제를 사용합니다.',
+  },
+]
 
 export const YEARLY_IMPACT = [
   {
@@ -362,9 +575,9 @@ export const YEARLY_IMPACT = [
     year: '2026',
     events: 50,
     containers: 12000000,
-    branches: 20,
+    branches: 21,
     jobs: 270,
-    note: '부천나눔 2호점 개소 · 가평·이천 축제 운영',
+    note: '15개 지역 · 21개 지점 · 부천나눔 개소',
     highlight: true,
   },
 ]
@@ -379,7 +592,7 @@ export const IMPACT_FORMULA = [
 export const PORTFOLIO_POLICY = {
   showVerifiedMetrics: true,
   showAttributedPhotos: false,
-  note: '공공·축제·장례·급식 현장에서 실제로 운영해 온 사례입니다. 규모는 대략적인 운영 실적을 기준으로 합니다.',
+  note: '공공·축제·장례·급식 현장에서 실제로 운영해 온 사례입니다.',
 }
 
 export const VERIFIED_ACHIEVEMENTS = [
@@ -390,51 +603,73 @@ export const VERIFIED_ACHIEVEMENTS = [
   { category: '축제', title: '축제 누적 사용', metric: '약 23.4만 개' },
   { category: '축제', title: '가평 글로벌 아웃도어 페스타', metric: '2026 운영' },
   { category: '축제', title: '이천 산수유 축제', metric: '2026 운영' },
-  { category: '축제', title: '포천 드론제전', metric: '2025 운영' },
   { category: '공공', title: '경기도청 다회용컵', metric: '2024.3~2027.2' },
-  { category: '공공', title: '지자체 거점 운영', metric: '하루 약 100~2,000개' },
-  { category: '지점', title: '부천나눔 2호점', metric: '2026.6 개소' },
-  { category: '네트워크', title: '경기도 세척망', metric: '18개 지역 · 20곳' },
+  { category: '지점', title: '경기도 세척망', metric: '15개 지역 · 21곳' },
   { category: '장례', title: '경기도의료원(수원·이천·포천)', metric: '연속 운영' },
   { category: '장례', title: '수원연화장', metric: '연속 운영' },
+  { category: '급식', title: '경기도 내 학교 식판', metric: '11개교 · 일 14,000장' },
 ]
 
+/** PDF 파트너 롤링 */
 export const PARTNERS: { name: string; href?: string }[] = [
-  { name: '경기도', href: 'https://www.gg.go.kr/' },
-  { name: '경기광역자활센터', href: 'https://gpsc.or.kr' },
-  { name: '경기도청' },
-  { name: '과천시청' },
-  { name: '부천시청' },
-  { name: '수원시청' },
-  { name: '시흥시청' },
-  { name: '용인시청' },
-  { name: '포천시청' },
-  { name: '양평군청' },
-  { name: '안성중앙도서관' },
+  { name: '경기도청', href: 'https://www.gg.go.kr/' },
+  { name: '광명시' },
+  { name: '부천시' },
+  { name: '수원시' },
+  { name: '시흥시' },
+  { name: '안성시' },
+  { name: '안산시' },
+  { name: '이천시' },
+  { name: '용인시' },
+  { name: '포천시' },
   { name: '경기도의료원' },
   { name: '수원연화장' },
-  { name: 'SKT 협력' },
-  { name: '서울재즈페스티벌' },
-  { name: '시흥갯골축제' },
-  { name: '펜타포트 락페스티벌' },
-  { name: '가평 글로벌 아웃도어 페스타' },
-  { name: '이천 산수유 축제' },
-  { name: '사회적경제' },
+  { name: '성남FC' },
+  { name: '부천캠퍼스컵' },
+  { name: '안산카페거리' },
+  { name: '경기광역자활센터', href: 'https://gpsc.or.kr' },
 ]
 
 export const TRUST_BADGES = [
-  { title: '경기도청과 함께', desc: '다회용컵 사업 선정 (2024.3~2027.2)' },
-  { title: '초순수(UPW) 세척', desc: '일반 수돗물보다 깨끗하게 씻습니다' },
-  { title: 'ATP 오염 검사', desc: '눈으로만 보지 않고 수치로 확인' },
-  { title: '자활·사회적경제', desc: '지역 일자리 270명과 함께' },
+  { title: '국내외 인증', desc: 'NSF · ISO 9001 · ISO 14001' },
+  { title: '초순수(UPW) 6단계', desc: '세척의 안정성을 높입니다' },
+  { title: '식약처 기준 검사', desc: '소재 안전성·살균소독 검사' },
+  { title: '경기도보건환경연구원', desc: '연 2회 정기검사 실시' },
+  { title: '매일 자체 검증', desc: 'ATP·온도라벨·잔류세제 검사' },
   { title: 'BPA FREE 용기', desc: '축제·행사에도 안심하고 사용' },
-  { title: '6단계 안전 세척', desc: '애벌부터 출고 검사까지 순서대로' },
+]
+
+export const HOME_TRUST_LINKS = [
+  {
+    title: '국내외 인증',
+    desc: 'NSF, ISO 9001, ISO 14001',
+    to: '/about/cert',
+    cta: '인증서 보기',
+  },
+  {
+    title: '초순수물(UPW) 6단계 세척',
+    desc: '세척의 안정성을 높입니다',
+    to: '/services',
+    cta: '세척시스템 보기',
+  },
+  {
+    title: '다회용기 소재 안전성·위생성',
+    desc: '식약처 기준 살균소독검사',
+    to: '/about/cert',
+    cta: '검사결과 보기',
+  },
+  {
+    title: '매일 실시하는 검사',
+    desc: 'ATP · 온도라벨 · 잔류세제',
+    to: '/about/cert',
+    cta: '검사항목 보기',
+  },
 ]
 
 export const FAQ = [
   {
     q: '견적은 어떻게 받나요?',
-    a: '사용 장소, 예상 수량, 기간만 알려주시면 맞춰 안내드립니다. 홈 하단이나 문의 페이지에서 바로 요청하실 수 있습니다.',
+    a: '사용 장소, 예상 수량, 기간만 알려주시면 맞춰 안내드립니다. 견적문의 페이지에서 바로 요청하실 수 있습니다.',
   },
   {
     q: '공공기관·지자체도 이용할 수 있나요?',
@@ -442,10 +677,10 @@ export const FAQ = [
   },
   {
     q: '세척은 얼마나 위생적인가요?',
-    a: '6단계 세척과 초순수(UPW), ATP 검사를 거쳐 출고합니다. 학교 식판처럼 위생이 중요한 현장에도 맞춰 관리합니다.',
+    a: '초순수(UPW) 6단계 세척과 식약처 지침에 따른 ATP·잔류세제·온도라벨 검사를 매일 실시합니다.',
   },
   {
     q: '지점은 몇 곳인가요?',
-    a: '경기도 18개 지역, 세척 사업장 20곳 규모로 운영합니다. 부천나눔 2호점(2026.6)처럼 가까운 세척망을 계속 넓히고 있습니다.',
+    a: '경기도 15개 지역, 세척 사업장 21곳 규모로 운영합니다. 가장 가까운 거점에서 신속하게 대응합니다.',
   },
 ]

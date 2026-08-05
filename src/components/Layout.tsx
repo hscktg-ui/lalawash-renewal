@@ -1,12 +1,14 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
-import { Menu, Phone, X } from 'lucide-react'
-import { BRAND, CONTACT, NAV } from '../data'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { ChevronDown, Menu, Phone, X } from 'lucide-react'
+import { BRAND, CONTACT, NAV_GROUPS } from '../data'
 import { EXTERNAL } from '../lib/content'
 import { BrandMark } from './BrandMark'
 
 export function Layout() {
   const [open, setOpen] = useState(false)
+  const [mobileGroup, setMobileGroup] = useState<string | null>(null)
+  const location = useLocation()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -15,36 +17,59 @@ export function Layout() {
     }
   }, [open])
 
+  useEffect(() => {
+    setOpen(false)
+    setMobileGroup(null)
+  }, [location.pathname])
+
   return (
     <div className="min-h-svh bg-white text-ink">
       <a href="#main-content" className="skip-link">
         본문으로 건너뛰기
       </a>
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
           <BrandMark onClick={() => setOpen(false)} size="md" />
-          <nav className="hidden items-center gap-7 md:flex" aria-label="주요 메뉴">
-            {NAV.map((n) => (
-              <NavLink
-                key={n.to}
-                to={n.to}
-                className={({ isActive }) =>
-                  `text-sm font-medium transition ${isActive ? 'text-lala-600' : 'text-slate-600 hover:text-lala-600'}`
-                }
-              >
-                {n.label}
-              </NavLink>
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="주요 메뉴">
+            {NAV_GROUPS.map((group) => (
+              <div key={group.label} className="group relative">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-lala-50 hover:text-lala-700"
+                >
+                  {group.label}
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 transition group-hover:rotate-180" />
+                </button>
+                <div className="invisible absolute left-0 top-full z-50 min-w-[220px] pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <div className="rounded-2xl border border-slate-100 bg-white py-2 shadow-lg ring-1 ring-slate-100">
+                    {group.children.map((item) => (
+                      <NavLink
+                        key={item.to}
+                        to={item.to}
+                        end={item.to === '/about' || item.to === '/contact' || item.to === '/services'}
+                        className={({ isActive }) =>
+                          `block px-4 py-2.5 text-sm transition ${
+                            isActive ? 'bg-lala-50 font-semibold text-lala-700' : 'text-slate-600 hover:bg-slate-50 hover:text-lala-700'
+                          }`
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ))}
             <Link
               to="/contact"
-              className="rounded-full bg-lala-600 px-4 py-2 text-sm font-semibold text-white hover:bg-lala-700"
+              className="ml-3 rounded-full bg-lala-600 px-4 py-2 text-sm font-semibold text-white hover:bg-lala-700"
             >
-              상담 문의
+              다회용기서비스 신청하기
             </Link>
           </nav>
           <button
             type="button"
-            className="rounded-lg p-2 md:hidden"
+            className="rounded-lg p-2 lg:hidden"
             aria-label="메뉴"
             onClick={() => setOpen((v) => !v)}
           >
@@ -52,23 +77,43 @@ export function Layout() {
           </button>
         </div>
         {open && (
-          <div className="border-t border-slate-100 bg-white px-5 py-4 md:hidden">
-            {NAV.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                className="block py-3 text-sm font-medium"
-                onClick={() => setOpen(false)}
-              >
-                {n.label}
-              </Link>
-            ))}
+          <div className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-slate-100 bg-white px-5 py-4 lg:hidden">
+            {NAV_GROUPS.map((group) => {
+              const expanded = mobileGroup === group.label
+              return (
+                <div key={group.label} className="border-b border-slate-100 py-1">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between py-3 text-sm font-bold text-ink"
+                    onClick={() => setMobileGroup(expanded ? null : group.label)}
+                    aria-expanded={expanded}
+                  >
+                    {group.label}
+                    <ChevronDown className={`h-4 w-4 transition ${expanded ? 'rotate-180' : ''}`} />
+                  </button>
+                  {expanded && (
+                    <div className="pb-3 pl-2">
+                      {group.children.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className="block py-2 text-sm text-slate-600"
+                          onClick={() => setOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
             <Link
               to="/contact"
-              className="mt-2 block rounded-full bg-lala-600 py-3 text-center text-sm font-semibold text-white"
+              className="mt-4 block rounded-full bg-lala-600 py-3 text-center text-sm font-semibold text-white"
               onClick={() => setOpen(false)}
             >
-              상담 문의
+              다회용기서비스 신청하기
             </Link>
           </div>
         )}
@@ -79,37 +124,55 @@ export function Layout() {
       </main>
 
       <footer className="border-t border-slate-200 bg-slate-50 px-5 py-12">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
-          <div>
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-4">
+          <div className="md:col-span-1">
             <BrandMark to="/" size="md" />
-            <p className="mt-1 text-sm font-medium text-lala-600">{BRAND.slogan}</p>
-            <p className="mt-3 text-sm text-muted">{BRAND.tagline}</p>
+            <p className="mt-2 text-sm font-medium text-lala-600">{BRAND.slogan}</p>
+            <p className="mt-1 text-sm text-muted">{BRAND.tagline}</p>
           </div>
           <div className="text-sm text-muted">
-            <p className="font-semibold text-ink">본사</p>
+            <p className="font-semibold text-ink">라라워시 본사</p>
             <p className="mt-2">{CONTACT.hq}</p>
             <p className="mt-1">T. {CONTACT.phone}</p>
             <p>{CONTACT.email}</p>
+            <p className="mt-3">
+              <a
+                href={EXTERNAL.companyProfile}
+                download={EXTERNAL.companyProfileName}
+                className="font-semibold text-lala-700 hover:text-lala-600"
+              >
+                회사소개서 다운받기
+              </a>
+            </p>
           </div>
           <div className="text-sm text-muted">
             <p className="font-semibold text-ink">바로가기</p>
             <p className="mt-2">
-              <Link to="/notice" className="hover:text-lala-600">
-                공지·공문
+              <Link to="/about/branches" className="hover:text-lala-600">
+                지점 안내
               </Link>
             </p>
             <p className="mt-1">
-              <a
-                href={EXTERNAL.companyProfile}
-                download={EXTERNAL.companyProfileName}
-                className="hover:text-lala-600"
-              >
-                소개 자료 (PDF)
+              <Link to="/notice" className="hover:text-lala-600">
+                라라워시 소식
+              </Link>
+            </p>
+            <p className="mt-1">
+              <a href={EXTERNAL.memberMall} target="_blank" rel="noreferrer" className="hover:text-lala-600">
+                라라워시몰 바로가기
               </a>
             </p>
             <p className="mt-1">
+              <Link to="/quote" className="hover:text-lala-600">
+                회원사 견적서
+              </Link>
+            </p>
+          </div>
+          <div className="text-sm text-muted">
+            <p className="font-semibold text-ink">SNS</p>
+            <p className="mt-2">
               <a href={EXTERNAL.blog} target="_blank" rel="noreferrer" className="hover:text-lala-600">
-                공식 블로그
+                블로그
               </a>
             </p>
             <p className="mt-1">
@@ -118,32 +181,22 @@ export function Layout() {
               </a>
             </p>
             <p className="mt-1">
-              <a
-                href={EXTERNAL.memberMall}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-lala-600"
-              >
-                회원사 전용몰
+              <a href={EXTERNAL.youtube} target="_blank" rel="noreferrer" className="hover:text-lala-600">
+                유튜브
               </a>
             </p>
-            <p className="mt-1">
-              <Link to="/quote" className="hover:text-lala-600">
-                회원사 견적서
-              </Link>
-            </p>
-            <p className="mt-3">대표 {CONTACT.ceo}</p>
-            <p>사업자등록번호 {CONTACT.biz}</p>
-            <p className="mt-3">© {new Date().getFullYear()} {BRAND.nameEn}</p>
+            <p className="mt-4 text-xs">대표 {CONTACT.ceo}</p>
+            <p className="text-xs">사업자등록번호 {CONTACT.biz}</p>
+            <p className="mt-2 text-xs">© {new Date().getFullYear()} {BRAND.nameEn}</p>
           </div>
         </div>
       </footer>
 
       <Link
         to="/contact"
-        className="fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white shadow-lg md:hidden"
+        className="fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white shadow-lg lg:hidden"
       >
-        <Phone className="h-4 w-4" /> 상담
+        <Phone className="h-4 w-4" /> 신청
       </Link>
     </div>
   )

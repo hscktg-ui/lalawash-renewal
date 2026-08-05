@@ -1,6 +1,7 @@
 export const EXTERNAL = {
   blog: 'https://blog.naver.com/lalawash',
   instagram: 'https://www.instagram.com/lala__wash',
+  youtube: 'https://www.youtube.com/@lalawash',
   gg: 'https://www.gg.go.kr/',
   gpsc: 'https://gpsc.or.kr',
   /** 사용 예약 폼 */
