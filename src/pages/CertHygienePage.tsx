@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
+import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
 import { CERTIFICATIONS, HYGIENE_CHECKS, IMAGES, WASH_STEPS } from '../data'
 
 export default function CertHygienePage() {
@@ -31,13 +32,15 @@ export default function CertHygienePage() {
           ))}
         </div>
         <p className="mt-6 text-sm text-muted">
-          인증서 스캔본(이미지)은 자료 확보 후 게시합니다. 현재는 인증 요지와 위생 체계를 먼저 안내드리며, 원본
-          확인이 필요하시면{' '}
+          인증서 스캔본(이미지)은 자료 확보 후 게시합니다. 우선 회사소개서에서 인증·실적 요지를 확인하시거나,{' '}
           <Link to="/contact" className="font-semibold text-lala-600">
             견적·상담 문의
           </Link>
-          로 요청해 주세요.
+          로 원본 자료를 요청해 주세요.
         </p>
+        <div className="mt-4">
+          <CompanyProfileDownload label="회사소개서에서 인증·실적 확인" />
+        </div>
       </Section>
 
       <Section title="공인기관 위생 검사 및 자체 검증" className="bg-slate-50">

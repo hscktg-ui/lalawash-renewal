@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { SOLUTIONS } from '../data'
 
 const TITLES: { match: RegExp; title: string; description: string }[] = [
   {
@@ -27,11 +28,6 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
     match: /^\/about/,
     title: '회사소개 | 라라워시',
     description: '지속가능한 깨끗함, 지속가능한 일자리. 라라워시 비전과 핵심 역량.',
-  },
-  {
-    match: /^\/services\//,
-    title: '다회용기서비스 상세 | 라라워시',
-    description: '장례·축제·식판·컵·유아식판·케이터링 맞춤 다회용기 솔루션.',
   },
   {
     match: /^\/services/,
@@ -64,6 +60,17 @@ export function usePageSeo() {
   const { pathname } = useLocation()
 
   useEffect(() => {
+    const serviceMatch = pathname.match(/^\/services\/([^/]+)/)
+    if (serviceMatch) {
+      const s = SOLUTIONS.find((x) => x.slug === serviceMatch[1])
+      if (s) {
+        document.title = `${s.title} | 라라워시`
+        const meta = document.querySelector('meta[name="description"]')
+        if (meta) meta.setAttribute('content', s.short)
+        return
+      }
+    }
+
     const found = TITLES.find((t) => t.match.test(pathname))
     const title = found?.title ?? '라라워시 | 지속가능한 깨끗함'
     const description =

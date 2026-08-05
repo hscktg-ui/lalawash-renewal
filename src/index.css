@@ -94,13 +94,6 @@ body {
   animation: lala-fade-up 0.7s ease-out 0.15s both;
 }
 
-.lala-benefit-line {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  animation: lala-benefit-in 15s ease-in-out infinite;
-}
-
 .lala-benefit-line:nth-child(2) {
   animation-delay: 3s;
 }
@@ -115,6 +108,17 @@ body {
 
 .lala-benefit-line:nth-child(5) {
   animation-delay: 12s;
+}
+
+.lala-benefit-line:nth-child(6) {
+  animation-delay: 15s;
+}
+
+.lala-benefit-line {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: lala-benefit-in 18s ease-in-out infinite;
 }
 
 .lala-marquee-track {

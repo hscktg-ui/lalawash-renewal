@@ -695,7 +695,6 @@ export const PARTNERS: { name: string; href?: string }[] = [
   { name: '성남FC' },
   { name: '부천캠퍼스컵' },
   { name: '안산카페거리' },
-  { name: '경기광역자활센터', href: 'https://gpsc.or.kr' },
 ]
 
 export const TRUST_BADGES = [
@@ -715,20 +714,20 @@ export const HOME_TRUST_LINKS = [
     cta: '인증서 보기',
   },
   {
-    title: '초순수물(UPW) 6단계 세척',
+    title: '초순수물(UPW)을 사용한 6단계 세척시스템',
     desc: '세척의 안정성을 높입니다',
     to: '/services#wash',
     cta: '세척시스템 보기',
   },
   {
-    title: '다회용기 소재 안전성·위생성',
-    desc: '식약처 기준 살균소독검사',
+    title: '다회용기 소재 안전성&위생성검사',
+    desc: '경기도보건환경연구원 연 2회 정기검사 실시',
     to: '/services#hygiene',
     cta: '검사결과 보기',
   },
   {
-    title: '매일 실시하는 검사',
-    desc: 'ATP · 온도라벨 · 잔류세제',
+    title: '식약처 기준에 따른 살균소독검사',
+    desc: 'ATP검사, 온도라벨, 잔류세제 검사 매일 실시',
     to: '/services#hygiene',
     cta: '검사항목 보기',
   },

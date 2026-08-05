@@ -40,16 +40,17 @@ function usePrefersReducedMotion() {
   return reduced
 }
 
-const HERO_ROLLING = [
-  '장례식장 · 빈소 다회용기 순환 현장',
-  '축제·행사 · 반납부스 운영 사례',
-  '학교·기업 식판 세척 운영',
-  '공공기관·카페 다회용컵 순환',
-  '유아식판 · 안심 세척 케어',
-]
+/** PDF: 유형별 다회용기 이용사례 롤링 */
+const HERO_CASES = SOLUTIONS.map((s) => ({
+  slug: s.slug,
+  title: s.title,
+  short: s.short,
+  image: s.image,
+}))
 
 export default function HomePage() {
   const [impactOn, setImpactOn] = useState(false)
+  const [caseIdx, setCaseIdx] = useState(0)
   const impactRef = useRef<HTMLDivElement>(null)
   const washCount = useCountUp(IMPACT[0].value, impactOn)
   const reducedMotion = usePrefersReducedMotion()
@@ -64,6 +65,15 @@ export default function HomePage() {
     return () => io.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (reducedMotion) return
+    const id = window.setInterval(() => {
+      setCaseIdx((i) => (i + 1) % HERO_CASES.length)
+    }, 4000)
+    return () => window.clearInterval(id)
+  }, [reducedMotion])
+
+  const activeCase = HERO_CASES[caseIdx]
   const heroVideoSrc =
     `https://www.youtube-nocookie.com/embed/${EXTERNAL.caseVideoId}` +
     `?autoplay=1&mute=1&controls=0&loop=1&playlist=${EXTERNAL.caseVideoId}` +
@@ -71,8 +81,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* 메인 상단 — PDF: 히어로에서 이용사례 영상 재생 */}
-      <section className="relative min-h-[88svh] overflow-hidden text-white">
+      {/* 메인 상단 — 영상 배경 + 유형별 이용사례 롤링 */}
+      <section className="relative min-h-[92svh] overflow-hidden text-white">
         {reducedMotion ? (
           <img
             src={IMAGES.hero}
@@ -98,49 +108,90 @@ export default function HomePage() {
             </div>
           </>
         )}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.55)_0%,rgba(11,31,46,0.28)_42%,rgba(11,31,46,0.72)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(15,45,69,0.45)_0%,transparent_55%)]" />
-        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:justify-center md:pb-24">
-          <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
-            {BRAND.slogan}
-          </p>
-          <h1 className="lala-fade-up mt-4 max-w-4xl whitespace-pre-line text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            {BRAND.heroTitle}
-          </h1>
-          <p className="lala-fade-up-delay mt-5 max-w-2xl text-lg font-medium text-lala-50 md:text-xl">
-            {BRAND.heroLead}
-          </p>
-          <p className="lala-fade-up-delay mt-3 max-w-2xl text-base leading-relaxed text-lala-50/90 md:text-lg">
-            {BRAND.heroDesc}
-          </p>
-          <div className="lala-fade-up-delay relative mt-6 h-8 overflow-hidden md:h-9">
-            {HERO_ROLLING.map((line) => (
-              <p key={line} className="lala-benefit-line text-sm font-medium text-lala-100 md:text-base">
-                {line}
-              </p>
-            ))}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.5)_0%,rgba(11,31,46,0.22)_38%,rgba(11,31,46,0.78)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(15,45,69,0.4)_0%,transparent_58%)]" />
+
+        <div className="relative mx-auto flex min-h-[92svh] max-w-6xl flex-col justify-end gap-10 px-5 pb-12 pt-28 md:justify-center md:pb-16">
+          <div className="max-w-3xl">
+            <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
+              {BRAND.slogan}
+            </p>
+            <h1 className="lala-fade-up mt-4 whitespace-pre-line text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+              {BRAND.heroTitle}
+            </h1>
+            <p className="lala-fade-up-delay mt-5 text-lg font-medium text-lala-50 md:text-xl">
+              {BRAND.heroLead}
+            </p>
+            <p className="lala-fade-up-delay mt-3 text-base leading-relaxed text-lala-50/90 md:text-lg">
+              {BRAND.heroDesc}
+            </p>
+            <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-lala-900"
+              >
+                다회용기 서비스 소개 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
+              >
+                다회용기서비스 신청하기
+              </Link>
+            </div>
           </div>
-          <div className="lala-fade-up-delay mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-lala-900"
-            >
-              다회용기 서비스 소개 <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href={EXTERNAL.caseVideo}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
-            >
-              이용사례 영상 보기
-            </a>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 px-7 py-3.5 text-sm font-semibold text-white"
-            >
-              서비스 신청하기
-            </Link>
+
+          {/* 유형별 이용사례 롤링 배너 */}
+          <div className="lala-fade-up-delay">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-xs font-semibold tracking-[0.14em] text-lala-200 uppercase">
+                유형별 다회용기 이용사례
+              </p>
+              <a
+                href={EXTERNAL.caseVideo}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-semibold text-lala-100 underline underline-offset-2 hover:text-white"
+              >
+                영상 크게 보기
+              </a>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+              <Link
+                to={`/services/${activeCase.slug}`}
+                className="group relative overflow-hidden rounded-2xl ring-1 ring-white/25"
+              >
+                <img
+                  src={activeCase.image}
+                  alt=""
+                  className="h-48 w-full object-cover transition duration-700 group-hover:scale-[1.03] md:h-56"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-lala-900/90 via-lala-900/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="text-xs font-bold text-lala-200">
+                    0{caseIdx + 1} / 0{HERO_CASES.length}
+                  </p>
+                  <p className="mt-1 text-lg font-extrabold md:text-xl">{activeCase.title}</p>
+                  <p className="mt-1 text-sm text-lala-50/90">{activeCase.short}</p>
+                </div>
+              </Link>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2">
+                {HERO_CASES.map((c, i) => (
+                  <button
+                    key={c.slug}
+                    type="button"
+                    onClick={() => setCaseIdx(i)}
+                    className={`rounded-xl px-3 py-3 text-left text-xs font-semibold transition ring-1 ${
+                      i === caseIdx
+                        ? 'bg-white text-lala-900 ring-white'
+                        : 'bg-white/10 text-lala-50 ring-white/15 hover:bg-white/15'
+                    }`}
+                  >
+                    {c.title.replace(' 대여 및 세척', '').replace(' 대여', '')}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -168,7 +219,9 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
-              <p className="text-xs font-semibold tracking-wider text-lala-300 uppercase">함께하는 기관</p>
+              <p className="text-xs font-semibold tracking-wider text-lala-300 uppercase">
+                라라워시와 함께하는 기관
+              </p>
               <PartnerMarquee dark className="mt-4" />
             </div>
           </div>
@@ -177,7 +230,7 @@ export default function HomePage() {
 
       <PartnerLogoWall />
 
-      {/* 메인 중단 — 위생·인증 */}
+      {/* 메인 중단 — 위생·인증 (PDF 문구) */}
       <section className="px-5 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold text-lala-600">안심 위생</p>
@@ -197,7 +250,7 @@ export default function HomePage() {
                 to={card.to}
                 className="group flex flex-col border-t-2 border-lala-600 bg-slate-50 p-6 transition hover:bg-lala-50"
               >
-                <h3 className="text-lg font-bold text-ink">{card.title}</h3>
+                <h3 className="text-base font-bold leading-snug text-ink md:text-lg">{card.title}</h3>
                 <p className="mt-2 flex-1 text-sm text-muted">{card.desc}</p>
                 <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-lala-600 group-hover:gap-2">
                   {card.cta} <ArrowRight className="h-4 w-4" />
@@ -244,7 +297,7 @@ export default function HomePage() {
       {/* 메인 하단 CTA */}
       <section className="relative overflow-hidden px-5 py-20 text-white">
         <img src={IMAGES.about} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-lala-900/85" />
+        <div className="absolute inset-0 bg-lala-900/80" />
         <div className="relative mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
             지금 라라워시와 함께

@@ -137,7 +137,10 @@ export function Layout() {
             <p className="mt-2">{CONTACT.hq}</p>
             <p className="mt-1">T. {CONTACT.phone}</p>
             <p>{CONTACT.email}</p>
-            <p className="mt-3">
+            <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+              <Link to="/about" className="font-semibold text-lala-700 hover:text-lala-600">
+                본사 바로가기
+              </Link>
               <a
                 href={EXTERNAL.companyProfile}
                 download={EXTERNAL.companyProfileName}
