@@ -331,10 +331,7 @@ export default function HomePage() {
                   <p className="text-xs font-bold text-lala-500">0{i + 1}</p>
                   <h3 className="mt-1 text-lg font-bold text-ink">{s.title}</h3>
                   <p className="mt-2 text-sm text-muted">{s.short}</p>
-                  {s.pending && (
-                    <p className="mt-2 text-xs font-semibold text-amber-700">맞춤 상담 · 상세 안내 준비 중</p>
-                  )}
-                  {s.cases?.[0] && !s.pending && (
+                  {s.cases?.[0] && (
                     <p className="mt-2 text-xs font-semibold text-lala-700">{s.cases[0]}</p>
                   )}
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600">

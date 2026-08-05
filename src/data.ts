@@ -54,7 +54,7 @@ export const IMAGES = {
   platesRack: '/pdf-assets/plates-rack.jpg',
   funeralSite: '/pdf-assets/funeral-site.jpg',
   funeralHospital: '/pdf-assets/funeral-hospital.jpg',
-  dishesSet: '/pdf-assets/dishes-set.jpg',
+  dishesSet: '/official-assets/funeral-dishes.jpg',
   deliveryTruck: '/pdf-assets/delivery-truck.jpg',
   activitySbs: '/pdf-assets/activity-sbs.jpg',
   activityCup: '/pdf-assets/activity-cup.jpg',
@@ -67,10 +67,15 @@ export const IMAGES = {
   brandBuilding: '/pdf-assets/brand-building.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
   ultrasonicMachine: '/pdf-assets/ultrasonic-machine.jpg',
-  /** 실사진이 없거나 해상도가 부족한 자리에 쓰는 브랜드 일러스트 */
-  cupIllustration: '/illustrations/cup.jpg',
+  /** 기존 공식 사이트에서 확보한 고해상도 제품·서비스 사진 */
+  reusableCups: '/official-assets/reusable-cups.jpg',
+  cateringHero: '/official-assets/catering-hero.jpg',
+  cateringPremium: '/official-assets/catering-premium.jpg',
+  cateringEconomy: '/official-assets/catering-economy.jpg',
+  cateringDrink: '/official-assets/catering-drink.jpg',
+  cateringUse: '/official-assets/catering-use.jpg',
+  /** 공식 실사진이 없는 자리에 쓰는 브랜드 일러스트 */
   kidsTrayIllustration: '/illustrations/kids-tray.jpg',
-  cateringIllustration: '/illustrations/catering.jpg',
 }
 
 /** PDF 구성안 상단 3대 카테고리 */
@@ -134,7 +139,6 @@ export type Solution = {
   points: string[]
   process: { step: string; title: string; desc: string }[]
   cases?: string[]
-  pending?: boolean
   /** PDF 상세 블록 */
   featureBlocks?: { title: string; desc: string }[]
   listBlocks?: { title: string; items: string[] }[]
@@ -243,7 +247,7 @@ export const SOLUTIONS: Solution[] = [
     title: '오피스·카페 다회용컵 대여 및 세척',
     short: '지자체청사, 공공기관, 사무실, 카페에서 편리하게 사용해보세요.',
     desc: '경기도 일회용품 저감 정책에 따라 공공기관을 중심으로 다회용품 사용을 추진합니다. 사용한 다회용기는 라라워시 반납함에 넣어주시면, 직접 수거 후 6단계 세척 프로세스를 거쳐 다시 공급해 드립니다.',
-    image: IMAGES.cupIllustration,
+    image: IMAGES.reusableCups,
     tags: ['다회용컵', '공공기관', '카페'],
     points: [
       '경기도청 다회용컵 사업 선정 (2024.3~2027.2)',
@@ -307,24 +311,46 @@ export const SOLUTIONS: Solution[] = [
     slug: 'catering',
     title: '라라워시 케이터링',
     short: '일회용기가 아닌 다회용기로, 이젠 케이터링도 라라워시입니다.',
-    desc: '일회용 쓰레기를 줄이는 다회용기 기반 케이터링 서비스입니다. 일정·인원·현장 동선과 필요한 용기 구성을 알려주시면 맞춤형으로 안내드립니다.',
-    image: IMAGES.cateringIllustration,
+    desc: '안전한 다회용기만 사용하고 상품 배송부터 용기 회수까지 한 번에 진행하는 친환경 케이터링 서비스입니다. 샌드위치·과일·디저트 구성과 다회용컵 음료를 함께 선택할 수 있습니다.',
+    image: IMAGES.cateringHero,
     tags: ['케이터링', '다회용기'],
-    points: ['다회용기 기반 케이터링', '행사·기업·기관 맞춤 상담', '현장 규모와 동선을 고려한 용기 구성'],
+    points: [
+      '일회용기 없이 다회용기로 제공',
+      '상품 배송부터 다회용기 회수까지 원스톱 운영',
+      '최소 7일 전 예약 · 50인분 이상 주문',
+      '경기도 전 지역 무료 배송',
+    ],
     process: [
-      { step: '01', title: '상담', desc: '일정·인원·용기 구성을 상담합니다.' },
-      { step: '02', title: '견적', desc: '맞춤 견적을 안내합니다.' },
-      { step: '03', title: '준비', desc: '다회용기와 운영을 준비합니다.' },
-      { step: '04', title: '현장 운영', desc: '행사 현장에서 서비스를 제공합니다.' },
-      { step: '05', title: '회수·정산', desc: '회수 후 세척·정산합니다.' },
+      { step: '01', title: '예약 상담', desc: '일정·인원·메뉴와 음료를 상담합니다.' },
+      { step: '02', title: '주문 확정', desc: '최소 7일 전, 50인분 이상으로 주문을 확정합니다.' },
+      { step: '03', title: '상품 준비', desc: '선택한 메뉴를 다회용기에 담아 준비합니다.' },
+      { step: '04', title: '무료 배송', desc: '경기도 전 지역 행사·기관으로 배송합니다.' },
+      { step: '05', title: '용기 회수', desc: '사용한 다회용기를 회수해 전문 세척합니다.' },
     ],
     featureBlocks: [
       {
-        title: '케이터링도 다회용기로',
-        desc: '일회용 쓰레기 없이 품격 있는 케이터링을 준비합니다. 용기 종류·인원·동선에 맞춰 상담합니다.',
+        title: '진정한 친환경',
+        desc: '안전한 다회용기만 사용해 일회용 쓰레기를 줄이고, 친환경 재료의 범위를 지속적으로 넓혀 갑니다.',
+      },
+      {
+        title: '배송부터 회수까지 편리하게',
+        desc: '상품 배송부터 사용한 다회용기 회수까지 원스톱으로 진행해 현장 운영 부담을 줄입니다.',
       },
     ],
-    pending: true,
+    listBlocks: [
+      {
+        title: '메뉴 구성',
+        items: [
+          '프리미엄 · 샌드위치 2종, 과일 3종, 디저트 3종 · 12,900원/인',
+          '이코노미 · 샌드위치 2종, 과일 3종, 디저트 3종 · 10,900원/인',
+          '음료 · 커피 또는 주스, 다회용컵 제공 · 2,000원/인',
+        ],
+      },
+      {
+        title: '주문 안내',
+        items: ['최소 7일 전 예약 필수', '50인분 이상 주문 가능', '경기도 전 지역 무료 배송'],
+      },
+    ],
   },
 ]
 
@@ -830,7 +856,7 @@ export const FAQ = [
   },
   {
     q: '어떤 서비스를 이용할 수 있나요?',
-    a: '장례식장용기, 축제·행사, 식판 세척, 다회용컵, 유아식판을 이용할 수 있습니다. 케이터링은 일정·인원·용기 구성에 맞춰 상담으로 안내드립니다.',
+    a: '장례식장용기, 축제·행사, 식판 세척, 다회용컵, 유아식판, 친환경 케이터링을 이용할 수 있습니다. 케이터링은 최소 7일 전, 50인분 이상 주문을 기준으로 상담합니다.',
   },
   {
     q: '이용 절차는 어떻게 되나요?',

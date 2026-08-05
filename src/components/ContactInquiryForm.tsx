@@ -60,7 +60,7 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
               <option value="급식·식판">급식·식판</option>
               <option value="장례식장">장례식장</option>
               <option value="유아식판">유아식판</option>
-              <option value="케이터링(맞춤 상담)">케이터링(맞춤 상담)</option>
+              <option value="케이터링">케이터링</option>
               <option value="가맹·지점">가맹·지점</option>
               <option value="기타">기타</option>
             </select>
@@ -119,7 +119,7 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
           <option value="급식·식판">급식·식판</option>
           <option value="장례식장">장례식장</option>
           <option value="유아식판">유아식판</option>
-          <option value="케이터링(맞춤 상담)">케이터링(맞춤 상담)</option>
+          <option value="케이터링">케이터링</option>
           <option value="가맹·지점">가맹·지점</option>
           <option value="기타">기타</option>
         </select>

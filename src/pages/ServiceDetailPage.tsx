@@ -19,12 +19,6 @@ export default function ServiceDetailPage() {
     <>
       <PageHero eyebrow="다회용기 서비스" title={s.title} desc={s.short} image={s.image} />
 
-      {s.pending && (
-        <div className="border-b border-amber-100 bg-amber-50/90 px-5 py-4 text-center text-sm text-amber-950">
-          케이터링은 일정·인원·현장 동선과 용기 구성에 따라 맞춤 안내드립니다.
-        </div>
-      )}
-
       <Section title="서비스 소개">
         <div className="grid gap-8 lg:grid-cols-2">
           <img
@@ -218,6 +212,40 @@ export default function ServiceDetailPage() {
                 title: '세척 라인',
                 image: IMAGES.sikpanMachine,
                 caption: '초순수 고온수로 6단계 세척합니다.',
+              },
+            ]}
+            columns={2}
+          />
+        </Section>
+      )}
+
+      {s.slug === 'catering' && (
+        <Section
+          title="메뉴와 다회용기 구성"
+          desc="기존 라라워시 공식 사이트에 안내된 메뉴입니다. 예약 전 상담을 통해 최신 구성과 가격을 확인해 주세요."
+          className="bg-slate-50"
+        >
+          <PhotoGallery
+            items={[
+              {
+                title: '프리미엄 세트',
+                image: IMAGES.cateringPremium,
+                caption: '샌드위치 2종·과일 3종·디저트 3종으로 구성합니다.',
+              },
+              {
+                title: '이코노미 세트',
+                image: IMAGES.cateringEconomy,
+                caption: '간편한 행사와 회의에 맞춘 다회용 도시락 구성입니다.',
+              },
+              {
+                title: '다회용컵 음료',
+                image: IMAGES.cateringDrink,
+                caption: '커피 또는 주스를 다회용컵에 함께 제공합니다.',
+              },
+              {
+                title: '일회용기 없는 식사',
+                image: IMAGES.cateringUse,
+                caption: '사용 후에는 용기를 회수해 전문 세척합니다.',
               },
             ]}
             columns={2}
