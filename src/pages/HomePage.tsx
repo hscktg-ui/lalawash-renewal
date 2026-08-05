@@ -98,7 +98,8 @@ export default function HomePage() {
             </div>
           </>
         )}
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(15,45,69,0.88)_0%,rgba(30,122,173,0.45)_55%,rgba(15,45,69,0.55)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.55)_0%,rgba(11,31,46,0.28)_42%,rgba(11,31,46,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(15,45,69,0.45)_0%,transparent_55%)]" />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:justify-center md:pb-24">
           <p className="lala-fade-up text-sm font-semibold tracking-[0.14em] text-lala-200">
             {BRAND.slogan}

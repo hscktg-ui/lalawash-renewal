@@ -18,14 +18,21 @@ export default function CertHygienePage() {
       >
         <div className="grid gap-5 md:grid-cols-3">
           {CERTIFICATIONS.map((c) => (
-            <article key={c.title} className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
-              <h3 className="text-lg font-bold text-lala-800">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{c.desc}</p>
+            <article key={c.title} className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+              <div className="bg-gradient-to-br from-lala-800 to-lala-600 px-6 py-8 text-center text-white">
+                <p className="text-xs font-semibold tracking-[0.16em] text-lala-200">CERTIFICATION</p>
+                <p className="mt-3 text-2xl font-extrabold tracking-tight">{c.badge}</p>
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-lala-800">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{c.desc}</p>
+              </div>
             </article>
           ))}
         </div>
         <p className="mt-6 text-sm text-muted">
-          인증서 이미지는 준비되는 대로 업데이트됩니다. 상세 자료는{' '}
+          인증서 스캔본(이미지)은 자료 확보 후 게시합니다. 현재는 인증 요지와 위생 체계를 먼저 안내드리며, 원본
+          확인이 필요하시면{' '}
           <Link to="/contact" className="font-semibold text-lala-600">
             견적·상담 문의
           </Link>
@@ -34,7 +41,7 @@ export default function CertHygienePage() {
       </Section>
 
       <Section title="공인기관 위생 검사 및 자체 검증" className="bg-slate-50">
-        <div className="mb-8 rounded-2xl bg-lala-700 p-7 text-white">
+        <div className="mb-8 rounded-2xl bg-gradient-to-br from-lala-900 to-lala-700 p-7 text-white">
           <h3 className="text-lg font-bold">경기도보건환경연구원 정기 검사</h3>
           <p className="mt-3 text-sm leading-relaxed text-lala-100">
             라라워시 다회용기는 연 2회 경기도보건환경연구원의 철저한 정기검사를 실시합니다. 이를 통해
@@ -51,6 +58,11 @@ export default function CertHygienePage() {
             <article key={h.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
               <h4 className="font-bold text-ink">{h.title}</h4>
               <p className="mt-2 text-sm text-muted">{h.desc}</p>
+              <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600">
+                <span className="font-semibold text-lala-700">상세내용</span>
+                <br />
+                {h.detail}
+              </p>
             </article>
           ))}
         </div>
@@ -69,10 +81,7 @@ export default function CertHygienePage() {
             </div>
           ))}
         </div>
-        <Link
-          to="/services"
-          className="mt-8 inline-flex text-sm font-bold text-lala-600"
-        >
+        <Link to="/services#wash" className="mt-8 inline-flex text-sm font-bold text-lala-600">
           다회용기 서비스에서 세척·위생 더 보기 →
         </Link>
       </Section>

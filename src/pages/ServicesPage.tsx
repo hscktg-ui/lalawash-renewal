@@ -77,6 +77,11 @@ export default function ServicesPage() {
             <article key={h.title} className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
               <h3 className="font-bold text-ink">{h.title}</h3>
               <p className="mt-2 text-sm text-muted">{h.desc}</p>
+              <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600">
+                <span className="font-semibold text-lala-700">상세내용</span>
+                <br />
+                {h.detail}
+              </p>
             </article>
           ))}
         </div>

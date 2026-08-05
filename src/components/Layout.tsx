@@ -3,12 +3,14 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { BRAND, CONTACT, IMAGES, NAV_GROUPS } from '../data'
 import { EXTERNAL } from '../lib/content'
+import { usePageSeo } from '../lib/seo'
 import { BrandMark } from './BrandMark'
 
 export function Layout() {
   const [open, setOpen] = useState(false)
   const [mobileGroup, setMobileGroup] = useState<string | null>(null)
   const location = useLocation()
+  usePageSeo()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -193,10 +195,12 @@ export function Layout() {
                 href={EXTERNAL.youtube}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-red-600 text-[11px] font-extrabold tracking-tight text-white transition hover:bg-red-700"
+                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#ff0000] text-white transition hover:brightness-110"
                 aria-label="유튜브"
               >
-                YT
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden>
+                  <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
+                </svg>
               </a>
             </div>
             <p className="mt-4 text-xs">대표 {CONTACT.ceo}</p>
@@ -232,11 +236,11 @@ export function PageHero({
       {image && (
         <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-35" />
       )}
-      <div className="absolute inset-0 bg-gradient-to-r from-lala-900/95 via-lala-800/85 to-lala-700/70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-lala-900/85 via-lala-900/45 to-lala-800/25" />
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <p className="text-sm font-semibold text-lala-300">{eyebrow}</p>
+        <p className="text-sm font-semibold text-lala-200">{eyebrow}</p>
         <h1 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-5xl">{title}</h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-lala-100 md:text-lg">{desc}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">{desc}</p>
       </div>
     </section>
   )

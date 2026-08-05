@@ -21,7 +21,10 @@ export default function FaqPage() {
           ))}
         </div>
         <div className="mt-10 rounded-2xl bg-slate-50 p-6 text-sm text-muted ring-1 ring-slate-200">
-          <p>더 궁금한 점이 있으시면 견적문의로 남겨 주세요. 추가 질문·답변 목록은 준비 중입니다.</p>
+          <p>
+            위 항목은 사이트에서 바로 안내 가능한 자주 묻는 질문입니다. 광고주가 정리 중인 추가 Q&A가 오면
+            이어서 반영합니다.
+          </p>
           <Link to="/contact" className="mt-4 inline-flex font-bold text-lala-600">
             견적문의하기 →
           </Link>
