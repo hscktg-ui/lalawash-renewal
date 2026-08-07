@@ -11,7 +11,14 @@ import { ENV_SCENARIO, HISTORY, HOW_TO, IMPACT } from '../data'
 
 const howToIcons = [PhoneCall, CheckCircle2, Truck, Utensils, Recycle, Sparkles]
 
-export function ImpactSummary({ compact = false }: { compact?: boolean }) {
+export function ImpactSummary({
+  compact = false,
+  onDark = false,
+}: {
+  compact?: boolean
+  /** 다크 섹션 위 — 카드 대비를 높인다 (패널 B) */
+  onDark?: boolean
+}) {
   const items = compact ? IMPACT.slice(1) : IMPACT
 
   return (
@@ -19,13 +26,27 @@ export function ImpactSummary({ compact = false }: { compact?: boolean }) {
       {items.map((item) => (
         <article
           key={item.label}
-          className="rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-6 text-white shadow-sm"
+          className={
+            onDark
+              ? 'rounded-2xl bg-white p-6 text-lala-900 ring-1 ring-white/25'
+              : 'rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-6 text-white shadow-sm'
+          }
         >
-          <p className="text-2xl font-extrabold tracking-tight md:text-3xl">
+          <p
+            className={`text-2xl font-extrabold tracking-tight md:text-3xl ${
+              onDark ? 'text-lala-900' : ''
+            }`}
+          >
             {item.value.toLocaleString('ko-KR')}
-            <span className="ml-1 text-sm font-semibold text-lala-100">{item.suffix}</span>
+            <span
+              className={`ml-1 text-sm font-semibold ${onDark ? 'text-lala-600' : 'text-lala-100'}`}
+            >
+              {item.suffix}
+            </span>
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-lala-50">{item.label}</p>
+          <p className={`mt-2 text-sm leading-relaxed ${onDark ? 'text-slate-600' : 'text-lala-50'}`}>
+            {item.label}
+          </p>
         </article>
       ))}
     </div>

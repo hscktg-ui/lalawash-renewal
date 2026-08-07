@@ -38,12 +38,8 @@ export default function AboutPage() {
           <img src={IMAGES.sikpanMachine} alt="라라워시 식판 세척" className="h-80 w-full rounded-3xl object-cover" />
           <div className="space-y-5 text-pretty break-keep text-sm leading-relaxed text-muted md:text-base">
             <p>
-              지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고, 지역 내 다회용기 순환체계 정착으로
-              취약계층의 일자리 창출 및 지역경제에 기여합니다.
-            </p>
-            <p>
-              경기도 {NETWORK.regions}개 지역 · {NETWORK.sites}개 전문세척장 인프라로, 가장 가까운 곳에서
-              가장 신속하게 움직입니다.
+              초순수(UPW) 6단계 세척과 경기도 {NETWORK.regions}개 지역 · {NETWORK.sites}개
+              전문세척장으로, 가장 가까운 곳에서 가장 신속하게 수거·세척·재공급합니다.
             </p>
             <CompanyProfileDownload label="회사소개서 다운받기" />
           </div>

@@ -60,7 +60,7 @@ export default function HomePage() {
             <p className="mb-5 text-sm font-semibold tracking-wide text-lala-300">
               라라워시 다회용기 자원순환 성과
             </p>
-            <ImpactSummary />
+            <ImpactSummary onDark />
             <p className="mt-3 text-xs text-slate-400">※ 연혁 및 성과 · 회사소개서 기준</p>
           </div>
         </div>

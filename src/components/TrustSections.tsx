@@ -155,7 +155,7 @@ export function ActivityMarquee({ className = '' }: { className?: string }) {
   const row = [...FIELD_ACTIVITIES, ...FIELD_ACTIVITIES]
   return (
     <div className={`overflow-hidden ${className}`} aria-label="현장 이용사례">
-      <div className="lala-marquee-track gap-3 py-1">
+      <div className="lala-marquee-track-slow gap-3 py-1">
         {row.map((item, i) => (
           <figure
             key={`${item.title}-${i}`}

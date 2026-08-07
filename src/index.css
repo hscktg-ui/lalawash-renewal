@@ -127,7 +127,14 @@ body {
   animation: lala-marquee 40s linear infinite;
 }
 
-.lala-marquee-track:hover {
+.lala-marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: lala-marquee 55s linear infinite;
+}
+
+.lala-marquee-track:hover,
+.lala-marquee-track-slow:hover {
   animation-play-state: paused;
 }
 
@@ -141,7 +148,8 @@ body {
     position: static;
   }
 
-  .lala-marquee-track {
+  .lala-marquee-track,
+  .lala-marquee-track-slow {
     animation: none;
     flex-wrap: wrap;
     width: 100%;
