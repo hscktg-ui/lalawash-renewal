@@ -126,10 +126,10 @@ export const NAV_GROUPS = [
 export const NAV = NAV_GROUPS.flatMap((g) => g.children.map((c) => ({ to: c.to, label: c.label })))
 
 export const IMPACT = [
-  { label: '라라워시가 세척한 다회용기(연간)', value: 12000000, suffix: '개' },
+  { label: '연간 다회용기 세척', value: 12000000, suffix: '개' },
   { label: '줄어든 탄소', value: 604500, suffix: ' kgCO₂eq' },
-  { label: '소나무로 환산하면', value: 66428, suffix: '그루' },
-  { label: '함께하는 지역 일자리', value: 270, suffix: '명' },
+  { label: '소나무 환산', value: 66428, suffix: '그루' },
+  { label: '지역 일자리', value: 270, suffix: '명' },
 ]
 
 /** PDF 기준: 경기도 15개 지역 · 21개 지점 */
@@ -401,6 +401,11 @@ export type Branch = {
   pendingAddress?: boolean
 }
 
+/** 주소로 네이버 지도 검색 링크 생성 (단축 URL 없을 때) */
+function mapSearch(address: string) {
+  return `https://map.naver.com/p/search/${encodeURIComponent(address)}`
+}
+
 /** PDF: 부천 4곳·수원 2곳 표시, 규모화세척장·파주 삭제 */
 export const BRANCHES: Branch[] = [
   {
@@ -489,14 +494,14 @@ export const BRANCHES: Branch[] = [
     address: '시흥시 오동마을로6번길 4',
     tel: '031-315-7151',
     services: '식판, 유아식판',
-    map: '',
+    map: mapSearch('시흥시 오동마을로6번길 4'),
   },
   {
     name: '시흥작은자리',
     address: '시흥시 호현로 155-10',
     tel: '031-313-2733, 010-4060-1023',
     services: '다회용컵, 축제용기, 다회용기 판매',
-    map: '',
+    map: mapSearch('시흥시 호현로 155-10'),
   },
   {
     name: '안산',
@@ -531,14 +536,14 @@ export const BRANCHES: Branch[] = [
     address: '의정부시 추동로108번길 31',
     tel: '031-847-4400, 010-3301-7274',
     services: '다회용컵, 유아식판',
-    map: '',
+    map: mapSearch('의정부시 추동로108번길 31'),
   },
   {
     name: '이천',
     address: '이천시 원적로 458',
     tel: '031-8011-2385',
     services: '다회용컵, 축제용기, 장례용기',
-    map: '',
+    map: mapSearch('이천시 원적로 458'),
   },
   {
     name: '포천',
@@ -552,7 +557,7 @@ export const BRANCHES: Branch[] = [
     address: '평택시 고덕면 문곡리 569-5, C동',
     tel: '031-658-4788',
     services: '축제용기, 장례용기, 유아식판, 다회용컵, 식판',
-    map: 'https://naver.me/xtgnx3rB',
+    map: mapSearch('평택시 고덕면 문곡리 569-5'),
   },
 ]
 
@@ -683,6 +688,9 @@ export const ENV_SCENARIO = {
       value: '약 11.3억km (서울–부산 약 140만 7,517회 왕복)',
     },
   ],
+  /** PDF ※ 각주 */
+  footnote:
+    '※ 서울–부산 왕복거리 800km, 배출부하 0.1kgCO₂e./km 기준. 출처: 라라워시 환경평가 및 사회적가치 성과측정 연구(아주대학교, 2023) 등.',
 }
 
 export const CERTIFICATIONS = [

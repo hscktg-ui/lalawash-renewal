@@ -50,9 +50,7 @@ export default function HistoryPage() {
         desc={ENV_SCENARIO.title}
       >
         <EnvironmentalComparison />
-        <p className="mt-6 text-xs text-slate-400">
-          ※ 출처: 라라워시 환경평가 및 사회적가치 성과측정 연구(아주대학교, 2023) 등 PDF 구성안 수치.
-        </p>
+        <p className="mt-6 text-xs text-slate-400">{ENV_SCENARIO.footnote}</p>
       </Section>
 
       <PortfolioGallery />

@@ -1,9 +1,16 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Play } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
+import { EXTERNAL } from '../lib/content'
 
 export default function ServicesPage() {
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const embedSrc =
+    `https://www.youtube-nocookie.com/embed/${EXTERNAL.caseVideoId}` +
+    `?autoplay=1&rel=0&modestbranding=1`
+
   return (
     <>
       <PageHero
@@ -44,10 +51,51 @@ export default function ServicesPage() {
       </Section>
 
       <Section
+        title="이용사례 영상"
+        desc="유형별 다회용기 현장 이용사례를 영상으로 확인해 보세요."
+        className="bg-slate-50"
+      >
+        <div className="relative aspect-video overflow-hidden rounded-2xl bg-lala-900 ring-1 ring-slate-200">
+          {videoPlaying ? (
+            <iframe
+              title="라라워시 다회용기 이용사례"
+              src={embedSrc}
+              className="absolute inset-0 h-full w-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setVideoPlaying(true)}
+              className="group absolute inset-0 flex items-center justify-center"
+            >
+              <img
+                src={IMAGES.video}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-60"
+              />
+              <span className="relative inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-900 transition group-hover:scale-[1.02]">
+                <Play className="h-4 w-4" /> 영상 재생
+              </span>
+            </button>
+          )}
+        </div>
+        <a
+          href={EXTERNAL.caseVideo}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-lala-600"
+        >
+          YouTube에서 크게 보기 <ArrowRight className="h-4 w-4" />
+        </a>
+      </Section>
+
+      <Section
         id="wash"
         title="라라워시 다회용기 세척 프로세스"
         desc="전 지점에서 동일한 초순수(UPW) 6단계 세척 기준을 적용합니다."
-        className="bg-slate-50 scroll-mt-24"
+        className="scroll-mt-24"
       >
         <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WASH_STEPS.map((s, i) => (
@@ -66,11 +114,11 @@ export default function ServicesPage() {
         id="hygiene"
         title="라라워시 위생관리"
         desc="식약처 위생지침에 근거한 ATP·잔류세제·온도라벨 검사를 매일 실시합니다."
-        className="scroll-mt-24"
+        className="scroll-mt-24 bg-slate-50"
       >
         <div className="grid gap-4 md:grid-cols-3">
           {HYGIENE_CHECKS.map((h) => (
-            <article key={h.title} className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
+            <article key={h.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
               <h3 className="font-bold text-ink">{h.title}</h3>
               <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{h.desc}</p>
             </article>

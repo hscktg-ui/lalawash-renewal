@@ -74,6 +74,9 @@ export default function HomePage() {
             경기도에서 친환경 활동을 실천하는 라라워시
           </h2>
           <ActivityMarquee className="mt-8" />
+          <p className="mt-3 text-xs text-slate-400">
+            ※ 현장 사진·캡션은 추가 전달 후 교체 예정입니다.
+          </p>
           <div className="mt-12">
             <p className="text-sm font-semibold text-lala-600">라라워시와 함께하는 기관</p>
             <PartnerMarquee className="mt-4" />
