@@ -7,11 +7,21 @@ export const BRAND = {
   tagline: '다회용기 대여세척 서비스',
   description:
     '지속가능한 깨끗함을 추구하며, 다회용기 대여·세척 서비스를 제공하는 경기도의 지역 브랜드입니다.',
-  heroTitle: '지구를 살리는 가장 깨끗한 습관',
-  heroLead: '당신의 일상에 ‘초록색 안전함’을 더하는 라라워시',
-  heroBridge: '한 번 쓰고 버려지는 일상에서 지구를 지키는 일상으로',
-  heroDesc:
-    '라라워시가 다회용기 토탈 솔루션으로 지속가능한 내일의 일상을 만들어갑니다.',
+  /** 26.08.07 추가 수정: 히어로 타이틀(최대) */
+  heroTitle: '지속가능한 깨끗함, 라라워시',
+  /** 히어로 본문 4줄 — 동일 크기 */
+  heroLines: [
+    '당신의 일상에 안전함을 더하는 라라워시',
+    '한 번 쓰고 버려지는 일상에서 지구를 지키는 일상으로',
+    '지구를 살리는 가장 깨끗한 습관 라라워시가',
+    '다회용기 토탈 솔루션으로 지속가능한 내일의 일상을 만들어갑니다.',
+  ],
+  /** 중상단 성과 섹션 */
+  impactHeadline: '하루 1번의 선택이, 100년의 변화를 만듭니다',
+  impactLines: [
+    '무심코 버린 일회용기가 쌓이면 탄소는 대기를 뜨겁게 만들고 산림이 사라집니다.',
+    '라라워시와 함께 오늘부터 다회용기로 바꿔보세요',
+  ],
 }
 
 /**
@@ -592,9 +602,10 @@ export const HISTORY = [
   ['2024~2026', '경기도청·지자체 오피스컵, 학교식판, 축제·장례식장 다회용기 순환 운영'],
 ]
 
+/** 현장 롤링용 — 최종 컷은 클라이언트 추가 전달 예정(26.08.07) */
 export const FIELD_ACTIVITIES = [
   {
-    title: 'SBS 공생의 법칙',
+    title: 'SBS 공생의 직장',
     caption: '방송 현장에 다회용기 대여·반납 부스를 운영했습니다.',
     image: IMAGES.activitySbs,
   },
@@ -607,6 +618,31 @@ export const FIELD_ACTIVITIES = [
     title: '사회적경제박람회',
     caption: '지역 자활센터와 함께 다회용기 순환 모델을 소개했습니다.',
     image: IMAGES.activityFair,
+  },
+  {
+    title: '축제 다회용기',
+    caption: '행사 음식에 맞는 다회용기를 현장 공급합니다.',
+    image: IMAGES.festivalProducts,
+  },
+  {
+    title: '반납 부스',
+    caption: '사용한 용기를 모아 세척장으로 순환시킵니다.',
+    image: IMAGES.festivalReturn,
+  },
+  {
+    title: '현장 운영',
+    caption: '대형 축제에서도 안정적으로 순환 운영합니다.',
+    image: IMAGES.festivalTent,
+  },
+  {
+    title: '장례식장 현장',
+    caption: '빈소 다회용기를 위생적으로 공급·수거합니다.',
+    image: IMAGES.funeralSite,
+  },
+  {
+    title: '식판 세척',
+    caption: '학교·급식 식판을 전문 공정으로 세척합니다.',
+    image: IMAGES.sikpanMachine,
   },
 ]
 
@@ -708,6 +744,10 @@ export const CORE_CAPABILITIES = [
   {
     title: '라라워시 전용 친환경세제',
     desc: '깨끗함과 안전함을 동시에 잡는 전용 친환경세제를 사용합니다.',
+  },
+  {
+    title: '지속가능한 일자리 창출',
+    desc: '지역 내 취약계층을 위한 일자리를 제공하는 사회적기업입니다.',
   },
 ]
 
@@ -813,7 +853,13 @@ export const TRUST_BADGES = [
 export const HOME_TRUST_LINKS = [
   {
     title: '국제 기준·인증',
-    desc: 'NSF 위생기준 준수, ISO 9001·ISO 14001',
+    /** 26.08.07: 세 줄로 표기 */
+    lines: [
+      'NSF 위생기준 준수',
+      'ISO 9001 품질경영시스템 인증',
+      'ISO 14001 환경경영시스템 인증',
+    ],
+    desc: 'NSF · ISO 9001 · ISO 14001',
     to: '/about/cert',
     cta: '기준·인증 보기',
   },
@@ -824,13 +870,13 @@ export const HOME_TRUST_LINKS = [
     cta: '세척 과정 보기',
   },
   {
-    title: '다회용기 소재 안전성·위생성 검사',
+    title: '다회용기 안정성 검사',
     desc: '경기도보건환경연구원 연 2회 정기검사 실시',
     to: '/about/cert#hygiene',
     cta: '검사 방법 보기',
   },
   {
-    title: '식약처 기준에 따른 살균소독검사',
+    title: '식약처 기준 살균소독 검사',
     desc: 'ATP검사, 온도라벨, 잔류세제 검사 매일 실시',
     to: '/about/cert#hygiene',
     cta: '검사항목 보기',

@@ -1,4 +1,5 @@
 import {
+  FIELD_ACTIVITIES,
   IMPACT_FORMULA,
   PARTNERS,
   PORTFOLIO_POLICY,
@@ -144,6 +145,34 @@ export function PartnerMarquee({
             </span>
           )
         })}
+      </div>
+    </div>
+  )
+}
+
+/** 26.08.07: 현장 이용사례 — 작은 썸네일 롤링 (기관 마퀴와 동일 패턴) */
+export function ActivityMarquee({ className = '' }: { className?: string }) {
+  const row = [...FIELD_ACTIVITIES, ...FIELD_ACTIVITIES]
+  return (
+    <div className={`overflow-hidden ${className}`} aria-label="현장 이용사례">
+      <div className="lala-marquee-track gap-3 py-1">
+        {row.map((item, i) => (
+          <figure
+            key={`${item.title}-${i}`}
+            className="inline-flex w-44 shrink-0 flex-col overflow-hidden rounded-xl bg-white ring-1 ring-slate-200 sm:w-52"
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              decoding="async"
+              className="h-28 w-full object-cover sm:h-32"
+            />
+            <figcaption className="px-3 py-2">
+              <p className="truncate text-xs font-bold text-ink">{item.title}</p>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   )

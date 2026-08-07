@@ -201,11 +201,6 @@ export function Layout() {
                 라라워시몰 바로가기
               </a>
             </p>
-            <p className="mt-1">
-              <Link to="/quote" className="hover:text-lala-600">
-                회원사 견적서
-              </Link>
-            </p>
           </div>
           <div className="text-sm text-muted">
             <p className="font-semibold text-ink">SNS</p>
@@ -263,7 +258,7 @@ export function PageHero({
   desc,
   image,
 }: {
-  eyebrow: string
+  eyebrow?: string
   title: string
   desc: string
   image?: string
@@ -275,8 +270,10 @@ export function PageHero({
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-lala-900/85 via-lala-900/45 to-lala-800/25" />
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <p className="text-sm font-semibold text-lala-200">{eyebrow}</p>
-        <h1 className="mt-3 max-w-[18em] text-balance break-keep text-3xl font-extrabold leading-tight tracking-tight md:text-5xl">
+        {eyebrow ? <p className="text-sm font-semibold text-lala-200">{eyebrow}</p> : null}
+        <h1
+          className={`${eyebrow ? 'mt-3' : ''} max-w-[18em] text-balance break-keep text-3xl font-extrabold leading-tight tracking-tight md:text-5xl`}
+        >
           {title}
         </h1>
         <p className="mt-4 max-w-[36rem] text-pretty break-keep text-base leading-[1.75] text-white/85 md:text-lg">

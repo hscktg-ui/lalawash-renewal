@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
-import { BRAND, CORE_CAPABILITIES, IMAGES, NETWORK } from '../data'
+import { CORE_CAPABILITIES, IMAGES, NETWORK } from '../data'
 
 const MISSIONS = [
   {
@@ -25,7 +25,6 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="라라워시 · 회사소개"
         title="편리함 때문에 포기했던 환경을 다시 생각합니다"
         desc="라라워시가 완벽한 세척 솔루션으로 일회용품 없는 지속가능한 일상을 만듭니다."
         image={IMAGES.about}
@@ -33,7 +32,7 @@ export default function AboutPage() {
 
       <Section
         title="라라워시 소개"
-        desc={`${BRAND.name}는 다회용기 대여부터 수거·세척·재공급까지 토탈 솔루션을 제공하는 경기도의 지역 브랜드입니다.`}
+        desc="라라워시는 다회용기 대여부터 수거·세척·재공급까지 토탈 솔루션을 제공합니다."
       >
         <div className="grid gap-8 lg:grid-cols-2">
           <img src={IMAGES.sikpanMachine} alt="라라워시 식판 세척" className="h-80 w-full rounded-3xl object-cover" />
@@ -41,9 +40,6 @@ export default function AboutPage() {
             <p>
               지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고, 지역 내 다회용기 순환체계 정착으로
               취약계층의 일자리 창출 및 지역경제에 기여합니다.
-            </p>
-            <p className="font-semibold text-ink">
-              소셜미션: 지속가능한 깨끗함, 지속가능한 일자리
             </p>
             <p>
               경기도 {NETWORK.regions}개 지역 · {NETWORK.sites}개 전문세척장 인프라로, 가장 가까운 곳에서
@@ -54,14 +50,14 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section title="비전 · 소셜미션" className="bg-slate-50">
+      <Section title="비전" className="bg-slate-50">
         <div className="mb-8 rounded-2xl bg-lala-700 p-8 text-white">
-          <p className="text-sm font-semibold text-lala-200">비전</p>
-          <p className="mt-3 text-lg leading-relaxed md:text-xl">
+          <p className="text-lg leading-relaxed md:text-xl">
             지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고 지역 내 다회용기 순환체계 정착으로
             취약계층의 일자리 창출 및 지역경제에 기여합니다.
           </p>
         </div>
+        <p className="mb-5 text-sm font-semibold text-lala-600">소셜미션</p>
         <div className="grid gap-5 md:grid-cols-3">
           {MISSIONS.map((m) => (
             <article key={m.title} className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
@@ -79,7 +75,7 @@ export default function AboutPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {CORE_CAPABILITIES.map((c, i) => (
             <article key={c.title} className="border-t-2 border-lala-600 pt-5">
-              <p className="text-xs font-bold text-lala-500">0{i + 1}</p>
+              <p className="text-xs font-bold text-lala-500">{String(i + 1).padStart(2, '0')}</p>
               <h3 className="mt-2 text-lg font-bold">{c.title}</h3>
               <p className="mt-2 text-sm text-muted">{c.desc}</p>
             </article>
