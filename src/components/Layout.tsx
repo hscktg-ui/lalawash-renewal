@@ -260,7 +260,7 @@ export function PageHero({
 }: {
   eyebrow?: string
   title: string
-  desc: string
+  desc?: string
   image?: string
 }) {
   return (
@@ -276,9 +276,11 @@ export function PageHero({
         >
           {title}
         </h1>
-        <p className="mt-4 max-w-[36rem] text-pretty break-keep text-base leading-[1.75] text-white/85 md:text-lg">
-          {desc}
-        </p>
+        {desc ? (
+          <p className="mt-4 max-w-[36rem] text-pretty break-keep text-base leading-[1.75] text-white/85 md:text-lg">
+            {desc}
+          </p>
+        ) : null}
       </div>
     </section>
   )
