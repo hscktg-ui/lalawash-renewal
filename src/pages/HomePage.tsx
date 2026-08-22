@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { BRAND, HOME_TRUST_LINKS, IMAGES, SOLUTIONS } from '../data'
+import { BRAND, HOME_TRUST_LINKS, IMAGES, PUBLIC_PROOF, SOLUTIONS } from '../data'
 import { ImpactSummary } from '../components/NativeVisuals'
-import { ActivityMarquee, PartnerMarquee } from '../components/TrustSections'
+import { ActivityMarquee, PartnerMarquee, YearlyImpactSection } from '../components/TrustSections'
 
 export default function HomePage() {
   return (
@@ -61,10 +61,17 @@ export default function HomePage() {
               라라워시 다회용기 자원순환 성과
             </p>
             <ImpactSummary onDark />
-            <p className="mt-3 text-xs text-slate-400">※ 연혁 및 성과 · 회사소개서 기준</p>
+            <p className="mt-3 text-xs text-slate-400">
+              ※ 연혁 및 성과 · 회사소개서 기준 ·{' '}
+              <Link to="/about/history" className="underline underline-offset-2 hover:text-lala-200">
+                연혁·성과 자세히
+              </Link>
+            </p>
           </div>
         </div>
       </section>
+
+      <YearlyImpactSection dark />
 
       {/* 현장 이용사례 롤링 + 기관 롤링 */}
       <section className="px-5 py-16 md:py-20">
@@ -78,8 +85,24 @@ export default function HomePage() {
             ※ 현장 사진·캡션은 추가 전달 후 교체 예정입니다.
           </p>
           <div className="mt-12">
-            <p className="text-sm font-semibold text-lala-600">라라워시와 함께하는 기관</p>
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <p className="text-sm font-semibold text-lala-600">라라워시와 함께하는 기관</p>
+              <Link to="/notice" className="text-sm font-semibold text-lala-700 hover:text-lala-600">
+                소식 더보기 →
+              </Link>
+            </div>
             <PartnerMarquee className="mt-4" />
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {PUBLIC_PROOF.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-lala-100 bg-lala-50/50 px-5 py-4"
+                >
+                  <p className="text-xs font-semibold tracking-wide text-lala-600">{item.label}</p>
+                  <p className="mt-1 text-sm font-bold text-ink">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

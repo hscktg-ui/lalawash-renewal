@@ -16,6 +16,9 @@ import NoticeDetailPage from './pages/NoticeDetailPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import AdminNoticesPage from './pages/AdminNoticesPage'
 import MallQuotePage from './pages/MallQuotePage'
+import FuneralSpecsPage from './pages/FuneralSpecsPage'
+import FestivalSpecsPage from './pages/FestivalSpecsPage'
+import SikpanSpecsPage from './pages/SikpanSpecsPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -40,6 +43,9 @@ export default function App() {
           <Route path="about/cert" element={<CertHygienePage />} />
           <Route path="about/branches" element={<InfraPage />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="services/funeral/specs" element={<FuneralSpecsPage />} />
+          <Route path="services/festival/specs" element={<FestivalSpecsPage />} />
+          <Route path="services/sikpan/specs" element={<SikpanSpecsPage />} />
           <Route path="services/:slug" element={<ServiceDetailPage />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/:id" element={<NoticeDetailPage />} />

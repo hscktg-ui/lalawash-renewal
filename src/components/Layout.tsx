@@ -242,12 +242,20 @@ export function Layout() {
         </div>
       </footer>
 
-      <Link
-        to="/contact"
-        className="fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white shadow-lg lg:hidden"
-      >
-        <Phone className="h-4 w-4" /> 견적 문의
-      </Link>
+      <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-2 lg:hidden">
+        <a
+          href={`tel:${CONTACT.phone.replace(/-/g, '')}`}
+          className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-bold text-lala-800 shadow-lg ring-1 ring-slate-200"
+        >
+          <Phone className="h-4 w-4" /> 전화
+        </a>
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white shadow-lg"
+        >
+          견적 문의
+        </Link>
+      </div>
     </div>
   )
 }

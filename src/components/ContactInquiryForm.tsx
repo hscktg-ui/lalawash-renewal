@@ -1,10 +1,33 @@
-import { type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../data'
 import { EXTERNAL } from '../lib/content'
 
 type Props = {
   variant?: 'home' | 'full'
+  defaultUse?: string
+}
+
+const USE_OPTIONS = [
+  '공공·기관',
+  '축제·행사',
+  '급식·식판',
+  '장례식장',
+  '유아식판',
+  '케이터링',
+  '가맹·지점',
+  '기타',
+] as const
+
+const USE_HINTS: Record<string, string> = {
+  '공공·기관': '부서명·예상 컵/용기 수·도입 희망 시기를 적어 주세요.',
+  '축제·행사': '행사명·일정·예상 인원·필요 용기 종류를 적어 주세요.',
+  '급식·식판': '학교/기관명·식판 장수·수거·공급 주기를 적어 주세요.',
+  장례식장: '빈소 규모·예상 조문객·운영 기간을 적어 주세요.',
+  유아식판: '원아 수·결제 방식(원/학부모/보조금)·도입 희망일을 적어 주세요.',
+  케이터링: '인원·메뉴 유형·배송 지역을 적어 주세요.',
+  '가맹·지점': '희망 지역·문의 목적을 적어 주세요.',
+  기타: '일정·수량·장소를 자유롭게 적어 주세요.',
 }
 
 function openInquiryMail(fields: {
@@ -27,7 +50,10 @@ function openInquiryMail(fields: {
   window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 }
 
-export function ContactInquiryForm({ variant = 'full' }: Props) {
+export function ContactInquiryForm({ variant = 'full', defaultUse = '공공·기관' }: Props) {
+  const [useType, setUseType] = useState(defaultUse)
+  const hint = useMemo(() => USE_HINTS[useType] ?? USE_HINTS['기타'], [useType])
+
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const fd = new FormData(e.currentTarget)
@@ -40,37 +66,41 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
     })
   }
 
+  const useSelect = (
+    <select
+      name="use"
+      required
+      value={useType}
+      onChange={(e) => setUseType(e.target.value)}
+      className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
+    >
+      {USE_OPTIONS.map((opt) => (
+        <option key={opt} value={opt}>
+          {opt}
+        </option>
+      ))}
+    </select>
+  )
+
   if (variant === 'home') {
     return (
       <form className="rounded-3xl bg-white p-7 text-ink shadow-xl" onSubmit={onSubmit}>
         <p className="text-sm font-bold text-lala-700">빠른 견적·상담 요청</p>
         <p className="mt-1 text-xs text-muted">
-          대략적인 정보만 적어도 충분합니다. 보내면 메일 작성이 열리며, 전화({CONTACT.phone}) 상담도 가능합니다.
+          대략적인 정보만 있어도 충분합니다. 보내면 메일 작성이 열리며, 전화({CONTACT.phone}) 상담도
+          가능합니다.
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <label className="block text-xs font-semibold text-slate-600">
             어디에 쓰시나요?
-            <select
-              name="use"
-              required
-              className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
-            >
-              <option value="공공·기관">공공·기관</option>
-              <option value="축제·행사">축제·행사</option>
-              <option value="급식·식판">급식·식판</option>
-              <option value="장례식장">장례식장</option>
-              <option value="유아식판">유아식판</option>
-              <option value="케이터링">케이터링</option>
-              <option value="가맹·지점">가맹·지점</option>
-              <option value="기타">기타</option>
-            </select>
+            {useSelect}
           </label>
           <label className="block text-xs font-semibold text-slate-600">
             하루(또는 행사) 예상 수량
             <input
               name="qty"
               placeholder="예: 하루 1,000컵 / 행사 3만 개"
-              className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
+              className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
             />
           </label>
           <label className="block text-xs font-semibold text-slate-600 sm:col-span-2">
@@ -79,13 +109,14 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
               name="name"
               required
               placeholder="예: ○○시청 환경과 / 홍길동 / 010-0000-0000"
-              className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal"
+              className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
             />
           </label>
         </div>
+        <p className="mt-3 text-[11px] leading-relaxed text-muted">{hint}</p>
         <button
           type="submit"
-          className="mt-5 w-full rounded-full bg-lala-600 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
+          className="mt-4 w-full rounded-full bg-lala-600 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
         >
           상담 요청 보내기
         </button>
@@ -112,25 +143,25 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
         <select
           name="use"
           required
-          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
+          value={useType}
+          onChange={(e) => setUseType(e.target.value)}
+          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
         >
-          <option value="공공·기관">공공·기관</option>
-          <option value="축제·행사">축제·행사</option>
-          <option value="급식·식판">급식·식판</option>
-          <option value="장례식장">장례식장</option>
-          <option value="유아식판">유아식판</option>
-          <option value="케이터링">케이터링</option>
-          <option value="가맹·지점">가맹·지점</option>
-          <option value="기타">기타</option>
+          {USE_OPTIONS.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
         </select>
       </label>
+      <p className="mt-2 text-xs text-muted">{hint}</p>
       <label className="mt-4 block text-sm font-semibold">
         성함 · 기관명
         <input
           name="name"
           required
           placeholder="예: ○○시청 / 홍길동"
-          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
+          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
         />
       </label>
       <label className="mt-4 block text-sm font-semibold">
@@ -139,7 +170,7 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
           name="contact"
           required
           placeholder="전화 또는 이메일"
-          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
+          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
         />
       </label>
       <label className="mt-4 block text-sm font-semibold">
@@ -147,8 +178,8 @@ export function ContactInquiryForm({ variant = 'full' }: Props) {
         <textarea
           name="message"
           rows={4}
-          placeholder="예상 수량, 일정, 장소 등을 적어 주시면 더 정확히 안내드립니다."
-          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal"
+          placeholder={hint}
+          className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lala-500"
         />
       </label>
       <button

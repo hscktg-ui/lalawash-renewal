@@ -50,7 +50,7 @@ export const IMAGES = {
   washBg: 'https://cdn.imweb.me/thumbnail/20231128/b4092ea57e46f.jpg',
   process: 'https://cdn.imweb.me/thumbnail/20231128/c3dada48bdea3.jpg',
   containers: 'https://cdn.imweb.me/thumbnail/20250922/3aaf157e8547e.jpg',
-  funeral: '/funeral-dishes.jpg',
+  funeral: '/pdf-assets/funeral-meal.jpg',
   notice: 'https://cdn.imweb.me/thumbnail/20250922/cb365cd4333dc.png',
   gg: 'https://cdn.imweb.me/thumbnail/20240503/5f051377a0809.png',
   gpsc: 'https://cdn.imweb.me/thumbnail/20240503/9d2534da00f8f.png',
@@ -65,6 +65,19 @@ export const IMAGES = {
   funeralSite: '/pdf-assets/funeral-site.jpg',
   funeralHospital: '/pdf-assets/funeral-hospital.jpg',
   dishesSet: '/official-assets/funeral-dishes.jpg',
+  /** 장례식장 제안서(수정7)에서 발췌한 실사 */
+  funeralMeal: '/pdf-assets/funeral-meal.jpg',
+  funeralTableware: '/pdf-assets/funeral-tableware.jpg',
+  funeralSetTable: '/pdf-assets/funeral-set-table.jpg',
+  funeralAltar: '/pdf-assets/funeral-altar.jpg',
+  funeralWareFlower: '/pdf-assets/funeral-ware-flower.jpg',
+  funeralRack: '/pdf-assets/funeral-rack.jpg',
+  funeralDelivery: '/pdf-assets/funeral-delivery.jpg',
+  funeralWrapped: '/pdf-assets/funeral-wrapped.jpg',
+  funeralInventory: '/pdf-assets/funeral-inventory.jpg',
+  funeralYeonhwajang: '/pdf-assets/funeral-yeonhwajang.jpg',
+  funeralIcheon: '/pdf-assets/funeral-icheon.jpg',
+  funeralPocheon: '/pdf-assets/funeral-pocheon.jpg',
   deliveryTruck: '/pdf-assets/delivery-truck.jpg',
   activitySbs: '/pdf-assets/activity-sbs.jpg',
   activityCup: '/pdf-assets/activity-cup.jpg',
@@ -73,6 +86,8 @@ export const IMAGES = {
   festivalReturn: '/pdf-assets/festival-return.jpg',
   festivalTent: '/pdf-assets/festival-tent.jpg',
   festivalCrowd: '/pdf-assets/festival-crowd.jpg',
+  /** 음식이 담긴 다회용기 (축제 히어로·소개용) */
+  festivalFood: '/official-assets/catering-use.jpg',
   fairBooth: '/pdf-assets/fair-booth.jpg',
   brandBuilding: '/pdf-assets/brand-building.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
@@ -88,7 +103,7 @@ export const IMAGES = {
   kidsTrayIllustration: '/illustrations/kids-tray.jpg',
 }
 
-/** PDF 구성안 상단 3대 카테고리 */
+/** PDF 구성안(26.08.03) 상단 메뉴 — 라벨·경로를 광고주안과 일치 */
 export const NAV_GROUPS = [
   {
     label: '라라워시',
@@ -101,7 +116,7 @@ export const NAV_GROUPS = [
     ],
   },
   {
-    label: '다회용기 서비스',
+    label: '다회용기서비스',
     children: [
       { to: '/services', label: '다회용기 순환솔루션' },
       { to: '/services/funeral', label: '장례식장용기' },
@@ -117,7 +132,7 @@ export const NAV_GROUPS = [
     children: [
       { to: '/contact/how', label: '이용방법' },
       { to: '/contact/faq', label: 'Q&A' },
-      { to: '/contact', label: '견적·상담 문의' },
+      { to: '/contact', label: '견적문의' },
     ],
   },
 ] as const
@@ -157,32 +172,68 @@ export type Solution = {
 export const SOLUTIONS: Solution[] = [
   {
     slug: 'funeral',
-    title: '장례식장 다회용기 대여 및 세척',
-    short: '일회용품 없는 친환경 장례문화를 만들어 나갑니다.',
-    desc: '빈소에서 사용하는 식기를 공급하고, 사용 후 수거해 전문 세척·살균한 뒤 다시 공급하는 순환형 서비스입니다. 위생 관리와 안정적인 공급으로 장례 현장 운영을 돕습니다.',
-    image: IMAGES.funeralSite,
-    tags: ['장례', '순환 공급', '위생'],
+    title: '장례식장 다회용기 세척 서비스',
+    short: '깨끗한 운영으로 만드는 품격있는 장례문화',
+    desc:
+      '라라워시는 다회용기 대여·전문세척·살균건조·위생검사·재공급의 5단계 순환 시스템을 통해, 위생과 품격을 갖춘 일회용품 없는 친환경 장례문화를 선도합니다. 장례식장 규모에 맞춘 현장 중심 운영으로 유족과 조문객 모두가 안심할 수 있는 지속 가능한 장례 환경을 조성합니다.',
+    image: IMAGES.funeralMeal,
+    tags: ['장례', '5단계 순환', '위생'],
     points: [
-      '환경호르몬 걱정 없는 BPA FREE 소재, 고온고압세척 가능한 프리미엄 식기',
-      '세척공정·오염유형·식기재질에 맞는 전용 제품 운영',
-      '사용부터 수거·세척·정산까지 체계적인 순환',
+      '대여·전문세척·살균건조·위생검사·재공급 5단계 순환 시스템',
+      '환경호르몬 걱정 없이 고온 세척이 가능한 전용 다회용 장례용기',
+      '경기도 15개 지역 21개 세척장 기반의 일정 맞춤 공급',
     ],
     process: [
-      { step: '01', title: '장례상담', desc: '빈소 운영에 맞는 용기 구성과 일정을 상담합니다.' },
-      { step: '02', title: '빈소 다회용기 비치', desc: '협의된 수량으로 다회용기를 비치합니다.' },
-      { step: '03', title: '다회용기 사용', desc: '조문객을 맞이하는 현장에서 사용합니다.' },
-      { step: '04', title: '세척 및 재공급', desc: '전문 세척·살균 후 다시 공급합니다.' },
-      { step: '05', title: '비용 정산', desc: '사용량에 맞춰 투명하게 정산합니다.' },
-    ],
-    cases: ['수원 장례식장', '이천 장례식장', '포천 장례식장', '경기도의료원', '수원연화장'],
-    featureBlocks: [
       {
-        title: '라라워시 친환경 다회용 장례용기',
-        desc: '환경호르몬 걱정 없는 BPA FREE 소재로, 고온고압세척이 가능한 프리미엄 식기입니다. 세척공정·오염유형·식기재질 및 위생 기준에 따라 적합한 전용 제품을 선정하여 운영합니다.',
+        step: '01',
+        title: '장례 상담',
+        desc: '장례일정, 빈소운영방식, 예상 조문객 수를 확인해 맞춤 운영계획을 수립합니다.',
       },
       {
-        title: '품격을 지키는 순환 운영',
-        desc: '조문객을 맞이하고 격식을 지켜주는 장례용기를 관리합니다. 전문 세척설비와 표준화된 공정으로 일관된 품질을 재공급합니다.',
+        step: '02',
+        title: '빈소 다회용기 비치',
+        desc: '빈소에 기본 수량을 비치한 뒤 수불대장을 전달합니다.',
+      },
+      {
+        step: '03',
+        title: '다회용기 사용',
+        desc: '매일 회수·배송하며, 입출고 시 빈소매니저가 수불대장을 작성합니다.',
+      },
+      {
+        step: '04',
+        title: '세척 및 재공급',
+        desc: '수거한 다회용기는 매일 세척·살균건조·검수 후 재공급합니다.',
+      },
+      {
+        step: '05',
+        title: '비용 정산',
+        desc: '수불대장 입출고 물량을 확인한 뒤 월 단위로 정산합니다.',
+      },
+    ],
+    cases: ['수원연화장', '포천의료원 장례식장', '수원의료원 장례식장', '이천의료원 장례식장'],
+    featureBlocks: [
+      {
+        title: '라라워시 장례용 다회용기',
+        desc: '환경호르몬 걱정 없이 고온 세척이 가능한 라라워시 다회용 장례용기입니다. 장례식장 운영 환경과 위생 기준을 고려해 식기 재질·용도에 맞는 전용 다회용기를 운영합니다.',
+      },
+      {
+        title: '라라워시 안심 다회용기',
+        desc: '전문 세척 공정과 고온 살균건조가 가능한 제품으로, 안전하고 위생적인 장례식장 운영 환경을 제공합니다.',
+      },
+    ],
+    listBlocks: [
+      {
+        title: '1인 기준 제공 구성',
+        items: ['밥그릇', '국그릇', '대찬기 1', '중찬기 2', '종지', '수저 세트', '물컵', '소주잔'],
+      },
+      {
+        title: '운영 안내',
+        items: [
+          '기본 10인 단위로 포장해 제공합니다.',
+          '빈소 수불대장으로 입·출고 현황을 관리합니다.',
+          '매일 회수·배송하며, 조문객 수에 따라 일정을 조정합니다.',
+          '구성·포장단위·규격은 협의 후 변경 가능하며 지점별로 다를 수 있습니다.',
+        ],
       },
     ],
   },
@@ -191,31 +242,43 @@ export const SOLUTIONS: Solution[] = [
     title: '축제 및 행사용기 대여',
     short: '깨끗한 행사 진행을 위해 인원에 맞춰 다회용기를 대여합니다.',
     desc: '지역 축제 및 행사에 다회용기 대여서비스를 제공하여 일회용 쓰레기 없는 지속 가능한 행사 문화를 만들어 갑니다. 경기도 내 15개 지역 21개 지점을 통해 신속한 대여·수거·세척·재공급을 제공합니다.',
-    image: IMAGES.festivalProducts,
-    tags: ['축제', '행사', '반납부스'],
+    image: IMAGES.festivalFood,
+    tags: ['축제', '행사', '저탄소 순환'],
     points: [
-      '파스타볼, 접시, 나눔접시 등 다양한 다회용기 보유',
-      '행사 음식 종류에 맞는 용기 선택',
-      '반납부스 운영·인력 배치까지 현장 연계',
+      '접시류·면기류·다회용컵·커트러리 등 행사 맞춤 용기',
+      '행사장소와 가까운 지점 연계로 빠른 수거·세척·재공급',
+      '15개 지역 21개 지점 네트워크로 대형축제도 안정 대응',
     ],
     process: [
-      { step: '01', title: '상담 및 견적', desc: '행사일정, 용기 종류·수량, 반납부스 운영 여부를 상담합니다.' },
-      { step: '02', title: '물품 준비', desc: '다회용기·반납함·현장운영물품을 협의·준비합니다.' },
+      { step: '01', title: '상담 및 견적', desc: '행사일정, 용기 종류·수량 등을 상담합니다.' },
+      { step: '02', title: '물품 준비', desc: '다회용기·현장운영물품을 협의·준비합니다.' },
       { step: '03', title: '다회용기 공급', desc: '협의 내용에 맞춰 비치·공급합니다.' },
-      { step: '04', title: '반납부스 운영', desc: '필요 시 부스 운영과 인력을 배치합니다.' },
+      { step: '04', title: '현장 운영 지원', desc: '행사 기간 중 추가 공급·회수를 지원합니다.' },
       { step: '05', title: '결과 전달·정산', desc: '사용량·반납량을 전달하고 정산합니다.' },
     ],
-    cases: ['서울재즈페스티벌', '시흥갯골축제', '가평 아웃도어 페스타', '이천 산수유 축제'],
+    cases: [
+      '철원한탄강 얼음트래킹',
+      '이천백사 산수유축제',
+      '가평 GOCF 페스티벌',
+      '이천 도자기축제',
+      '경기미 김밥페스티벌',
+      '김포 아라마린 페스티벌',
+      '오산야맥축제',
+    ],
     listBlocks: [
       {
-        title: '보유 다회용기 유형',
-        items: ['파스타볼', '접시', '나눔접시', '컵·기타 행사 맞춤 용기', '반납함·현장운영물품'],
+        title: '다회용기 종류',
+        items: ['접시류', '면기류', '다회용컵', '커트러리', '기타'],
       },
     ],
     featureBlocks: [
       {
-        title: '자원 순환형 현장 운영',
-        desc: '행사 기간 동안 현장과 연계해 안정적으로 대여·수거·세척·재공급을 이어 갑니다. 15개 지역 21개 지점 네트워크로 신속하게 대응합니다.',
+        title: '라라워시 축제 및 행사 다회용기',
+        desc: '행사 음식 종류에 맞는 다회용기를 선택해 일회용 쓰레기 없는 축제를 운영합니다.',
+      },
+      {
+        title: '저탄소 순환시스템',
+        desc: '행사장소와 가까운 지점 연계로 빠른 수거·세척·재공급의 순환이 이루어집니다. 15개 지역 21개 지점 네트워크로 대형축제도 안정적으로 대응합니다.',
       },
     ],
   },
@@ -228,7 +291,7 @@ export const SOLUTIONS: Solution[] = [
     tags: ['식판', '학교', '급식'],
     points: [
       '스텐·멜라민 식판 대응',
-      '세척 인력·위생관리·보관·공급까지 일괄 관리',
+      '매일 ATP·잔류세제·온도라벨 검사로 안심위생 관리',
       '2026년 경기도 내 11개 학교 일 14,000장 세척 운영',
     ],
     process: [
@@ -241,8 +304,12 @@ export const SOLUTIONS: Solution[] = [
     cases: ['경기도 내 11개 학교', '일 14,000장 세척'],
     featureBlocks: [
       {
-        title: '학교 맞춤 운영 시스템과 공급 관리체계',
-        desc: '세척 인력 운영 부담, 위생관리 기준, 세척 후 보관 및 공급 과정까지 함께 관리합니다. 급식 일정에 맞춘 안정적인 재공급이 핵심입니다.',
+        title: '라라워시 식판',
+        desc: '스텐식판·멜라민식판 등 학교·구내식당·병원식당·급식소 환경에 맞는 식판을 운영합니다.',
+      },
+      {
+        title: '안심위생관리 시스템',
+        desc: '매일 ATP검사, 잔류세제검사, 온도라벨 검사로 식기의 위생상태를 확인하고, 기준 수치에 따라 체계적으로 관리합니다.',
       },
     ],
     listBlocks: [
@@ -368,6 +435,198 @@ export const SOLUTIONS: Solution[] = [
 export const SOLUTION_ALIASES: Record<string, string> = {
   public: 'cup',
 }
+
+/** 장례식장 제안서(수정7) 기준 공공 운영 사례 */
+export const FUNERAL_PUBLIC_CASES = [
+  {
+    name: '수원연화장',
+    since: '2022.07',
+    volume: '연 70만 개',
+    note: '다회용기 전용 3빈소 운영',
+    image: IMAGES.funeralYeonhwajang,
+  },
+  {
+    name: '포천의료원 장례식장',
+    since: '2023.01',
+    volume: '연 8만 개',
+    note: '다회용기 전용 빈소 운영',
+    image: IMAGES.funeralPocheon,
+  },
+  {
+    name: '수원의료원 장례식장',
+    since: '2025.01',
+    volume: '연 15만 개',
+    note: '2026.05 전 빈소 전환 예정',
+    image: IMAGES.funeralHospital,
+  },
+  {
+    name: '이천의료원 장례식장',
+    since: '2025.05',
+    volume: '연 60만 개',
+    note: '2026 하반기 전 빈소 전환 예정',
+    image: IMAGES.funeralIcheon,
+  },
+] as const
+
+/** 제안서 p.2 — 일회용품 문제 */
+export const FUNERAL_PROBLEM = {
+  title: '장례식장 일회용품, 이제는 변화가 필요한 시점입니다',
+  body: '장례식장은 많은 일회용품이 사용되는 시설로, 폐기물 처리 비용 증가와 자원 낭비는 물론 음식물과 뒤섞인 폐기물로 인해 분리수거 부담까지 가중되고 있습니다. 또한 빈소에 쌓이는 폐기물은 공간의 미관을 저해하고 장례 서비스의 품격에도 영향을 미치는 요인이 되고 있습니다.',
+  perParlor: [
+    { label: '플라스틱', value: '약 45kg', note: '3일장 1곳 기준' },
+    { label: '비닐', value: '약 60kg', note: '3일장 1곳 기준' },
+    { label: '종이컵', value: '약 2만 5천 개', note: '3일장 1곳 기준' },
+  ],
+  national: [
+    { label: '연간 일회용품 사용', value: '3억 7천만 개' },
+    { label: '연간 폐기물', value: '2,300톤' },
+  ],
+} as const
+
+/** 제안서 p.4 — ESG 가치 */
+export const FUNERAL_ESG = [
+  {
+    title: '친환경성',
+    items: ['일회용품 사용 절감', '폐기물 발생 감소', '지속가능한 순환 시스템'],
+  },
+  {
+    title: '사회적책임',
+    items: ['전문세척과정으로 안심위생보장', '취약계층을 위한 지속가능한 일자리 제공'],
+  },
+  {
+    title: '책임경영',
+    items: ['투명한 위생검증', '지역자활센터 일자리 창출을 통한 지역사회공헌'],
+  },
+] as const
+
+/** 제안서 p.5 — 왜 라라워시 */
+export const FUNERAL_WHY = {
+  title: '왜 라라워시를 선택해야 할까요?',
+  body: '많은 조문객이 이용하는 장례식장은 위생적인 식기 관리와 안정적인 운영이 중요합니다. 라라워시는 대여부터 회수, 전문세척, 살균건조, 재공급의 친환경 순환 시스템으로 위생과 품격을 갖춘 장례식장 운영 환경을 제공합니다.',
+} as const
+
+/** 제안서 p.6 — 맞춤 운영 3축 */
+export const FUNERAL_OPS_PILLARS = [
+  {
+    title: '운영 일정 맞춤 공급',
+    desc: '장례 일정에 맞춰 필요한 수량을 적기에 공급합니다.',
+    image: IMAGES.funeralDelivery,
+  },
+  {
+    title: '회수·전문 세척·재공급',
+    desc: '회수된 다회용기는 전문 세척 후 위생적으로 재공급됩니다.',
+    image: IMAGES.funeralWrapped,
+  },
+  {
+    title: '맞춤 수량·현장 대응',
+    desc: '운영 규모에 맞춰 적정 수량 공급과 신속한 현장 대응을 지원합니다.',
+    image: IMAGES.funeralInventory,
+  },
+] as const
+
+/** 제안서 p.8 — 장례 전용 6단계 세척 */
+export const FUNERAL_WASH_STEPS = [
+  { step: '01', title: '불림 애벌 세척', desc: '친환경 세제를 사용해 1차 세척' },
+  { step: '02', title: '초음파 세척', desc: '초음파로 유해 세균 살균 제거' },
+  { step: '03', title: '순수물 고온 고압세척', desc: '고온 고압으로 2차 세척' },
+  { step: '04', title: '고온 살균', desc: '80℃ 이상 고온 소독 멸균 처리' },
+  { step: '05', title: '위생검사', desc: 'ATP 오염검사, 잔류세제검사, 건열살균온도 확인' },
+  { step: '06', title: '출고 전 전수 검사', desc: '전수 검수 후 위생 포장·출고' },
+] as const
+
+/** 제안서 p.9 — 위생 관리 */
+export const FUNERAL_HYGIENE = [
+  {
+    title: '식약처 기준 위생관리',
+    desc: '식약처 다회용기 위생가이드에 따라 용기 안전성과 위생 기준을 정기적으로 검사·관리합니다.',
+    items: ['경기도보건환경연구원 연 2회 정기 시험검사', '식약처 기준에 따른 위생성 검사'],
+  },
+  {
+    title: '국제 기준 품질검증',
+    desc: '국제 위생 기준에 따라 공인기관 시험을 실시하여 객관적인 품질과 위생 수준을 검증합니다.',
+    items: [
+      'KOLAS 공인시험기관 시험검사',
+      '시험성적서 및 위생점검 결과 제공',
+      'ISO 9001 품질경영 · ISO 14001 환경경영 인증',
+      'NSF 국제 위생기준 준수',
+    ],
+  },
+  {
+    title: '일일 위생 점검',
+    desc: '매일 위생 점검을 실시하여 세척 품질과 안전성을 지속적으로 관리합니다.',
+    items: ['ATP 표면오염도 검사', '잔류세제 검사', '건열살균 온도 확인'],
+  },
+] as const
+
+/** 제안서 p.10 — 세부사양 */
+export const FUNERAL_SPEC_ITEMS = [
+  '밥그릇',
+  '국그릇',
+  '대찬기 1',
+  '중찬기 2',
+  '종지',
+  '수저 세트',
+  '물컵',
+  '소주잔',
+] as const
+
+export const FUNERAL_SPEC_NOTES = [
+  '기본 10인 단위로 포장되어 제공합니다.',
+  '다회용기 구성 및 포장단위는 협의 후 변경 가능합니다.',
+  '다회용기 규격 및 형태는 지점별로 다를 수 있습니다.',
+  '다회용기 구입 및 세척비용은 담당자에게 문의해 주세요.',
+] as const
+
+/** 축제 운영사례 — 사진 공백, 소식 포스팅만 연결 */
+export const FESTIVAL_CASES = [
+  { name: '철원한탄강 얼음트래킹', noticeId: null as string | null },
+  { name: '이천백사 산수유축제', noticeId: 'legacy-170730310' },
+  { name: '가평 GOCF 페스티벌', noticeId: null },
+  { name: '이천 도자기축제', noticeId: null },
+  { name: '경기미 김밥페스티벌', noticeId: null },
+  { name: '김포 아라마린 페스티벌', noticeId: null },
+  { name: '오산야맥축제', noticeId: null },
+] as const
+
+export const FESTIVAL_VESSEL_TYPES = [
+  '접시류',
+  '면기류',
+  '다회용컵',
+  '커트러리',
+  '기타',
+] as const
+
+/** 축제 세부사양 — 리디쉬·개발원 (사진 추가 예정) */
+export const FESTIVAL_SPEC_LINES = [
+  {
+    title: '리디쉬 용기',
+    desc: '시흥작은자리 리디쉬 다회용기 라인입니다. 상세 리스트·사진은 지점 자료 반영 후 업데이트됩니다.',
+    image: null as string | null,
+  },
+  {
+    title: '개발원 용기',
+    desc: '본사에서 촬영한 파란색 다회용기(개발원) 라인입니다. 사진 전달 후 교체 예정입니다.',
+    image: null as string | null,
+  },
+] as const
+
+export const SIKPAN_TYPES = [
+  {
+    title: '스텐식판',
+    desc: '내구성이 높아 학교·급식소 대량 운영에 적합합니다.',
+    image: IMAGES.platesRack as string | null,
+  },
+  {
+    title: '멜라민식판',
+    desc: '가벼우며 취급이 편한 멜라민 식판입니다. 제품 사진 전달 후 교체 예정입니다.',
+    image: null as string | null,
+  },
+] as const
+
+export const SIKPAN_HYGIENE = {
+  title: '안심위생관리 시스템',
+  desc: '매일 ATP검사, 잔류세제검사, 온도라벨 검사로 식기의 위생상태를 확인하고, 기준 수치에 따라 체계적으로 관리합니다.',
+} as const
 
 export const WASH_STEPS = [
   { title: '불림·애벌 세척', desc: '라라워시 전용 친환경 세제로 먼저 불려 씻습니다' },
@@ -642,7 +901,7 @@ export const FIELD_ACTIVITIES = [
   {
     title: '장례식장 현장',
     caption: '빈소 다회용기를 위생적으로 공급·수거합니다.',
-    image: IMAGES.funeralSite,
+    image: IMAGES.funeralMeal,
   },
   {
     title: '식판 세척',
@@ -825,28 +1084,36 @@ export const VERIFIED_ACHIEVEMENTS = [
   { category: '축제', title: '이천 산수유 축제', metric: '2026 운영' },
   { category: '공공', title: '경기도청 다회용컵', metric: '2024.3~2027.2' },
   { category: '지점', title: '경기도 세척망', metric: '15개 지역 · 21곳' },
-  { category: '장례', title: '경기도의료원(수원·이천·포천)', metric: '연속 운영' },
-  { category: '장례', title: '수원연화장', metric: '연속 운영' },
+  { category: '장례', title: '수원연화장', metric: '연 70만 개' },
+  { category: '장례', title: '경기도의료원 수원·이천·포천', metric: '공공 연속 운영' },
   { category: '급식', title: '경기도 내 학교 식판', metric: '11개교 · 일 14,000장' },
 ]
 
-/** PDF 파트너 롤링 */
+/** PDF 파트너 롤링 — 지자체 공식 홈 연결(공공 신뢰·검증 용이) */
 export const PARTNERS: { name: string; href?: string }[] = [
   { name: '경기도청', href: 'https://www.gg.go.kr/' },
-  { name: '광명시' },
-  { name: '부천시' },
-  { name: '수원시' },
-  { name: '시흥시' },
-  { name: '안성시' },
-  { name: '안산시' },
-  { name: '이천시' },
-  { name: '용인시' },
-  { name: '포천시' },
-  { name: '경기도의료원' },
+  { name: '광명시', href: 'https://www.gm.go.kr/' },
+  { name: '부천시', href: 'https://www.bucheon.go.kr/' },
+  { name: '수원시', href: 'https://www.suwon.go.kr/' },
+  { name: '시흥시', href: 'https://www.siheung.go.kr/' },
+  { name: '안성시', href: 'https://www.anseong.go.kr/' },
+  { name: '안산시', href: 'https://www.ansan.go.kr/' },
+  { name: '이천시', href: 'https://www.icheon.go.kr/' },
+  { name: '용인시', href: 'https://www.yongin.go.kr/' },
+  { name: '포천시', href: 'https://www.pocheon.go.kr/' },
+  { name: '경기도의료원', href: 'https://www.medical.or.kr/' },
   { name: '수원연화장' },
   { name: '성남FC' },
   { name: '부천캠퍼스컵' },
   { name: '안산카페거리' },
+]
+
+/** 홈·공공 설득용 검증 실적 (광고주 수치 범위 유지) */
+export const PUBLIC_PROOF = [
+  { label: '세척 인프라', value: '15개 지역 · 21개 지점' },
+  { label: '연간 세척', value: '1,200만 개+' },
+  { label: '공공 다회용컵', value: '경기도청 사업 운영' },
+  { label: '학교 식판', value: '11개교 · 일 1.4만 장' },
 ]
 
 export const TRUST_BADGES = [

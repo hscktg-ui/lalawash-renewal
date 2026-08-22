@@ -1,10 +1,530 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
 import { CupCirculation } from '../components/NativeVisuals'
 import { PhotoGallery } from '../components/PhotoGallery'
 import { PublicOpsList } from '../components/PublicOpsList'
-import { SOLUTIONS, SOLUTION_ALIASES, IMAGES } from '../data'
+import {
+  FESTIVAL_CASES,
+  FESTIVAL_VESSEL_TYPES,
+  FUNERAL_ESG,
+  FUNERAL_OPS_PILLARS,
+  FUNERAL_PROBLEM,
+  FUNERAL_PUBLIC_CASES,
+  FUNERAL_WHY,
+  SIKPAN_HYGIENE,
+  SIKPAN_TYPES,
+  SOLUTIONS,
+  SOLUTION_ALIASES,
+  IMAGES,
+} from '../data'
+
+function FuneralServiceDetail({
+  s,
+}: {
+  s: (typeof SOLUTIONS)[number]
+}) {
+  return (
+    <>
+      <PageHero eyebrow="다회용기 서비스" title={s.title} desc={s.short} image={IMAGES.funeralAltar} />
+
+      <Section title="친환경 순환 시스템으로 위생과 품격을 갖춘 장례식장 운영">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <img
+            src={IMAGES.funeralMeal}
+            alt="라라워시 장례식장 다회용기"
+            loading="lazy"
+            decoding="async"
+            className="h-80 w-full rounded-3xl object-cover"
+          />
+          <div>
+            <p className="text-pretty break-keep text-base leading-relaxed text-muted">{s.desc}</p>
+            <ul className="mt-8 space-y-3">
+              {s.points.map((p) => (
+                <li key={p} className="flex gap-2 text-sm text-muted">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-lala-500" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        title="라라워시 장례용 다회용기"
+        desc="환경호르몬 걱정 없이, 고온 세척이 가능한 라라워시 안심 다회용기"
+        className="bg-slate-50"
+      >
+        <div className="grid gap-8 lg:grid-cols-2">
+          <img
+            src={IMAGES.funeralTableware}
+            alt="라라워시 다회용 장례용기 세트"
+            loading="lazy"
+            decoding="async"
+            className="h-72 w-full rounded-3xl object-cover"
+          />
+          <div>
+            {(s.featureBlocks ?? []).map((b) => (
+              <article key={b.title} className="mb-6 last:mb-0">
+                <h3 className="text-lg font-bold text-lala-800">{b.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{b.desc}</p>
+              </article>
+            ))}
+            <Link
+              to="/services/funeral/specs"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white hover:bg-lala-700"
+            >
+              다회용기 세부사양 확인하기 <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </Section>
+
+      <Section title={FUNERAL_WHY.title} desc={FUNERAL_WHY.body}>
+        <div className="grid gap-5 md:grid-cols-3">
+          {FUNERAL_ESG.map((pillar) => (
+            <article key={pillar.title} className="rounded-2xl border-t-2 border-lala-600 bg-slate-50 p-6">
+              <h3 className="font-bold text-ink">{pillar.title}</h3>
+              <ul className="mt-4 space-y-2">
+                {pillar.items.map((item) => (
+                  <li key={item} className="flex gap-2 text-sm text-muted">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-lala-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        title={FUNERAL_PROBLEM.title}
+        desc={FUNERAL_PROBLEM.body}
+        className="bg-slate-50"
+      >
+        <div className="grid gap-4 sm:grid-cols-3">
+          {FUNERAL_PROBLEM.perParlor.map((stat) => (
+            <div key={stat.label} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+              <p className="text-sm font-semibold text-lala-600">{stat.label}</p>
+              <p className="mt-2 text-2xl font-extrabold text-ink">{stat.value}</p>
+              <p className="mt-1 text-xs text-muted">{stat.note}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {FUNERAL_PROBLEM.national.map((stat) => (
+            <div key={stat.label} className="rounded-2xl bg-lala-900 p-6 text-white">
+              <p className="text-sm text-lala-200">{stat.label}</p>
+              <p className="mt-2 text-2xl font-extrabold">{stat.value}</p>
+              <p className="mt-1 text-xs text-lala-300">전국 연간 기준</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        title="장례식장 맞춤 운영 시스템과 공급 관리 체계"
+        desc="라라워시는 장례식장 운영 일정과 조문객 규모에 맞춰 다회용기 공급, 회수, 전문 세척 재공급까지 현장 중심의 체계적인 운영 시스템을 제공합니다."
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {FUNERAL_OPS_PILLARS.map((pillar) => (
+            <article key={pillar.title} className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+              <img
+                src={pillar.image}
+                alt={pillar.title}
+                loading="lazy"
+                decoding="async"
+                className="aspect-square w-full object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-bold text-ink">{pillar.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{pillar.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p className="mt-6 text-sm text-muted">
+          경기도 15개 지역 21개 세척장을 기반으로 장례식장 운영일정에 맞춰 안정적으로 공급합니다.
+        </p>
+      </Section>
+
+      <Section title="장례식장 다회용기 · 현장" className="bg-slate-50">
+        <PhotoGallery
+          items={[
+            {
+              title: '친환경 다회용 장례용기',
+              image: IMAGES.funeralWareFlower,
+              caption: '빈소 품격에 맞춘 네이비·화이트 식기입니다.',
+            },
+            {
+              title: '조문객 식사 현장',
+              image: IMAGES.funeralMeal,
+              caption: '빈소 식당에서 다회용기로 식사를 제공합니다.',
+            },
+            {
+              title: '표준 1인 구성 세팅',
+              image: IMAGES.funeralSetTable,
+              caption: '밥·국·찬기·수저·컵까지 1인 구성으로 맞춥니다.',
+            },
+            {
+              title: '전문 세척 랙',
+              image: IMAGES.funeralRack,
+              caption: '고온·고압 세척이 가능한 전용 용기입니다.',
+            },
+          ]}
+          columns={2}
+        />
+      </Section>
+
+      <Section
+        title="장례용기 서비스 운영방법"
+        desc="장례식장 운영 일정에 맞춘 다회용기 공급부터 회수, 전문 세척, 재공급까지 체계적인 순환 서비스를 제공합니다."
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {s.process.map((p) => (
+            <div key={p.step} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="text-xs font-bold text-lala-500">{p.step}</p>
+              <p className="mt-2 font-bold text-ink">{p.title}</p>
+              <p className="mt-2 text-sm text-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-sm font-medium text-lala-700">
+          장례식장 운영의 편의성과 위생까지, 라라워시가 함께합니다.
+        </p>
+      </Section>
+
+      <Section
+        title="공공 장례식장 운영 사례"
+        desc="경기도 공공 장례식장에서 다회용기를 연속 운영하고 있습니다."
+        className="bg-slate-50"
+      >
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {FUNERAL_PUBLIC_CASES.map((c) => (
+            <article key={c.name} className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+              <img
+                src={c.image}
+                alt={c.name}
+                loading="lazy"
+                decoding="async"
+                className="aspect-square w-full object-cover"
+              />
+              <div className="p-5">
+                <p className="text-sm font-bold text-ink">{c.name}</p>
+                <p className="mt-2 text-lg font-extrabold text-lala-700">{c.volume}</p>
+                <p className="mt-1 text-xs text-muted">
+                  {c.since} 시작 · {c.note}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="견적 문의">
+        <div className="rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-8 text-white md:flex md:items-center md:justify-between">
+          <div>
+            <p className="text-xl font-extrabold">장례식장 다회용기 견적 문의</p>
+            <p className="mt-2 text-sm text-lala-100">빈소 수·예상 조문객·운영 일정을 알려주시면 맞춰 안내드립니다.</p>
+          </div>
+          <Link
+            to="/contact"
+            className="mt-5 inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-800 md:mt-0"
+          >
+            이 서비스 견적·상담 문의
+          </Link>
+        </div>
+      </Section>
+
+      <Section title="다른 서비스도 있어요" className="bg-slate-50">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SOLUTIONS.filter((x) => x.slug !== s.slug).map((x) => (
+            <Link key={x.slug} to={`/services/${x.slug}`} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="font-bold">{x.title}</p>
+              <p className="mt-2 text-sm text-muted">{x.short}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+    </>
+  )
+}
+
+function FestivalServiceDetail({
+  s,
+}: {
+  s: (typeof SOLUTIONS)[number]
+}) {
+  const casesLoop = [...FESTIVAL_CASES, ...FESTIVAL_CASES]
+  return (
+    <>
+      <PageHero eyebrow="다회용기 서비스" title={s.title} desc={s.short} image={IMAGES.festivalFood} />
+
+      <Section title="라라워시 축제 및 행사 다회용기">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <img
+            src={IMAGES.festivalFood}
+            alt="음식이 담긴 라라워시 다회용기"
+            loading="lazy"
+            decoding="async"
+            className="h-80 w-full rounded-3xl object-cover"
+          />
+          <div>
+            <p className="text-pretty break-keep text-base leading-relaxed text-muted">{s.desc}</p>
+            <ul className="mt-8 space-y-3">
+              {s.points.map((p) => (
+                <li key={p} className="flex gap-2 text-sm text-muted">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-lala-500" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        title="저탄소 순환시스템"
+        desc="행사장소와 가까운 지점 연계로 빠른 수거·세척·재공급의 순환이 이루어집니다. 15개 지역 21개 지점 네트워크로 대형축제도 안정적으로 대응합니다."
+        className="bg-slate-50"
+      >
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            { label: '지역', value: '15개' },
+            { label: '세척 지점', value: '21개' },
+            { label: '순환', value: '수거·세척·재공급' },
+          ].map((stat) => (
+            <div key={stat.label} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+              <p className="text-sm font-semibold text-lala-600">{stat.label}</p>
+              <p className="mt-2 text-xl font-extrabold text-ink">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        title="다회용기 종류"
+        desc="행사 음식에 맞춰 접시류·면기류·다회용컵·커트러리·기타 용기를 선택합니다."
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FESTIVAL_VESSEL_TYPES.map((t) => (
+            <div
+              key={t}
+              className="rounded-2xl border-t-2 border-lala-600 bg-slate-50 px-5 py-6 text-center font-bold text-ink"
+            >
+              {t}
+            </div>
+          ))}
+          <div className="flex min-h-[7rem] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-6 text-center">
+            <p className="text-sm font-bold text-slate-500">반납부스 사진</p>
+            <p className="mt-1 text-xs text-slate-400">제작 중 · 추후 추가</p>
+          </div>
+        </div>
+        <Link
+          to="/services/festival/specs"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white hover:bg-lala-700"
+        >
+          다회용기 세부사양 확인하기 <ArrowRight className="h-4 w-4" />
+        </Link>
+      </Section>
+
+      <Section
+        title="서비스 운영방법"
+        desc="행사 일정에 맞춘 상담부터 공급·회수·정산까지 지원합니다."
+        className="bg-slate-50"
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {s.process.map((p) => (
+            <div key={p.step} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="text-xs font-bold text-lala-500">{p.step}</p>
+              <p className="mt-2 font-bold text-ink">{p.title}</p>
+              <p className="mt-2 text-sm text-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        title="축제 및 행사 운영사례"
+        desc="축제 사진은 지점 전달 후 교체 예정입니다. 소식란에 게시된 현장 글은 포스팅으로 연결됩니다."
+      >
+        <div className="overflow-hidden">
+          <div className="lala-marquee-track flex gap-3">
+            {casesLoop.map((c, i) => {
+              const card = (
+                <span className="inline-flex min-w-[14rem] shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-8 text-center">
+                  <span className="text-sm font-semibold text-slate-600">{c.name}</span>
+                  <span className="text-xs text-slate-400">사진 준비 중</span>
+                  {c.noticeId ? (
+                    <span className="text-xs font-bold text-lala-600">소식 보기 →</span>
+                  ) : null}
+                </span>
+              )
+              return c.noticeId ? (
+                <Link key={`${c.name}-${i}`} to={`/notice/${c.noticeId}`} className="shrink-0">
+                  {card}
+                </Link>
+              ) : (
+                <span key={`${c.name}-${i}`} className="shrink-0">
+                  {card}
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      </Section>
+
+      <Section title="견적 문의" className="bg-slate-50">
+        <div className="rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-8 text-white md:flex md:items-center md:justify-between">
+          <div>
+            <p className="text-xl font-extrabold">축제·행사 다회용기 견적 문의</p>
+            <p className="mt-2 text-sm text-lala-100">행사 일정·인원·필요 용기 종류를 알려주시면 맞춰 안내드립니다.</p>
+          </div>
+          <Link
+            to="/contact"
+            className="mt-5 inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-800 md:mt-0"
+          >
+            이 서비스 견적·상담 문의
+          </Link>
+        </div>
+      </Section>
+
+      <Section title="다른 서비스도 있어요">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SOLUTIONS.filter((x) => x.slug !== s.slug).map((x) => (
+            <Link key={x.slug} to={`/services/${x.slug}`} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="font-bold">{x.title}</p>
+              <p className="mt-2 text-sm text-muted">{x.short}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+    </>
+  )
+}
+
+function SikpanServiceDetail({
+  s,
+}: {
+  s: (typeof SOLUTIONS)[number]
+}) {
+  return (
+    <>
+      <PageHero eyebrow="다회용기 서비스" title={s.title} desc={s.short} image={IMAGES.sikpanMachine} />
+
+      <Section title="라라워시 식판">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {SIKPAN_TYPES.map((t) => (
+              <article key={t.title} className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+                {t.image ? (
+                  <img
+                    src={t.image}
+                    alt={t.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-square w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex aspect-square items-center justify-center bg-slate-50 text-sm font-medium text-slate-400">
+                    {t.title} 사진 준비 중
+                  </div>
+                )}
+                <div className="p-4">
+                  <p className="font-bold text-ink">{t.title}</p>
+                  <p className="mt-1 text-xs text-muted">{t.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div>
+            <p className="text-pretty break-keep text-base leading-relaxed text-muted">{s.desc}</p>
+            <ul className="mt-6 space-y-3">
+              {s.points.map((p) => (
+                <li key={p} className="flex gap-2 text-sm text-muted">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-lala-500" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/services/sikpan/specs"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white hover:bg-lala-700"
+            >
+              식판 세부사양 확인하기 <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </Section>
+
+      <Section title={SIKPAN_HYGIENE.title} desc={SIKPAN_HYGIENE.desc} className="bg-slate-50">
+        <div className="grid gap-4 md:grid-cols-3">
+          {['ATP검사', '잔류세제검사', '온도라벨 검사'].map((label) => (
+            <div key={label} className="rounded-2xl border-t-2 border-lala-600 bg-white p-6">
+              <p className="font-bold text-ink">{label}</p>
+              <p className="mt-2 text-sm text-muted">매일 실시 · 기준 수치로 체계 관리</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="서비스 운영방법">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {s.process.map((p) => (
+            <div key={p.step} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="text-xs font-bold text-lala-500">{p.step}</p>
+              <p className="mt-2 font-bold text-ink">{p.title}</p>
+              <p className="mt-2 text-sm text-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {s.cases && s.cases.length > 0 && (
+        <Section title="운영사례" className="bg-slate-50">
+          <div className="flex flex-wrap gap-2">
+            {s.cases.map((c) => (
+              <span
+                key={c}
+                className="rounded-full bg-lala-50 px-4 py-2 text-sm font-medium text-lala-800 ring-1 ring-lala-100"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      <Section title="견적 문의">
+        <div className="rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-8 text-white md:flex md:items-center md:justify-between">
+          <div>
+            <p className="text-xl font-extrabold">식판 대여·세척 견적 문의</p>
+            <p className="mt-2 text-sm text-lala-100">식판 수량·수거·공급 일정을 알려주시면 맞춰 안내드립니다.</p>
+          </div>
+          <Link
+            to="/contact"
+            className="mt-5 inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-lala-800 md:mt-0"
+          >
+            이 서비스 견적·상담 문의
+          </Link>
+        </div>
+      </Section>
+
+      <Section title="다른 서비스도 있어요" className="bg-slate-50">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SOLUTIONS.filter((x) => x.slug !== s.slug).map((x) => (
+            <Link key={x.slug} to={`/services/${x.slug}`} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <p className="font-bold">{x.title}</p>
+              <p className="mt-2 text-sm text-muted">{x.short}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+    </>
+  )
+}
 
 export default function ServiceDetailPage() {
   const { slug } = useParams()
@@ -14,6 +534,16 @@ export default function ServiceDetailPage() {
   }
   const s = SOLUTIONS.find((x) => x.slug === resolved)
   if (!s) return <Navigate to="/services" replace />
+
+  if (s.slug === 'funeral') {
+    return <FuneralServiceDetail s={s} />
+  }
+  if (s.slug === 'festival') {
+    return <FestivalServiceDetail s={s} />
+  }
+  if (s.slug === 'sikpan') {
+    return <SikpanServiceDetail s={s} />
+  }
 
   return (
     <>
@@ -79,98 +609,6 @@ export default function ServiceDetailPage() {
               </article>
             ))}
           </div>
-        </Section>
-      )}
-
-      {s.slug === 'festival' && (
-        <Section title="축제·행사 대여 및 반납 부스" className="bg-slate-50">
-          <img
-            src={IMAGES.festivalProducts}
-            alt="축제용 다회용기 제품"
-            loading="lazy"
-            decoding="async"
-            className="mb-8 w-full rounded-[2rem] object-cover"
-          />
-          <PhotoGallery
-            items={[
-              {
-                title: '식기 반납 부스',
-                image: IMAGES.festivalReturn,
-                caption: '관람객이 사용한 용기를 바로 반납합니다.',
-              },
-              {
-                title: '현장 대여 텐트',
-                image: IMAGES.festivalTent,
-                caption: '행사장 안에서 용기를 대여·교체합니다.',
-              },
-              {
-                title: '축제 현장 규모',
-                image: IMAGES.festivalCrowd,
-                caption: '대형 축제 물량도 지점 협업으로 대응합니다.',
-              },
-            ]}
-          />
-        </Section>
-      )}
-
-      {s.slug === 'funeral' && (
-        <Section title="장례식장 다회용기 · 현장" className="bg-slate-50">
-          <PhotoGallery
-            items={[
-              {
-                title: '수원연화장 운영 현장',
-                image: IMAGES.funeralSite,
-                caption: '빈소 내 다회용기 사용을 안내합니다.',
-              },
-              {
-                title: '친환경 다회용 장례용기',
-                image: IMAGES.dishesSet,
-                caption: '접시·공기·컵·수저를 한 세트로 제공합니다.',
-              },
-              {
-                title: '공급·회수 운영',
-                image: IMAGES.deliveryTruck,
-                caption: '가까운 지점에서 배송과 회수를 맡습니다.',
-              },
-              {
-                title: '경기도의료원 수원병원',
-                image: IMAGES.funeralHospital,
-                caption: '공공 의료원 장례식장에서 운영 중입니다.',
-              },
-            ]}
-            columns={2}
-          />
-        </Section>
-      )}
-
-      {s.slug === 'sikpan' && (
-        <Section title="급식 식판 전문 세척 시스템" className="bg-slate-50">
-          <img
-            src={IMAGES.sikpanMachine}
-            alt="식판 세척 라인"
-            loading="lazy"
-            decoding="async"
-            className="mb-8 w-full rounded-[2rem] rounded-br-none object-cover md:rounded-tr-[6rem]"
-          />
-          <PhotoGallery
-            items={[
-              {
-                title: '세척·검수 인력',
-                image: IMAGES.sikpanWorker,
-                caption: '전담 인력이 세척 후 상태를 확인합니다.',
-              },
-              {
-                title: '건조·보관 랙',
-                image: IMAGES.sikpanRacks,
-                caption: '열풍 건조 후 지정 랙에 보관합니다.',
-              },
-              {
-                title: '고압 세척 노즐',
-                image: IMAGES.sikpanNozzles,
-                caption: '식판 홈까지 고압수로 씻어냅니다.',
-              },
-            ]}
-          />
         </Section>
       )}
 
