@@ -83,11 +83,18 @@ export const IMAGES = {
   activityCup: '/pdf-assets/activity-cup.jpg',
   activityFair: '/pdf-assets/activity-fair.jpg',
   festivalProducts: '/pdf-assets/festival-products.jpg',
-  festivalReturn: '/pdf-assets/festival-return.jpg',
+  festivalReturn: '/ai-assets/ai-return-booth.jpg',
   festivalTent: '/pdf-assets/festival-tent.jpg',
   festivalCrowd: '/pdf-assets/festival-crowd.jpg',
-  /** 음식이 담긴 다회용기 (축제 히어로·소개용) */
-  festivalFood: '/official-assets/catering-use.jpg',
+  /** 음식이 담긴 다회용기 (축제 히어로·소개용) — AI 임시, 실사 교체 예정 */
+  festivalFood: '/ai-assets/ai-festival-food.jpg',
+  festivalReedish: '/ai-assets/ai-reedish-vessels.jpg',
+  festivalDevBlue: '/ai-assets/ai-dev-blue-vessels.jpg',
+  sikpanStainless: '/ai-assets/ai-stainless-tray.jpg',
+  sikpanMelamine: '/ai-assets/ai-melamine-tray.jpg',
+  caseIce: '/ai-assets/ai-case-ice.jpg',
+  caseFlower: '/ai-assets/ai-case-flower.jpg',
+  caseFest: '/ai-assets/ai-case-fest.jpg',
   fairBooth: '/pdf-assets/fair-booth.jpg',
   brandBuilding: '/pdf-assets/brand-building.jpg',
   upwMachine: '/pdf-assets/upw-machine.jpg',
@@ -577,15 +584,43 @@ export const FUNERAL_SPEC_NOTES = [
   '다회용기 구입 및 세척비용은 담당자에게 문의해 주세요.',
 ] as const
 
-/** 축제 운영사례 — 사진 공백, 소식 포스팅만 연결 */
+/** 축제 운영사례 — AI 분위기 컷 임시 사용, 지점 실사·소식 포스팅으로 교체 예정 */
 export const FESTIVAL_CASES = [
-  { name: '철원한탄강 얼음트래킹', noticeId: null as string | null },
-  { name: '이천백사 산수유축제', noticeId: 'legacy-170730310' },
-  { name: '가평 GOCF 페스티벌', noticeId: null },
-  { name: '이천 도자기축제', noticeId: null },
-  { name: '경기미 김밥페스티벌', noticeId: null },
-  { name: '김포 아라마린 페스티벌', noticeId: null },
-  { name: '오산야맥축제', noticeId: null },
+  {
+    name: '철원한탄강 얼음트래킹',
+    noticeId: null as string | null,
+    image: IMAGES.caseIce,
+  },
+  {
+    name: '이천백사 산수유축제',
+    noticeId: 'legacy-170730310',
+    image: IMAGES.caseFlower,
+  },
+  {
+    name: '가평 GOCF 페스티벌',
+    noticeId: null,
+    image: IMAGES.caseFest,
+  },
+  {
+    name: '이천 도자기축제',
+    noticeId: null,
+    image: IMAGES.caseFlower,
+  },
+  {
+    name: '경기미 김밥페스티벌',
+    noticeId: null,
+    image: IMAGES.festivalFood,
+  },
+  {
+    name: '김포 아라마린 페스티벌',
+    noticeId: null,
+    image: IMAGES.caseFest,
+  },
+  {
+    name: '오산야맥축제',
+    noticeId: null,
+    image: IMAGES.caseFest,
+  },
 ] as const
 
 export const FESTIVAL_VESSEL_TYPES = [
@@ -596,17 +631,19 @@ export const FESTIVAL_VESSEL_TYPES = [
   '기타',
 ] as const
 
-/** 축제 세부사양 — 리디쉬·개발원 (사진 추가 예정) */
+/** 축제 세부사양 — 리디쉬·개발원 (AI 임시 시각, 실사·리스트 교체 예정) */
 export const FESTIVAL_SPEC_LINES = [
   {
     title: '리디쉬 용기',
-    desc: '시흥작은자리 리디쉬 다회용기 라인입니다. 상세 리스트·사진은 지점 자료 반영 후 업데이트됩니다.',
-    image: null as string | null,
+    desc: '시흥작은자리 리디쉬 다회용기 라인입니다. 접시·면기·컵·커트러리 등 행사 음식에 맞춰 구성합니다. (시각은 AI 임시 · 지점 공식 리스트·실사로 교체 예정)',
+    image: IMAGES.festivalReedish as string | null,
+    items: ['접시·나눔접시', '면기·파스타볼', '다회용컵', '커트러리', '기타 행사 맞춤 용기'],
   },
   {
     title: '개발원 용기',
-    desc: '본사에서 촬영한 파란색 다회용기(개발원) 라인입니다. 사진 전달 후 교체 예정입니다.',
-    image: null as string | null,
+    desc: '본사에서 운영 중인 파란색 다회용기(개발원) 라인입니다. 고온 세척에 적합한 견고한 재질로 대형 행사 물량에 대응합니다. (시각은 AI 임시 · 본사 실사로 교체 예정)',
+    image: IMAGES.festivalDevBlue as string | null,
+    items: ['파란 다회용 접시·볼', '면기류', '컵·커트러리', '대량 공급·표준 세척 대응'],
   },
 ] as const
 
@@ -614,12 +651,12 @@ export const SIKPAN_TYPES = [
   {
     title: '스텐식판',
     desc: '내구성이 높아 학교·급식소 대량 운영에 적합합니다.',
-    image: IMAGES.platesRack as string | null,
+    image: IMAGES.sikpanStainless as string | null,
   },
   {
     title: '멜라민식판',
-    desc: '가벼우며 취급이 편한 멜라민 식판입니다. 제품 사진 전달 후 교체 예정입니다.',
-    image: null as string | null,
+    desc: '가벼우며 취급이 편한 멜라민 식판입니다. (시각은 AI 임시 · 제품 실사 교체 예정)',
+    image: IMAGES.sikpanMelamine as string | null,
   },
 ] as const
 
@@ -1161,7 +1198,7 @@ export const HOME_TRUST_LINKS = [
 export const FAQ = [
   {
     q: '견적은 어떻게 받나요?',
-    a: '사용 장소, 예상 수량, 기간만 알려주시면 맞춰 안내드립니다. 견적문의 페이지에서 바로 요청하실 수 있습니다.',
+    a: '사용 장소·예상 수량·기간만 알려주시면 맞춰 안내드립니다. 견적문의 페이지에서 바로 요청하실 수 있습니다.',
   },
   {
     q: '공공기관·지자체도 이용할 수 있나요?',
@@ -1184,8 +1221,28 @@ export const FAQ = [
     a: '문의 → 선택 → 배송 → 사용 → 회수 → 세척 순서입니다. 이용방법 페이지에서 단계별로 확인하실 수 있습니다.',
   },
   {
+    q: '장례식장 다회용기는 어떻게 운영되나요?',
+    a: '대여·전문세척·살균건조·위생검사·재공급의 5단계 순환으로 운영합니다. 빈소 비치 후 매일 회수·재공급하며, 수불대장 기준으로 월 정산합니다.',
+  },
+  {
+    q: '축제·행사 대여는 얼마나 미리 신청해야 하나요?',
+    a: '행사 규모에 따라 다르지만, 대형 축제는 최소 2~4주 전 상담을 권장합니다. 일정·인원·용기 종류를 알려주시면 가까운 지점과 맞춰 안내합니다.',
+  },
+  {
+    q: '식판 세척 단가·주기는 어떻게 정해지나요?',
+    a: '식판 수량, 수거·공급 주기, 스텐/멜라민 유형에 따라 달라집니다. 학교·구내식당·병원 등 현장 조건에 맞춰 견적합니다.',
+  },
+  {
+    q: '다회용컵 반납함은 어디에 두나요?',
+    a: '청사·사무실·카페 등 사용 동선에 맞춰 반납함 위치를 협의합니다. 라라워시가 정기 수거 후 6단계 세척해 재공급합니다.',
+  },
+  {
     q: '유아식판 대금은 어떻게 결제하나요?',
     a: '원 직접결제, 학부모 CMS 결제, 지자체 보조금 사용 등 기관 상황에 맞춰 협의합니다.',
+  },
+  {
+    q: '케이터링 메뉴와 최소 주문은?',
+    a: '프리미엄·이코노미 구성과 다회용컵 음료를 선택할 수 있습니다. 최소 7일 전 예약, 50인분 이상, 경기도 전 지역 무료 배송을 기준으로 상담합니다.',
   },
   {
     q: '회사소개서나 인증 자료를 받을 수 있나요?',

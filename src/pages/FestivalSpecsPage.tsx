@@ -10,7 +10,7 @@ export default function FestivalSpecsPage() {
         eyebrow="다회용기 서비스 · 축제 및 행사"
         title="축제·행사 다회용기 세부사양"
         desc="리디쉬 용기와 개발원 용기 등 행사 맞춤 다회용기 라인을 안내합니다."
-        image={IMAGES.festivalProducts}
+        image={IMAGES.festivalFood}
       />
 
       <Section title="다회용기 종류" desc="접시류·면기류·다회용컵·커트러리·기타 행사 맞춤 용기를 보유합니다.">
@@ -46,6 +46,15 @@ export default function FestivalSpecsPage() {
               <div className="p-6">
                 <h3 className="text-lg font-bold text-ink">{line.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{line.desc}</p>
+                {'items' in line && line.items ? (
+                  <ul className="mt-4 space-y-1.5">
+                    {line.items.map((item) => (
+                      <li key={item} className="text-sm text-slate-600 before:mr-2 before:text-lala-500 before:content-['·']">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
             </article>
           ))}

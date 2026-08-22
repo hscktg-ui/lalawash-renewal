@@ -317,10 +317,18 @@ function FestivalServiceDetail({
               {t}
             </div>
           ))}
-          <div className="flex min-h-[7rem] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-6 text-center">
-            <p className="text-sm font-bold text-slate-500">반납부스 사진</p>
-            <p className="mt-1 text-xs text-slate-400">제작 중 · 추후 추가</p>
-          </div>
+          <figure className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <img
+              src={IMAGES.festivalReturn}
+              alt="축제 다회용기 반납부스 (AI 임시 시각 · 제작 완료 후 실사 교체)"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <figcaption className="px-3 py-2 text-center text-xs text-slate-500">
+              반납부스 · AI 임시 시각 (제작·실사 후 교체)
+            </figcaption>
+          </figure>
         </div>
         <Link
           to="/services/festival/specs"
@@ -348,18 +356,27 @@ function FestivalServiceDetail({
 
       <Section
         title="축제 및 행사 운영사례"
-        desc="축제 사진은 지점 전달 후 교체 예정입니다. 소식란에 게시된 현장 글은 포스팅으로 연결됩니다."
+        desc="현장 분위기는 AI 임시 컷으로 안내합니다. 지점 실사·소식 포스팅이 준비되면 교체됩니다."
       >
         <div className="overflow-hidden">
           <div className="lala-marquee-track flex gap-3">
             {casesLoop.map((c, i) => {
               const card = (
-                <span className="inline-flex min-w-[14rem] shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-8 text-center">
-                  <span className="text-sm font-semibold text-slate-600">{c.name}</span>
-                  <span className="text-xs text-slate-400">사진 준비 중</span>
-                  {c.noticeId ? (
-                    <span className="text-xs font-bold text-lala-600">소식 보기 →</span>
-                  ) : null}
+                <span className="inline-flex w-52 shrink-0 flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+                  <img
+                    src={c.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-square w-full object-cover"
+                  />
+                  <span className="px-3 py-3 text-center">
+                    <span className="block text-sm font-semibold text-ink">{c.name}</span>
+                    <span className="mt-1 block text-[10px] text-slate-400">AI 임시 · 실사 교체 예정</span>
+                    {c.noticeId ? (
+                      <span className="mt-1 block text-xs font-bold text-lala-600">소식 보기 →</span>
+                    ) : null}
+                  </span>
                 </span>
               )
               return c.noticeId ? (
