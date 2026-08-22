@@ -584,43 +584,15 @@ export const FUNERAL_SPEC_NOTES = [
   '다회용기 구입 및 세척비용은 담당자에게 문의해 주세요.',
 ] as const
 
-/** 축제 운영사례 — AI 분위기 컷 임시 사용, 지점 실사·소식 포스팅으로 교체 예정 */
+/** 축제 운영사례 — 08.21 PDF: 사진 공백 표기, 소식 게시글만 포스팅 연결 */
 export const FESTIVAL_CASES = [
-  {
-    name: '철원한탄강 얼음트래킹',
-    noticeId: null as string | null,
-    image: IMAGES.caseIce,
-  },
-  {
-    name: '이천백사 산수유축제',
-    noticeId: 'legacy-170730310',
-    image: IMAGES.caseFlower,
-  },
-  {
-    name: '가평 GOCF 페스티벌',
-    noticeId: null,
-    image: IMAGES.caseFest,
-  },
-  {
-    name: '이천 도자기축제',
-    noticeId: null,
-    image: IMAGES.caseFlower,
-  },
-  {
-    name: '경기미 김밥페스티벌',
-    noticeId: null,
-    image: IMAGES.festivalFood,
-  },
-  {
-    name: '김포 아라마린 페스티벌',
-    noticeId: null,
-    image: IMAGES.caseFest,
-  },
-  {
-    name: '오산야맥축제',
-    noticeId: null,
-    image: IMAGES.caseFest,
-  },
+  { name: '철원한탄강 얼음트래킹', noticeId: null as string | null, image: null as string | null },
+  { name: '이천백사 산수유축제', noticeId: 'legacy-170730310', image: null },
+  { name: '가평GOCF 페스티벌', noticeId: null, image: null },
+  { name: '이천 도자기축제', noticeId: null, image: null },
+  { name: '경기미 김밥페스티벌', noticeId: null, image: null },
+  { name: '김포 아라마린 페스티벌', noticeId: null, image: null },
+  { name: '오산야맥축제', noticeId: null, image: null },
 ] as const
 
 export const FESTIVAL_VESSEL_TYPES = [
