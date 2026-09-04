@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import {
   CheckCircle2,
   PackageCheck,
@@ -11,6 +12,81 @@ import { ENV_SCENARIO, HISTORY, HOW_TO, IMPACT } from '../data'
 
 const howToIcons = [PhoneCall, CheckCircle2, Truck, Utensils, Recycle, Sparkles]
 
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return reduced
+}
+
+function useCountUp(target: number, active: boolean, duration = 1800) {
+  const [n, setN] = useState(0)
+  const reduced = usePrefersReducedMotion()
+
+  useEffect(() => {
+    if (!active) return
+    if (reduced) {
+      setN(target)
+      return
+    }
+    let raf = 0
+    const start = performance.now()
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / duration)
+      setN(Math.round(target * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [target, active, duration, reduced])
+
+  return n
+}
+
+function ImpactStat({
+  value,
+  suffix,
+  label,
+  active,
+  onDark,
+}: {
+  value: number
+  suffix: string
+  label: string
+  active: boolean
+  onDark: boolean
+}) {
+  const n = useCountUp(value, active)
+  return (
+    <article
+      className={
+        onDark
+          ? 'rounded-2xl bg-white p-6 text-lala-900 ring-1 ring-white/25'
+          : 'rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-6 text-white shadow-sm'
+      }
+    >
+      <p
+        className={`text-2xl font-extrabold tracking-tight tabular-nums md:text-3xl ${
+          onDark ? 'text-lala-900' : ''
+        }`}
+      >
+        {n.toLocaleString('ko-KR')}
+        <span className={`ml-1 text-sm font-semibold ${onDark ? 'text-lala-600' : 'text-lala-100'}`}>
+          {suffix}
+        </span>
+      </p>
+      <p className={`mt-2 text-sm leading-relaxed ${onDark ? 'text-slate-600' : 'text-lala-50'}`}>
+        {label}
+      </p>
+    </article>
+  )
+}
+
 export function ImpactSummary({
   compact = false,
   onDark = false,
@@ -20,34 +96,36 @@ export function ImpactSummary({
   onDark?: boolean
 }) {
   const items = compact ? IMPACT.slice(1) : IMPACT
+  const ref = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setActive(true)
+      },
+      { threshold: 0.25 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <div className={`grid gap-3 ${compact ? 'sm:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-4'}`}>
+    <div
+      ref={ref}
+      className={`grid gap-3 ${compact ? 'sm:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-4'}`}
+    >
       {items.map((item) => (
-        <article
+        <ImpactStat
           key={item.label}
-          className={
-            onDark
-              ? 'rounded-2xl bg-white p-6 text-lala-900 ring-1 ring-white/25'
-              : 'rounded-2xl bg-gradient-to-br from-lala-800 to-lala-600 p-6 text-white shadow-sm'
-          }
-        >
-          <p
-            className={`text-2xl font-extrabold tracking-tight md:text-3xl ${
-              onDark ? 'text-lala-900' : ''
-            }`}
-          >
-            {item.value.toLocaleString('ko-KR')}
-            <span
-              className={`ml-1 text-sm font-semibold ${onDark ? 'text-lala-600' : 'text-lala-100'}`}
-            >
-              {item.suffix}
-            </span>
-          </p>
-          <p className={`mt-2 text-sm leading-relaxed ${onDark ? 'text-slate-600' : 'text-lala-50'}`}>
-            {item.label}
-          </p>
-        </article>
+          value={item.value}
+          suffix={item.suffix}
+          label={item.label}
+          active={active}
+          onDark={onDark}
+        />
       ))}
     </div>
   )

@@ -30,40 +30,53 @@ const USE_HINTS: Record<string, string> = {
   기타: '일정·수량·장소를 자유롭게 적어 주세요.',
 }
 
-function openInquiryMail(fields: {
-  use: string
-  name: string
-  contact?: string
-  qty?: string
-  message?: string
-}) {
-  const lines = [
-    `용도: ${fields.use}`,
-    `기관·담당: ${fields.name}`,
-    fields.contact ? `연락처: ${fields.contact}` : '',
-    fields.qty ? `예상 수량: ${fields.qty}` : '',
-    fields.message ? `문의 내용:\n${fields.message}` : '',
-  ].filter(Boolean)
+type Status = 'idle' | 'sending' | 'sent' | 'error'
 
-  const subject = `[라라워시 문의] ${fields.use} — ${fields.name}`
-  const body = `${lines.join('\n\n')}\n\n---\n홈페이지 문의 양식에서 작성됨`
-  window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+function buildPayload(fd: FormData) {
+  return {
+    _subject: `[라라워시 문의] ${String(fd.get('use') || '')} — ${String(fd.get('name') || '')}`,
+    _template: 'table',
+    _captcha: 'false',
+    용도: String(fd.get('use') || ''),
+    기관담당: String(fd.get('name') || ''),
+    연락처: String(fd.get('contact') || ''),
+    예상수량: String(fd.get('qty') || ''),
+    문의내용: String(fd.get('message') || ''),
+  }
+}
+
+async function sendInquiry(fd: FormData) {
+  const res = await fetch(`https://formsubmit.co/ajax/${CONTACT.email}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(buildPayload(fd)),
+  })
+  if (!res.ok) throw new Error('send-failed')
+  const data = (await res.json().catch(() => ({}))) as { success?: string | boolean }
+  if (data.success === false) throw new Error('send-failed')
 }
 
 export function ContactInquiryForm({ variant = 'full', defaultUse = '공공·기관' }: Props) {
   const [useType, setUseType] = useState(defaultUse)
+  const [status, setStatus] = useState<Status>('idle')
   const hint = useMemo(() => USE_HINTS[useType] ?? USE_HINTS['기타'], [useType])
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const fd = new FormData(e.currentTarget)
-    openInquiryMail({
-      use: String(fd.get('use') || ''),
-      name: String(fd.get('name') || ''),
-      contact: String(fd.get('contact') || ''),
-      qty: String(fd.get('qty') || ''),
-      message: String(fd.get('message') || ''),
-    })
+    const form = e.currentTarget
+    const fd = new FormData(form)
+    setStatus('sending')
+    try {
+      await sendInquiry(fd)
+      setStatus('sent')
+      form.reset()
+      setUseType(defaultUse)
+    } catch {
+      setStatus('error')
+    }
   }
 
   const useSelect = (
@@ -82,13 +95,23 @@ export function ContactInquiryForm({ variant = 'full', defaultUse = '공공·기
     </select>
   )
 
+  const resultNote =
+    status === 'sent' ? (
+      <p className="mt-3 rounded-xl bg-lala-50 px-4 py-3 text-sm text-lala-800" role="status">
+        문의가 접수되었습니다. 확인 후 연락드리겠습니다.
+      </p>
+    ) : status === 'error' ? (
+      <p className="mt-3 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+        전송에 실패했습니다. 전화({CONTACT.phone})로 연락 주시거나 잠시 후 다시 시도해 주세요.
+      </p>
+    ) : null
+
   if (variant === 'home') {
     return (
       <form className="rounded-3xl bg-white p-7 text-ink shadow-xl" onSubmit={onSubmit}>
         <p className="text-sm font-bold text-lala-700">빠른 견적·상담 요청</p>
         <p className="mt-1 text-xs text-muted">
-          대략적인 정보만 있어도 충분합니다. 보내면 메일 작성이 열리며, 전화({CONTACT.phone}) 상담도
-          가능합니다.
+          대략적인 정보만 있어도 충분합니다. 전화({CONTACT.phone}) 상담도 가능합니다.
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <label className="block text-xs font-semibold text-slate-600">
@@ -116,10 +139,12 @@ export function ContactInquiryForm({ variant = 'full', defaultUse = '공공·기
         <p className="mt-3 text-[11px] leading-relaxed text-muted">{hint}</p>
         <button
           type="submit"
-          className="mt-4 w-full rounded-full bg-lala-600 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
+          disabled={status === 'sending'}
+          className="mt-4 w-full rounded-full bg-lala-600 py-3.5 text-sm font-bold text-white hover:bg-lala-700 disabled:opacity-60"
         >
-          상담 요청 보내기
+          {status === 'sending' ? '보내는 중…' : '상담 요청 보내기'}
         </button>
+        {resultNote}
         <p className="mt-2 text-center text-[11px] text-muted">
           또는{' '}
           <a href={EXTERNAL.reserveForm} target="_blank" rel="noreferrer" className="font-semibold text-lala-700">
@@ -184,16 +209,18 @@ export function ContactInquiryForm({ variant = 'full', defaultUse = '공공·기
       </label>
       <button
         type="submit"
-        className="mt-6 w-full rounded-full bg-lala-600 px-6 py-3.5 text-sm font-bold text-white hover:bg-lala-700"
+        disabled={status === 'sending'}
+        className="mt-6 w-full rounded-full bg-lala-600 px-6 py-3.5 text-sm font-bold text-white hover:bg-lala-700 disabled:opacity-60"
       >
-        문의 보내기
+        {status === 'sending' ? '보내는 중…' : '문의 보내기'}
       </button>
+      {resultNote}
       <p className="mt-3 text-center text-xs text-muted">
-        보내기 시 메일 앱이 열립니다. 전화({CONTACT.phone}) 또는{' '}
+        전화({CONTACT.phone}) 또는{' '}
         <a href={EXTERNAL.reserveForm} target="_blank" rel="noreferrer" className="font-semibold text-lala-700">
           사용 예약 폼
         </a>
-        을 이용하세요.
+        도 이용하실 수 있습니다.
       </p>
     </form>
   )

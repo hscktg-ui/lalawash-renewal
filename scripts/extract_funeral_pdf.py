@@ -4,7 +4,7 @@ from pathlib import Path
 
 import fitz
 
-pdf = Path(r"D:\다운로드") / "라라워시_장례식장_제안서_A4세로_12면(수정7).pdf"
+pdf = Path(r"D:\다운로드") / "라라워시_장례식장_제안서_A4세로_12면(수정8_최종).pdf"
 out_dir = Path(r"D:\Projects\lalawash-renewal\public\pdf-assets\funeral-proposal")
 txt_out = Path(r"D:\Projects\lalawash-renewal\tmp-funeral-proposal.txt")
 out_dir.mkdir(parents=True, exist_ok=True)

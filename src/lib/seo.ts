@@ -17,7 +17,7 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
   {
     match: /^\/about\/cert/,
     title: '인증획득 및 위생관리 | 라라워시',
-    description: 'NSF·ISO 인증과 식약처 지침 3대 위생검사, 초순수 6단계 세척을 안내합니다.',
+    description: '글로벌 인증과 안심위생 시스템. NSF·ISO, 초순수 6단계 세척, 식약처 지침 3대 위생검사.',
   },
   {
     match: /^\/about\/branches/,
@@ -27,7 +27,7 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
   {
     match: /^\/about/,
     title: '회사소개 | 라라워시',
-    description: '지속가능한 깨끗함, 지속가능한 일자리. 라라워시 비전과 핵심 역량.',
+    description: '지속가능한 깨끗함, 지속가능한 일자리. 라라워시 핵심가치와 자원순환 서비스.',
   },
   {
     match: /^\/services/,
@@ -53,6 +53,16 @@ const TITLES: { match: RegExp; title: string; description: string }[] = [
     match: /^\/contact/,
     title: '견적·상담 문의 | 라라워시',
     description: '다회용기 서비스 견적·상담을 요청하세요.',
+  },
+  {
+    match: /^\/legal\/privacy/,
+    title: '개인정보처리방침 | 라라워시',
+    description: '라라워시 홈페이지 개인정보 수집·이용 안내.',
+  },
+  {
+    match: /^\/legal\/terms/,
+    title: '이용약관 | 라라워시',
+    description: '라라워시 홈페이지 이용약관.',
   },
 ]
 

@@ -19,6 +19,9 @@ import MallQuotePage from './pages/MallQuotePage'
 import FuneralSpecsPage from './pages/FuneralSpecsPage'
 import FestivalSpecsPage from './pages/FestivalSpecsPage'
 import SikpanSpecsPage from './pages/SikpanSpecsPage'
+import CupSpecsPage from './pages/CupSpecsPage'
+import KidsSpecsPage from './pages/KidsSpecsPage'
+import { PrivacyPage, TermsPage } from './pages/LegalPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -46,12 +49,16 @@ export default function App() {
           <Route path="services/funeral/specs" element={<FuneralSpecsPage />} />
           <Route path="services/festival/specs" element={<FestivalSpecsPage />} />
           <Route path="services/sikpan/specs" element={<SikpanSpecsPage />} />
+          <Route path="services/cup/specs" element={<CupSpecsPage />} />
+          <Route path="services/kids-tray/specs" element={<KidsSpecsPage />} />
           <Route path="services/:slug" element={<ServiceDetailPage />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/:id" element={<NoticeDetailPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="contact/how" element={<HowToPage />} />
           <Route path="contact/faq" element={<FaqPage />} />
+          <Route path="legal/terms" element={<TermsPage />} />
+          <Route path="legal/privacy" element={<PrivacyPage />} />
           {/* legacy redirects */}
           <Route path="infra" element={<Navigate to="/about/branches" replace />} />
           <Route path="impact" element={<Navigate to="/about/history" replace />} />

@@ -24,9 +24,9 @@ export default function ContactPage() {
             </a>
             <p className="mt-4 text-sm text-lala-100">{CONTACT.hours}</p>
             <p className="mt-2 text-sm text-lala-100">{CONTACT.email}</p>
-            <address className="mt-6 space-y-1 text-sm not-italic leading-relaxed text-white/90">
-              <span className="block">{CONTACT.hq}</span>
-              <span className="block">사업장 · {CONTACT.site}</span>
+            <address className="mt-6 space-y-2 text-sm not-italic leading-relaxed text-white/90">
+              <span className="block">본사 · {CONTACT.hq}</span>
+              <span className="block">수원사무소 · {CONTACT.office}</span>
             </address>
             <a
               href={EXTERNAL.reserveForm}

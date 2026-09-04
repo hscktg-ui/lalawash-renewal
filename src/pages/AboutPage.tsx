@@ -1,86 +1,114 @@
 import { Link } from 'react-router-dom'
 import { PageHero, Section } from '../components/Layout'
 import { CompanyProfileDownload } from '../components/CompanyProfileDownload'
-import { CORE_CAPABILITIES, IMAGES, NETWORK } from '../data'
-
-const MISSIONS = [
-  {
-    code: 'E',
-    title: '환경(Environmental)을 위한 선택',
-    desc: '친환경 자원순환을 통한 탄소 배출 저감으로 저탄소 ESG경영을 선도합니다.',
-  },
-  {
-    code: 'S',
-    title: '사회적 가치(Social) 추구',
-    desc: '취약계층을 위한 친환경 일자리를 창출하고 지역사회에 책임 문화를 확산합니다.',
-  },
-  {
-    code: 'G',
-    title: '지역사회와 상생하는 책임경영',
-    desc: '표준 세척 시스템과 민관협업으로 투명하고 지속 가능한 상생 모델을 구축합니다.',
-  },
-]
+import {
+  ABOUT_INTRO,
+  CIRCULAR_CARE,
+  CORE_CAPABILITIES,
+  CORE_VALUES,
+  GREETING,
+  IMAGES,
+} from '../data'
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        title="편리함 때문에 포기했던 환경을 다시 생각합니다"
-        image={IMAGES.about}
+        title={
+          <>
+            지속가능한 깨끗함,
+            <br />
+            지속가능한 일자리
+          </>
+        }
+        image={IMAGES.brandBuilding}
       />
 
-      <Section
-        title="라라워시 소개"
-        desc="라라워시는 다회용기 대여부터 수거·세척·재공급까지 토탈 솔루션을 제공합니다."
-      >
+      <Section title="라라워시">
         <div className="grid gap-8 lg:grid-cols-2">
-          <img src={IMAGES.sikpanMachine} alt="라라워시 식판 세척" className="h-80 w-full rounded-3xl object-cover" />
-          <div className="space-y-5 text-pretty break-keep text-sm leading-relaxed text-muted md:text-base">
-            <p>
-              초순수(UPW) 6단계 세척과 경기도 {NETWORK.regions}개 지역 · {NETWORK.sites}개
-              전문세척장으로, 가장 가까운 곳에서 가장 신속하게 수거·세척·재공급합니다.
-            </p>
+          <img
+            src={IMAGES.sikpanWorker}
+            alt="라라워시 세척장에서 다회용기를 건조하는 현장"
+            className="h-80 w-full rounded-3xl object-cover"
+          />
+          <div className="space-y-6">
+            <p className="text-pretty break-keep text-base leading-[1.85] text-ink md:text-lg">{ABOUT_INTRO}</p>
             <CompanyProfileDownload label="회사소개서 다운받기" />
           </div>
         </div>
       </Section>
 
-      <Section title="비전" className="bg-slate-50">
-        <div className="mb-8 rounded-2xl bg-lala-700 p-8 text-white">
-          <p className="text-lg leading-relaxed md:text-xl">
-            지속가능한 다회용기 세척사업을 통해 환경문제에 대응하고 지역 내 다회용기 순환체계 정착으로
-            취약계층의 일자리 창출 및 지역경제에 기여합니다.
-          </p>
+      <section className="bg-lala-900 px-5 py-16 text-white md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-lala-300">ENVIRONMENT · SOCIAL · GOVERNANCE</p>
+          <h2 className="mt-4 text-[4.5rem] font-medium leading-none tracking-[0.12em] md:text-[7rem]">ESG</h2>
+          <div className="mt-12 grid gap-px overflow-hidden bg-white/15 md:grid-cols-3">
+            {CORE_VALUES.map((value) => (
+              <article key={value.letter} className="bg-lala-900 p-7 md:p-8">
+                <p className="font-mono text-5xl font-medium tracking-tight text-lala-300">{value.letter}</p>
+                <p className="mt-3 text-xs font-semibold tracking-[0.16em] text-lala-400">{value.axis}</p>
+                <h3 className="mt-2 text-xl font-bold">{value.title}</h3>
+                <ul className="mt-5 space-y-2">
+                  {value.items.map((item) => (
+                    <li key={item} className="text-pretty break-keep text-sm leading-relaxed text-lala-100">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
-        <p className="mb-5 text-sm font-semibold text-lala-600">소셜미션</p>
-        <div className="grid gap-5 md:grid-cols-3">
-          {MISSIONS.map((m) => (
-            <article key={m.title} className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
-              <p className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-lala-600 text-sm font-extrabold text-white">
-                {m.code}
-              </p>
-              <h3 className="mt-4 text-lg font-bold text-lala-800">{m.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{m.desc}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
+      </section>
 
-      <Section title="라라워시 핵심 역량">
+      <Section title="라라워시 핵심역량">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {CORE_CAPABILITIES.map((c, i) => (
             <article key={c.title} className="border-t-2 border-lala-600 pt-5">
               <p className="text-xs font-bold text-lala-500">{String(i + 1).padStart(2, '0')}</p>
               <h3 className="mt-2 text-lg font-bold">{c.title}</h3>
-              <p className="mt-2 text-sm text-muted">{c.desc}</p>
+              <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{c.desc}</p>
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section title={CIRCULAR_CARE.title} desc={CIRCULAR_CARE.desc} className="bg-slate-50">
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CIRCULAR_CARE.steps.map((step, i) => (
+            <li key={step.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+              <p className="text-xs font-bold text-lala-500">{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-2 font-bold text-ink">{step.title}</h3>
+              <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{step.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section title="인사말">
+        <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,14rem)_1fr]">
+          <img
+            src={IMAGES.character}
+            alt="라라 캐릭터"
+            className="mx-auto w-44 object-contain lg:mx-0 lg:w-full"
+          />
+          <blockquote>
+            <p className="text-pretty break-keep text-xl font-bold leading-snug text-lala-800 md:text-2xl">
+              {GREETING.quote}
+            </p>
+            {GREETING.paragraphs.map((p) => (
+              <p
+                key={p.slice(0, 24)}
+                className="mt-5 text-pretty break-keep text-sm leading-[1.85] text-muted md:text-base"
+              >
+                {p}
+              </p>
+            ))}
+            <p className="mt-8 text-right text-sm font-semibold text-ink">{GREETING.sign}</p>
+          </blockquote>
+        </div>
         <div className="mt-12 rounded-2xl bg-lala-50 p-8 text-center ring-1 ring-lala-100">
-          <p className="text-xl font-extrabold text-lala-900 md:text-2xl">
-            지속가능한 내일을 위한 다회용기 사용, 라라워시와 함께 하세요
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <Link to="/services" className="rounded-full bg-lala-600 px-6 py-3 text-sm font-bold text-white">
               서비스 안내
             </Link>

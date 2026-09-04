@@ -1,13 +1,11 @@
 import {
   FIELD_ACTIVITIES,
-  IMPACT_FORMULA,
   PARTNERS,
   PORTFOLIO_POLICY,
   TRUST_BADGES,
   VERIFIED_ACHIEVEMENTS,
   YEARLY_IMPACT,
 } from '../data'
-import { CompanyProfileDownload } from './CompanyProfileDownload'
 
 export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
   const maxEvents = Math.max(...YEARLY_IMPACT.map((y) => y.events))
@@ -66,47 +64,39 @@ export function YearlyImpactSection({ dark = false }: { dark?: boolean }) {
           ))}
         </div>
 
-        <div className={`mt-10 rounded-2xl p-6 ${dark ? 'bg-white/5' : 'bg-lala-50'}`}>
-          <p className={`text-sm font-bold ${dark ? 'text-lala-200' : 'text-lala-800'}`}>숫자는 이렇게 이해하시면 됩니다</p>
-          <ul className={`mt-3 grid gap-2 text-sm md:grid-cols-2 ${dark ? 'text-slate-300' : 'text-muted'}`}>
-            {IMPACT_FORMULA.map((f) => (
-              <li key={f}>· {f}</li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   )
 }
 
-export function PortfolioGallery() {
+export function FieldProofSection() {
   if (!PORTFOLIO_POLICY.showVerifiedMetrics) return null
 
   return (
     <section className="bg-slate-50 px-5 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold text-lala-600">현장 실적</p>
-        <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">이미 함께하고 있는 곳들</h2>
-        <p className="mt-4 max-w-2xl text-muted">{PORTFOLIO_POLICY.note}</p>
-        <div className="mt-5">
-          <CompanyProfileDownload variant="secondary" label="소개 자료 받기" />
-        </div>
+        <p className="text-sm font-semibold text-lala-600">함께하는 곳</p>
+        <h2 className="mt-3 break-keep text-3xl font-extrabold md:text-4xl">이미 함께하고 있는 곳들</h2>
+        <p className="mt-4 max-w-2xl text-pretty break-keep text-muted">{PORTFOLIO_POLICY.note}</p>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {VERIFIED_ACHIEVEMENTS.map((p) => (
-            <article
-              key={`${p.category}-${p.title}`}
-              className="rounded-2xl bg-white p-5 ring-1 ring-slate-200"
-            >
+            <article key={`${p.category}-${p.title}`} className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
               <p className="text-[11px] font-bold tracking-wide text-lala-600">{p.category}</p>
               <h3 className="mt-2 text-base font-bold text-ink">{p.title}</h3>
               <p className="mt-3 text-lg font-extrabold text-lala-700">{p.metric}</p>
             </article>
           ))}
         </div>
+
+        <PartnerMarquee className="mt-10" />
       </div>
     </section>
   )
+}
+
+export function PortfolioGallery() {
+  return <FieldProofSection />
 }
 
 /** PDF: 라라워시와 함께하는 기관 롤링 배너 */

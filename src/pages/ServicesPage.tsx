@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Play } from 'lucide-react'
 import { PageHero, Section } from '../components/Layout'
-import { HYGIENE_CHECKS, IMAGES, SOLUTIONS, WASH_STEPS } from '../data'
+import { FUNERAL_WASH_STEPS, HYGIENE_CHECKS, IMAGES, SOLUTIONS, FESTIVAL_PHOTO_NOTE } from '../data'
 import { EXTERNAL } from '../lib/content'
 
 export default function ServicesPage() {
@@ -15,7 +15,13 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="다회용기 서비스"
-        title="축제, 장례식장, 오피스 등 어디서나 쓰레기 Zero"
+        title={
+          <>
+            축제, 장례식장, 오피스 등
+            <br />
+            어디서나 쓰레기 Zero
+          </>
+        }
         desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션입니다. 장소와 상황에 맞는 서비스를 선택해 보세요."
         image={IMAGES.sikpanMachine}
       />
@@ -38,6 +44,9 @@ export default function ServicesPage() {
                 decoding="async"
                 className="h-44 w-full object-cover"
               />
+              {s.slug === 'festival' ? (
+                <p className="bg-slate-50 px-4 py-2 text-[11px] leading-relaxed text-slate-500">{FESTIVAL_PHOTO_NOTE}</p>
+              ) : null}
               <div className="p-6">
                 <h3 className="text-lg font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted">{s.short}</p>
@@ -93,15 +102,25 @@ export default function ServicesPage() {
 
       <Section
         id="wash"
-        title="라라워시 다회용기 세척 프로세스"
-        desc="전 지점에서 동일한 초순수(UPW) 6단계 세척 기준을 적용합니다."
+        title="라라워시 다회용기 세척프로세스"
+        desc="전 지점 동일 매뉴얼로 깨끗함을 전달합니다."
         className="scroll-mt-24"
       >
-        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {WASH_STEPS.map((s, i) => (
-            <li key={s.title} className="flex items-center gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200">
-              <p className="text-xs font-bold text-lala-500">STEP {i + 1}</p>
-              <p className="break-keep font-bold">{s.title}</p>
+        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {FUNERAL_WASH_STEPS.map((s) => (
+            <li key={s.step} className="overflow-hidden rounded-xl bg-white ring-1 ring-slate-200">
+              <img
+                src={s.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/8] w-full object-cover"
+              />
+              <div className="p-4">
+                <p className="text-xs font-bold text-lala-500">{s.step}</p>
+                <p className="mt-1 break-keep font-bold">{s.title}</p>
+                <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{s.desc}</p>
+              </div>
             </li>
           ))}
         </ol>
@@ -120,6 +139,7 @@ export default function ServicesPage() {
           {HYGIENE_CHECKS.map((h) => (
             <article key={h.title} className="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
               <h3 className="font-bold text-ink">{h.title}</h3>
+              {h.standard ? <p className="mt-2 text-sm font-semibold text-lala-700">{h.standard}</p> : null}
               <p className="mt-2 text-pretty break-keep text-sm leading-relaxed text-muted">{h.desc}</p>
             </article>
           ))}

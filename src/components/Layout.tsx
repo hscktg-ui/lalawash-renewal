@@ -165,24 +165,28 @@ export function Layout() {
             <BrandMark to="/" size="md" />
             <p className="mt-2 text-sm font-medium text-lala-600">{BRAND.slogan}</p>
             <p className="mt-1 text-sm text-muted">{BRAND.tagline}</p>
+            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              <Link to="/legal/terms" className="font-semibold text-lala-700 hover:text-lala-600">
+                이용약관
+              </Link>
+              <Link to="/legal/privacy" className="font-semibold text-lala-700 hover:text-lala-600">
+                개인정보처리방침
+              </Link>
+            </p>
           </div>
           <div className="text-sm text-muted">
-            <p className="font-semibold text-ink">라라워시 본사</p>
-            <p className="mt-2">{CONTACT.hq}</p>
-            <p className="mt-1">T. {CONTACT.phone}</p>
-            <p>{CONTACT.email}</p>
-            <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-              <Link to="/about" className="font-semibold text-lala-700 hover:text-lala-600">
-                본사 바로가기
-              </Link>
-              <a
-                href={EXTERNAL.companyProfile}
-                download={EXTERNAL.companyProfileName}
-                className="font-semibold text-lala-700 hover:text-lala-600"
-              >
-                회사소개서 다운받기
-              </a>
+            <p className="break-keep leading-relaxed">
+              <span className="font-semibold text-ink">라라워시 본사</span>
+              <span className="mx-2 text-slate-300">┃</span>
+              {CONTACT.hq}
             </p>
+            <p className="mt-3 break-keep leading-relaxed">
+              <span className="font-semibold text-ink">라라워시 수원사무소</span>
+              <span className="mx-2 text-slate-300">┃</span>
+              {CONTACT.office}
+            </p>
+            <p className="mt-4">T. {CONTACT.phone}</p>
+            <p>{CONTACT.email}</p>
           </div>
           <div className="text-sm text-muted">
             <p className="font-semibold text-ink">바로가기</p>
@@ -223,17 +227,6 @@ export function Layout() {
               >
                 <img src={IMAGES.instagram} alt="" className="h-6 w-6 object-contain" />
               </a>
-              <a
-                href={EXTERNAL.youtube}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#ff0000] text-white transition hover:brightness-110"
-                aria-label="유튜브"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden>
-                  <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
-                </svg>
-              </a>
             </div>
             <p className="mt-4 text-xs">대표 {CONTACT.ceo}</p>
             <p className="text-xs">사업자등록번호 {CONTACT.biz}</p>
@@ -267,7 +260,7 @@ export function PageHero({
   image,
 }: {
   eyebrow?: string
-  title: string
+  title: ReactNode
   desc?: string
   image?: string
 }) {
@@ -280,7 +273,7 @@ export function PageHero({
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28">
         {eyebrow ? <p className="text-sm font-semibold text-lala-200">{eyebrow}</p> : null}
         <h1
-          className={`${eyebrow ? 'mt-3' : ''} max-w-[18em] text-balance break-keep text-3xl font-extrabold leading-tight tracking-tight md:text-5xl`}
+          className={`${eyebrow ? 'mt-3' : ''} max-w-[16em] break-keep text-3xl font-extrabold leading-[1.25] tracking-tight md:text-5xl`}
         >
           {title}
         </h1>
