@@ -45,9 +45,11 @@ export const IMAGES = {
   center: 'https://cdn.imweb.me/thumbnail/20231123/4aa2068891dbb.jpg',
   mapCta: 'https://cdn.imweb.me/thumbnail/20250922/cbece11f67bff.png',
   reusable: 'https://cdn.imweb.me/thumbnail/20250922/81ee8b45ec653.png',
-  character: 'https://cdn.imweb.me/thumbnail/20231127/c4d9d8c00bd1b.jpg',
+  /** 구 사이트 라라 공식 일러스트 (뱃지·명함 굿즈 제외) */
+  character: '/official-assets/lala-character.jpg',
   partner: 'https://cdn.imweb.me/thumbnail/20231128/17cbc2b09321d.jpg',
-  washBg: 'https://cdn.imweb.me/thumbnail/20231128/b4092ea57e46f.jpg',
+  /** 구 소개 페이지 배경 — 물방울. 식판·랙 실사와 구분 */
+  washBg: '/official-assets/old-intro-wash.jpg',
   process: 'https://cdn.imweb.me/thumbnail/20231128/c3dada48bdea3.jpg',
   containers: 'https://cdn.imweb.me/thumbnail/20250922/3aaf157e8547e.jpg',
   funeral: '/pdf-assets/funeral-meal.jpg',

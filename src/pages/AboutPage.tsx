@@ -21,7 +21,7 @@ export default function AboutPage() {
             지속가능한 일자리
           </>
         }
-        image={IMAGES.funeralRack}
+        image={IMAGES.washBg}
       />
 
       <Section title="라라워시">
@@ -86,11 +86,11 @@ export default function AboutPage() {
       </Section>
 
       <Section title="인사말">
-        <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,14rem)_1fr]">
+        <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,16rem)_1fr]">
           <img
             src={IMAGES.character}
-            alt="라라 캐릭터"
-            className="mx-auto w-44 object-contain lg:mx-0 lg:w-full"
+            alt="라라워시 대표 캐릭터 라라"
+            className="mx-auto w-48 object-contain lg:mx-0 lg:w-full"
           />
           <blockquote>
             <p className="text-pretty break-keep text-xl font-bold leading-snug text-lala-800 md:text-2xl">
