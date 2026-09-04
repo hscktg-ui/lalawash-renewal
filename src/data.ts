@@ -112,6 +112,12 @@ export const IMAGES = {
   festivalReedishRfidSystem: '/ai-assets/reedish/rfid-system.png',
   festivalReedishRfidFlow: '/ai-assets/reedish/rfid-flow.png',
   festivalReedishOrder: '/ai-assets/reedish/order-guide.png',
+  festivalGroupPlates: '/pdf-assets/reedish/plates.png',
+  festivalGroupBowls: '/pdf-assets/reedish/bowls.png',
+  festivalGroupCups: '/pdf-assets/reedish/cups.png',
+  festivalGroupCutlery: '/pdf-assets/reedish/cutlery.png',
+  festivalGroupOther: '/pdf-assets/reedish/other.png',
+  festivalGroupReturn: '/pdf-assets/reedish/return.png',
   festivalDevBlue: '/ai-assets/ai-dev-blue-vessels.jpg',
   sikpanStainless: '/ai-assets/ai-stainless-tray.jpg',
   sikpanMelamine: '/ai-assets/ai-melamine-tray.jpg',
@@ -727,6 +733,7 @@ export const FESTIVAL_VESSEL_TYPES = [
 export const FESTIVAL_VESSEL_GROUPS = [
   {
     title: '접시(플레이트)',
+    image: IMAGES.festivalGroupPlates,
     items: [
       { name: '대접시', note: '전, 튀김 등' },
       { name: '소접시', note: '개인접시' },
@@ -735,6 +742,7 @@ export const FESTIVAL_VESSEL_GROUPS = [
   },
   {
     title: '면기(볼)',
+    image: IMAGES.festivalGroupBowls,
     items: [
       { name: '면기', note: '국수, 비빔밥 등' },
       { name: '파스타볼', note: '떡볶이, 오뎅 등' },
@@ -743,6 +751,7 @@ export const FESTIVAL_VESSEL_GROUPS = [
   },
   {
     title: '다회용컵',
+    image: IMAGES.festivalGroupCups,
     items: [
       { name: '컵+리드', note: '' },
       { name: '불투명 컵', note: '16~5oz' },
@@ -751,6 +760,7 @@ export const FESTIVAL_VESSEL_GROUPS = [
   },
   {
     title: '커트러리',
+    image: IMAGES.festivalGroupCutlery,
     items: [
       { name: '수저, 포크', note: '' },
       { name: '수저, 젓가락', note: '' },
@@ -758,6 +768,7 @@ export const FESTIVAL_VESSEL_GROUPS = [
   },
   {
     title: '기타',
+    image: IMAGES.festivalGroupOther,
     items: [
       { name: '도시락용기', note: '' },
       { name: '멜라민식판', note: '' },
@@ -766,6 +777,7 @@ export const FESTIVAL_VESSEL_GROUPS = [
   },
   {
     title: '반납부스',
+    image: IMAGES.festivalGroupReturn,
     items: [
       { name: '반납부스', note: '인력포함' },
       { name: '용기 반납함', note: '' },

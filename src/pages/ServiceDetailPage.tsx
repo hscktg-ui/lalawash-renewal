@@ -245,13 +245,13 @@ function FestivalServiceDetail({
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {FESTIVAL_VESSEL_GROUPS.map((group) => (
             <article key={group.title} className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-              <div className="flex aspect-[16/10] items-center justify-center bg-slate-50 px-4 text-center">
-                <p className="text-pretty break-keep text-xs leading-relaxed text-slate-400">
-                  {group.title} 대표사진
-                  <br />
-                  스튜디오 촬영 후 게시
-                </p>
-              </div>
+              <img
+                src={group.image}
+                alt={`${group.title} — 시흥점 리디시 판매책자`}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/10] w-full bg-[#f6f3ee] object-cover"
+              />
               <div className="p-6">
                 <h3 className="font-bold text-lala-800">{group.title}</h3>
                 <ul className="mt-4 space-y-2">
@@ -266,6 +266,9 @@ function FestivalServiceDetail({
             </article>
           ))}
         </div>
+        <p className="mt-4 max-w-2xl text-pretty break-keep text-xs leading-relaxed text-slate-500">
+          대표사진은 시흥점 리디시(Re:dish) 판매책자(수정8)에서 발췌했습니다.
+        </p>
         <Link
           to="/services/festival/specs"
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-lala-600 px-5 py-3 text-sm font-bold text-white hover:bg-lala-700"
