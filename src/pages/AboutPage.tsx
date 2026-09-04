@@ -21,14 +21,14 @@ export default function AboutPage() {
             지속가능한 일자리
           </>
         }
-        image={IMAGES.brandBuilding}
+        image={IMAGES.funeralRack}
       />
 
       <Section title="라라워시">
         <div className="grid gap-8 lg:grid-cols-2">
           <img
-            src={IMAGES.sikpanWorker}
-            alt="라라워시 세척장에서 다회용기를 건조하는 현장"
+            src={IMAGES.funeralMeal}
+            alt="현장에서 쓰는 라라워시 다회용기"
             className="h-80 w-full rounded-3xl object-cover"
           />
           <div className="space-y-6">
