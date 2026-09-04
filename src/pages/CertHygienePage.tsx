@@ -72,7 +72,11 @@ export default function CertHygienePage() {
                 {c.badge === 'NSF' ? (
                   <img src={IMAGES.hygieneNsf} alt="NSF International" className="h-24 w-24 object-contain" />
                 ) : (
-                  <p className="text-center text-3xl font-extrabold tracking-tight text-lala-800">{c.badge}</p>
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white ring-1 ring-slate-200">
+                    <p className="px-2 text-center text-sm font-bold leading-snug tracking-tight text-lala-800">
+                      {c.badge}
+                    </p>
+                  </div>
                 )}
               </div>
               <div className="p-6">

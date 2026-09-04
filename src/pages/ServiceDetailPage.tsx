@@ -250,7 +250,7 @@ function FestivalServiceDetail({
                 alt={`${group.title} — 시흥점 리디시 판매책자`}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[16/10] w-full bg-[#f6f3ee] object-cover"
+                className="aspect-[16/10] w-full bg-[#f6f3ee] object-contain"
               />
               <div className="p-6">
                 <h3 className="font-bold text-lala-800">{group.title}</h3>

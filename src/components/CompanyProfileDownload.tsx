@@ -10,7 +10,7 @@ type Props = {
 export function CompanyProfileDownload({
   variant = 'primary',
   className = '',
-  label = '소개 자료 받기',
+  label = '회사소개서 다운받기',
 }: Props) {
   const styles =
     variant === 'primary'
