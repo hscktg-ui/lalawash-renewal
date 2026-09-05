@@ -34,8 +34,8 @@ export const LOGO_ON_DARK = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
-  /** 구 소개 페이지 지구·수면 컷. 식판 랙 실사와 구분 */
-  hero: '/official-assets/old-home-hero.jpg',
+  /** 09.04: 식판 대표컷 금지 → 다회용기 이용 실사 */
+  hero: '/pdf-assets/funeral-meal.jpg',
   about: 'https://cdn.imweb.me/thumbnail/20231127/19bb0bd366ee3.jpg',
   intro: 'https://cdn.imweb.me/thumbnail/20231127/0db62a1ee9604.jpg',
   service: 'https://cdn.imweb.me/thumbnail/20210908/b33320490e2e6.jpg',
