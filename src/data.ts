@@ -34,7 +34,8 @@ export const LOGO_ON_DARK = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
-  hero: 'https://cdn.imweb.me/thumbnail/20250922/dd6677c53d92e.jpg',
+  /** 구 소개 페이지 지구·수면 컷. 식판 랙 실사와 구분 */
+  hero: '/official-assets/old-home-hero.jpg',
   about: 'https://cdn.imweb.me/thumbnail/20231127/19bb0bd366ee3.jpg',
   intro: 'https://cdn.imweb.me/thumbnail/20231127/0db62a1ee9604.jpg',
   service: 'https://cdn.imweb.me/thumbnail/20210908/b33320490e2e6.jpg',

@@ -11,18 +11,18 @@ export default function HomePage() {
       <section className="relative min-h-[78svh] overflow-hidden text-white md:min-h-[84svh]">
         <img
           src={IMAGES.hero}
-          alt="라라워시 다회용기 현장"
+          alt="지속가능한 깨끗함, 라라워시"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.55)_0%,rgba(11,31,46,0.28)_38%,rgba(11,31,46,0.82)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(15,45,69,0.4)_0%,transparent_58%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.48)_0%,rgba(11,31,46,0.38)_42%,rgba(11,31,46,0.86)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,31,46,0.58)_0%,rgba(11,31,46,0.22)_46%,transparent_72%)]" />
 
         <div className="relative mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:min-h-[84svh] md:justify-center md:pb-20">
           <div className="max-w-3xl">
-            <h1 className="lala-fade-up max-w-[14em] text-balance break-keep text-4xl font-extrabold leading-tight tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="lala-fade-up max-w-[14em] text-balance break-keep text-4xl font-extrabold leading-tight tracking-tight [text-shadow:0_2px_18px_rgba(11,31,46,0.55)] md:text-6xl lg:text-7xl">
               {BRAND.heroTitle}
             </h1>
-            <div className="lala-fade-up-delay mt-6 max-w-2xl space-y-1.5 text-pretty break-keep text-base leading-relaxed text-lala-50 md:text-lg">
+            <div className="lala-fade-up-delay mt-6 max-w-2xl space-y-1.5 text-pretty break-keep text-base leading-relaxed text-lala-50 [text-shadow:0_1px_10px_rgba(11,31,46,0.45)] md:text-lg">
               {BRAND.heroLines.map((line) => (
                 <p key={line}>{line}</p>
               ))}
