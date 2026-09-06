@@ -21,7 +21,7 @@ export default function AboutPage() {
             지속가능한 일자리
           </>
         }
-        image={IMAGES.washBg}
+        image={IMAGES.heroWash}
       />
 
       <Section title="라라워시">

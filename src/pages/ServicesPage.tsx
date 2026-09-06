@@ -23,7 +23,7 @@ export default function ServicesPage() {
           </>
         }
         desc="수거부터 완벽한 세척까지 알아서 해결하는 지속가능한 다회용기 솔루션입니다. 장소와 상황에 맞는 서비스를 선택해 보세요."
-        image={IMAGES.sikpanMachine}
+        image={IMAGES.heroWash}
       />
 
       <Section

@@ -11,7 +11,7 @@ export default function HomePage() {
       <section className="relative min-h-[78svh] overflow-hidden text-white md:min-h-[84svh]">
         <img
           src={IMAGES.hero}
-          alt="현장에서 쓰는 라라워시 다회용기"
+          alt="다회용기에 담긴 식사 현장"
           className="absolute inset-0 h-full w-full object-cover object-[center_62%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.48)_0%,rgba(11,31,46,0.38)_42%,rgba(11,31,46,0.86)_100%)]" />
