@@ -34,10 +34,10 @@ export const LOGO_ON_DARK = '/logo.png'
 export const OG_IMAGE = '/og-image.png'
 
 export const IMAGES = {
-  /** AI 2차: 남색 다회용기 + 초순수 노즐. 식판·음식 스톡 제외 */
-  hero: '/ai-assets/lala-hero-nozzles.jpg',
-  /** AI 2차: 세척 직후 남색 볼. 회사소개·서비스 허브 */
-  heroWash: '/ai-assets/lala-hero-vessels-wet.jpg',
+  /** AI 3차: 물방울·수면. 식판·공장 톤 제외 */
+  hero: '/ai-assets/lala-hero-water.jpg',
+  /** AI 3차: 자연 수변 + 남색 다회용기 */
+  heroWash: '/ai-assets/lala-hero-nature.jpg',
   about: 'https://cdn.imweb.me/thumbnail/20231127/19bb0bd366ee3.jpg',
   intro: 'https://cdn.imweb.me/thumbnail/20231127/0db62a1ee9604.jpg',
   service: 'https://cdn.imweb.me/thumbnail/20210908/b33320490e2e6.jpg',

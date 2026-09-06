@@ -11,11 +11,11 @@ export default function HomePage() {
       <section className="relative min-h-[78svh] overflow-hidden text-white md:min-h-[84svh]">
         <img
           src={IMAGES.hero}
-          alt="초순수 세척 중인 라라워시 다회용기"
-          className="absolute inset-0 h-full w-full object-cover object-[68%_center]"
+          alt="맑은 물방울과 수면"
+          className="absolute inset-0 h-full w-full object-cover object-[center_58%]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.28)_0%,rgba(11,31,46,0.18)_40%,rgba(11,31,46,0.72)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,31,46,0.42)_0%,rgba(11,31,46,0.12)_42%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,31,46,0.32)_0%,rgba(11,31,46,0.20)_42%,rgba(11,31,46,0.68)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,31,46,0.36)_0%,rgba(11,31,46,0.10)_48%,transparent_74%)]" />
 
         <div className="relative mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 md:min-h-[84svh] md:justify-center md:pb-20">
           <div className="max-w-3xl">
